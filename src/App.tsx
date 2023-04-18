@@ -1,13 +1,15 @@
 import React from 'react';
-import './components/FilmCard/filmcard.css'
-import FilmCard from "./components/FilmCard/FilmCard";
+import Footer from './components/Footer/Footer';
+import'./styles/App.scss'
 
 const  App = () => {
   return (
     <div>
-        <FilmCard/>
+      <h1 className='header'>Welcome to Movies-Website!</h1>
+      <Footer />
     </div>
   );
 }
 
 export default App;
+
