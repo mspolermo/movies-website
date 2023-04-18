@@ -1,9 +1,11 @@
 import React from 'react';
+import './components/FilmCard/filmcard.css'
+import FilmCard from "./components/FilmCard/FilmCard";
 
 const  App = () => {
   return (
     <div>
-      <h1>Welcome to Movies-Website!</h1>
+        <FilmCard/>
     </div>
   );
 }
