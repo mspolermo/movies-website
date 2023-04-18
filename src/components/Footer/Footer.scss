@@ -1,0 +1,121 @@
+
+.footer {
+    
+
+    background-color: #100e19;
+    color: #b0afb1;
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+    &__content{
+        padding: 48px 0;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__content::before {
+        content: '';
+        background-color: rgba(255,255,255,.16);
+        height: 1px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+    &__column{
+        padding: 0 12px;
+        flex: 0 1 25%;
+        display: flex;
+        flex-direction: column;
+        &_wide{
+        }
+    }
+    &__heading{
+        display: block;
+        margin-bottom: 8px;
+
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 20px;
+        color: #fff;
+    }
+    &__list{
+
+    }
+    &__item{
+
+    }
+    &__link{
+        display: block;
+
+        font-weight: 400;
+        line-height: 20px;
+        text-decoration: none;
+
+        color: rgba(255,255,255,.48);
+        &_additional{
+
+        }
+
+    }
+    &__text{
+        max-width: 250px;
+        &_bigButton{
+            text-align: center;
+        }
+        &_copyrights{
+        }
+
+    }
+    &__certificateLinkWrapper{
+        background-image: -webkit-linear-gradient(135deg,#c447ff,#ea003d);
+        background-image: -o-linear-gradient(135deg,#c447ff,#ea003d);
+        background-image: linear-gradient(-45deg,#c447ff,#ea003d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    &__cretificateLink{
+        font-size: 15px;
+        font-weight: 500;
+        color: inherit;
+        -webkit-text-fill-color: transparent;
+    }
+    &__buttons{
+        display: flex;
+        margin: 10px 10px 10px 0;
+    }
+    &__bigButton{
+        margin-bottom: 24px;
+        align-self: center;
+        border-radius: 16px;
+    }
+    &__stores{
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__copyrights{
+        min-width: 600px;
+    }
+    &__community{
+        display: flex;
+        justify-content: space-between;
+
+    }
+    &__communityLink{
+    }
+    &__icon-block{
+        margin-left: 12px;
+        padding: 14px;
+        border-radius: 100%;
+        background-color: #1f1b2e;
+        border-color: #1f1b2e;
+
+    }
+    &__icon{
+
+    }
+}
+
