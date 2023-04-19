@@ -1,7 +1,6 @@
 @import './fonts.scss'; //Шрифты
 @import './nullstyle.scss'; // Нормализация
 
-
 body {
     font-family: iviSans,sans-serif;
     font-weight: normal;
@@ -14,4 +13,12 @@ body {
     margin-left: auto;
     padding-left: 43.5px;
     padding-right: 43.5px;
+}
+
+.header {
+    margin: 50px 0 800px;
+    color: white;
+    font-size: 34px;
+    font-weight: 600;
+    text-align: center;
 }

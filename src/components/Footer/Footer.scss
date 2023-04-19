@@ -1,9 +1,7 @@
-
 .footer {
-    
-
     background-color: #100e19;
     color: #b0afb1;
+
     &__container {
         display: flex;
         flex-direction: column;
@@ -44,7 +42,7 @@
 
     }
     &__item{
-
+        margin-bottom: 8px;
     }
     &__link{
         display: block;
@@ -55,18 +53,19 @@
 
         color: rgba(255,255,255,.48);
         &_additional{
-
+            color: #fff;
         }
-
     }
     &__text{
         max-width: 250px;
+        line-height: 20px;
         &_bigButton{
             text-align: center;
         }
         &_copyrights{
+            max-width: none;
+            line-height: 22px;
         }
-
     }
     &__certificateLinkWrapper{
         background-image: -webkit-linear-gradient(135deg,#c447ff,#ea003d);
@@ -85,11 +84,40 @@
     &__buttons{
         display: flex;
         margin: 10px 10px 10px 0;
+        &_hidden{
+            display: none;
+        }
+    }
+    &__buttons:first-of-type{
+        margin-top: 18px;
+    }
+    &__ask{
+        &_hidden{
+            display: none;
+        }
     }
     &__bigButton{
+        //background-color: #7235b7;
         margin-bottom: 24px;
+        height: 104px;
+        width: 104px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
         align-self: center;
-        border-radius: 16px;
+        border-radius: 20px;
+        // -moz-box-shadow:0 0 120px #944ae7;
+        // -webkit-box-shadow:0 0 120px #944ae7;
+        // box-shadow: 0 0 120px #944ae7;
+        --start-gradient-color: #A869F0;
+        --end-gradient-color: #834CC2;
+        --shadow-color: #A869F0;
+        background: -webkit-gradient(linear,left top,left bottom,from(var(--start-gradient-color)),to(var(--end-gradient-color)));
+        background: -webkit-linear-gradient(top,var(--start-gradient-color) 0%,var(--end-gradient-color) 100%);
+        background: -o-linear-gradient(top,var(--start-gradient-color) 0%,var(--end-gradient-color) 100%);
+        background: linear-gradient(180deg,var(--start-gradient-color) 0%,var(--end-gradient-color) 100%);
+        box-shadow: 0 0 104px var(--shadow-color);
     }
     &__stores{
         margin-bottom: 32px;
@@ -105,6 +133,7 @@
 
     }
     &__communityLink{
+
     }
     &__icon-block{
         margin-left: 12px;
