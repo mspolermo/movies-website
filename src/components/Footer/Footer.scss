@@ -1,7 +1,6 @@
 .footer {
     background-color: #100e19;
     color: #b0afb1;
-
     &__container {
         display: flex;
         flex-direction: column;
@@ -11,23 +10,21 @@
         position: relative;
         display: flex;
         justify-content: space-between;
-    }
-    &__content::before {
-        content: '';
-        background-color: rgba(255,255,255,.16);
-        height: 1px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
+        &:before {
+            content: '';
+            background-color: rgba(255,255,255,.16);
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
     }
     &__column{
         padding: 0 12px;
         flex: 0 1 25%;
         display: flex;
         flex-direction: column;
-        &_wide{
-        }
     }
     &__heading{
         display: block;
@@ -37,9 +34,6 @@
         font-size: 15px;
         line-height: 20px;
         color: #fff;
-    }
-    &__list{
-
     }
     &__item{
         margin-bottom: 8px;
@@ -52,8 +46,18 @@
         text-decoration: none;
 
         color: rgba(255,255,255,.48);
+
+        transition-property: color;
         &_additional{
             color: #fff;
+        }
+        &:hover {
+            color: white;
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            color: rgba(255,255,255,.48);
+            transition-duration: 0.4s;
         }
     }
     &__text{
@@ -61,6 +65,7 @@
         line-height: 20px;
         &_bigButton{
             text-align: center;
+            color: #b0afb1;
         }
         &_copyrights{
             max-width: none;
@@ -84,6 +89,16 @@
     &__buttons{
         display: flex;
         margin: 10px 10px 10px 0;
+
+        &_anim {
+            animation-name: open;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            animation-delay: 0s;
+        }
         &_hidden{
             display: none;
         }
@@ -97,7 +112,6 @@
         }
     }
     &__bigButton{
-        //background-color: #7235b7;
         margin-bottom: 24px;
         height: 104px;
         width: 104px;
@@ -107,9 +121,7 @@
         
         align-self: center;
         border-radius: 20px;
-        // -moz-box-shadow:0 0 120px #944ae7;
-        // -webkit-box-shadow:0 0 120px #944ae7;
-        // box-shadow: 0 0 120px #944ae7;
+
         --start-gradient-color: #A869F0;
         --end-gradient-color: #834CC2;
         --shadow-color: #A869F0;
@@ -130,10 +142,6 @@
     &__community{
         display: flex;
         justify-content: space-between;
-
-    }
-    &__communityLink{
-
     }
     &__icon-block{
         margin-left: 12px;
@@ -141,10 +149,29 @@
         border-radius: 100%;
         background-color: #1f1b2e;
         border-color: #1f1b2e;
-
-    }
-    &__icon{
+        transition-property: background-color;
+        &:hover {
+            cursor: pointer;
+            background-color: #2b2640;
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-color: #1f1b2e;
+            transition-duration: 0.4s;
+        }
 
     }
 }
 
+@keyframes open {
+    0% {
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+}
