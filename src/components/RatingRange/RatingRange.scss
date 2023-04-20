@@ -1,0 +1,44 @@
+input[type='range'] {
+	-webkit-appearance: none;
+	height: 3px;
+	background: #fff;
+	border-radius: 5px;
+	background-image: linear-gradient(#c4375c, #c4375c);
+	background-repeat: no-repeat;
+	width: 150px;
+
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		height: 20px;
+		width: 10px;
+		border-radius: 10px;
+		background: #c4375c;
+		cursor: pointer;
+		box-shadow: 0 0 2px 0 #555;
+		transition: all 0.1s;
+
+		&:active {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+		}
+	}
+
+	::-webkit-slider-runnable-track {
+		-webkit-appearance: none;
+		box-shadow: none;
+		border: none;
+		background: transparent;
+	}
+}
+
+.input-range {
+	display: flex;
+	align-items: center;
+	margin: 30px;
+
+	&__value {
+		color: #fff;
+		margin-left: 29px;
+	}
+}
