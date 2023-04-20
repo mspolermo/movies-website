@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movies-website/static/css/main.da79a516.css",
-    "main.js": "/movies-website/static/js/main.c8e4f38b.js",
+    "main.css": "/movies-website/static/css/main.1a6ad0bf.css",
+    "main.js": "/movies-website/static/js/main.5b3e7f9b.js",
     "static/media/IvyStyleSans-LightItalic.eot": "/movies-website/static/media/IvyStyleSans-LightItalic.fed5019bdac3f3fb6af9.eot",
     "static/media/IvyStyleSans-LightItalic.ttf": "/movies-website/static/media/IvyStyleSans-LightItalic.a0de5daa72b8ff9205ed.ttf",
     "static/media/IvyStyleSans-ThinItalic.eot": "/movies-website/static/media/IvyStyleSans-ThinItalic.c1c452c96fef4814189a.eot",
@@ -43,11 +43,11 @@
     "static/media/IvyStyleSans-Bold.woff2": "/movies-website/static/media/IvyStyleSans-Bold.11d18679aadc6ff7fe89.woff2",
     "static/media/IvyStyleSans-Thin.woff2": "/movies-website/static/media/IvyStyleSans-Thin.cc553dfc4210029cf3b2.woff2",
     "index.html": "/movies-website/index.html",
-    "main.da79a516.css.map": "/movies-website/static/css/main.da79a516.css.map",
-    "main.c8e4f38b.js.map": "/movies-website/static/js/main.c8e4f38b.js.map"
+    "main.1a6ad0bf.css.map": "/movies-website/static/css/main.1a6ad0bf.css.map",
+    "main.5b3e7f9b.js.map": "/movies-website/static/js/main.5b3e7f9b.js.map"
   },
   "entrypoints": [
-    "static/css/main.da79a516.css",
-    "static/js/main.c8e4f38b.js"
+    "static/css/main.1a6ad0bf.css",
+    "static/js/main.5b3e7f9b.js"
   ]
 }
