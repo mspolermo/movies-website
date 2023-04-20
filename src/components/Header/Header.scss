@@ -1,0 +1,100 @@
+.header {
+    &__container {
+    }
+    &__body {
+        margin-top: 10px;
+    }
+    &__content {
+        padding-bottom: 14px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        &::after{
+            content: '';
+            background-color: rgba(255,255,255,.16);
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+    }
+    &__block {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__img {
+
+    }
+    &__btn-block {
+        display: flex;
+        justify-content: space-between;
+        &_search {
+            margin-left: 8px;
+            margin-right: 12px;
+            &:hover {
+                cursor: pointer;
+                .header__svg_search {
+                    stroke: white;
+                    fill: white;
+                }
+                .header__text {
+                    color: white;
+                }
+            }
+        }
+        &_login {
+            margin-left: 12px;
+            padding: 12px;
+
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,.48);
+            background-color: transparent;
+        }  
+    }
+    &__svg {
+        &_search {
+            margin-right: 8px;
+
+        }
+    }
+    &__text {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        color: rgba(255,255,255,.48);
+    }
+    
+    &__headerMenu {
+        margin-left: 32px;
+    }
+    &__dropDownBody {
+    }
+}
+
+.headerMenu {
+    &__navigation {
+    }
+    &__list {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__listItem {
+        padding-left: 16px;
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+    &__link {
+        padding: 10px;
+    }
+    &__text {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        color: rgba(255,255,255,.48);
+    }
+}
