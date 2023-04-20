@@ -18,6 +18,15 @@
         background-color: #1f1b2e;
         transition-duration: 0.4s;
     }
+    &__ultraWide {
+        padding: 5px 15px;
+        display: flex;
+        justify-content: center;
+    }
+    &__rounded{
+        padding: 6px 16px;
+        border-radius: 16px;
+    }
     &__red {
        background-color: #ea003d;
        &:hover {
@@ -40,8 +49,39 @@
             transition-duration: 0.4s;
         }
     }
+    &__gradient {
+        transition-property: background-image;
+        background-image: linear-gradient(270deg,#ea003d,#c447ff);
+        background-origin: border-box;
+        border-color: transparent;
+        color: #fff;
+        &:hover {
+            background-image: linear-gradient(270deg,#ea003d,#c447ff);
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-image: linear-gradient(270deg,#ea003d,#c447ff);
+            transition-duration: 0.4s;
+        }
+    }
+    &__transparent {
+        background-color: inherit;
+        border: 1px solid #808080;
+        color: #fff;
+        transition-property: border;
+        &:hover {
+            background-color: inherit;
+            border: 1px solid #cccccc;
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-color: inherit;
+            border: 1px solid #808080;
+            transition-duration: 0.4s;
+        }
+    }
     &__svg {
-        margin-right: 8px;
+        margin-right: 6px;
     }
     &__textBlock {
         display: flex;

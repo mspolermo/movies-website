@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Footer.scss'
-import ButtonWithIcon from "../UI/Buttons/ButtonWithIcon/ButtonWithIcon";
+import Button from "../UI/Buttons/Button/Button";
 
 const Footer = () => {
     const mailSvg = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"/><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/><g id="SVGRepo_iconCarrier"> <title/> <g id="Complete"> <g id="mail"> <g> <polyline fill="none" points="4 8.2 12 14.1 20 8.2" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/> <rect fill="none" height="14" rx="2" ry="2" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" width="18" x="3" y="6.5"/> </g> </g> </g> </g></svg>;
@@ -98,25 +98,25 @@ const Footer = () => {
                     <h3 className="footer__heading">Служба поддержки</h3>
                     <p className="footer__text">Мы всегда готовы вам&nbsp;помочь. Наши&nbsp;операторы онлайн 24/7</p>
                     <div className="footer__buttons">
-                        <ButtonWithIcon 
-                                title={['Написать в чате']}
-                                onClick={function() {window.location.href = 'https://www.ivi.ru/profile'}}
+                        <Button 
+                            title={['Написать в чате']}
+                            onClick={function() {window.location.href = 'https://www.ivi.ru/profile'}}
                         />
                     </div>
                     <div className="footer__buttons">
-                        <ButtonWithIcon 
+                        <Button 
                             svg={mailSvg}
                             onClick={function() { window.location.href = 'mailto:support@ivi.ru'}}
                         />
-                        <ButtonWithIcon 
+                        <Button 
                             svg={phoneSvg}
                             onClick={showPhoneNumber}
                         />
                     </div>
                     <div className="footer__buttons footer__buttons_anim footer__buttons_hidden" id='phoneButton'>
-                        <ButtonWithIcon 
-                                title={['+7 343 226-92-20']}
-                                onClick={function() {window.location.href = 'tel:+73432269220'}}
+                        <Button 
+                            title={['+7 343 226-92-20']}
+                            onClick={function() {window.location.href = 'tel:+73432269220'}}
                         />
                     </div>
                     <div className="footer__ask" id='askBlock'>
@@ -128,29 +128,28 @@ const Footer = () => {
                     <div className="footer__bigButton">
                         <svg width="56px" height="56px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><title>ONE-xicons</title><path d="M41.75,44.19A0.5,0.5,0,0,1,41.38,44L5.89,6.26a0.5,0.5,0,1,1,.73-0.68L42.11,43.35A0.5,0.5,0,0,1,41.75,44.19Z"></path><path d="M33.89,29.51a0.5,0.5,0,0,1-.5-0.5V3.12a1.5,1.5,0,0,0-2.6-1L21,12.76a0.5,0.5,0,1,1-.73-0.68L30.05,1.43a2.5,2.5,0,0,1,4.34,1.69V29A0.5,0.5,0,0,1,33.89,29.51Z"></path><path d="M31.87,47.39a2.45,2.45,0,0,1-1.82-.81L16.16,31.5H14.89a7.5,7.5,0,0,1-7.5-7.73,7.71,7.71,0,0,1,7.79-7.27h1.19a0.5,0.5,0,0,1,0,1H15.18a6.7,6.7,0,0,0-6.79,6.3,6.5,6.5,0,0,0,6.5,6.7h1.49a0.5,0.5,0,0,1,.37.16l14,15.23a1.5,1.5,0,0,0,2.6-1V35.33a0.5,0.5,0,0,1,1,0v9.55a2.45,2.45,0,0,1-1.59,2.33A2.56,2.56,0,0,1,31.87,47.39Z"></path></g></svg>
                     </div>
-                    {/* <svg className="footer__bigButton" version="1.0" xmlns="http://www.w3.org/2000/svg" width="77.000000pt" height="84.000000pt" viewBox="0 0 77.000000 84.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,84.000000) scale(0.100000,-0.100000)" fill="#8e46e1" stroke="none"><path d="M0 420 l0 -420 385 0 385 0 0 420 0 420 -385 0 -385 0 0 -420z m419 19 c51 -193 69 -275 62 -282 -7 -7 -14 -7 -20 -1 -5 5 -41 128 -80 273 -70 259 -73 280 -40 281 3 0 38 -122 78 -271z m213 214 c16 -14 18 -35 18 -209 0 -235 -3 -242 -102 -212 -27 8 -38 16 -35 27 2 11 11 15 27 12 14 -2 36 -4 50 -5 l25 -1 2 170 c2 94 -1 176 -6 183 -7 11 -24 9 -92 -12 -55 -17 -87 -22 -93 -16 -15 15 2 27 79 54 85 30 103 31 127 9z m-324 -95 c-2 -6 -30 -20 -61 -31 l-57 -19 0 -63 c0 -60 1 -63 28 -69 98 -24 162 -48 162 -61 0 -8 -9 -15 -20 -15 -18 0 -20 -6 -18 -46 2 -53 -11 -65 -62 -62 -34 3 -35 4 -55 75 -16 61 -24 74 -48 84 -28 12 -28 12 -25 98 l3 86 50 17 c60 20 108 23 103 6z m-188 -119 c0 -81 -3 -99 -15 -99 -12 0 -15 18 -15 98 0 54 3 102 6 105 17 17 24 -13 24 -104z"/><path d="M253 316 c3 -8 9 -31 13 -51 6 -33 27 -55 40 -42 9 9 -8 77 -23 92-19 19 -37 19 -30 1z"/></g></svg> */}
                     <p className="footer__text footer__text_bigButton">Смотрите фильмы, сериалы и мультфильмы без рекламы</p>
                 </a>
             </div>
             <div className="footer__content">
                 <div className="footer__column footer__column_wide">
                     <div className="footer__stores">
-                        <ButtonWithIcon 
+                        <Button 
                             svg={appleSvg}
                             title={["Загрузить в", 'App Store']}
                             onClick={function() {window.location.href = 'https://apps.apple.com/RU/app/id455705533?mt=8'}}
                         />
-                        <ButtonWithIcon
+                        <Button
                             svg={googleSvg}
                             title={['Доступно в', 'Google Play']}
                             onClick={function() {window.location.href = 'https://play.google.com/store/apps/details?id=ru.ivi.client'}}
                         />
-                        <ButtonWithIcon 
+                        <Button 
                             svg={smartTvSvg}
                             title={['Смотрите на', 'Smart TV']}
                             onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
                         />
-                        <ButtonWithIcon 
+                        <Button 
                             svg={allDevicesSvg}
                             title={["Все устройства"]}
                             onClick={function() {window.location.href = 'https://www.ivi.tv/devices'}}
@@ -202,7 +201,7 @@ const Footer = () => {
             </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Footer;
