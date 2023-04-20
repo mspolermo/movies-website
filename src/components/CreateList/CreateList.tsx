@@ -7,7 +7,7 @@ interface CreateListProps<T> {
 
 export default function CreateList<T>(props:CreateListProps<T>) {
     return (
-        <div className='products'>
+        <div>
             {props.items.map(props.renderItem)}
         </div>
     )
