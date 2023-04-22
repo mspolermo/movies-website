@@ -9,6 +9,7 @@
     background-color: #1f1b2e;
     color: #fff;
     transition-property: background-color;
+    white-space: nowrap;
     &:hover {
         cursor: pointer;
         background-color: #2b2640;
@@ -66,7 +67,7 @@
     }
     &__transparent {
         background-color: inherit;
-        border: 1px solid #808080;
+        border: 1px solid rgba(255,255,255,.32);
         color: #fff;
         transition-property: border;
         &:hover {
@@ -76,7 +77,20 @@
         }
         &:not(:hover):not(:active) {
             background-color: inherit;
-            border: 1px solid #808080;
+            border: 1px solid rgba(255,255,255,.32);
+            transition-duration: 0.4s;
+        }
+    }
+    &__purple{
+        background-color: #7e798f;
+        border: 1px solid #7e798f;
+        &:hover {
+            background-color: #7e798f;
+            border: 1px solid #7e798f;
+        }
+        &:not(:hover):not(:active) {
+            background-color: #7e798f;
+            border: 1px solid #7e798f;
             transition-duration: 0.4s;
         }
     }
