@@ -4,7 +4,7 @@ import classes from './Button.module.scss'
 
 interface ButtonProps {
     type?: 'default' | 'ultraWide' | 'rounded';
-    color?: 'default' | 'red' | 'gray' | 'gradient' | 'transparent';
+    color?: 'default' | 'red' | 'gray' | 'gradient' | 'transparent'| 'purple';
     svg?: React.ReactElement;
     title?: Array<string> | undefined;
     onClick?: () => void;
@@ -41,6 +41,9 @@ const Button:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, titl
                 break;
             case 'transparent':
                 initClass = initClass + ` ${classes.btn__transparent}`;
+                break;
+            case 'purple':
+                initClass = initClass + ` ${classes.btn__purple}`;
                 break;
             default:
                 break;

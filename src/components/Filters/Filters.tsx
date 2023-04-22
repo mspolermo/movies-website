@@ -5,33 +5,22 @@
 // listValues - весь перечень стран/фильмов
 // onClick
 
+
+// todo:
 import React, {useState} from 'react';
 import FilterButton from "./FilterButton/FilterButton";
-import './FilterButton/FilterButton.scss'
+import './filters.scss';
 import FilterTwoBlocks from "./FilterBlocks/FilterTwoBlocks";
+import ButtonResetFilters from "./ButtonResetFilters/ButtonResetFilters";
+import _ from 'lodash';
+import {activeFiltersProps} from "../testCase";
 
 
 // блоки для тестирования
-interface activeFiltersProps {
-    'genres': string[],
-    'popularGenres': string[],
-    'countries': string[],
-    'years': string,
-    'rating': {
-        'min': number,
-        'max': number,
-    },
-    'grade': {
-        'min': number,
-        'max': number,
-    },
-    'producer': string[],
-    'actor': string[]
-}
 
 const activeFilters = {
     'popularGenres': [],
-    'genres': ['Крик', 'Души', 'Уставших', 'Морально', 'От', 'Жизни', 'Людей'],
+    'genres': [],
     'countries': [],
     'years': '',
     'rating': {
@@ -47,8 +36,8 @@ const activeFilters = {
 }
 
 const arrAllFilters = {
-    'popularGenres': ['Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография'],
-    'genres': ['Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография', 'Боевики', 'Фэнтези', 'Артхаус', 'Биография', 'Боевики', 'Фэнтези'],
+    'popularGenres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?',],
+    'genres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
     'countries': ['Австралия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия'],
     'years': '',
     'rating': {
@@ -67,75 +56,103 @@ const arrAllFilters = {
 //основной блок
 const Filters = () => {
     const [allFilters, setAllFilters] = useState<activeFiltersProps>(arrAllFilters)
-    const [selectedFilters, setSelectedFilters] = useState<activeFiltersProps>(activeFilters)
+    const [selectedFilters, setSelectedFilters] = useState<activeFiltersProps>(_.cloneDeep(activeFilters))
     const [activeBlock, setActiveBlock] = useState('')
 
     function selectedGenres(genre: string) {
         let arrGenres = selectedFilters.genres
         if (arrGenres.includes(genre)) {
-            arrGenres.filter(genres => genres !== genre)
+            arrGenres = arrGenres.filter(genres => genres !== genre)
         } else {
             arrGenres.push(genre)
         }
         setSelectedFilters({...selectedFilters, genres: arrGenres})
     }
 
+    function selectedCountries(country: string) {
+        let arrCountries = selectedFilters.countries
+        if (arrCountries.includes(country)) {
+            arrCountries = arrCountries.filter(countries => countries !== country)
+        } else {
+            arrCountries.push(country)
+        }
+        setSelectedFilters({...selectedFilters, countries: arrCountries})
+    }
+
     return (
         <div className='filters'>
-            <FilterButton filterName='Жанры'
-                          selectedFiltersBy={selectedFilters.genres.join(', ')}
-                          activeBlock={activeBlock}
-                          blockName='genre'
-                          setActiveBlock={setActiveBlock}>
-                <FilterTwoBlocks
-                    popularValues={allFilters.popularGenres}
-                    listValues={allFilters.genres}
-                    selectedFiltersBy={selectedFilters.genres}
-                    selectedFilter={selectedGenres}/>
-            </FilterButton>
+            <div className="filters__content">
+                <div className="filters__blocks">
 
-            <FilterButton filterName='Страны'
-                          selectedFiltersBy={selectedFilters.countries.join(', ')}
-                          activeBlock={activeBlock}
-                          blockName='country'
-                          setActiveBlock={setActiveBlock}>
-                <FilterTwoBlocks
-                    popularValues={allFilters.popularGenres}
-                    listValues={allFilters.genres}
-                    selectedFiltersBy={selectedFilters.genres}
-                    selectedFilter={selectedGenres}/>
-            </FilterButton>
+                    <FilterButton filterName='Жанры'
+                                  selectedFiltersBy={selectedFilters.genres.join(', ')}
+                                  activeBlock={activeBlock}
+                                  blockName='genre'
+                                  setActiveBlock={setActiveBlock}>
+                        <FilterTwoBlocks
+                            popularValues={allFilters.popularGenres}
+                            listValues={allFilters.genres}
+                            selectedFiltersBy={selectedFilters.genres}
+                            selectedFilter={selectedGenres}
+                            setActiveBlock={setActiveBlock}
 
-            <FilterButton filterName='Год'
-                          selectedFiltersBy={selectedFilters.years}
-                          activeBlock={activeBlock}
-                          blockName='years'
-                          setActiveBlock={setActiveBlock}/>
+                        />
+                    </FilterButton>
 
-            {/*<FilterButton filterName='Рейтинг'*/}
-            {/*              selectedFiltersBy={selectedFilters.rating}*/}
-            {/*              activeBlock={activeBlock}*/}
-            {/*              blockName='rating'*/}
-            {/*              setActiveBlock={setActiveBlock}/>*/}
+                    <FilterButton filterName='Страны'
+                                  selectedFiltersBy={selectedFilters.countries.join(', ')}
+                                  activeBlock={activeBlock}
+                                  blockName='country'
+                                  setActiveBlock={setActiveBlock}>
+                        <FilterTwoBlocks
+                            popularValues={allFilters.popularGenres}
+                            listValues={allFilters.countries}
+                            selectedFiltersBy={selectedFilters.countries}
+                            selectedFilter={selectedCountries}
+                            setActiveBlock={setActiveBlock}
+                        />
+                    </FilterButton>
 
-            {/*<FilterButton filterName='Количество оценок'*/}
-            {/*              selectedFiltersBy={selectedFilters.grade}*/}
-            {/*              activeBlock={activeBlock}*/}
-            {/*              blockName='grade'*/}
-            {/*              setActiveBlock={setActiveBlock}/>*/}
+                    <FilterButton filterName='Год'
+                                  selectedFiltersBy={selectedFilters.years}
+                                  activeBlock={activeBlock}
+                                  blockName='years'
+                                  setActiveBlock={setActiveBlock}/>
 
-            <FilterButton filterName='Режиссер'
-                          selectedFiltersBy={selectedFilters.producer.join(', ')}
-                          activeBlock={activeBlock}
-                          blockName='producer'
-                          setActiveBlock={setActiveBlock}/>
+                    {/*<FilterButton filterName='Рейтинг'*/}
+                    {/*              selectedFiltersBy={selectedFilters.rating}*/}
+                    {/*              activeBlock={activeBlock}*/}
+                    {/*              blockName='rating'*/}
+                    {/*              setActiveBlock={setActiveBlock}/>*/}
 
-            <FilterButton filterName='Актер'
-                          selectedFiltersBy={selectedFilters.actor.join(', ')}
-                          activeBlock={activeBlock}
-                          blockName='actor'
-                          setActiveBlock={setActiveBlock}/>
+                    {/*<FilterButton filterName='Количество оценок'*/}
+                    {/*              selectedFiltersBy={selectedFilters.grade}*/}
+                    {/*              activeBlock={activeBlock}*/}
+                    {/*              blockName='grade'*/}
+                    {/*              setActiveBlock={setActiveBlock}/>*/}
+
+                    <FilterButton filterName='Режиссер'
+                                  selectedFiltersBy={selectedFilters.producer.join(', ')}
+                                  activeBlock={activeBlock}
+                                  blockName='producer'
+                                  setActiveBlock={setActiveBlock}/>
+
+                    <FilterButton filterName='Актер'
+                                  selectedFiltersBy={selectedFilters.actor.join(', ')}
+                                  activeBlock={activeBlock}
+                                  blockName='actor'
+                                  setActiveBlock={setActiveBlock}/>
+                </div>
+
+                <div className="filters__button">
+                    <ButtonResetFilters
+                        activeFilters={activeFilters}
+                        selectedFilters={selectedFilters}
+                        setSelectedFilters={setSelectedFilters}/>
+                </div>
+            </div>
         </div>
+
     );
 };
 

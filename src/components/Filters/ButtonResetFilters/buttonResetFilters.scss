@@ -1,0 +1,32 @@
+.resetFilters{
+  &__content{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    height: 32px;
+    color: #FFFFFF;
+    padding: 8px;
+    margin-top: 16px;
+    &_opacity{
+      display: flex;
+      align-items: center;
+
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+      height: 32px;
+      color: rgba(217,215,224,.8);
+      padding: 8px;
+      margin-top: 16px;
+      opacity: .32;
+    }
+  }
+  &__cross{
+    margin-right: 8px;
+    margin-bottom: -3px;
+  }
+}

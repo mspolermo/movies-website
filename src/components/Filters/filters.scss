@@ -1,0 +1,15 @@
+@import './FilterButton/FilterButton.scss';
+
+.filters{
+  margin: 20px 12px 0 12px;
+  &__content{
+    padding: 16px 10px 16px 16px;
+    background-color: #1f1b2e;
+    border-radius: 10px;
+  }
+  &__blocks{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+

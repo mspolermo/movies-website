@@ -1,10 +1,12 @@
-.filters{
-  display: flex;
-  margin: 20px 50px;
-
-  padding: 16px;
-  flex-wrap: wrap;
-  background-color: #1f1b2e;
+.close_block{
+  background-color: rgba(0, 0, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1;
+  cursor: auto;
 }
 
 .filterButton{
@@ -15,12 +17,8 @@
   flex: 0 1 20%;
   min-width: 20%;
   cursor: pointer;
-  &:first-child{
-    padding-left: 0;
-  }
-  &:last-child{
-    padding-right: 0;
-  }
+  position: relative;
+  z-index: 10;
   &__content{
     height: 56px;
     padding: 8px 16px 8px 16px;
@@ -63,6 +61,7 @@
     margin-left: 16px;
     &_reverse{
       transform: rotate(180deg);
+      margin-bottom: 6px;
     }
   }
   &__menu{}
