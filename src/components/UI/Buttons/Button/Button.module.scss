@@ -1,0 +1,114 @@
+.btn {
+    margin-right: 12px;
+    padding: 9px 15px;
+
+    display: inline-flex;
+    align-items: center;
+    
+    border-radius: 8px;
+    background-color: #1f1b2e;
+    color: #fff;
+    transition-property: background-color;
+    white-space: nowrap;
+    &:hover {
+        cursor: pointer;
+        background-color: #2b2640;
+        transition-duration: 0.4s;
+    }
+    &:not(:hover):not(:active) {
+        background-color: #1f1b2e;
+        transition-duration: 0.4s;
+    }
+    &__ultraWide {
+        padding: 5px 15px;
+        display: flex;
+        justify-content: center;
+    }
+    &__rounded{
+        padding: 6px 16px;
+        border-radius: 16px;
+    }
+    &__red {
+       background-color: #ea003d;
+       &:hover {
+            background-color: #ff1a57;
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-color: #ea003d;
+            transition-duration: 0.4s;
+        }
+    }
+    &__gray {
+        background-color: #808080;
+        &:hover {
+            background-color: #666666;
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-color: #808080;
+            transition-duration: 0.4s;
+        }
+    }
+    &__gradient {
+        transition-property: background-image;
+        background-image: linear-gradient(270deg,#ea003d,#c447ff);
+        background-origin: border-box;
+        border-color: transparent;
+        color: #fff;
+        &:hover {
+            background-image: linear-gradient(270deg,#ea003d,#c447ff);
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-image: linear-gradient(270deg,#ea003d,#c447ff);
+            transition-duration: 0.4s;
+        }
+    }
+    &__transparent {
+        background-color: inherit;
+        border: 1px solid rgba(255,255,255,.32);
+        color: #fff;
+        transition-property: border;
+        &:hover {
+            background-color: inherit;
+            border: 1px solid #cccccc;
+            transition-duration: 0.4s;
+        }
+        &:not(:hover):not(:active) {
+            background-color: inherit;
+            border: 1px solid rgba(255,255,255,.32);
+            transition-duration: 0.4s;
+        }
+    }
+    &__purple{
+        background-color: #7e798f;
+        border: 1px solid #7e798f;
+        &:hover {
+            background-color: #7e798f;
+            border: 1px solid #7e798f;
+        }
+        &:not(:hover):not(:active) {
+            background-color: #7e798f;
+            border: 1px solid #7e798f;
+            transition-duration: 0.4s;
+        }
+    }
+    &__svg {
+        margin-right: 6px;
+    }
+    &__textBlock {
+        display: flex;
+        flex-direction: column;
+    }
+    &__text {
+        font-size: 10px;
+        line-height: 12px;
+        font-weight: 500;
+        &:last-child{
+            font-size: 15px;
+            line-height: 20px;
+        }
+    }
+}
+

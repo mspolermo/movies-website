@@ -20,75 +20,77 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
     return (
         //ToDo: подгрузить данные из API
         <div
-            className='film_card'
+            className='filmcard'
             onClick={() => onClick(film)}
         >
-            <div className="film_card_container">
-                <div className='film_card_lists'>
-                    <div className='film_card_list_one'>
-                        <div className="film_card_img">
-                            <img src="https://thumbs.dfs.ivi.ru/storage15/contents/3/3/a116328d08b013933940887ad22985.jpg/234x360/?q=85" alt=""/>
-                            <div className="film_card_background"></div>
+            <div className="container filmcard__container">
+                <div className='filmcard__content'>
+                    <div className='filmcard__poster'>
+                        <div className="filmcard__img">
+                            <img
+                                src="https://thumbs.dfs.ivi.ru/storage15/contents/3/3/a116328d08b013933940887ad22985.jpg/234x360/?q=85"
+                                alt=""/>
+                            <div className="filmcard__img_background"></div>
                         </div>
-                        <div className="list_one_age_restrictions">
+                        <div className="filmcard__img_fixed">
                             12+
                         </div>
                     </div>
-                    <div className='film_card_list_two'>
-                        <div className="list_two_icon">
+                    <div className='filmcard__properties'>
+                        <div className="filmcard__icons">
                             {favorites && <div
                                 data-title='Смотреть позже'
-                                className="icon_favorites icon_style"
+                                className="filmcard__icons_style"
                                 onClick={() => setFavorites(prev => !prev)}
                             >
-                                <img src={favorit} alt='' style={{width:20.8}}/>
+                                <img src={favorit} alt='' style={{width: 20.8}}/>
                             </div>}
                             {!favorites && <div
                                 data-title='Смотреть позже'
-                                className="icon_favorites icon_style"
+                                className="filmcard__icons_style"
                                 onClick={() => setFavorites(prev => !prev)}
                             >
-                                <img src={favoritTrue} alt='' style={{width:20.8}}/>
+                                <img src={favoritTrue} alt='' style={{width: 20.8}}/>
                             </div>}
-                            
-                            <div className="icon_similar icon_style"
+
+                            <div className="filmcard__icons_style"
                                  data-title='Похожее'
                             >
-                                <img src={similar} alt="" style={{width:20.8}}/>
+                                <img src={similar} alt="" style={{width: 20.8}}/>
                             </div>
-                            
-                            <div className="icon_rating icon_style"
+
+                            <div className="filmcard__icons_style"
                                  data-title='Уже смотрел, оценить'
                             >
-                                <img src={star} alt="" style={{width:20.8}}/>
+                                <img src={star} alt="" style={{width: 20.8}}/>
                             </div>
-                            
+
                             {notlike && <div
                                 data-title='Не нравится такое'
-                                className="icon_notlike icon_style"
+                                className="filmcard__icons_style"
                                 onClick={() => setNotlike(prev => !prev)}
                             >
-                                <img src={like} alt='' style={{width:20.8}}/>
+                                <img src={like} alt='' style={{width: 20.8}}/>
                             </div>}
                             {!notlike && <div
                                 data-title='Не нравится такое'
-                                className="icon_notlike icon_style"
+                                className="filmcard__icons_style"
                                 onClick={() => setNotlike(prev => !prev)}
                             >
-                                <img src={notlikeTrue} alt='' style={{width:20.8}}/>
+                                <img src={notlikeTrue} alt='' style={{width: 20.8}}/>
                             </div>}
                         </div>
-                        <div className="list_two_info">
-                            <div className="list_two_info_rating">
-                                <div className="rating_big">8,</div>
-                                <div className="rating_small">2</div>
-                                </div>
-                            <div className="list_two_info_short">Film.age, Film.country, Film.genre</div>
-                            <div className="list_two_info_duration">Film.duration Film.units</div>
+                        <div className="filmcard__properties_info">
+                            <div className="filmcard__properties_rating">
+                                <div className="filmcard__properties_bigRating">8,</div>
+                                <div className="filmcard__properties_smallRating">2</div>
+                            </div>
+                            <div className="filmcard__properties_infoShort">Film.age, Film.country, Film.genre</div>
+                            <div className="filmcard__properties_infoTime">Film.duration Film.units</div>
                         </div>
                     </div>
                 </div>
-                <div className="film_card_name">Film.name</div>
+                <div className="filmcard__name">Film.name</div>
             </div>
         </div>
     );

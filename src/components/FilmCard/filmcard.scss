@@ -1,150 +1,119 @@
 //todo: добавить flex и width сменить на проценты
-.film_card {
+.filmcard{
   max-width: 180px;
   font-family: iviSans;
   color: #D9D7E0;
   font-weight: 400;
   cursor: pointer;
-
-  .film_card_container {
+  z-index: 5;
+  &__container{
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 0 12px 24px 12px;
-
-    .film_card_lists {
-      .film_card_list_one {
-        transition-duration: 0.4s;
-        transform: scale(.96);
-        margin-bottom: -5px;
-
-        .film_card_img {
-          position: relative;
-
-          img {
-            width: 159px;
-            border-radius: 8px;
-          }
-        }
-
-        .list_one_age_restrictions {
-          position: fixed;
-          bottom: 3%;
-          right: 5%;
-          width: 24px;
-          height: 16px;
-          background-color: rgba(7, 5, 14, .5);
-          border-radius: 15%;
-          font-size: 10px;
-          text-align: center;
-          padding: 2px;
-        }
-      }
-
-      .film_card_list_two {
-        display: none;
-      }
+  }
+  &__poster{
+    transition-duration: 0.4s;
+    transform: scale(.96);
+    margin-bottom: -5px;
+  }
+  &__img{
+    position: relative;
+    img{
+      width: 159px;
+      border-radius: 8px;
     }
-
-    .film_card_name {
-      font-weight: 600;
-      font-size: 15px;
-      line-height: 20px;
-      margin-top: 10px;
+    &_fixed{
+      position: fixed;
+      bottom: 3%;
+      right: 5%;
+      width: 24px;
+      height: 16px;
+      background-color: rgba(7, 5, 14, .5);
+      border-radius: 15%;
+      font-size: 10px;
+      text-align: center;
+      padding: 2px;
     }
   }
-}
+  &__properties{
+    display: none;
+  }
+  &__name{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    margin-top: 10px;
+  }
 
-.film_card:hover {
-  .film_card_container {
-    .film_card_lists {
-      .film_card_list_one {
-        transform: scale(1);
-        margin-top: -5px;
-        margin-bottom: 0;
-        .film_card_img {
-          position: relative;
-          .film_card_background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 103%;
-            height: 100%;
-            background-color: rgba(7, 5, 14, 0.8);
-            border-radius: 8px;
-          }
-        }
-        .list_one_age_restrictions {
-          opacity: 0.4;
-        }
-      }
-      .film_card_list_two {
-        display: contents;
-        .list_two_icon {
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          top: 15px;
-          right: 25px;
-          .icon_style {
-            margin-bottom: 8px;
-            position: relative;
-          }
-          .icon_style:hover::after {
-            position: absolute;
-            bottom: 120%;
-            white-space: nowrap;
-            left: 0;
-            content: attr(data-title);
-            padding: 10px;
-            background-color: #1f1b2e;
-            border-radius: 15%;
-          }
-        }
-
-        .list_two_info {
-          height: 124px;
-          display: flex;
-          flex-direction: column;
-          font-size: 13px;
-          line-height: 16px;
-          color: #d9d7e0;
-          top: 125px;
-          position: absolute;
-          padding: 0 16px 16px 16px;
-
-          .list_two_info_rating {
-            display: flex;
-            font-size: 24px;
-            line-height: 28px;
-            font-weight: 700;
-            align-items: baseline;
-
-            .rating_small {
-              font-size: 20px;
-              line-height: 24px;
-            }
-          }
-
-          .list_two_info_short {
-            margin-top: 6px;
-            font-size: 13px;
-            line-height: 16px;
-            font-weight: 400;
-          }
-
-          .list_two_info_duration {
-            margin-top: 4px;
-            font-size: 13px;
-            line-height: 16px;
-            font-weight: 400;
-          }
-        }
-      }
+  &:hover &__poster{
+    transform: scale(1);
+    margin-top: -5px;
+    margin-bottom: 0;
+  }
+  &:hover &__name{
+    color: #FFFFFF;
+  }
+  &:hover &__img{
+    filter: brightness(40%);
+    &_fixed{
+      opacity: 0.4;
     }
-
-    .film_card_name {
-      color: #FFFFFF;
+  }
+  &:hover &__properties{
+    display: contents;
+    &_info{
+      height: 124px;
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      line-height: 16px;
+      color: #d9d7e0;
+      top: 125px;
+      position: absolute;
+      padding: 0 16px 16px 16px;
+    }
+    &_rating{
+      display: flex;
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 700;
+      align-items: baseline;
+    }
+    &_smallRating{
+      font-size: 20px;
+      line-height: 24px;
+    }
+    &_infoShort{
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 400;
+    }
+    &_infoTime{
+      margin-top: 4px;
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 400;
+    }
+  }
+  &__icons{
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    &_style{
+      margin-bottom: 8px;
+      position: relative;
+    }
+    &_style:hover::after{
+      position: absolute;
+      bottom: 120%;
+      white-space: nowrap;
+      left: 0;
+      content: attr(data-title);
+      padding: 10px;
+      background-color: #1f1b2e;
+      border-radius: 15%;
     }
   }
 }
