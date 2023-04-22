@@ -8,10 +8,11 @@ const meta: Meta<typeof Button> = {
     argTypes: {
         type: {
             description: 'Варианты типов кнопки',
-            defaultValue: 'default',
             options: ['default', 'ultraWide', 'rounded'],
+            defaultValue: 'default',
             control: {
-                type: 'radio'
+                type: 'radio',
+                defaultValue: 'default'
             }
         },
         color: {
@@ -25,7 +26,7 @@ const meta: Meta<typeof Button> = {
         title: {
             description: 'Варианты написания заголовка. Массив может быть пустым (для кнопки только из иконки) или принимать 1 или 2 значения',
             options: [
-                [undefined],
+                undefined,
                 ['Кнопка'],
                 ['Составная', 'Кнопка']
             ]

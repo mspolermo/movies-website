@@ -6,11 +6,11 @@ interface ButtonProps {
     type?: 'default' | 'ultraWide' | 'rounded';
     color?: 'default' | 'red' | 'gray' | 'gradient' | 'transparent';
     svg?: React.ReactElement;
-    title?: Array<string>;
+    title?: Array<string> | undefined;
     onClick?: () => void;
 } 
 
-const ButtonWithIcon:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, title =[], onClick }) => {
+const Button:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, title, onClick }) => {
     const [btnClass, setBtnClass] = useState ('');
     const [svgClass, setSvgClass] = useState ('');
 
@@ -50,12 +50,9 @@ const ButtonWithIcon:FC<ButtonProps> = ({ type = 'default', color = 'default', s
     };
 
     useEffect ( () => {
-        (title) ? setSvgClass(classes.btn__svg) : setSvgClass('');
-    }, []);
-
-    useEffect ( () => {
-        setBtnClass(btnClassInit());  
-    },[color, type]);
+        setBtnClass(btnClassInit());
+        (title) ? setSvgClass(classes.btn__svg) : setSvgClass('');  
+    },[color, type, title]);
 
     return (
         <div className={btnClass} onClick={onClick}>
@@ -71,4 +68,4 @@ const ButtonWithIcon:FC<ButtonProps> = ({ type = 'default', color = 'default', s
     );
 };
 
-export default ButtonWithIcon;
+export default Button;
