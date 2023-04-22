@@ -5,8 +5,6 @@
 // listValues - весь перечень стран/фильмов
 // onClick
 
-
-// todo:
 import React, {useState} from 'react';
 import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
