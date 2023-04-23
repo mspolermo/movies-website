@@ -1,0 +1,53 @@
+.carousel {
+	position: relative;
+	padding: 0px 30px;
+
+	&__container {
+		display: flex;
+		overflow: scroll;
+		scroll-behavior: smooth;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+	}
+
+	&__item {
+		min-width: 153px;
+		margin-right: 24px;
+		height: 234px;
+		color: white;
+		border: 1px solid white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__prev-btn,
+	&__next-btn {
+		width: 50px;
+		height: 100%;
+		position: absolute;
+		border: none;
+		background-color: #100e19;
+
+		@media screen and (max-width: 820px) {
+			display: none;
+		}
+
+		& p {
+			color: white;
+		}
+	}
+
+	&__prev-btn {
+		left: -48px;
+	}
+
+	&__next-btn {
+		right: -48px;
+	}
+}
