@@ -1,7 +1,8 @@
 import React, {FC, PropsWithChildren} from 'react';
 import CreateList from "../../CreateList/CreateList";
 import './FilterTwoBlocks.scss'
-import ButtonWithIcon from "../../UI/Buttons/Button/Button";
+import Button from "../../UI/Buttons/Button/Button";
+import Icons from "../../Icons/Icons";
 
 //Функция будет принимать:
 // popularValues - список популярных фильмом/стран
@@ -47,8 +48,8 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                                 {/*list который выводит популярные*/}
                                 <CreateList
                                     items={popularValues} renderItem={(popular: string) =>
-                                    <ButtonWithIcon
-                                        type='default'
+                                    <Button
+                                        type='rounded'
                                         color={selectedFiltersBy.includes(popular) ? 'purple' : 'transparent' }
                                         title={[popular]}
                                         onClick={() => selectedFilter(popular)}
@@ -67,10 +68,7 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                                     {value}
                                     <div
                                         className={selectedFiltersBy.includes(value) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
-                                        <svg width="16" height="16" fill="white" stroke='white' viewBox='0 0 16 16'>
-                                            <path
-                                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                                        </svg>
+                                        <Icons name='check' size='16'/>
                                     </div>
                                 </div>
                             }/>

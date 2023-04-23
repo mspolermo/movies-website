@@ -100,10 +100,13 @@
   &__icons{
     position: absolute;
     top: 15px;
-    right: 25px;
+    right: 15px;
     &_style{
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       position: relative;
+    }
+    &_svg{
+      margin-bottom: -3px;
     }
     &_style:hover::after{
       position: absolute;

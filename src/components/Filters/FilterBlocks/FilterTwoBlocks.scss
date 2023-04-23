@@ -75,9 +75,8 @@
         .element-text{
           &__checkmark{
             display: contents;
-            svg{
-              stroke: #7e798f;
-              fill: #7e798f;
+            .icon-check{
+              opacity: 0.4;
             }
           }
         }
