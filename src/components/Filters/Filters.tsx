@@ -93,7 +93,6 @@ const Filters = () => {
                             selectedFiltersBy={selectedFilters.genres}
                             selectedFilter={selectedGenres}
                             setActiveBlock={setActiveBlock}
-
                         />
                     </FilterButton>
 
@@ -140,7 +139,14 @@ const Filters = () => {
                                   activeBlock={activeBlock}
                                   blockName='actor'
                                   setActiveBlock={setActiveBlock}/>
+
+                    <FilterButton filterName='Актер'
+                                  selectedFiltersBy={selectedFilters.actor.join(', ')}
+                                  activeBlock={activeBlock}
+                                  blockName='actor'
+                                  setActiveBlock={setActiveBlock}/>
                 </div>
+
 
                 <div className="filters__button">
                     <ButtonResetFilters
