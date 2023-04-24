@@ -2,15 +2,22 @@ import React, { useEffect, useRef, useState } from "react";
 import './Header.scss';
 import Button from "../UI/Buttons/Button/Button";
 import Icons from "../Icons/Icons";
+import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms";
+import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries";
+import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults";
+import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv";
+import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify";
+import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe";
+import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin";
 
 const Header = () => {
 
     const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
-    const[dropDownVariant, setDropDownVariant] = useState ('dropDownBody__films');
-    const[variantID, setVariatnID] = useState('#drop-down-films');
+    const[dropDownVariant, setDropDownVariant] = useState ( 'dropDownBody__films' );
+    const[variantID, setVariatnID] = useState( '#drop-down-films' );
     
     const[chosenVariant, setChosenVariant] = useState('');
-    let block=null;
+    let block = null;
 
     // useEffect( () => {
     //     document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
@@ -19,9 +26,14 @@ const Header = () => {
      
     useEffect( () => {
         
-        // console.log(chosenVariant.length)
-        // console.log(variantID)
+        //console.log(chosenVariant)
+        //console.log(variantID)
         // console.log(dropDownVariant)
+
+        //workaroud для отображения пунктов выпадающего списка
+        const notyfiSVG = '<svg class="icon icon-notification header__svg header__svg_notification" fill="#fff" stroke="#fff" width="16" height="16" stroke-width="1"><use xlink:href="/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg#icon-notification"></use></svg>';
+        const subscribeSVG = '<div class="Button_btn__vAok0 Button_btn__red__TLxgk"><div class="Button_btn__textBlock__IVFdx"><div class="Button_btn__text__OS4PO">Смотреть 30 дней за 1 ₽</div></div></div>';
+        const loginSVG = '<div class="header__svg-border"><svg class="icon icon-person header__svg header__svg_login" fill="#fff" stroke="#fff" width="20" height="20" stroke-width="3"><use xlink:href="/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg#icon-person"></use></svg></div>';
 
         document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
 
@@ -50,6 +62,24 @@ const Header = () => {
                 setVariatnID('#drop-down-tv')
                 setDropDownVariant('dropDownBody__TV')
                 break;
+            case (notyfiSVG):
+                block = document.querySelector('#drop-down-notify')
+                block?.classList.remove('dropDownBody__notify_hidden')
+                setVariatnID('#drop-down-notify')
+                setDropDownVariant('dropDownBody__notify')
+                break;
+            case (subscribeSVG):
+                block = document.querySelector('#drop-down-subscribe')
+                block?.classList.remove('dropDownBody__subscribe_hidden')
+                setVariatnID('#drop-down-subscribe')
+                setDropDownVariant('dropDownBody__subscribe')
+                break;
+            case (loginSVG):
+                block = document.querySelector('#drop-down-login')
+                block?.classList.remove('dropDownBody__login_hidden')
+                setVariatnID('#drop-down-login')
+                setDropDownVariant('dropDownBody__login')
+                break;
         }
         
     }, [chosenVariant])
@@ -61,7 +91,8 @@ const Header = () => {
         dropdownBlock?.classList.remove('header__dropDownBody_hidden');
         headerTop?.classList.add('header__container_active');
 
-        if (e.currentTarget.innerHTML.length < 20) {
+        //Условие для workaround
+        if (e.currentTarget.innerHTML.length < 300) {
             setChosenVariant(e.currentTarget.innerHTML); 
         };
     }
@@ -88,10 +119,9 @@ const Header = () => {
           })
         );
        
-        useEffect(() => {
+        useEffect( () => {
           observer.current.observe(ref.current);
-        }, 
-        [ref, observer]);
+        }, [ref, observer]);
      
         return  width;
     };
@@ -161,7 +191,17 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="header__block">
-                        <Button title={['Смотреть 30 дней за 1 ₽']} color="red"/>
+                        <div 
+                            className="header__btn-block"
+                            onMouseOver={hoverListener}
+                            onMouseLeave={leaveListener}
+                        >
+                            <Button 
+                                title={['Смотреть 30 дней за 1 ₽']} 
+                                color="red"
+                                onClick={function() {window.location.href = 'https://www.ivi.ru/subscribe'}}
+                            />   
+                        </div>
                         <div className="header__btn-block header__btn-block_search">
                             <Icons className="header__svg header__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
                             <p className="header__text">Поиск</p>
@@ -170,544 +210,39 @@ const Header = () => {
                             className="header__btn-block header__btn-block_notification"
                             onMouseOver={hoverListener}
                             onMouseLeave={leaveListener}
-                        >
-                            <Icons className="header__svg header__svg_notification" name='notification' color='#fff' size='16'/>   
+                        > 
+                            <Icons className="header__svg header__svg_notification" name='notification' color='#fff' size='16'/>
                         </div>
                         <div 
                             className="header__btn-block header__btn-block_login"
                             onMouseOver={hoverListener}
                             onMouseLeave={leaveListener}
                         >
-                            <Icons className="header__svg header__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
+                            <div className="header__svg-border">
+                                <Icons className="header__svg header__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
             <div 
-                    className="header__dropDownBody header__dropDownBody_hidden"
-                    id='drop-down-block'
-                    style={{'width': width}} 
-                    onMouseOver={hoverListener}
-                    onMouseLeave={leaveListener}
-                >
-                    <div className="dropDownBody__body" id='drop-down-body' ref={dropDown}>
-                        <div className="dropDownBody__films" id='drop-down-films'>
-                            <div className="dropDownBody__block dropDownBody__block_big">
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">Жанры</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Артхаус</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Боевики</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Вестерн</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Военные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Детективы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Для всей семьи</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Для детей</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Документальные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Драмы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Исторические</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Катастрофы</p>
-                                            </a>
-                                        </div>
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Комедии</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Криминальные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мелодрамы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мистические</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">По комиксам</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Приключения</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Спорт</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Триллеры</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Ужасы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фантастика</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фэнтези</p>
-                                            </a>
-                                        </div>
-                                    </ul>    
-                                </div>
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">Страны</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Русские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Зарубежные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Советское кино</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                    <h3 className="dropDownBody__list-head">Годы</h3>
-                                        <ul className="dropDownBody__list">
-                                            <div className="dropDownBody__list-column">
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Фильмы 2023 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Фильмы 2022 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Фильмы 2021 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Фильмы 2020 года</p>
-                                                </a>
-                                            </div>
-                                        </ul>
-                                </div>
-                                <div className="dropDownBody__nav-block">
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="https://www.ivi.ru/new/movie-new" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Новинки</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Подборки</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/movies/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Иви.Рейтинг</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/new/soon-ivi" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Скоро на Иви</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/trailers" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Трейлеры</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/goodmovies" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Что посмотреть</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/movies-hd" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фильмы в HD</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/vyibor-ivi" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Выбор Иви</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/very-new-svod?sort=priority_in_collection" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Новинки подписки</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/filmyi-amediateka" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фильмы Amediateka</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/best-movies" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Популярные фильмы</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/ivi-originals" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фильмы Иви</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                </div>    
-                            </div>
-                            <div className="dropDownBody__block dropDownBody__block_subscribe">
-                                <div className="dropDownBody__adv">
-                                    <h4>Подписка Ivi</h4>   
-                                </div>
-                                <Button 
-                                    svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                                    color="gray"
-                                    title={['Смотрите на Smart TV']}
-                                    onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
-                            />
-                            </div>
-                        </div>
-                        <div className="dropDownBody__series dropDownBody__series_hidden" id='drop-down-series'>
-                            <div className="dropDownBody__block dropDownBody__block_big">
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">Жанры</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Биография</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Боевики</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Военные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Детективы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Для всей семьи</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Документальные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Драмы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Исторические</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Комедийные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Криминальные</p>
-                                            </a>
-                                        </div>
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Медицинские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мелодрамы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мистические</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Приключения</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Романтические</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Триллеры</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Турецкие</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Ужасы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фантастические</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фэнтези</p>
-                                            </a>
-                                        </div>
-                                    </ul>    
-                                </div>
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">Страны</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Русские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Зарубежные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Американские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Украинские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Корейские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Турецкие</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                    <h3 className="dropDownBody__list-head">Годы</h3>
-                                        <ul className="dropDownBody__list">
-                                            <div className="dropDownBody__list-column">
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Сериалы 2023 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Сериалы 2022 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Сериалы 2021 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Сериалы 2020 года</p>
-                                                </a>
-                                            </div>
-                                        </ul>
-                                </div>
-                                <div className="dropDownBody__nav-block">
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="https://www.ivi.ru/new/series-new" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Новинки</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/series/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Иви.Рейтинг</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/series-hd" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Сериалы в HD</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/tvshow-free?sort=new" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Бесплатные сериалы</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/serialyi-amediateka" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Сериалы Amediateka</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/series-paramount-play" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Сериалы Paramount Play</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                </div>    
-                            </div>
-                            <div className="dropDownBody__block dropDownBody__block_subscribe">
-                                <div className="dropDownBody__adv">
-                                    <h4>Подписка Ivi</h4>   
-                                </div>
-                                <Button 
-                                    svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                                    color="gray"
-                                    title={['Смотрите на Smart TV']}
-                                    onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
-                            />
-                            </div>
-                        </div>
-                        <div className="dropDownBody__mults dropDownBody__mults_hidden" id="drop-down-mults">
-                            <div className="dropDownBody__block dropDownBody__block_big">
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">Жанры</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Аниме</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Боевик</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Детектив</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Для взрослых</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Для всей семьи</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Для детей</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Драма</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">История</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Комендия</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Криминальные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мюзикл</p>
-                                            </a>
-                                        </div>
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Полнометражные</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Приключения</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Развивающие</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Сериалы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Спорт</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Триллер</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Ужасы</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фантастика</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Фэнтези</p>
-                                            </a>
-                                        </div>
-                                    </ul>    
-                                </div>
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">Страны</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Советские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Русские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Американские</p>
-                                            </a>
-                                            <a href="" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Зарубежные</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                    <h3 className="dropDownBody__list-head">Годы</h3>
-                                        <ul className="dropDownBody__list">
-                                            <div className="dropDownBody__list-column">
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Мультики 2023 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Мультики 2022 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Мультики 2021 года</p>
-                                                </a>
-                                                <a href="" className="dropDownBody__list-link">
-                                                    <p className="dropDownBody__list-item">Мультики 2020 года</p>
-                                                </a>
-                                            </div>
-                                        </ul>
-                                </div>
-                                <div className="dropDownBody__nav-block">
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="https://www.ivi.ru/new/animation-new" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Новинки</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/cartoons-hd" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мультики в HD</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/animation-paramount-play" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мультфильмы Paramount Play / Nickelodeon</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/dreamworks-cartoons" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мульфильмы Dreamworks</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/collections/ctc-kids" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Мульфильмы СТС Kids</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                </div>    
-                            </div>
-                            <div className="dropDownBody__block dropDownBody__block_subscribe">
-                                <div className="dropDownBody__adv">
-                                    <h4>Подписка Ivi</h4>   
-                                </div>
-                                <Button 
-                                    svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                                    color="gray"
-                                    title={['Смотрите на Smart TV']}
-                                    onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
-                            />
-                            </div>
-                        </div>
-                        <div className="dropDownBody__TV dropDownBody__TV_hidden" id="drop-down-tv">
-                            <div className="dropDownBody__block">
-                                <div className="dropDownBody__column">
-                                    <h3 className="dropDownBody__list-head">ТВ онлайн</h3>
-                                    <ul className="dropDownBody__list">
-                                        <div className="dropDownBody__list-column">
-                                            <a href="https://www.ivi.ru/tvplus/tvchannels" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">ТВ-каналы</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/tvplus/razvlekatelnoe" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Развлекательное</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/tvplus/deti" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Дети</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/tvplus/sport" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Спортивное ТВ</p>
-                                            </a>
-                                            <a href="https://www.ivi.ru/tvplus/documentalnoe" className="dropDownBody__list-link">
-                                                <p className="dropDownBody__list-item">Документальное</p>
-                                            </a>
-                                        </div>
-                                    </ul>
-                                    <Button 
-                                        color="gray"
-                                        title={['Телепрограмма']}
-                                        onClick={function() {window.location.href = 'https://www.ivi.ru/tvplus/tv-schedule-today'}}
-                                    />
-                                </div>
-                            </div>
-                            <div className="dropDownBody__block dropDownBody__block_subscribe">
-                                <div className="dropDownBody__adv">
-                                    <h4>Подписка Ivi</h4>   
-                                </div>
-                                <Button 
-                                    svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                                    color="gray"
-                                    title={['Смотрите на Smart TV']}
-                                    onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
-                            />
-                            </div>
-                        </div>
-                        <div className="dropDownBody__variant">
-                            <div className="dropDownBody__block"></div>
-                            <div className="dropDownBody__block"></div>
-                            <div className="dropDownBody__block"></div>
-                        </div>
-                        <div className="dropDownBody__variant">
-                            <div className="dropDownBody__block"></div>
-                            <div className="dropDownBody__block"></div>
-                            <div className="dropDownBody__block"></div>
-                        </div>
-                        <div className="dropDownBody__variant">
-                            <div className="dropDownBody__block"></div>
-                            <div className="dropDownBody__block"></div>
-                            <div className="dropDownBody__block"></div>
-                        </div>
-                    </div>
+                className="header__dropDownBody header__dropDownBody_hidden"
+                id='drop-down-block'
+                style={{'width': width}} 
+                onMouseOver={hoverListener}
+                onMouseLeave={leaveListener}
+            >
+                <div className="dropDownBody__body" id='drop-down-body' ref={dropDown}>
+                    <HeaderMenuFilms id='drop-down-films'/>
+                    <HeaderMenuSeries id='drop-down-series'/>
+                    <HeaderMenuMults id="drop-down-mults"/>
+                    <HeaderMenuTv id="drop-down-tv"/>
+                    <HeaderMenuSubscribe id="drop-down-subscribe"/>
+                    <HeaderMenuNotify id="drop-down-notify"/>
+                    <HeaderMenuLogin id="drop-down-login"/>
+                </div>
             </div>
         </div>
-        
     </div>
 }
 

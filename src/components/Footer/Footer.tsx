@@ -115,7 +115,9 @@ const Footer = () => {
                             />
                         </div>
                         <div className="footer__ask" id='askBlock'>
-                            <a href="https://ask.ivi.ru/" className="footer__link footer__link_additional">ask.ivi.ru</a>
+                            <a href="https://ask.ivi.ru/" className="footer__link">
+                                <p className="footer__text footer__text_additional">ask.ivi.ru</p>
+                            </a>
                             <p className="footer__text">Ответы на вопросы</p>    
                         </div>
                     </div>
