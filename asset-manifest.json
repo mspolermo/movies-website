@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movies-website/static/css/main.1a6ad0bf.css",
-    "main.js": "/movies-website/static/js/main.5b3e7f9b.js",
+    "main.css": "/movies-website/static/css/main.7f6a7749.css",
+    "main.js": "/movies-website/static/js/main.22d653b3.js",
     "static/media/IvyStyleSans-LightItalic.eot": "/movies-website/static/media/IvyStyleSans-LightItalic.fed5019bdac3f3fb6af9.eot",
     "static/media/IvyStyleSans-LightItalic.ttf": "/movies-website/static/media/IvyStyleSans-LightItalic.a0de5daa72b8ff9205ed.ttf",
     "static/media/IvyStyleSans-ThinItalic.eot": "/movies-website/static/media/IvyStyleSans-ThinItalic.c1c452c96fef4814189a.eot",
@@ -42,12 +42,19 @@
     "static/media/IvyStyleSans-ThinItalic.woff2": "/movies-website/static/media/IvyStyleSans-ThinItalic.f7a021fb968e1c497d1a.woff2",
     "static/media/IvyStyleSans-Bold.woff2": "/movies-website/static/media/IvyStyleSans-Bold.11d18679aadc6ff7fe89.woff2",
     "static/media/IvyStyleSans-Thin.woff2": "/movies-website/static/media/IvyStyleSans-Thin.cc553dfc4210029cf3b2.woff2",
+    "static/media/icons.svg": "/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg",
+    "static/media/similar.svg": "/movies-website/static/media/similar.7a5ff7982d0c635a580cc64ed7389c6c.svg",
+    "static/media/notlike-true2.svg": "/movies-website/static/media/notlike-true2.48268e56de4147dd10aeb6aa8a7fb2c8.svg",
+    "static/media/notlike.svg": "/movies-website/static/media/notlike.0b6e7ab8a739f5a8aea2b050e5f421dc.svg",
+    "static/media/favorites.svg": "/movies-website/static/media/favorites.b7dfbdaed20d2ddcee64c6484a380b4b.svg",
+    "static/media/star.svg": "/movies-website/static/media/star.302f73a6582bffc8dc09340fc774ce42.svg",
+    "static/media/favorites-true.svg": "/movies-website/static/media/favorites-true.151a03a13315daeabe5531fc3a29da7e.svg",
     "index.html": "/movies-website/index.html",
-    "main.1a6ad0bf.css.map": "/movies-website/static/css/main.1a6ad0bf.css.map",
-    "main.5b3e7f9b.js.map": "/movies-website/static/js/main.5b3e7f9b.js.map"
+    "main.7f6a7749.css.map": "/movies-website/static/css/main.7f6a7749.css.map",
+    "main.22d653b3.js.map": "/movies-website/static/js/main.22d653b3.js.map"
   },
   "entrypoints": [
-    "static/css/main.1a6ad0bf.css",
-    "static/js/main.5b3e7f9b.js"
+    "static/css/main.7f6a7749.css",
+    "static/js/main.22d653b3.js"
   ]
 }
