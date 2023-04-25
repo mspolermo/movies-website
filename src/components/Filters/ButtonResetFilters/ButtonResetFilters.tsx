@@ -1,7 +1,7 @@
 import React, {FC, PropsWithChildren} from 'react';
 import './buttonResetFilters.scss'
 import _ from "lodash";
-import {activeFiltersProps} from "../../testCase";
+import {activeFiltersProps} from "../../../types/testCase";
 import Icons from "../../Icons/Icons";
 
 interface ResetFiltersProps {
@@ -20,10 +20,8 @@ const ButtonResetFilters: FC<PropsWithChildren<ResetFiltersProps>> = ({selectedF
         >
             <div className={emptyFilters ? "resetFilters__content_opacity" : "resetFilters__content"}>
 
-
-                <div className="resetFilters__cross">
-                    <Icons name='cross' size='16'/>
-                </div>
+                {/*todo: как передать цвет кресту через scss*/}
+                <Icons className="resetFilters__cross" name='cross' size='20'/>
 
                 <div className="resetFilters__text">
                     Сбросить фильтры

@@ -87,8 +87,8 @@
         <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
     </symbol>
 
-    <symbol id='icon-cross' width="16" height="16" fill="white" stroke='white'>
-        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+    <symbol id='icon-cross' viewBox="0 0 22 22" fill="none"  stroke="#ffffff">
+            <path d="M19 5L5 19M5.00001 5L19 19" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
     </symbol>
 
     <symbol id='icon-check' width="16" height="16" fill="white" stroke='white'>
@@ -98,6 +98,16 @@
     <symbol id='icon-back' viewBox="0 0 30 30" fill="white" stroke='white'>
         <path d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
     </symbol>
+
+    <symbol id='icon-circle' viewBox="0 0 24 24">
+        <circle cx="12" cy="12" fill="none" id="Circle-2" r="10" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></circle>
+    </symbol>
+
+    <symbol id='icon-circle-check' viewBox="0 0 24 24">
+        <circle cx="12" cy="12" fill="none" id="Circle-2" r="10" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></circle>
+        <circle cx="12" cy="12" fill="none" id="Circle-3" r="3.5" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+    </symbol>
+
 
 </svg>
 

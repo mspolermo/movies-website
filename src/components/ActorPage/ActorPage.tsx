@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import CreateList from "../CreateList/CreateList";
 import ShortMovieCard from "./ShortMovieCard/ShortMovieCard";
-import {ActorPageProps} from "../testCase";
+import {ActorPageProps} from "../../types/testCase";
 import ActorHeader from "./ActorHeader/ActorHeader";
 import Filmography from "./FilmographyFiltrs/Filmography";
 import './ActorPage.scss'

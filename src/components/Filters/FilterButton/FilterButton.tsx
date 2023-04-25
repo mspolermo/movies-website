@@ -30,11 +30,6 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
     let isActive = activeBlock === blockName
 
     return (
-        <>
-            {isActive && <div className="close_block"
-                 onClick={() => setActiveBlock('')}
-            ></div>}
-
         <div className="filterButton">
             <div className="filterButton__container">
                 <div className={isActive ? "filterButton__content content-active" : "filterButton__content"}
@@ -62,7 +57,6 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
                 </div>
             </div>
         </div>
-        </>
     );
 };
 

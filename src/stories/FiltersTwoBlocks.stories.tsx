@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import FilterTwoBlocks from "../components/Filters/FilterBlocks/FilterTwoBlocks";
+import FilterTwoBlocks from "../components/Filters/FilterTypes/FilterTwoBlocks";
 
 const meta: Meta<typeof FilterTwoBlocks> = {
     title: 'Components/FilterTwoBlocks',
