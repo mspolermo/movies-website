@@ -21,10 +21,14 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                         <p className="login__text ">История просмотров</p>
                     </div>
                     <div className="login__block">
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
-                        <p className="login__text ">Подписки</p>
-                        <p className="login__text ">Подключить</p>
+                        <div className="login__inner login__inner_top">
+                            <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
+                            <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>   
+                        </div>
+                        <div className="login__inner login__inner_bottom">
+                            <p className="login__text ">Подписки</p>
+                            <p className="login__text login__text_small">Подключить</p>
+                        </div>
                     </div>
                 </div>
                 <div className="login__line">

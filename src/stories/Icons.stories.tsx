@@ -12,7 +12,7 @@ const meta: Meta<typeof Icons> = {
                 'telegram', 'linkedin', 'viber', 'twitter', 'odnoklasniki',
                 'vkontakte', 'mute', 'devices', 'smartTV', 'google',
                 'apple', 'mail', 'phone', 'search', 'notification',
-                'person'
+                'person', 'movie', 'folder-plus', 'download', 'ring'
             ],
             control: {
                 type: 'select'

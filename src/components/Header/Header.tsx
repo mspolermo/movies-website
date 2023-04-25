@@ -29,15 +29,25 @@ const Header = () => {
         //console.log(chosenVariant)
         //console.log(variantID)
         // console.log(dropDownVariant)
-
+        let subscribeSVG='' 
         //workaroud для отображения пунктов выпадающего списка
-        const notyfiSVG = '<svg class="icon icon-notification header__svg header__svg_notification" fill="#fff" stroke="#fff" width="16" height="16" stroke-width="1"><use xlink:href="/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg#icon-notification"></use></svg>';
-        const subscribeSVG = '<div class="Button_btn__vAok0 Button_btn__red__TLxgk"><div class="Button_btn__textBlock__IVFdx"><div class="Button_btn__text__OS4PO">Смотреть 30 дней за 1 ₽</div></div></div>';
-        const loginSVG = '<div class="header__svg-border"><svg class="icon icon-person header__svg header__svg_login" fill="#fff" stroke="#fff" width="20" height="20" stroke-width="3"><use xlink:href="/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg#icon-person"></use></svg></div>';
+        const notyfiSVG = '<svg class="icon icon-notification header__svg header__svg_notification" fill="#fff" stroke="#fff" width="16" height="16" stroke-width="1"><use xlink:href="/movies-website/static/media/icons.13e3430d3ab95b46ac28e1ec0b743cc0.svg#icon-notification"></use></svg>';
+        if (chosenVariant.includes('notification')) {
+            subscribeSVG = 'notification'
+        } else if(chosenVariant.includes('person')) {
+            subscribeSVG = 'person'
+        }else if(chosenVariant.includes('дней')) {
+            subscribeSVG = 'subscribe'
+        } else {subscribeSVG=chosenVariant}
+        
+        //'<div class="Button_btn__vAok0 Button_btn__red__TLxgk"><div class="Button_btn__textBlock__IVFdx"><div class="Button_btn__text__OS4PO">Смотреть 30 дней за 1 ₽</div></div></div>';
+        const loginSVG = '<div class="header__svg-border"><svg class="icon icon-person header__svg header__svg_login" fill="#fff" stroke="#fff" width="20" height="20" stroke-width="3"><use xlink:href="/movies-website/static/media/icons.13e3430d3ab95b46ac28e1ec0b743cc0.svg#icon-person"></use></svg></div>';
+
+        //console.log(subscribeSVG)
 
         document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
 
-        switch(chosenVariant) {
+        switch(subscribeSVG) {
             case "Фильмы":
                 block = document.querySelector('#drop-down-films')
                 block?.classList.remove('dropDownBody__films_hidden')
@@ -62,19 +72,19 @@ const Header = () => {
                 setVariatnID('#drop-down-tv')
                 setDropDownVariant('dropDownBody__TV')
                 break;
-            case (notyfiSVG):
+            case ('notification'):
                 block = document.querySelector('#drop-down-notify')
                 block?.classList.remove('dropDownBody__notify_hidden')
                 setVariatnID('#drop-down-notify')
                 setDropDownVariant('dropDownBody__notify')
                 break;
-            case (subscribeSVG):
+            case ('subscribe'):
                 block = document.querySelector('#drop-down-subscribe')
                 block?.classList.remove('dropDownBody__subscribe_hidden')
                 setVariatnID('#drop-down-subscribe')
                 setDropDownVariant('dropDownBody__subscribe')
                 break;
-            case (loginSVG):
+            case ('person'):
                 block = document.querySelector('#drop-down-login')
                 block?.classList.remove('dropDownBody__login_hidden')
                 setVariatnID('#drop-down-login')
@@ -91,6 +101,7 @@ const Header = () => {
         dropdownBlock?.classList.remove('header__dropDownBody_hidden');
         headerTop?.classList.add('header__container_active');
 
+        //console.log(e.currentTarget.innerHTML.length)
         //Условие для workaround
         if (e.currentTarget.innerHTML.length < 300) {
             setChosenVariant(e.currentTarget.innerHTML); 

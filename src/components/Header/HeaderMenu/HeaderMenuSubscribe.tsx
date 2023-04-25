@@ -13,25 +13,25 @@ const HeaderMenuSubscribe:FC<HeaderMenuProps> = ({id}) => {
                 </div>
                 <div className="subscribe__line">
                     <div className="subscribe__block">
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
+                        <Icons className="header__svg header__svg_notification" name='movie' color='gray' size='20' strokeWidth="0"/>
                         <p className="subscribe__text ">Новинки сериалов и фильмов</p>
                     </div>
                     <div className="subscribe__block subscribe__block_wide">
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
+                        <Icons className="header__svg header__svg_notification" name='folder-plus' color='gray' size='24' strokeWidth="0"/>
                         <p className="subscribe__text">Еженедельное пополнение каталога фильмами и сериалами со всего мира</p>
                     </div>
                 </div>
                 <div className="subscribe__line">
                     <div className="subscribe__block">
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
+                        <Icons className="header__svg header__svg_notification" name='mute' color='gray' size='20'/>
                         <p className="subscribe__text">Фильмы и сериалы без рекламы</p>
                     </div>
                     <div className="subscribe__block">
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
+                        <Icons className="header__svg header__svg_notification" name='devices' color='gray' size='20'/>
                         <p className="subscribe__text">Семейный аккаунт&nbsp;на 5 устройствах</p>
                     </div>
                     <div className="subscribe__block">
-                        <Icons className="header__svg header__svg_notification" name='notification' color='gray' size='20'/>
+                        <Icons className="header__svg header__svg_notification" name='download' color='gray' size='20' strokeWidth="3"/>
                         <p className="subscribe__text">Загрузка на мобильные устройства</p>
                     </div>
                 </div>

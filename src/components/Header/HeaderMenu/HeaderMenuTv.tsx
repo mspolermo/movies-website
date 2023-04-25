@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { HeaderMenuProps } from "../../../types/types";
 import Button from "../../UI/Buttons/Button/Button";
 import Icons from "../../Icons/Icons";
+import HeaderAdvertise from "../HeaderAdvertise/HeaderAdvertise";
 
 const HeaderMenuTv:FC<HeaderMenuProps> = ({id}) => {
     return(
@@ -47,16 +48,7 @@ const HeaderMenuTv:FC<HeaderMenuProps> = ({id}) => {
                     <div></div>
                 </div>
             </div>
-            <div className="dropDownBody__block dropDownBody__block_subscribe">
-                <div className="dropDownBody__adv">
-                    <h4>Подписка Ivi</h4>   
-                </div>
-                <Button 
-                    svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                    title={['Смотрите на Smart TV']}
-                    onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
-                />
-            </div>
+            <HeaderAdvertise variant={'ivi'}/>
         </div>
     );
 }

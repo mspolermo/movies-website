@@ -2,18 +2,31 @@ import React, { FC, useEffect, useState } from "react";
 import { HeaderMenuProps } from "../../../types/types";
 import Button from "../../UI/Buttons/Button/Button";
 import Icons from "../../Icons/Icons";
+import HeaderAdvertise from "../HeaderAdvertise/HeaderAdvertise";
 
 const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
 
     const [activePoint, setActivePoint] = useState('dropDown-film-new');
+    const [headerAdvertiseProp, setHeaderAdvertiseProp] = useState('ivi');
 
     useEffect( () => {
         document.querySelector(`#${activePoint}`)?.classList.add('dropDownBody__nav-list-item_active');
     }, [activePoint]);
     
     function hoverActivator (e: React.DragEvent<HTMLDivElement>) {
+
         document.querySelector(`#${activePoint}`)?.classList.remove('dropDownBody__nav-list-item_active');
+        
         setActivePoint(e.currentTarget.id);
+        
+        switch(e.currentTarget.innerText) {
+            case "Фильмы Amediateka":
+                setHeaderAdvertiseProp('amediateka')
+                break;
+            default:
+                setHeaderAdvertiseProp('ivi')
+                break;
+        }
     };
 
     return(
@@ -216,16 +229,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
                     </ul>
                 </div>    
             </div>
-            <div className="dropDownBody__block dropDownBody__block_subscribe">
-                <div className="dropDownBody__adv">
-                    <h4>Подписка Ivi</h4>   
-                </div>
-                <Button 
-                    svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                    title={['Смотрите на Smart TV']}
-                    onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
-                />
-            </div>
+            <HeaderAdvertise variant={headerAdvertiseProp}/>
         </div>
     )
  }
