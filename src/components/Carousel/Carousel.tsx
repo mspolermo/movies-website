@@ -1,43 +1,61 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import './Carousel.scss'
-import FilmCard from "../FilmCard/FilmCard";
+import Icons from "../Icons/Icons";
 
-interface ICarouselProps { };
+interface ICarouselProps {
+	variant: string
+	children: any
+};
 
-export const Carousel: FC<ICarouselProps> = () => {
+export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 
-	const [box, setBox] = useState<Element | null>()
 	const [scroll, setScroll] = useState<number>(0)
-
+	const [scrollWidth, setScrollWidth] = useState<any>(0)
+	const el = useRef<any>(null)
+	let block = el.current
 
 	useEffect(() => {
-		setBox(document.querySelector('.carousel__container'))
+		let block = el.current
+		switch (variant) {
+			case 'cards':
+
+				// Ширина прокрутки в процентах от ширины контейнера
+				setScrollWidth(block.clientWidth / 100 * 86);
+				break;
+
+			case 'filters':
+				setScrollWidth(block.clientWidth / 100 * 25);
+				break;
+
+			case 'tv':
+				setScrollWidth(block.clientWidth / 100 * 60);
+				break;
+
+		}
+
 	}, [])
 
 	const btnPressPrev = () => {
-		if (box !== undefined && box !== null) {
-			let width = box.clientWidth;
+		if (block !== undefined && block !== null) {
 
-			box.scrollLeft = box.scrollLeft - width
+			block.scrollLeft = block.scrollLeft - scrollWidth
 
-			if (scroll - width < 0) {
+			if (scroll - scrollWidth < 0) {
 				setScroll(0)
 			} else {
-				setScroll(box.scrollLeft - width)
+				setScroll(block.scrollLeft - scrollWidth)
 			}
 		}
 	}
 
 	const btnPressNext = () => {
-		if (box !== undefined && box !== null) {
-			let width = box.clientWidth;
+		if (block !== undefined && block !== null) {
 
-			setScroll(width)
-			box.scrollLeft = box.scrollLeft + width
-			if (scroll + width >= box.scrollWidth) {
-				setScroll(box.scrollWidth)
+			block.scrollLeft = block.scrollLeft + scrollWidth
+			if (scroll + scrollWidth >= block.scrollWidth) {
+				setScroll(block.scrollWidth)
 			}
-			setScroll(box.scrollLeft + width)
+			setScroll(block.scrollLeft + scrollWidth)
 		}
 	}
 
@@ -45,43 +63,59 @@ export const Carousel: FC<ICarouselProps> = () => {
 		<div className="container carousel">
 			{scroll > 0
 				&&
-				<button
-					className="carousel__prev-btn"
+				<div
+					className="carousel__prev-arrow"
 					onClick={btnPressPrev}
 				>
-					<p>&lt;</p>
-				</button>
+					<Icons
+						name="arrowLeft"
+						size={variant === 'cards' ? '30' : '15'}
+						className={
+							`carousel__prev-arrow_icon ${variant !== 'cards' && 'arrow-sm'}`
+						}
+						color="rgba(255, 255, 255, 0.7)"
+					/>
+				</div>
 			}
 			{
-				box && scroll + box.clientWidth < box.scrollWidth
+				block && scroll + block.clientWidth < block.scrollWidth
 				&&
-				<button
-					className="carousel__next-btn"
+				<div
+					className="carousel__next-arrow"
 					onClick={btnPressNext}
 				>
-					<p>&gt;</p>
-				</button>
+					<Icons
+						name="arrowRight"
+						size={variant === 'cards' ? '30' : '15'}
+						className={
+							`carousel__prev-arrow_icon ${variant !== 'cards' && 'arrow-sm'}`
+						}
+						color="rgba(255, 255, 255, 0.7)"
+					/>
+				</div>
 			}
 
-			<div className="carousel__container">
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
-				<FilmCard film="film" onClick={() => 'film'} />
+			<div
+				ref={el}
+				className={
+					`
+					carousel__container 
+					${variant === 'tv'
+						&&
+						block
+						&&
+						scroll + block.clientWidth < block.scrollWidth
+						?
+						'carousel__container_fade-right'
+						:
+						variant !== 'tv'
+							?
+							''
+							:
+							'carousel__container_fade-left'
+					}`
+				} >
+				{children}
 			</div>
 		</div>
 	);
