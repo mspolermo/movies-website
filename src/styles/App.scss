@@ -1,5 +1,6 @@
 @import './fonts.scss'; //Шрифты
 @import './nullstyle.scss'; // Нормализация
+@import '/src/styles/variables.scss'; //Переменные и миксины 
 
 body {
     font-family: iviSans,sans-serif;
@@ -16,10 +17,14 @@ body {
 }
 
 .heading {
-    margin: 50px 0 380px;
-    color: white;
+    margin: 50px 0;
+    color: $headingColor;
     font-size: 34px;
     font-weight: 600;
     text-align: center;
     //z-index: 1;
+    @include hover-colorAnim($textColor, $headingColor)
+}
+.empty{
+    height: 250px;
 }

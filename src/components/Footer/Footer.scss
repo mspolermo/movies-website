@@ -1,6 +1,8 @@
+@import '/src/styles/variables.scss';
+
 .footer {
-    background-color: #100e19;
-    color: #b0afb1;
+    background-color: $backgroundColor;
+    color: $textColor;
     &__container {
         display: flex;
         flex-direction: column;
@@ -33,7 +35,7 @@
         font-weight: 700;
         font-size: 15px;
         line-height: 20px;
-        color: #fff;
+        color: $headingColor;
     }
     &__item{
         margin-bottom: 8px;
@@ -45,31 +47,22 @@
         line-height: 20px;
         text-decoration: none;
 
-        color: rgba(255,255,255,.48);
-
-        transition-property: color;
-        &_additional{
-            color: #fff;
-        }
-        &:hover {
-            color: white;
-            transition-duration: 0.4s;
-        }
-        &:not(:hover):not(:active) {
-            color: rgba(255,255,255,.48);
-            transition-duration: 0.4s;
-        }
+        @include hover-colorAnim($headingColor, $textColor);
     }
     &__text{
         max-width: 250px;
         line-height: 20px;
         &_bigButton{
             text-align: center;
-            color: #b0afb1;
+            color: $textColor;
         }
         &_copyrights{
             max-width: none;
             line-height: 22px;
+        }
+        &_additional{
+            color: $headingColor;
+            @include hover-colorAnim($textColor, $headingColor);
         }
     }
     &__certificateLinkWrapper{
@@ -147,19 +140,10 @@
         margin-left: 12px;
         padding: 14px;
         border-radius: 100%;
-        background-color: #1f1b2e;
-        border-color: #1f1b2e;
-        transition-property: background-color;
-        &:hover {
-            cursor: pointer;
-            background-color: #2b2640;
-            transition-duration: 0.4s;
-        }
-        &:not(:hover):not(:active) {
-            background-color: #1f1b2e;
-            transition-duration: 0.4s;
-        }
+        background-color: $defaultIconColor;
+        border-color: $defaultIconColor;
 
+        @include hover-backgroundcolorAnim($defaultIconColor-hover, $defaultIconColor);
     }
 }
 

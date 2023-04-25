@@ -1,29 +1,137 @@
-import React, { useEffect, useRef } from "react";
-import './Header.scss'
+import React, { useEffect, useRef, useState } from "react";
+import './Header.scss';
 import Button from "../UI/Buttons/Button/Button";
 import Icons from "../Icons/Icons";
-
+import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms";
+import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries";
+import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults";
+import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv";
+import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify";
+import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe";
+import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin";
 
 const Header = () => {
 
+    const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
+    const[dropDownVariant, setDropDownVariant] = useState ( 'dropDownBody__films' );
+    const[variantID, setVariatnID] = useState( '#drop-down-films' );
+    
+    const[chosenVariant, setChosenVariant] = useState('');
+    let block = null;
+
+    // useEffect( () => {
+    //     document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
+    // },[])
+
+     
+    useEffect( () => {
+        
+        //console.log(chosenVariant)
+        //console.log(variantID)
+        // console.log(dropDownVariant)
+
+        //workaroud для отображения пунктов выпадающего списка
+        const notyfiSVG = '<svg class="icon icon-notification header__svg header__svg_notification" fill="#fff" stroke="#fff" width="16" height="16" stroke-width="1"><use xlink:href="/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg#icon-notification"></use></svg>';
+        const subscribeSVG = '<div class="Button_btn__vAok0 Button_btn__red__TLxgk"><div class="Button_btn__textBlock__IVFdx"><div class="Button_btn__text__OS4PO">Смотреть 30 дней за 1 ₽</div></div></div>';
+        const loginSVG = '<div class="header__svg-border"><svg class="icon icon-person header__svg header__svg_login" fill="#fff" stroke="#fff" width="20" height="20" stroke-width="3"><use xlink:href="/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg#icon-person"></use></svg></div>';
+
+        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
+
+        switch(chosenVariant) {
+            case "Фильмы":
+                block = document.querySelector('#drop-down-films')
+                block?.classList.remove('dropDownBody__films_hidden')
+                setVariatnID('#drop-down-films')
+                setDropDownVariant('dropDownBody__films')
+                break;
+            case "Сериалы":
+                block = document.querySelector('#drop-down-series')
+                block?.classList.remove('dropDownBody__series_hidden')
+                setVariatnID('#drop-down-series')
+                setDropDownVariant('dropDownBody__series')
+                break;
+            case "Мультфильмы":
+                block = document.querySelector('#drop-down-mults')
+                block?.classList.remove('dropDownBody__mults_hidden')
+                setVariatnID('#drop-down-mults')
+                setDropDownVariant('dropDownBody__mults')
+                break;
+            case 'TV+':
+                block = document.querySelector('#drop-down-tv')
+                block?.classList.remove('dropDownBody__TV_hidden')
+                setVariatnID('#drop-down-tv')
+                setDropDownVariant('dropDownBody__TV')
+                break;
+            case (notyfiSVG):
+                block = document.querySelector('#drop-down-notify')
+                block?.classList.remove('dropDownBody__notify_hidden')
+                setVariatnID('#drop-down-notify')
+                setDropDownVariant('dropDownBody__notify')
+                break;
+            case (subscribeSVG):
+                block = document.querySelector('#drop-down-subscribe')
+                block?.classList.remove('dropDownBody__subscribe_hidden')
+                setVariatnID('#drop-down-subscribe')
+                setDropDownVariant('dropDownBody__subscribe')
+                break;
+            case (loginSVG):
+                block = document.querySelector('#drop-down-login')
+                block?.classList.remove('dropDownBody__login_hidden')
+                setVariatnID('#drop-down-login')
+                setDropDownVariant('dropDownBody__login')
+                break;
+        }
+        
+    }, [chosenVariant])
+
     const hoverListener = (e: React.DragEvent<HTMLDivElement>) => {
         const dropdownBlock = document.querySelector('#drop-down-block');
-        dropdownBlock?.classList.remove('header__dropDownBody_hidden')
+        const headerTop = document.querySelector('#header-top');
+
+        dropdownBlock?.classList.remove('header__dropDownBody_hidden');
+        headerTop?.classList.add('header__container_active');
+
+        //Условие для workaround
+        if (e.currentTarget.innerHTML.length < 300) {
+            setChosenVariant(e.currentTarget.innerHTML); 
+        };
     }
 
     const leaveListener = (e: React.DragEvent<HTMLDivElement>) => {
         const dropdownBlock = document.querySelector('#drop-down-block');
+        const headerTop = document.querySelector('#header-top');
+
         dropdownBlock?.classList.add('header__dropDownBody_hidden');
+        headerTop?.classList.remove('header__container_active');
     }
 
-    const headerWith = React.useRef() as React.MutableRefObject<HTMLDivElement>
-    useEffect (() => {
-        //console.log( (headerWith.current.getBoundingClientRect()))
-    }, [])
+    const ref = React.useRef() as React.MutableRefObject<HTMLDivElement>
 
+    const GetElementWidth = () => {
+        
+        const [width, setWidth] = useState<null | number>(null);
+     
+        const observer = useRef(
+          new ResizeObserver((entries) => {
+            const { width } = entries[0].contentRect;
+            //24 - sum of paddings
+            setWidth(width + 24);
+          })
+        );
+       
+        useEffect( () => {
+          observer.current.observe(ref.current);
+        }, [ref, observer]);
+     
+        return  width;
+    };
+
+    let width = `${GetElementWidth()}px`;
+    //console.log(GetElementWidth());  
+    
     return <div className='header'>
         <div className="header__body">
-            <div className="container header__container" id='head-top' ref={headerWith}>
+            <div  className="container header__container" ref={ref} id='header-top'>
                 <div className="header__content">
                     <div className="header__block">
                         <div className="header__img">
@@ -83,7 +191,17 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="header__block">
-                        <Button title={['Смотреть 30 дней за 1 ₽']} color="red"/>
+                        <div 
+                            className="header__btn-block"
+                            onMouseOver={hoverListener}
+                            onMouseLeave={leaveListener}
+                        >
+                            <Button 
+                                title={['Смотреть 30 дней за 1 ₽']} 
+                                color="red"
+                                onClick={function() {window.location.href = 'https://www.ivi.ru/subscribe'}}
+                            />   
+                        </div>
                         <div className="header__btn-block header__btn-block_search">
                             <Icons className="header__svg header__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
                             <p className="header__text">Поиск</p>
@@ -92,33 +210,39 @@ const Header = () => {
                             className="header__btn-block header__btn-block_notification"
                             onMouseOver={hoverListener}
                             onMouseLeave={leaveListener}
-                        >
-                            <Icons className="header__svg header__svg_notification" name='notification' color='#fff' size='16'/>   
+                        > 
+                            <Icons className="header__svg header__svg_notification" name='notification' color='#fff' size='16'/>
                         </div>
                         <div 
                             className="header__btn-block header__btn-block_login"
                             onMouseOver={hoverListener}
                             onMouseLeave={leaveListener}
                         >
-                            <Icons className="header__svg header__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
+                            <div className="header__svg-border">
+                                <Icons className="header__svg header__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
             <div 
-                    className="header__dropDownBody header__dropDownBody_hidden" 
-                    id='drop-down-block'
-                    onMouseOver={hoverListener}
-                    onMouseLeave={leaveListener}
-                >
-                    <div 
-                        className="dropDownBody__body"
-                        
-                    >
-                    </div>
+                className="header__dropDownBody header__dropDownBody_hidden"
+                id='drop-down-block'
+                style={{'width': width}} 
+                onMouseOver={hoverListener}
+                onMouseLeave={leaveListener}
+            >
+                <div className="dropDownBody__body" id='drop-down-body' ref={dropDown}>
+                    <HeaderMenuFilms id='drop-down-films'/>
+                    <HeaderMenuSeries id='drop-down-series'/>
+                    <HeaderMenuMults id="drop-down-mults"/>
+                    <HeaderMenuTv id="drop-down-tv"/>
+                    <HeaderMenuSubscribe id="drop-down-subscribe"/>
+                    <HeaderMenuNotify id="drop-down-notify"/>
+                    <HeaderMenuLogin id="drop-down-login"/>
+                </div>
             </div>
         </div>
-        
     </div>
 }
 
