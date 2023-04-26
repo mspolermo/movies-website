@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuNotify.scss'
 import Icons from "../../../Icons/Icons";

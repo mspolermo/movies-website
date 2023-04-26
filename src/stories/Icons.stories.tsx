@@ -12,15 +12,10 @@ const meta: Meta<typeof Icons> = {
                 'telegram', 'linkedin', 'viber', 'twitter', 'odnoklasniki',
                 'vkontakte', 'mute', 'devices', 'smartTV', 'google',
                 'apple', 'mail', 'phone', 'search', 'notification',
-<<<<<<< HEAD
-                'person', 'movie', 'folder-plus', 'download', 'ring', 'grade-star',
-                'bookmark', 'bookmark-true', 'cross', 'check','back', 'circle',
-                'circle-checked',
-=======
                 'person', 'movie', 'folder-plus', 'download', 'ring',
-                'history', 'brilliant', 'circle', 'medal', 'tv',
-                'card', 'share'
->>>>>>> f770ebb (Header in decomposition process. HeaderActiveList reusing component created. Custom function/custom types added)
+                'history', 'brilliant', 'circle-flooded', 'medal', 'tv',
+                'card', 'share', 'grade-star', 'bookmark', 'bookmark-true', 
+                'cross', 'check', 'back', 'circle', 'circle-checked'
             ],
             control: {
                 type: 'select'

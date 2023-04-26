@@ -75,7 +75,7 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
                             title="Смотреть позже"
-                            svg={<Icons className="headerMenuLogin__svg" name='notification' color='#b0afb1' size='20'/>}
+                            svg={<Icons className="headerMenuLogin__svg" name='bookmark' color='#b0afb1' size='20'/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile/favorites')}
                         />   
                     </div>
@@ -93,7 +93,7 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                     >
                         <div className="headerMenuLogin__inner headerMenuLogin__inner_top">
                             <Icons className="headerMenuLogin__svg"  name='brilliant' color='#b0afb1' size='20' strokeWidth="0"/>
-                            <Icons className="headerMenuLogin__svg headerMenuLogin__svg_circle" name='circle' color='red' size='10'/>   
+                            <Icons className="headerMenuLogin__svg headerMenuLogin__svg_circle" name='circle-flooded' color='red' size='10'/>   
                         </div>
                         <div className="headerMenuLogin__inner headerMenuLogin__inner_bottom">
                             <p className="headerMenuLogin__text ">Подписки</p>
