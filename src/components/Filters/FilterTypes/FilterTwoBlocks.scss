@@ -1,3 +1,13 @@
+.close_block{
+  background-color: rgba(0, 0, 0, 0);
+  width: 100vw;
+  height: 300vh;
+  top: -100vh;
+  left: 0;
+  position: absolute;
+  cursor: auto;
+}
+
 .filterTwoBlocks {
   position: absolute;
   z-index: 100;
@@ -20,15 +30,6 @@
   .scrollpane {
     padding-bottom: 16px;
     border-bottom: 1px solid rgba(255, 255, 255, .32);
-
-
-    &__arrow {
-    }
-
-    &__viewport {
-
-    }
-
     .filter-element {
       display: flex;
       justify-content: flex-start;
@@ -75,9 +76,8 @@
         .element-text{
           &__checkmark{
             display: contents;
-            svg{
-              stroke: #7e798f;
-              fill: #7e798f;
+            .icon-check{
+              opacity: 0.4;
             }
           }
         }

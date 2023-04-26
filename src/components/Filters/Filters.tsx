@@ -8,10 +8,11 @@
 import React, {useState} from 'react';
 import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
-import FilterTwoBlocks from "./FilterBlocks/FilterTwoBlocks";
+import FilterTwoBlocks from "./FilterTypes/FilterTwoBlocks";
 import ButtonResetFilters from "./ButtonResetFilters/ButtonResetFilters";
 import _ from 'lodash';
-import {activeFiltersProps} from "../testCase";
+import {activeFiltersProps, startFiltersProps} from "../../types/testCase";
+import TypeYear from "./FilterTypes/TypeYear/TypeYear";
 
 
 // блоки для тестирования
@@ -37,7 +38,7 @@ const arrAllFilters = {
     'popularGenres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?',],
     'genres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
     'countries': ['Австралия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия'],
-    'years': '',
+    'years': ['до 1980', '2022 год', '2022-2023', '2000-2010'],
     'rating': {
         'min': 0,
         'max': 0,
@@ -53,7 +54,7 @@ const arrAllFilters = {
 
 //основной блок
 const Filters = () => {
-    const [allFilters, setAllFilters] = useState<activeFiltersProps>(arrAllFilters)
+    const [allFilters, setAllFilters] = useState<startFiltersProps>(arrAllFilters)
     const [selectedFilters, setSelectedFilters] = useState<activeFiltersProps>(_.cloneDeep(activeFilters))
     const [activeBlock, setActiveBlock] = useState('')
 
@@ -77,6 +78,13 @@ const Filters = () => {
         setSelectedFilters({...selectedFilters, countries: arrCountries})
     }
 
+    function selectedYears(year: string) {
+        if (selectedFilters.years !== year) {
+            setSelectedFilters({...selectedFilters, years: year})
+        }
+    }
+
+
     return (
         <div className='filters'>
             <div className="filters__content">
@@ -93,7 +101,6 @@ const Filters = () => {
                             selectedFiltersBy={selectedFilters.genres}
                             selectedFilter={selectedGenres}
                             setActiveBlock={setActiveBlock}
-
                         />
                     </FilterButton>
 
@@ -115,7 +122,12 @@ const Filters = () => {
                                   selectedFiltersBy={selectedFilters.years}
                                   activeBlock={activeBlock}
                                   blockName='years'
+                                  setActiveBlock={setActiveBlock}>
+                        <TypeYear listYears={allFilters.years}
+                                  selectedFiltersBy={selectedFilters.years}
+                                  selectedYear={selectedYears}
                                   setActiveBlock={setActiveBlock}/>
+                    </FilterButton>
 
                     {/*<FilterButton filterName='Рейтинг'*/}
                     {/*              selectedFiltersBy={selectedFilters.rating}*/}
@@ -140,7 +152,9 @@ const Filters = () => {
                                   activeBlock={activeBlock}
                                   blockName='actor'
                                   setActiveBlock={setActiveBlock}/>
+
                 </div>
+
 
                 <div className="filters__button">
                     <ButtonResetFilters

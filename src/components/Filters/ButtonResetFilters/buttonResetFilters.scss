@@ -3,6 +3,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    max-width: 180px;
 
     font-size: 15px;
     line-height: 20px;
@@ -24,9 +25,18 @@
       margin-top: 16px;
       opacity: .32;
     }
+    &:hover{
+      color: #ea003d;
+      .resetFilters__cross{
+        fill: #ea003d;
+        stroke: #ea003d;
+      }
+    }
   }
   &__cross{
-    margin-right: 8px;
-    margin-bottom: -3px;
+    margin-right: 5px;
+    margin-top: -2px;
+    stroke: #FFFFFF;
+    stroke-width: 3;
   }
 }

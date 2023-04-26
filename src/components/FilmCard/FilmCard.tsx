@@ -1,11 +1,9 @@
 import React, {FC, PropsWithChildren, useState} from 'react';
 import './filmcard.scss'
-import star from '../../static/img/filmcard/star.svg'
-import favorit from '../../static/img/filmcard/favorites.svg'
-import favoritTrue from '../../static/img/filmcard/favorites-true.svg'
 import similar from '../../static/img/filmcard/similar.svg'
 import like from '../../static/img/filmcard/notlike.svg'
 import notlikeTrue from '../../static/img/filmcard/notlike-true2.svg'
+import Icons from "../Icons/Icons";
 
 interface FilmCardProps {
     film: string;
@@ -38,20 +36,17 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                     </div>
                     <div className='filmcard__properties'>
                         <div className="filmcard__icons">
-                            {favorites && <div
+
+                            <div
                                 data-title='Смотреть позже'
                                 className="filmcard__icons_style"
-                                onClick={() => setFavorites(prev => !prev)}
-                            >
-                                <img src={favorit} alt='' style={{width: 20.8}}/>
-                            </div>}
-                            {!favorites && <div
-                                data-title='Смотреть позже'
-                                className="filmcard__icons_style"
-                                onClick={() => setFavorites(prev => !prev)}
-                            >
-                                <img src={favoritTrue} alt='' style={{width: 20.8}}/>
-                            </div>}
+                                onClick={() => setFavorites(prev => !prev)}>
+
+                                {favorites ? <Icons className='filmcard__icons_svg' name='bookmark' size='25.8'/>
+                                    : <Icons className='filmcard__icons_svg' name='bookmark-true' size='25.8'/>
+                                }
+
+                            </div>
 
                             <div className="filmcard__icons_style"
                                  data-title='Похожее'
@@ -62,23 +57,18 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                             <div className="filmcard__icons_style"
                                  data-title='Уже смотрел, оценить'
                             >
-                                <img src={star} alt="" style={{width: 20.8}}/>
+                                <Icons className='filmcard__icons_svg' name='grade-star' size='25.8'/>
                             </div>
 
-                            {notlike && <div
+                            <div
                                 data-title='Не нравится такое'
                                 className="filmcard__icons_style"
                                 onClick={() => setNotlike(prev => !prev)}
                             >
-                                <img src={like} alt='' style={{width: 20.8}}/>
-                            </div>}
-                            {!notlike && <div
-                                data-title='Не нравится такое'
-                                className="filmcard__icons_style"
-                                onClick={() => setNotlike(prev => !prev)}
-                            >
-                                <img src={notlikeTrue} alt='' style={{width: 20.8}}/>
-                            </div>}
+                                {notlike ? <img src={like} alt='' style={{width: 20.8}}/>
+                                    : <img src={notlikeTrue} alt='' style={{width: 20.8}}/>}
+                            </div>
+
                         </div>
                         <div className="filmcard__properties_info">
                             <div className="filmcard__properties_rating">
