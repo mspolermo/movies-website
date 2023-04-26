@@ -12,7 +12,9 @@ const meta: Meta<typeof Icons> = {
                 'telegram', 'linkedin', 'viber', 'twitter', 'odnoklasniki',
                 'vkontakte', 'mute', 'devices', 'smartTV', 'google',
                 'apple', 'mail', 'phone', 'search', 'notification',
-                'person', 'movie', 'folder-plus', 'download', 'ring'
+                'person', 'movie', 'folder-plus', 'download', 'ring', 'grade-star',
+                'bookmark', 'bookmark-true', 'cross', 'check','back', 'circle',
+                'circle-checked',
             ],
             control: {
                 type: 'select'

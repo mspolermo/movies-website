@@ -42,8 +42,8 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                                 className="filmcard__icons_style"
                                 onClick={() => setFavorites(prev => !prev)}>
 
-                                {favorites ? <Icons className='filmcard__icons_svg' name='favorite' size='25.8'/>
-                                    : <Icons className='filmcard__icons_svg' name='favoriteTrue' size='25.8'/>
+                                {favorites ? <Icons className='filmcard__icons_svg' name='bookmark' size='25.8'/>
+                                    : <Icons className='filmcard__icons_svg' name='bookmark-true' size='25.8'/>
                                 }
 
                             </div>
@@ -57,7 +57,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                             <div className="filmcard__icons_style"
                                  data-title='Уже смотрел, оценить'
                             >
-                                <Icons className='filmcard__icons_svg' name='grade' size='25.8'/>
+                                <Icons className='filmcard__icons_svg' name='grade-star' size='25.8'/>
                             </div>
 
                             <div
