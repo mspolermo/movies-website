@@ -63,14 +63,7 @@ const ActorPage = () => {
                                      USname={actor.usname}/>
 
                         <div className="actorPage__filmography">
-                            {/*<div className="filmography__header">*/}
-                            {/*    <div className="filmography__title"></div>*/}
-                            {/*    <div className="filmography__subtitle"></div>*/}
-                            {/*</div>*/}
-                            {/*<div className="filmography__lists">*/}
-                            {/*    <div className="filmography__role"></div>*/}
-                            {/*</div>*/}
-                            <Filmography/>
+                            {/*<Filmography/>*/}
                             <ShortMovieCard poster={actor.movies.poster}
                                             filmName={actor.movies.name}
                                             year={actor.movies.year}
