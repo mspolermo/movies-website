@@ -1,0 +1,74 @@
+@import '/src/styles/variables.scss';
+
+.headerMenuSubscribe {
+    padding: 10px 28px 20px;
+    height: 440px;
+    display: flex;
+    justify-content: space-between;
+    &__hidden {
+        display: none;
+    }
+    &__column {
+        flex: 1 1 57%;
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &_wide {
+            flex: 1 0 46%;
+            background: url('../../../../static/img/header/film2.png') no-repeat center center;
+            background-size: 60%;
+        } 
+    }
+    &__line {
+        display: flex;
+        justify-content: space-between;
+        &_top {
+            flex-direction: column;
+        } 
+    }
+    &__heading {
+        padding-top: 20px;
+        padding-bottom: 16px;
+        font-size: 28px;
+        font-weight: 500;
+        color: $headingColor;
+    }
+    &__text {
+        font-size: 16px;
+        line-height: 20px;
+
+        color: $textColor;
+        &_additional {
+            font-size: 12px;
+            line-height: 14px;
+        }
+    }
+    &__block {
+        flex: 1 1 33.3%;
+        margin-right: 20px;
+        &_wide{
+            flex: 2 1 72%;
+        }
+        &_bottom-left {
+            flex: 2 0 63%;
+            padding: 0;
+            height: 100%;
+            display: block;
+
+            border-radius: 0;
+            background-color: transparent;
+            .Button_btn__vAok0.Button_btn__ultraWide__ZXwzu.Button_btn__red__TLxgk {
+                margin-right: 0;
+            }
+        }
+        &_bottom-right {
+            flex: 1 1 35%;
+            padding: 0;
+            height: 100%;
+            display: block;
+            border-radius: 0;
+            background-color: transparent;
+        }
+    }
+}

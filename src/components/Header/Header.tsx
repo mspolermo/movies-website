@@ -6,9 +6,10 @@ import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms";
 import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries";
 import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults";
 import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv";
-import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify";
-import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe";
-import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin";
+import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe/HeaderMenuSubscribe";
+import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify/HeaderMenuNotify";
+import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
+import OpenUrl from "../../hooks/OpenUrl";
 
 const Header = () => {
 
@@ -18,36 +19,28 @@ const Header = () => {
     
     const[chosenVariant, setChosenVariant] = useState('');
     let block = null;
-
-    // useEffect( () => {
-    //     document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
-    // },[])
-
      
     useEffect( () => {
         
         //console.log(chosenVariant)
         //console.log(variantID)
-        // console.log(dropDownVariant)
-        let subscribeSVG='' 
-        //workaroud для отображения пунктов выпадающего списка
-        const notyfiSVG = '<svg class="icon icon-notification header__svg header__svg_notification" fill="#fff" stroke="#fff" width="16" height="16" stroke-width="1"><use xlink:href="/movies-website/static/media/icons.13e3430d3ab95b46ac28e1ec0b743cc0.svg#icon-notification"></use></svg>';
-        if (chosenVariant.includes('notification')) {
-            subscribeSVG = 'notification'
-        } else if(chosenVariant.includes('person')) {
-            subscribeSVG = 'person'
-        }else if(chosenVariant.includes('дней')) {
-            subscribeSVG = 'subscribe'
-        } else {subscribeSVG=chosenVariant}
-        
-        //'<div class="Button_btn__vAok0 Button_btn__red__TLxgk"><div class="Button_btn__textBlock__IVFdx"><div class="Button_btn__text__OS4PO">Смотреть 30 дней за 1 ₽</div></div></div>';
-        const loginSVG = '<div class="header__svg-border"><svg class="icon icon-person header__svg header__svg_login" fill="#fff" stroke="#fff" width="20" height="20" stroke-width="3"><use xlink:href="/movies-website/static/media/icons.13e3430d3ab95b46ac28e1ec0b743cc0.svg#icon-person"></use></svg></div>';
+        //console.log(dropDownVariant)
 
-        //console.log(subscribeSVG)
-
+        //Если сделать __hidden то можно вынести классы в отдельный scss
         document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
 
-        switch(subscribeSVG) {
+        //workaroud для отображения пунктов выпадающего списка
+        let variant='';
+        
+        if (chosenVariant.includes('notification')) {
+            variant = 'notification'
+        } else if(chosenVariant.includes('person')) {
+            variant = 'person'
+        }else if(chosenVariant.includes('дней')) {
+            variant = 'subscribe'
+        } else {variant=chosenVariant};
+
+        switch(variant) {
             case "Фильмы":
                 block = document.querySelector('#drop-down-films')
                 block?.classList.remove('dropDownBody__films_hidden')
@@ -90,8 +83,7 @@ const Header = () => {
                 setVariatnID('#drop-down-login')
                 setDropDownVariant('dropDownBody__login')
                 break;
-        }
-        
+        };
     }, [chosenVariant])
 
     const hoverListener = (e: React.DragEvent<HTMLDivElement>) => {
@@ -102,7 +94,8 @@ const Header = () => {
         headerTop?.classList.add('header__container_active');
 
         //console.log(e.currentTarget.innerHTML.length)
-        //Условие для workaround
+
+        //Условие для workaround (длина выпадающего списка всегда >1000, длина кнопок меню <300)
         if (e.currentTarget.innerHTML.length < 300) {
             setChosenVariant(e.currentTarget.innerHTML); 
         };
@@ -210,7 +203,7 @@ const Header = () => {
                             <Button 
                                 title={['Смотреть 30 дней за 1 ₽']} 
                                 color="red"
-                                onClick={function() {window.location.href = 'https://www.ivi.ru/subscribe'}}
+                                onClick={() => OpenUrl('https://www.ivi.ru/subscribe')}
                             />   
                         </div>
                         <div className="header__btn-block header__btn-block_search">

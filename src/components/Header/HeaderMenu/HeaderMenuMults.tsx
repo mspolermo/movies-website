@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { HeaderMenuProps } from "../../../types/types";
+import { HeaderMenuProps } from "../../../types/headerTypes";
 import Button from "../../UI/Buttons/Button/Button";
 import Icons from "../../Icons/Icons";
 import HeaderAdvertise from "../HeaderAdvertise/HeaderAdvertise";
