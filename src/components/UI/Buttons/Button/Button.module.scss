@@ -6,17 +6,17 @@
     align-items: center;
     
     border-radius: 8px;
-    background-color: #1f1b2e;
+    background-color: #2b2640;
     color: #fff;
     transition-property: background-color;
     white-space: nowrap;
     &:hover {
         cursor: pointer;
-        background-color: #2b2640;
+        background-color: #413960;
         transition-duration: 0.4s;
     }
     &:not(:hover):not(:active) {
-        background-color: #1f1b2e;
+        background-color: #2b2640;
         transition-duration: 0.4s;
     }
     &__ultraWide {
