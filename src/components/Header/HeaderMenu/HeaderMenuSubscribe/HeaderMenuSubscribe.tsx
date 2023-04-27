@@ -8,7 +8,7 @@ import OpenUrl from "../../../../hooks/OpenUrl";
 
 const HeaderMenuSubscribe:FC<HeaderMenuProps> = ({id}) => {
     return (
-        <div className="dropDownBody__subscribe dropDownBody__subscribe_hidden" id={id}>
+        <div className="headerMenuSubscribe headerMenuSubscribe__hidden" id={id}>
             <div className="headerMenuSubscribe__column">
                 <div className="headerMenuSubscribe__line headerMenuSubscribe__line_top">
                     <h2 className="headerMenuSubscribe__heading">Подписка Иви</h2>

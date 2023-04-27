@@ -9,9 +9,11 @@ const  App = () => {
     <div>
       <Header />
       <div className="container">
-        <h1 className='heading'>Welcome to Movies-Website!</h1>
-        <div className="empty"></div>
-          <Filters/>
+        <Filters/>
+        <div className="empty">
+          <h1 className='heading'>Welcome to Movies-Website!</h1> 
+        </div>
+          
       </div>
 
       <Footer />

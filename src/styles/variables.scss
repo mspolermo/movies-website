@@ -9,6 +9,9 @@ $defaultIconColor-hover: #413960;
 $splitLineColor: rgba(255,255,255,.16);
 $activeColor: #fff;
 
+$redColor: #ea003d;
+$activeRedColor: #ff1a57;
+
 @mixin hover-colorAnim ($hoverColor, $defaultColor){
     transition-property: color;
     &:hover {

@@ -12,7 +12,7 @@ import Tile from "../../../UI/Buttons/Tile/Tile";
 
 const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
 
-    let hoverActiveListData = [
+    const hoverActiveListData = [
         [0, 'Изи Иви', "https://www.ivi.ru/profile/subscription-izi-ivi"],
         [1, 'Иви', 'https://www.ivi.ru/profile/subscription'],
         [2, 'Иви + Amediateka', "https://www.ivi.ru/profile/subscription-ivi-amediateka"],
@@ -62,7 +62,7 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
     },[blockStatus])
 
     return (
-        <div className="dropDownBody__login dropDownBody__login_hidden" id={id} onMouseLeave={closeBlock}>
+        <div className="headerMenuLogin headerMenuLogin__hidden" id={id} onMouseLeave={closeBlock}>
             <div className="headerMenuLogin__column" >
                 <div className="headerMenuLogin__line">
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >

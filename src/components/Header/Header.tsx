@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import './Header.scss';
 import Button from "../UI/Buttons/Button/Button";
 import Icons from "../Icons/Icons";
-import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms";
-import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries";
-import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults";
-import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv";
+import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms/HeaderMenuFilms";
+import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries/HeaderMenuSeries";
+import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults/HeaderMenuMults";
+import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv/HeaderMenuTv";
 import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe/HeaderMenuSubscribe";
 import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify/HeaderMenuNotify";
 import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
@@ -14,20 +14,15 @@ import OpenUrl from "../../hooks/OpenUrl";
 const Header = () => {
 
     const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
-    const[dropDownVariant, setDropDownVariant] = useState ( 'dropDownBody__films' );
+    const[dropDownVariant, setDropDownVariant] = useState ( 'headerMenuFilms' );
     const[variantID, setVariatnID] = useState( '#drop-down-films' );
     
     const[chosenVariant, setChosenVariant] = useState('');
     let block = null;
      
     useEffect( () => {
-        
-        //console.log(chosenVariant)
-        //console.log(variantID)
-        //console.log(dropDownVariant)
 
-        //Если сделать __hidden то можно вынести классы в отдельный scss
-        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
+        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}__hidden`);
 
         //workaroud для отображения пунктов выпадающего списка
         let variant='';
@@ -43,48 +38,48 @@ const Header = () => {
         switch(variant) {
             case "Фильмы":
                 block = document.querySelector('#drop-down-films')
-                block?.classList.remove('dropDownBody__films_hidden')
+                block?.classList.remove('headerMenuFilms__hidden')
                 setVariatnID('#drop-down-films')
-                setDropDownVariant('dropDownBody__films')
+                setDropDownVariant('headerMenuFilms')
                 break;
             case "Сериалы":
                 block = document.querySelector('#drop-down-series')
-                block?.classList.remove('dropDownBody__series_hidden')
+                block?.classList.remove('headerMenuSeries__hidden')
                 setVariatnID('#drop-down-series')
-                setDropDownVariant('dropDownBody__series')
+                setDropDownVariant('headerMenuSeries')
                 break;
             case "Мультфильмы":
                 block = document.querySelector('#drop-down-mults')
-                block?.classList.remove('dropDownBody__mults_hidden')
+                block?.classList.remove('headerMenuMults__hidden')
                 setVariatnID('#drop-down-mults')
-                setDropDownVariant('dropDownBody__mults')
+                setDropDownVariant('headerMenuMults')
                 break;
             case 'TV+':
                 block = document.querySelector('#drop-down-tv')
-                block?.classList.remove('dropDownBody__TV_hidden')
+                block?.classList.remove('headerMenuTv__hidden')
                 setVariatnID('#drop-down-tv')
-                setDropDownVariant('dropDownBody__TV')
+                setDropDownVariant('headerMenuTv')
                 break;
             case ('notification'):
                 block = document.querySelector('#drop-down-notify')
-                block?.classList.remove('dropDownBody__notify_hidden')
+                block?.classList.remove('headerMenuNotify__hidden')
                 setVariatnID('#drop-down-notify')
-                setDropDownVariant('dropDownBody__notify')
+                setDropDownVariant('headerMenuNotify')
                 break;
             case ('subscribe'):
                 block = document.querySelector('#drop-down-subscribe')
-                block?.classList.remove('dropDownBody__subscribe_hidden')
+                block?.classList.remove('headerMenuSubscribe__hidden')
                 setVariatnID('#drop-down-subscribe')
-                setDropDownVariant('dropDownBody__subscribe')
+                setDropDownVariant('headerMenuSubscribe')
                 break;
             case ('person'):
                 block = document.querySelector('#drop-down-login')
-                block?.classList.remove('dropDownBody__login_hidden')
+                block?.classList.remove('headerMenuLogin__hidden')
                 setVariatnID('#drop-down-login')
-                setDropDownVariant('dropDownBody__login')
+                setDropDownVariant('headerMenuLogin')
                 break;
         };
-    }, [chosenVariant])
+    }, [chosenVariant]);
 
     const hoverListener = (e: React.DragEvent<HTMLDivElement>) => {
         const dropdownBlock = document.querySelector('#drop-down-block');
@@ -93,13 +88,11 @@ const Header = () => {
         dropdownBlock?.classList.remove('header__dropDownBody_hidden');
         headerTop?.classList.add('header__container_active');
 
-        //console.log(e.currentTarget.innerHTML.length)
-
         //Условие для workaround (длина выпадающего списка всегда >1000, длина кнопок меню <300)
         if (e.currentTarget.innerHTML.length < 300) {
             setChosenVariant(e.currentTarget.innerHTML); 
         };
-    }
+    };
 
     const leaveListener = (e: React.DragEvent<HTMLDivElement>) => {
         const dropdownBlock = document.querySelector('#drop-down-block');
@@ -107,7 +100,7 @@ const Header = () => {
 
         dropdownBlock?.classList.add('header__dropDownBody_hidden');
         headerTop?.classList.remove('header__container_active');
-    }
+    };
 
     const ref = React.useRef() as React.MutableRefObject<HTMLDivElement>
 
@@ -131,7 +124,6 @@ const Header = () => {
     };
 
     let width = `${GetElementWidth()}px`;
-    //console.log(GetElementWidth());  
     
     return <div className='header'>
         <div className="header__body">

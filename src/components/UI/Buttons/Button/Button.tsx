@@ -1,14 +1,6 @@
 import React, { FC, useEffect, useState }  from "react";
 import classes from './Button.module.scss'
-
-
-interface ButtonProps {
-    type?: 'default' | 'ultraWide' | 'rounded';
-    color?: 'default' | 'red' | 'gray' | 'gradient' | 'transparent'| 'purple';
-    svg?: React.ReactElement;
-    title?: Array<string> | undefined;
-    onClick?: () => void;
-} 
+import { ButtonProps } from "../../../../types/types";
 
 const Button:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, title, onClick }) => {
     const [btnClass, setBtnClass] = useState ('');
