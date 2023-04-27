@@ -1,10 +1,16 @@
 .carousel {
 	position: relative;
-	padding: 0px 20px;
+
+	&__slider-container {
+		height: 523px;
+		position: relative;
+		overflow: hidden;
+	}
 
 	&__container {
 		display: flex;
 		overflow: scroll;
+		flex-shrink: 0;
 		scroll-behavior: smooth;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
@@ -48,6 +54,24 @@
 			}
 		}
 
+	}
+
+	&__slider {
+		height: 523px;
+		display: flex;
+		left: -890px;
+		position: absolute;
+
+		&-item {
+			opacity: 0.5;
+			transition-duration: 300ms;
+			padding-right: 16px;
+
+			&_active {
+				opacity: 1;
+				transition-duration: 300ms;
+			}
+		}
 	}
 
 	&__item {
@@ -95,11 +119,11 @@
 	}
 
 	&__prev-arrow {
-		left: -10px;
+		left: -30px;
 	}
 
 	&__next-arrow {
-		right: -10px;
+		right: -30px;
 	}
 
 
