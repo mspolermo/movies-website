@@ -1,5 +1,6 @@
 import React, {FC, PropsWithChildren} from 'react';
 import './FilterButton.scss'
+import Icons from "../../Icons/Icons";
 
 // filterName - название фильтра на кнопке
 // selectedFiltersBy - фильтры, выбранные пользователем
@@ -10,7 +11,7 @@ import './FilterButton.scss'
 
 interface FilterButtonProps {
     filterName: string;
-    selectedFiltersBy: string;
+    selectedFiltersBy: string | number;
     activeBlock: string;
     blockName: string;
     setActiveBlock: (activeBlockName:string) => void;
@@ -45,11 +46,7 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
                     </div>
                     <div className={isActive ? "filterButton__arrow_reverse" : "filterButton__arrow"
                     }>
-                        <svg width="16" height="16" fill="white" stroke='white'
-                             viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                  d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-                        </svg>
+                        <Icons name='chevron-down' size='16'/>
                     </div>
                 </div>
                 <div className="filterButton__menu">

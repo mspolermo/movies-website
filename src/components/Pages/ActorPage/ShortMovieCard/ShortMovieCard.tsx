@@ -1,5 +1,5 @@
 import React, {FC, PropsWithChildren} from 'react';
-import Button from "../../UI/Buttons/Button/Button";
+import Button from "../../../UI/Buttons/Button/Button";
 import './ShortMovieCard.scss'
 
 interface ShortMovieCardProps{

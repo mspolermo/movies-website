@@ -1,0 +1,86 @@
+.filterTwoBlocks {
+    position: absolute;
+    z-index: 100;
+    padding-top: 4px;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        max-width: 630px;
+        padding: 16px;
+
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 600;
+        color: rgba(217, 215, 224, .8);
+        background-color: #312b45;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .scrollpane {
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, .32);
+
+        .filter-element {
+            display: flex;
+            justify-content: flex-start;
+            flex: 0 0 auto;
+            transition: margin-left 250ms;
+        }
+
+        &__button {
+
+        }
+    }
+
+    .list-container {
+        column-count: 3;
+        padding-top: 4px;
+        grid-template-columns: repeat(3, 1fr);
+
+        .filter-element {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__text {
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            height: 31px;
+
+            &_white {
+                color: #FFFFFF;
+                padding-top: 12px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .element-text {
+                &__checkmark {
+                    display: none;
+
+                    &_white {
+                        display: contents;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+
+            &:hover {
+                color: #FFFFFF;
+
+                .element-text {
+                    &__checkmark {
+                        display: contents;
+
+                        .icon-check {
+                            opacity: 0.4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

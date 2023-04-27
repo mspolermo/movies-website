@@ -1,15 +1,25 @@
-@import './FilterButton/FilterButton.scss';
+.close_block {
+        background-color: rgba(0, 0, 0, 0);
+        width: 100vw;
+        height: 300vh;
+        top: -100vh;
+        left: 0;
+        position: fixed;
+        cursor: auto;
+    }
 
-.filters{
-  margin: 20px 12px 0 12px;
-  &__content{
-    padding: 16px 10px 16px 16px;
-    background-color: #1f1b2e;
-    border-radius: 10px;
-  }
-  &__blocks{
-    display: flex;
-    flex-wrap: wrap;
-  }
+.filters {
+    margin: 20px 12px 0 12px;
+
+    &__content {
+        padding: 16px 10px;
+        background-color: #1f1b2e;
+        border-radius: 10px;
+    }
+
+    &__blocks {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 

@@ -8,11 +8,14 @@
 import React, {useState} from 'react';
 import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
-import FilterTwoBlocks from "./FilterTypes/FilterTwoBlocks";
-import ButtonResetFilters from "./ButtonResetFilters/ButtonResetFilters";
+import FilterTwoBlocks from "./FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
+import ButtonReset from "./ButtonReset/ButtonReset";
 import _ from 'lodash';
 import {activeFiltersProps, startFiltersProps} from "../../types/testCase";
-import TypeYear from "./FilterTypes/TypeYear/TypeYear";
+import TypeYear from "./FilterTypes/FilterYears/TypeYear";
+import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
+import {RatingRangeSlider} from "../RatingRangeSlider/RatingRangeSlider";
+import TypeRangeSlider from "./FilterTypes/FilterRating&Grade/TypeRangeSlider";
 
 
 // блоки для тестирования
@@ -22,16 +25,10 @@ const activeFilters = {
     'genres': [],
     'countries': [],
     'years': '',
-    'rating': {
-        'min': 0,
-        'max': 0,
-    },
-    'grade': {
-        'min': 0,
-        'max': 0,
-    },
-    'producer': [],
-    'actor': []
+    'rating': 0,
+    'grade': 0,
+    'producer':'',
+    'actor': ''
 }
 
 const arrAllFilters = {
@@ -39,14 +36,8 @@ const arrAllFilters = {
     'genres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
     'countries': ['Австралия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия'],
     'years': ['до 1980', '2022 год', '2022-2023', '2000-2010'],
-    'rating': {
-        'min': 0,
-        'max': 0,
-    },
-    'grade': {
-        'min': 0,
-        'max': 0,
-    },
+    'rating': 0,
+    'grade': 0,
     'producer': [],
     'actor': []
 }
@@ -84,11 +75,38 @@ const Filters = () => {
         }
     }
 
+    function selectedProducer(person_producer: string) {
+        if (selectedFilters.producer !== person_producer) {
+            setSelectedFilters({...selectedFilters, producer: person_producer})
+        }
+    }
+
+    function selectedActor(person_actor: string) {
+        if (selectedFilters.actor !== person_actor) {
+            setSelectedFilters({...selectedFilters, actor: person_actor})
+        }
+    }
+
+    function selectedRating(rating: number) {
+        if (selectedFilters.rating !== rating) {
+            setSelectedFilters({...selectedFilters, rating: rating})
+        }
+    }
+
+    function selectedGrade(grade: number) {
+        if (selectedFilters.grade !== grade) {
+            setSelectedFilters({...selectedFilters, grade: grade})
+        }
+    }
 
     return (
         <div className='filters'>
             <div className="filters__content">
                 <div className="filters__blocks">
+
+                    {activeBlock && <div className="close_block"
+                                         onClick={() => setActiveBlock('')}
+                    ></div>}
 
                     <FilterButton filterName='Жанры'
                                   selectedFiltersBy={selectedFilters.genres.join(', ')}
@@ -97,10 +115,9 @@ const Filters = () => {
                                   setActiveBlock={setActiveBlock}>
                         <FilterTwoBlocks
                             popularValues={allFilters.popularGenres}
-                            listValues={allFilters.genres}
-                            selectedFiltersBy={selectedFilters.genres}
-                            selectedFilter={selectedGenres}
-                            setActiveBlock={setActiveBlock}
+                            allValues={allFilters.genres}
+                            selectValues={selectedFilters.genres}
+                            handleChangeFilter={selectedGenres}
                         />
                     </FilterButton>
 
@@ -111,10 +128,9 @@ const Filters = () => {
                                   setActiveBlock={setActiveBlock}>
                         <FilterTwoBlocks
                             popularValues={allFilters.popularGenres}
-                            listValues={allFilters.countries}
-                            selectedFiltersBy={selectedFilters.countries}
-                            selectedFilter={selectedCountries}
-                            setActiveBlock={setActiveBlock}
+                            allValues={allFilters.countries}
+                            selectValues={selectedFilters.countries}
+                            handleChangeFilter={selectedCountries}
                         />
                     </FilterButton>
 
@@ -123,41 +139,52 @@ const Filters = () => {
                                   activeBlock={activeBlock}
                                   blockName='years'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeYear listYears={allFilters.years}
-                                  selectedFiltersBy={selectedFilters.years}
-                                  selectedYear={selectedYears}
-                                  setActiveBlock={setActiveBlock}/>
+                        <TypeYear allValues={allFilters.years}
+                                  selectValues={selectedFilters.years}
+                                  handleChangeFilter={selectedYears}
+                                  />
                     </FilterButton>
 
-                    {/*<FilterButton filterName='Рейтинг'*/}
-                    {/*              selectedFiltersBy={selectedFilters.rating}*/}
-                    {/*              activeBlock={activeBlock}*/}
-                    {/*              blockName='rating'*/}
-                    {/*              setActiveBlock={setActiveBlock}/>*/}
 
-                    {/*<FilterButton filterName='Количество оценок'*/}
-                    {/*              selectedFiltersBy={selectedFilters.grade}*/}
-                    {/*              activeBlock={activeBlock}*/}
-                    {/*              blockName='grade'*/}
-                    {/*              setActiveBlock={setActiveBlock}/>*/}
+                    <FilterButton filterName='Рейтинг'
+                                  selectedFiltersBy={selectedFilters.rating === 0 ? '' : selectedFilters.rating}
+                                  activeBlock={activeBlock}
+                                  blockName='rating'
+                                  setActiveBlock={setActiveBlock}>
+                        <TypeRangeSlider handleChangeFilter={selectedRating}
+                                         blockName='rating'/>
+                        </FilterButton>
+
+                    <FilterButton filterName='Количество оценок'
+                                  selectedFiltersBy={selectedFilters.grade === 0 ? '' : selectedFilters.grade}
+                                  activeBlock={activeBlock}
+                                  blockName='grade'
+                                  setActiveBlock={setActiveBlock}>
+                        <TypeRangeSlider handleChangeFilter={selectedGrade}
+                                         blockName='grade'/>
+                    </FilterButton>
 
                     <FilterButton filterName='Режиссер'
-                                  selectedFiltersBy={selectedFilters.producer.join(', ')}
+                                  selectedFiltersBy={selectedFilters.producer}
                                   activeBlock={activeBlock}
                                   blockName='producer'
-                                  setActiveBlock={setActiveBlock}/>
+                                  setActiveBlock={setActiveBlock}>
+                        <TypeSearch handleChangeFilter={selectedProducer}
+                        />
+                    </FilterButton>
 
                     <FilterButton filterName='Актер'
-                                  selectedFiltersBy={selectedFilters.actor.join(', ')}
+                                  selectedFiltersBy={selectedFilters.actor}
                                   activeBlock={activeBlock}
                                   blockName='actor'
-                                  setActiveBlock={setActiveBlock}/>
+                                  setActiveBlock={setActiveBlock}>
+                        <TypeSearch handleChangeFilter={selectedActor}/>
+                    </FilterButton>
 
                 </div>
 
-
                 <div className="filters__button">
-                    <ButtonResetFilters
+                    <ButtonReset
                         activeFilters={activeFilters}
                         selectedFilters={selectedFilters}
                         setSelectedFilters={setSelectedFilters}/>

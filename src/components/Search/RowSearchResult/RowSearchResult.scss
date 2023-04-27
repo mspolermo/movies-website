@@ -1,0 +1,24 @@
+.SearchRow {
+    &__result {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 600;
+        color: rgba(217, 215, 224, .8);
+        background-color: #312b45;
+        border-radius: 10px;
+    }
+
+    &__title {
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    &:hover &__title {
+        color: #FFFFFF;
+        transition-duration: 0.4s;
+    }
+}

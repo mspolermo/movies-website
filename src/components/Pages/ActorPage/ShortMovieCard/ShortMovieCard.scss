@@ -1,0 +1,44 @@
+.shortMovieCard {
+    margin-top: 16px;
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        color: #FFFFFF;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+
+    &__movie {
+        display: flex;
+        align-items: center;
+    }
+
+    &__poster {
+        img {
+            width: 80px;
+            border-radius: 4px;
+        }
+    }
+
+    .specification {
+        margin-left: 16px;
+
+        &__year {
+        }
+
+        &__name {
+            margin-top: 4px;
+        }
+
+        &__rating {
+            margin-top: 4px;
+            font-size: 13px;
+            line-height: 16px;
+            color: #a5a1b2;
+        }
+    }
+}
