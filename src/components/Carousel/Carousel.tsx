@@ -92,7 +92,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				break;
 
 			case 'filters':
-				setScrollWidth(block.clientWidth / 100 * 15);
+				setScrollWidth(block.clientWidth / 100 * 25);
 				setArrowClassName('carousel__prev-arrow_icon arrow-sm')
 				break;
 
