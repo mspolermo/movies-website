@@ -2,97 +2,84 @@ import React, { useEffect, useRef, useState } from "react";
 import './Header.scss';
 import Button from "../UI/Buttons/Button/Button";
 import Icons from "../Icons/Icons";
-import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms";
-import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries";
-import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults";
-import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv";
-import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify";
-import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe";
-import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin";
+import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms/HeaderMenuFilms";
+import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries/HeaderMenuSeries";
+import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults/HeaderMenuMults";
+import HeaderMenuTv from "./HeaderMenu/HeaderMenuTv/HeaderMenuTv";
+import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe/HeaderMenuSubscribe";
+import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify/HeaderMenuNotify";
+import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
+import OpenUrl from "../../hooks/OpenUrl";
 
 const Header = () => {
 
     const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
-    const[dropDownVariant, setDropDownVariant] = useState ( 'dropDownBody__films' );
+    const[dropDownVariant, setDropDownVariant] = useState ( 'headerMenuFilms' );
     const[variantID, setVariatnID] = useState( '#drop-down-films' );
     
     const[chosenVariant, setChosenVariant] = useState('');
     let block = null;
-
-    // useEffect( () => {
-    //     document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
-    // },[])
-
      
     useEffect( () => {
-        
-        //console.log(chosenVariant)
-        //console.log(variantID)
-        // console.log(dropDownVariant)
-        let subscribeSVG='' 
+
+        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}__hidden`);
+
         //workaroud для отображения пунктов выпадающего списка
-        const notyfiSVG = '<svg class="icon icon-notification header__svg header__svg_notification" fill="#fff" stroke="#fff" width="16" height="16" stroke-width="1"><use xlink:href="/movies-website/static/media/icons.13e3430d3ab95b46ac28e1ec0b743cc0.svg#icon-notification"></use></svg>';
-        if (chosenVariant.includes('notification')) {
-            subscribeSVG = 'notification'
-        } else if(chosenVariant.includes('person')) {
-            subscribeSVG = 'person'
-        }else if(chosenVariant.includes('дней')) {
-            subscribeSVG = 'subscribe'
-        } else {subscribeSVG=chosenVariant}
+        let variant='';
         
-        //'<div class="Button_btn__vAok0 Button_btn__red__TLxgk"><div class="Button_btn__textBlock__IVFdx"><div class="Button_btn__text__OS4PO">Смотреть 30 дней за 1 ₽</div></div></div>';
-        const loginSVG = '<div class="header__svg-border"><svg class="icon icon-person header__svg header__svg_login" fill="#fff" stroke="#fff" width="20" height="20" stroke-width="3"><use xlink:href="/movies-website/static/media/icons.13e3430d3ab95b46ac28e1ec0b743cc0.svg#icon-person"></use></svg></div>';
+        if (chosenVariant.includes('notification')) {
+            variant = 'notification'
+        } else if(chosenVariant.includes('person')) {
+            variant = 'person'
+        }else if(chosenVariant.includes('дней')) {
+            variant = 'subscribe'
+        } else {variant=chosenVariant};
 
-        //console.log(subscribeSVG)
-
-        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}_hidden`);
-
-        switch(subscribeSVG) {
+        switch(variant) {
             case "Фильмы":
                 block = document.querySelector('#drop-down-films')
-                block?.classList.remove('dropDownBody__films_hidden')
+                block?.classList.remove('headerMenuFilms__hidden')
                 setVariatnID('#drop-down-films')
-                setDropDownVariant('dropDownBody__films')
+                setDropDownVariant('headerMenuFilms')
                 break;
             case "Сериалы":
                 block = document.querySelector('#drop-down-series')
-                block?.classList.remove('dropDownBody__series_hidden')
+                block?.classList.remove('headerMenuSeries__hidden')
                 setVariatnID('#drop-down-series')
-                setDropDownVariant('dropDownBody__series')
+                setDropDownVariant('headerMenuSeries')
                 break;
             case "Мультфильмы":
                 block = document.querySelector('#drop-down-mults')
-                block?.classList.remove('dropDownBody__mults_hidden')
+                block?.classList.remove('headerMenuMults__hidden')
                 setVariatnID('#drop-down-mults')
-                setDropDownVariant('dropDownBody__mults')
+                setDropDownVariant('headerMenuMults')
                 break;
             case 'TV+':
                 block = document.querySelector('#drop-down-tv')
-                block?.classList.remove('dropDownBody__TV_hidden')
+                block?.classList.remove('headerMenuTv__hidden')
                 setVariatnID('#drop-down-tv')
-                setDropDownVariant('dropDownBody__TV')
+                setDropDownVariant('headerMenuTv')
                 break;
             case ('notification'):
                 block = document.querySelector('#drop-down-notify')
-                block?.classList.remove('dropDownBody__notify_hidden')
+                block?.classList.remove('headerMenuNotify__hidden')
                 setVariatnID('#drop-down-notify')
-                setDropDownVariant('dropDownBody__notify')
+                setDropDownVariant('headerMenuNotify')
                 break;
             case ('subscribe'):
                 block = document.querySelector('#drop-down-subscribe')
-                block?.classList.remove('dropDownBody__subscribe_hidden')
+                block?.classList.remove('headerMenuSubscribe__hidden')
                 setVariatnID('#drop-down-subscribe')
-                setDropDownVariant('dropDownBody__subscribe')
+                setDropDownVariant('headerMenuSubscribe')
                 break;
             case ('person'):
                 block = document.querySelector('#drop-down-login')
-                block?.classList.remove('dropDownBody__login_hidden')
+                block?.classList.remove('headerMenuLogin__hidden')
                 setVariatnID('#drop-down-login')
-                setDropDownVariant('dropDownBody__login')
+                setDropDownVariant('headerMenuLogin')
                 break;
-        }
-        
-    }, [chosenVariant])
+        };
+    }, [chosenVariant]);
 
     const hoverListener = (e: React.DragEvent<HTMLDivElement>) => {
         const dropdownBlock = document.querySelector('#drop-down-block');
@@ -101,12 +88,11 @@ const Header = () => {
         dropdownBlock?.classList.remove('header__dropDownBody_hidden');
         headerTop?.classList.add('header__container_active');
 
-        //console.log(e.currentTarget.innerHTML.length)
-        //Условие для workaround
+        //Условие для workaround (длина выпадающего списка всегда >1000, длина кнопок меню <300)
         if (e.currentTarget.innerHTML.length < 300) {
             setChosenVariant(e.currentTarget.innerHTML); 
         };
-    }
+    };
 
     const leaveListener = (e: React.DragEvent<HTMLDivElement>) => {
         const dropdownBlock = document.querySelector('#drop-down-block');
@@ -114,7 +100,7 @@ const Header = () => {
 
         dropdownBlock?.classList.add('header__dropDownBody_hidden');
         headerTop?.classList.remove('header__container_active');
-    }
+    };
 
     const ref = React.useRef() as React.MutableRefObject<HTMLDivElement>
 
@@ -138,7 +124,6 @@ const Header = () => {
     };
 
     let width = `${GetElementWidth()}px`;
-    //console.log(GetElementWidth());  
     
     return <div className='header'>
         <div className="header__body">
@@ -210,7 +195,7 @@ const Header = () => {
                             <Button 
                                 title={['Смотреть 30 дней за 1 ₽']} 
                                 color="red"
-                                onClick={function() {window.location.href = 'https://www.ivi.ru/subscribe'}}
+                                onClick={() => OpenUrl('https://www.ivi.ru/subscribe')}
                             />   
                         </div>
                         <div className="header__btn-block header__btn-block_search">

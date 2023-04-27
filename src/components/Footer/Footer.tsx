@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './Footer.scss'
 import Button from "../UI/Buttons/Button/Button";
 import Icons from "../Icons/Icons";
+import OpenUrl from "../../hooks/OpenUrl";
 
 const Footer = () => {
 
@@ -95,13 +96,13 @@ const Footer = () => {
                         <div className="footer__buttons">
                             <Button 
                                 title={['Написать в чате']}
-                                onClick={function() {window.location.href = 'https://www.ivi.ru/profile'}}
+                                onClick={() => OpenUrl('https://www.ivi.ru/profile')}
                             />
                         </div>
                         <div className="footer__buttons">
                             <Button 
                                 svg={<Icons name='mail' color='#fff' size='20' strokeWidth='2'/>}
-                                onClick={function() { window.location.href = 'mailto:support@ivi.ru'}}
+                                onClick={() => OpenUrl('mailto:support@ivi.ru')}
                             />
                             <Button 
                                 svg={<Icons name='phone' color='#fff' size='20'/>}
@@ -111,7 +112,7 @@ const Footer = () => {
                         <div className="footer__buttons footer__buttons_anim footer__buttons_hidden" id='phoneButton'>
                             <Button 
                                 title={['+7 343 226-92-20']}
-                                onClick={function() {window.location.href = 'tel:+73432269220'}}
+                                onClick={() => OpenUrl('tel:+73432269220')}
                             />
                         </div>
                         <div className="footer__ask" id='askBlock'>
@@ -134,22 +135,22 @@ const Footer = () => {
                             <Button 
                                 svg={<Icons name='apple' color='#fff' size='20'/>}
                                 title={["Загрузить в", 'App Store']}
-                                onClick={function() {window.location.href = 'https://apps.apple.com/RU/app/id455705533?mt=8'}}
+                                onClick={() => OpenUrl('https://apps.apple.com/RU/app/id455705533?mt=8')}
                             />
                             <Button
                                 svg={<Icons name='google' color='#fff' size='20'/>}
                                 title={['Доступно в', 'Google Play']}
-                                onClick={function() {window.location.href = 'https://play.google.com/store/apps/details?id=ru.ivi.client'}}
+                                onClick={() => OpenUrl('https://play.google.com/store/apps/details?id=ru.ivi.client')}
                             />
                             <Button 
                                 svg={<Icons name='smartTV' color='#fff' size='20'/>}
                                 title={['Смотрите на', 'Smart TV']}
-                                onClick={function() {window.location.href = 'https://www.ivi.tv/pages/tvsmart/'}}
+                                onClick={() => OpenUrl('https://www.ivi.tv/pages/tvsmart/')}
                             />
                             <Button 
                                 svg={<Icons name='devices' color='#fff' size='22'/>}
                                 title={["Все устройства"]}
-                                onClick={function() {window.location.href = 'https://www.ivi.tv/devices'}}
+                                onClick={() => OpenUrl('https://www.ivi.tv/devices')}
                             />
                         </div>
                         <div className="footer__copyrights">

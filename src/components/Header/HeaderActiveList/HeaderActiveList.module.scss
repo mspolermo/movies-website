@@ -1,0 +1,27 @@
+@import '/src/styles/variables.scss';
+
+.activeList {
+    height: 100%;
+    &__block {
+        margin-top: 10px;
+    }
+    &__list {
+       border-left: 1px solid $splitLineColor; 
+       height: 100%;
+    }
+    &__item {
+        padding-left: 10px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        line-height: 20px;
+        color: $textColor;
+        &_active {
+            border-left: 1px solid $activeColor;
+            @include hover-colorAnim ($activeColor, $textColor)
+        }
+    }
+    &__link {
+        text-decoration: none;
+    }
+    
+}
