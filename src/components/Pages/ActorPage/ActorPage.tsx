@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import CreateList from "../CreateList/CreateList";
+import CreateList from "../../CreateList/CreateList";
 import ShortMovieCard from "./ShortMovieCard/ShortMovieCard";
-import {ActorPageProps} from "../../types/testCase";
+import {ActorPageProps} from "../../../types/testCase";
 import ActorHeader from "./ActorHeader/ActorHeader";
 import Filmography from "./FilmographyFiltrs/Filmography";
 import './ActorPage.scss'
-import Icons from "../Icons/Icons";
+import Icons from "../../Icons/Icons";
 
 const actorPage = {
     'name': 'Сигурни Уивер',
@@ -19,13 +19,6 @@ const actorPage = {
             'rating': 7.5,
             'role': 'Актёр'
         },
-        // {
-        //     'poster': 'https://thumbs.dfs.ivi.ru/storage28/contents/7/0/5988cbd32abfaf2ac23076b068eeea.jpg/172x264/?q=85',
-        //     'name': 'Чужой 3',
-        //     'year': 1992,
-        //     'rating': 7.5,
-        //     'role': 'Актёр'
-        // }
 }
 
 const ActorPage = () => {

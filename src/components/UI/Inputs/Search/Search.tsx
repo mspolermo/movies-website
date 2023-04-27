@@ -1,6 +1,7 @@
 import React, {FC, PropsWithChildren, useState} from 'react';
-import Icons from "../Icons/Icons";
+import Icons from "../../../Icons/Icons";
 import './Search.scss'
+import ButtonReset from "../../../Filters/ButtonReset/ButtonReset";
 
 interface SearchProps<T> {
     result: T[],
@@ -57,13 +58,14 @@ export default function Search<T> (
                 <div className="Search__btn-reset btn-reset"
                      onClick={handleClear}
                 >
-                    <div className="btn-reset__cross">
-                        <Icons name='cross' size='16'/>
-                    </div>
                     <div className="btn-reset__text">
                         Очистить результат
                     </div>
-                </div>}
+                    <div className="btn-reset__cross">
+                        <Icons className="btn-reset__icon-cross" name='cross' size='13'/>
+                    </div>
+                </div>
+            }
 
             <div className="Search__result">
                 {result.map(renderResult)}

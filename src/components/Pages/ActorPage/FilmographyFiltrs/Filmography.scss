@@ -1,0 +1,56 @@
+.filmography {
+    &__content {
+        font-family: iviSans, sans-serif;
+        border-bottom: 1px solid rgba(255, 255, 255, .16);
+        margin-top: 40px;
+    }
+
+    &__header {
+        display: flex;
+        margin-bottom: 4px;
+        align-items: baseline;
+    }
+
+    &__title {
+        margin-right: 8px;
+        color: #FFFFFF;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 700;
+    }
+
+    &__subtitle {
+        color: #a5a1b2;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+
+    &__lists {
+        margin-top: 20px;
+    }
+
+    &__role {
+        color: rgba(255, 255, 255, .72);
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+
+        &_style {
+            padding: 0 20px 12px 0;
+
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+
+        &_active {
+            color: #FFFFFF;
+            padding-bottom: 12px;
+            margin-right: 20px;
+            border-bottom: 4px solid #ea003d;
+        }
+    }
+}

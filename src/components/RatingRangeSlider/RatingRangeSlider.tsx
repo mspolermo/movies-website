@@ -3,9 +3,10 @@ import './RatingRangeSlider.scss'
 
 interface IRatingRangeSliderProps {
 	filterBy?: string
+	handleChangeValue: (item:number) => void,
 };
 
-export const RatingRangeSlider: FC<IRatingRangeSliderProps> = ({ filterBy = 'by-rating' }) => {
+export const RatingRangeSlider: FC<IRatingRangeSliderProps> = ({ filterBy = 'by-rating', handleChangeValue }) => {
 
 	useEffect(() => {
 		switch (filterBy) {
@@ -27,7 +28,9 @@ export const RatingRangeSlider: FC<IRatingRangeSliderProps> = ({ filterBy = 'by-
 	const newVal = Number(((minValue - 0) * 100) / (maxValue - 0));
 
 	const handleMinChange = (e: React.FormEvent<HTMLInputElement>) => {
-		setMinValue(Number(e.currentTarget.value))
+		let result = Number(e.currentTarget.value)
+		setMinValue(result)
+		handleChangeValue(result)
 	}
 
 	const getBackgroundSize = () => {

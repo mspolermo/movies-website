@@ -1,8 +1,8 @@
 import React, {FC, PropsWithChildren} from 'react';
-import CreateList from "../../CreateList/CreateList";
+import CreateList from "../../../CreateList/CreateList";
 import './FilterTwoBlocks.scss'
-import Button from "../../UI/Buttons/Button/Button";
-import Icons from "../../Icons/Icons";
+import Button from "../../../UI/Buttons/Button/Button";
+import Icons from "../../../Icons/Icons";
 
 //Функция будет принимать:
 // popularValues - список популярных фильмом/стран
@@ -15,27 +15,22 @@ import Icons from "../../Icons/Icons";
 
 interface FilterTwoBlocksProps {
     popularValues: string[];
-    listValues: string[];
-    selectedFiltersBy: string[];
-    selectedFilter: (item: string) => void;
-    setActiveBlock: (item: string) => void;
+    allValues: string[];
+    selectValues: string[];
+    handleChangeFilter: (item: string) => void;
 }
 
 const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
     {
         popularValues,
-        listValues,
-        selectedFiltersBy,
-        selectedFilter,
-        setActiveBlock,
+        allValues,
+        selectValues,
+        handleChangeFilter,
     }
 ) => {
 
     return (
         <div>
-            <div className="close_block"
-                 onClick={() => setActiveBlock('')}
-            ></div>
             <div className='filterTwoBlocks'>
                 <div className="filterTwoBlocks__container">
                     <div className="filterTwoBlocks__content"
@@ -50,9 +45,10 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                                     items={popularValues} renderItem={(popular: string) =>
                                     <Button
                                         type='rounded'
-                                        color={selectedFiltersBy.includes(popular) ? 'purple' : 'transparent' }
+                                        color={selectValues.includes(popular) ? 'purple' : 'transparent' }
                                         title={[popular]}
-                                        onClick={() => selectedFilter(popular)}
+                                        key={popular}
+                                        onClick={() => handleChangeFilter(popular)}
                                     />
                                 }/>
                             </div>
@@ -60,14 +56,14 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                         </div>
                         <div className="filterTwoBlocks__list-container list-container">
                             {/*    list, который выводит весь список*/}
-                            <CreateList items={listValues} renderItem={(value: string) =>
+                            <CreateList items={allValues} renderItem={(value: string) =>
                                 <div key={value}
-                                     className={selectedFiltersBy.includes(value) ? 'list-container__text_white' : 'list-container__text element-text'}
-                                     onClick={() => selectedFilter(value)}
+                                     className={selectValues.includes(value) ? 'list-container__text_white' : 'list-container__text element-text'}
+                                     onClick={() => handleChangeFilter(value)}
                                 >
                                     {value}
                                     <div
-                                        className={selectedFiltersBy.includes(value) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
+                                        className={selectValues.includes(value) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
                                         <Icons name='check' size='16'/>
                                     </div>
                                 </div>

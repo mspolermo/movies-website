@@ -1,0 +1,17 @@
+.RangeSlider {
+    position: absolute;
+    z-index: 100;
+    padding-top: 4px;
+    min-width: 120%;
+    right: 0;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+
+        background-color: #312b45;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}

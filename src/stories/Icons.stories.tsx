@@ -14,8 +14,8 @@ const meta: Meta<typeof Icons> = {
                 'apple', 'mail', 'phone', 'search', 'notification',
                 'person', 'movie', 'folder-plus', 'download', 'ring',
                 'history', 'brilliant', 'circle-flooded', 'medal', 'tv',
-                'card', 'share', 'grade-star', 'bookmark', 'bookmark-true', 
-                'cross', 'check', 'back', 'circle', 'circle-checked'
+                'card', 'share', 'grade-star', 'bookmark', 'bookmark-true',
+                'cross', 'check', 'back', 'circle', 'circle-checked', 'chevron-down'
             ],
             control: {
                 type: 'select'
