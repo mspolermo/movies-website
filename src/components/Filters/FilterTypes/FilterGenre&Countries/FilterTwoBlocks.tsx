@@ -3,6 +3,7 @@ import CreateList from "../../../CreateList/CreateList";
 import './FilterTwoBlocks.scss'
 import Button from "../../../UI/Buttons/Button/Button";
 import Icons from "../../../Icons/Icons";
+import {Carousel} from "../../../Carousel/Carousel";
 
 //Функция будет принимать:
 // popularValues - список популярных фильмом/стран
@@ -29,6 +30,22 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
     }
 ) => {
 
+    function createPopularValue() {
+        return(
+            <CreateList
+                items={popularValues} renderItem={(popular: string) =>
+                <Button
+                    type='rounded'
+                    color={selectValues.includes(popular) ? 'purple' : 'transparent' }
+                    title={[popular]}
+                    key={popular}
+                    onClick={() => handleChangeFilter(popular)}
+                />
+            }/>
+        )
+
+    }
+
     return (
         <div>
             <div className='filterTwoBlocks'>
@@ -38,21 +55,10 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                     >
 
                         <div className="filterTwoBlocks__scrollpane scrollpane">
-                            <div className="scrollpane__arrow_left"></div>
                             <div className="scrollpane__viewport">
                                 {/*list который выводит популярные*/}
-                                <CreateList
-                                    items={popularValues} renderItem={(popular: string) =>
-                                    <Button
-                                        type='rounded'
-                                        color={selectValues.includes(popular) ? 'purple' : 'transparent' }
-                                        title={[popular]}
-                                        key={popular}
-                                        onClick={() => handleChangeFilter(popular)}
-                                    />
-                                }/>
+                                <Carousel variant='filters' children={createPopularValue()}/>
                             </div>
-                            <div className="scrollpane__arrow_right"></div>
                         </div>
                         <div className="filterTwoBlocks__list-container list-container">
                             {/*    list, который выводит весь список*/}

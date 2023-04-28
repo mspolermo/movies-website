@@ -33,6 +33,7 @@
         }
     }
     &__block {
+        
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -45,6 +46,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 100%;
         &_search {
             margin: 0 12px 0 8px;
             &:hover {
@@ -161,6 +163,8 @@
 }
 
 .headerMenu {
+    &__navigation {
+    }
     &__list {
         display: flex;
         justify-content: space-between;
@@ -176,6 +180,8 @@
     &__text {
         padding: 0 0 14px 16px;
         transform: translateY(6px);
+        padding-left: 16px;
+        padding-bottom: 14px;
         height: 100%;
 
         font-size: 15px;
@@ -237,7 +243,7 @@
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-delay: 0s;
-} 
+}
 
 @keyframes open {
     0% {
@@ -250,7 +256,7 @@
 
 @keyframes close {
     0% {
-        display: block;  
+        display: block;
         opacity: 1;
     }
     100% {

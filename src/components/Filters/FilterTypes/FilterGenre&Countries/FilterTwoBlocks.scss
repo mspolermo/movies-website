@@ -5,7 +5,7 @@
     &__content {
         display: flex;
         flex-direction: column;
-        max-width: 630px;
+        max-width: 600px;
         padding: 16px;
 
         font-size: 13px;
@@ -20,16 +20,14 @@
     .scrollpane {
         padding-bottom: 16px;
         border-bottom: 1px solid rgba(255, 255, 255, .32);
-
+        &__viewport{
+            padding: 0 10px;
+        }
         .filter-element {
             display: flex;
             justify-content: flex-start;
             flex: 0 0 auto;
             transition: margin-left 250ms;
-        }
-
-        &__button {
-
         }
     }
 
@@ -84,3 +82,13 @@
     }
 }
 
+@media (max-width: 880px){
+    .filterTwoBlocks {
+        max-width: 100%;
+        padding: 4px 12px 0 0;
+        .list-container{
+            column-count: 2;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
