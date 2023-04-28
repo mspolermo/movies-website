@@ -7,9 +7,6 @@ import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
 import OpenUrl from "../../../../hooks/OpenUrl";
 import Tile from "../../../UI/Buttons/Tile/Tile";
 
-//Todo: добавить SVG для смотреть позже
-//сделать линки для блоков
-
 const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
 
     const hoverActiveListData = [

@@ -198,6 +198,42 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+        <div className="footer__mobile">
+            <div className="container footer__mobile-container">
+                    <div className="footer__copyrights footer__copyrights_mobile">
+                        <p className="footer__mobile-text">HBO ® and related service marks are the property of Home Box Office, Inc</p>
+                    </div>
+            </div>
+            <div className="footer__bottom-bar">
+                <ul className="footer__mobile-list">
+                    <li className="footer__mobile-item" >
+                        <Icons name="home" size='20' color="#a5a1b2"/>
+                        <h5 className="footer__mobile-heading">Мой Иви</h5>
+                    </li>
+                    <li className="footer__mobile-item">
+                        <Icons name="devices" size='20' color="#a5a1b2" />
+                        <h5 className="footer__mobile-heading">Каталог</h5>
+                    </li>
+                    <li className="footer__mobile-item">
+                        <Icons name="search" size="20" color="#a5a1b2"/>
+                        <h5 className="footer__mobile-heading">Поиск</h5>
+                    </li>
+                    <li className="footer__mobile-item">
+                        <Icons name="tv" size='20' color="#a5a1b2" />
+                        <h5 className="footer__mobile-heading">TV+</h5>
+                    </li>
+                    <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/')}>
+                        <div className="footer__svg-block">
+                            <Icons name="circle-flooded" size='5' color="#a5a1b2" />
+                            <Icons name="circle-flooded" size='5' color="#a5a1b2" className="footer__svg footer__svg_circle-center"/>   
+                            <Icons name="circle-flooded" size='5' color="#a5a1b2" />       
+                        </div>
+                        
+                        <h5 className="footer__mobile-heading">Еще</h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
         </div>
     );
 };

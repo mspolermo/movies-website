@@ -1,20 +1,18 @@
 @import '/src/styles/variables.scss';
 
 .header {
+    z-index: 2;
     &__body {
         max-width: 1300px;
-        margin-right: auto;
-        margin-left: auto;
-        padding-left: 30px;
-        padding-right: 30px;
-        position: relative;
+        margin: 0 auto;
+        padding: 0 30px;
+        position: relative; 
     }
     &__container {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding: 0 12px;
         margin-top: 10px;
         &_active {
-            background: #1f1b2e;
+            background: $backfroundElements;
             box-shadow: 0 20px 96px #12101b;
             border-radius: 12px 12px 0 0;  
         }
@@ -25,7 +23,7 @@
         position: relative;
         &::after{
             content: '';
-            background-color: rgba(255,255,255,.16);
+            background-color: $splitLineColor;
             height: 1px;
             position: absolute;
             left: 0;
@@ -40,54 +38,55 @@
         align-items: center;
         justify-content: space-between;
     }
-    &__img {
+    &__img{
+        cursor: pointer;
     }
     &__btn-block {
+        height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 100%;
         &_search {
-            margin-left: 8px;
-            margin-right: 12px;
+            margin: 0 12px 0 8px;
             &:hover {
                 cursor: pointer;
                 .header__svg_search {
-                    stroke: white;
-                    fill: white;
+                    stroke: $activeColor;
+                    fill: $activeColor;
                     transition-duration: 0.4s;
                 }
                 .header__text {
-                    color: white;
+                    color: $activeColor;
                     transition-duration: 0.4s;
                 }
             }
             &:not(:hover):not(:active) {
                 .header__svg_search {
-                    stroke: gray;
-                    fill: gray;
+                    stroke: $textColor;
+                    fill: $textColor;
                     transition-duration: 0.4s;
                 }
                 .header__text {
-                    color: gray;
+                    color: $textColor;
                     transition-duration: 0.4s;
                 }
             }
         }
         &_notification{
-            padding-right: 12px;
+            padding: 0 20px 0 8px;
             &:hover {
                 cursor: pointer;
                 .header__svg_notification {
-                    stroke: white;
-                    fill: white;
+                    stroke: $activeColor;
+                    fill: $activeColor;
                     transition-duration: 0.4s;
                 }
             }
             &:not(:hover):not(:active) {
                 .header__svg_notification {
-                    stroke: gray;
-                    fill: gray;
+                    stroke: $textColor;
+                    fill: $textColor;
                     transition-duration: 0.4s;
                 }
             }
@@ -95,24 +94,25 @@
         &_login {
             &:hover {
                 .header__svg-border{
-                    border-color: white;
+                    box-shadow: 0 0 6px $activeColor;
+                    border-color: $activeColor;
                     transition-duration: 0.4s;
                     cursor: pointer;    
                 }
                 .header__svg_login {
-                    stroke: white;
-                    fill: white;
+                    stroke: $activeColor;
+                    fill: $activeColor;
                     transition-duration: 0.4s;
                 }
             }
             &:not(:hover):not(:active) {
                 .header__svg-border{
-                    border-color: gray;
+                    border-color: $textColor;
                     transition-duration: 0.4s;
                 }
                 .header__svg_login {
-                    stroke: gray;
-                    fill: gray;
+                    stroke: $textColor;
+                    fill: $textColor;
                     transition-duration: 0.4s;
                 }
             }
@@ -120,8 +120,9 @@
     }
     &__svg-border {
         padding: 8px;
+
         border-radius: 8px;
-        border: 2px solid rgba(255,255,255,.48);
+        border: 1px solid $textColor;
         background-color: transparent;
     }
     &__svg {
@@ -133,31 +134,30 @@
         font-size: 15px;
         line-height: 20px;
         font-weight: 500;
-        color: rgba(255,255,255,.48);
+
+        color: $textColor;
     }
-    
     &__headerMenu {
         margin-left: 32px;
     }
     &__dropDownBody {
-        margin-right: auto;
-        margin-left: auto;
+        margin: 0 auto;
 
-        //Исправить z-index, согласно Filters
-        z-index: 1999999999;
+        //Исправить z-index, согласно Filters и footer-mobile
+        z-index: 3;
         display: block;
 
-        //min-height: 344px;
-        
-        background: #1f1b2e;
+        background: $backfroundElements;
         box-shadow: 0 20px 96px #12101b;
         border-top: none;
         border-radius: 0 0 12px 12px;
         
         position: absolute;
         &_hidden {
-            display: none;
-            z-index: -2;
+            display: block;
+            //выполняется в анимации
+            //display: none;
+            //z-index: -2;
         }
     }
 }
@@ -176,9 +176,9 @@
     }
     &__link {
         padding: 10px;
-        
     }
     &__text {
+        padding: 0 0 14px 16px;
         transform: translateY(6px);
         padding-left: 16px;
         padding-bottom: 14px;
@@ -187,27 +187,86 @@
         font-size: 15px;
         line-height: 20px;
         font-weight: 500;
-        color: rgba(255,255,255,.48);
+        color: $textColor;
 
-        transition-property: color;
-        &:hover {
-            color: white;
-            transition-duration: 0.4s;
-        }
-        &:not(:hover):not(:active) {
-            color: rgba(255,255,255,.48);
-            transition-duration: 0.4s;
-        }
+        @include hover-colorAnim ($activeColor, $textColor)
     }
 }
 
 .dropDownBody{
     &__container{
-        padding-left: 12px;
-        padding-right: 12px;
+        padding: 0 12px;
     }
 }
 
+//Animation dropDownMenu
+.header {
+    &__dropDownBody {
+        animation-name: open;
+        animation-duration: 0.4s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        animation-delay: 0s;
+    &__container{
+        &_active {
+            animation-name: open;
+            animation-duration: 0.6s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            animation-delay: 0s;
+        }
+    }
+        &_hidden {
+            animation-name: close;
+            animation-duration: 0.2s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            animation-delay: 0s;
+        }
+    }
+}
+
+.headerMenuFilms,
+.headerMenuSeries,
+.headerMenuMults,
+.headerMenuTv {
+    animation-name: open;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+}
+
+@keyframes open {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+};
+
+@keyframes close {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+        z-index: -2;
+    }
+}
+
+//Mobile version
 @media (max-width: 1160px) {
     .header {
         &__headerMenu{

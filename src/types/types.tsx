@@ -7,7 +7,7 @@ export interface ButtonProps {
 } 
 
 export interface TileProps {
-    title:string;
+    title: string;
     svg: React.ReactElement;
     onClick?: () => void;
     hooverEffect?: 'on' | 'off';
