@@ -145,8 +145,12 @@
 
         @include hover-backgroundcolorAnim($defaultIconColor-hover, $defaultIconColor);
     }
+    &__mobile {
+        display: none;
+    }
 }
 
+//Animation
 @keyframes open {
     0% {
       display: block;
@@ -157,5 +161,78 @@
       display: block;
       opacity: 1;
       visibility: visible;
+    }
+}
+
+//Mobile version
+@media (max-width: 1160px) {
+    .footer {
+        &__container {
+            display: none;
+        }
+        &__mobile {
+            display: block;
+        }
+        &__copyrights{
+            &_mobile {
+                padding-bottom: 80px;
+            }
+        }
+        &__mobile-text{
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 400;
+            font-style: normal;
+
+            color: #312b45;
+        }
+        &__bottom-bar {
+            padding: 0 40px;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            background-color: rgba(31,27,46,.88);
+            box-shadow: 0 -20px 40px rgba(7,5,14,.24);
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            //Исправить z-index, согласно Filters и header-desktop
+            z-index: 1001;
+        }
+        &__mobile-list {
+            flex: 1  0 100%;
+            max-width: 610px;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__mobile-item {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+        }
+        &__mobile-heading {
+            //align-self: center;
+            margin-top: 6px;
+            font-size: 10px;
+            line-height: 12px;
+            font-weight: 500;
+            font-style: normal;
+            height: 12px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            
+            color: #a5a1b2;
+        }
+        &__svg {
+            &_circle-center{
+                margin: 0 2px;
+            }
+        }
     }
 }

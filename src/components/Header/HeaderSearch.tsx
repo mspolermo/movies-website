@@ -14,7 +14,7 @@ interface Result {
 
 const HeaderSearch = () => {
     const [searchResults, setSearchResult] = useState<Result[]>([{name: 'name', key: 'key', subtitle: 'subtitle', rowType: 'person'}])
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Реагирует на изменения searchQuery и отправляет запрос на бэк.
     // Если нужны правки в пришедшем jSon, то форматирование проискодит здесь же.

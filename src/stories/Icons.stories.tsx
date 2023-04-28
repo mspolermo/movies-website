@@ -7,7 +7,7 @@ const meta: Meta<typeof Icons> = {
     tags: ['autodocs'],
     argTypes: {
         name: {
-            description: 'Варианты иконок',
+            description: 'Имя иконки',
             options: [
                 'telegram', 'linkedin', 'viber', 'twitter', 'odnoklasniki',
                 'vkontakte', 'mute', 'devices', 'smartTV', 'google',
@@ -15,7 +15,8 @@ const meta: Meta<typeof Icons> = {
                 'person', 'movie', 'folder-plus', 'download', 'ring',
                 'history', 'brilliant', 'circle-flooded', 'medal', 'tv',
                 'card', 'share', 'grade-star', 'bookmark', 'bookmark-true', 
-                'cross', 'check', 'back', 'circle', 'circle-checked'
+                'cross', 'check', 'back', 'circle', 'circle-checked',
+                'home'
             ],
             control: {
                 type: 'select'
