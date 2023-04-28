@@ -1,6 +1,7 @@
 @import '/src/styles/variables.scss';
 
 .header {
+    z-index: 2;
     &__body {
         max-width: 1300px;
         margin: 0 auto;
@@ -141,7 +142,7 @@
         margin: 0 auto;
 
         //Исправить z-index, согласно Filters и footer-mobile
-        z-index: 1999999999;
+        z-index: 3;
         display: block;
 
         background: $backfroundElements;
