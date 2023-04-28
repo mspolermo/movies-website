@@ -15,7 +15,8 @@ const meta: Meta<typeof Icons> = {
                 'person', 'movie', 'folder-plus', 'download', 'ring',
                 'history', 'brilliant', 'circle-flooded', 'medal', 'tv',
                 'card', 'share', 'grade-star', 'bookmark', 'bookmark-true',
-                'cross', 'check', 'back', 'circle', 'circle-checked', 'chevron-down'
+                'cross', 'check', 'back', 'circle', 'circle-checked', 'chevron-down',
+                'person-search', 'movie-search', 'series'
             ],
             control: {
                 type: 'select'
