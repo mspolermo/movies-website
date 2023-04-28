@@ -3,16 +3,10 @@ export interface activeFiltersProps {
     'popularGenres': string[],
     'countries': string[],
     'years': string,
-    'rating': {
-        'min': number,
-        'max': number,
-    },
-    'grade': {
-        'min': number,
-        'max': number,
-    },
-    'producer': string[],
-    'actor': string[]
+    'rating': number,
+    'grade': number,
+    'producer': string,
+    'actor': string,
 }
 
 export interface ActorPageProps {
@@ -33,14 +27,8 @@ export interface startFiltersProps {
     'popularGenres': string[],
     'countries': string[],
     'years': string[],
-    'rating': {
-        'min': number,
-        'max': number,
-    },
-    'grade': {
-        'min': number,
-        'max': number,
-    },
+    'rating': number,
+    'grade': number,
     'producer': string[],
     'actor': string[]
 }

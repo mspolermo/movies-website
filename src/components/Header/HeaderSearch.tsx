@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import Search from "../Search/Search";
+import Search from "../UI/Inputs/Search/Search";
 import BigSearchResult from "../Search/BigSearchResult/BigSearchResult";
 import MapperIcons from "../../types/MapperIcons";
 import _ from 'lodash'
-import {navigate} from "@storybook/addon-links";
 
 interface Result {
     name: string,

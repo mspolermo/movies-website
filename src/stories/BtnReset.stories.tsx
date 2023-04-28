@@ -1,9 +1,9 @@
 import {Meta, StoryObj} from "@storybook/react";
-import ButtonResetFilters from "../components/Filters/ButtonResetFilters/ButtonResetFilters";
+import ButtonReset from "../components/Filters/ButtonReset/ButtonReset";
 
-const meta: Meta<typeof ButtonResetFilters> = {
-    title: 'Components/ButtonResetFilters',
-    component: ButtonResetFilters,
+const meta: Meta<typeof ButtonReset> = {
+    title: 'Components/ButtonReset',
+    component: ButtonReset,
     tags: ['autodocs'],
     argTypes: {
         selectedFilters: {
@@ -21,12 +21,12 @@ const meta: Meta<typeof ButtonResetFilters> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ButtonResetFilters>;
+type Story = StoryObj<typeof ButtonReset>;
 
 export const BtnResetFilters: Story = {
     render: (args) => (
         <div {...args} style={{'backgroundColor': '#1f1b2e', 'minHeight': 60}}>
-            <ButtonResetFilters selectedFilters={args.selectedFilters} activeFilters={args.activeFilters} setSelectedFilters={args.setSelectedFilters} />
+            <ButtonReset selectedFilters={args.selectedFilters} activeFilters={args.activeFilters} setSelectedFilters={args.setSelectedFilters} />
         </div>
     ),
     args: {
@@ -35,16 +35,10 @@ export const BtnResetFilters: Story = {
             'genres': [],
             'countries': [],
             'years': '',
-            'rating': {
-                'min': 0,
-                'max': 0,
-            },
-            'grade': {
-                'min': 0,
-                'max': 0,
-            },
-            'producer': [],
-            'actor': []
+            'rating': 0,
+            'grade': 0,
+            'producer': '',
+            'actor': ''
         },
     }
 };
