@@ -2,7 +2,7 @@ import {Meta, StoryObj} from "@storybook/react";
 import FilterTwoBlocks from "../components/Filters/FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 
 const meta: Meta<typeof FilterTwoBlocks> = {
-    title: 'Components/FilterTwoBlocks',
+    title: 'Components/Filters/FilterGenre&Countries',
     component: FilterTwoBlocks,
     tags: ['autodocs'],
     argTypes: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof FilterTwoBlocks> = {
 
         selectValues: {
             description: 'Выбранные значения конкретного фильтра',
-            options: ['Не выбраны' ,'Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
+            options: ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
             control: {
                 type: 'check'
             }
@@ -42,6 +42,7 @@ export const FilterBlocks: Story = {
     args: {
         popularValues: ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?',],
         allValues: ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
-        selectValues: ['Не выбраны'],
+        selectValues: ['Не выходи', 'Ошибку'],
+        handleChangeFilter: function (){}
     }
 };

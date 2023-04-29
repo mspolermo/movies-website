@@ -21,7 +21,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
             className='filmcard'
             onClick={() => onClick(film)}
         >
-            <div className="container filmcard__container">
+            <div className="filmcard__container">
                 <div className='filmcard__content'>
                     <div className='filmcard__poster'>
                         <div className="filmcard__img">

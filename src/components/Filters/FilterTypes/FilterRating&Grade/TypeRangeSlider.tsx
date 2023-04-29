@@ -4,7 +4,7 @@ import './TypeRangeSlider.scss'
 
 interface RangeSliderProps {
     handleChangeFilter: (item:number) => void,
-    blockName: string
+    blockName?: string
 }
 
 const TypeRangeSlider: FC<PropsWithChildren<RangeSliderProps>> = ({handleChangeFilter, blockName}) => {
