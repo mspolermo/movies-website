@@ -9,8 +9,6 @@ interface BigResultProps{
     onClick: () => void
 }
 
-//todo: onClick перенаправление на страницу результата.
-
 const BigSearchResult: FC<PropsWithChildren<BigResultProps>> = ({iconName, title, subtitle, onClick}) => {
     return (
         <div className='BigSearch'
