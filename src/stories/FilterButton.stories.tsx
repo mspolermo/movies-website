@@ -26,7 +26,7 @@ const meta: Meta<typeof FilterButton> = {
             defaultValue: '',
         },
         setActiveBlock: {
-            description: 'Проверяет, если имя активной кнопки === имени кнопки, то кнопка активна.',
+            description: 'Проверяет, если имя активной кнопки равно имени кнопки, то кнопка активна.',
         }
     }
 };
@@ -34,16 +34,24 @@ const meta: Meta<typeof FilterButton> = {
 export default meta;
 type Story = StoryObj<typeof FilterButton>;
 
-export const InternalIcon: Story = {
-    render: (args) => (
-        <div {...args}>
-            <FilterButton filterName={args.filterName} selectedFiltersBy={args.selectedFiltersBy} activeBlock={args.activeBlock} blockName={args.blockName} setActiveBlock={args.setActiveBlock}/>
-        </div>
-    ),
+export const NotActive: Story = {
+
     args: {
         filterName: 'Жанр',
         selectedFiltersBy: '',
-        activeBlock: 'countries',
+        activeBlock: '',
         blockName: 'genre',
+        setActiveBlock: function (){}
+    }
+};
+
+export const IsActive: Story = {
+
+    args: {
+        filterName: 'Жанр',
+        selectedFiltersBy: '',
+        activeBlock: 'genre',
+        blockName: 'genre',
+        setActiveBlock: function (){}
     }
 };
