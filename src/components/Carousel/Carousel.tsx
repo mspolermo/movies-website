@@ -53,7 +53,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 	}
 
 	const actionHandler = useCallback((mode: string) => {
-		slider.current.style.transitionDuration = '400ms'
+		slider.current.style.transitionDuration = '600ms'
 		if (mode === 'prev') {
 			if (current <= 1) {
 				setTranslateX(0)
@@ -266,7 +266,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 						<div
 							className="carousel__slider"
 							ref={slider}
-							style={{ transform: `translate3d(${-translateX}px, 0, 0)`, transitionDuration: '400ms' }}
+							style={{ transform: `translate3d(${-translateX}px, 0, 0)` }}
 						>
 							{slides}
 
