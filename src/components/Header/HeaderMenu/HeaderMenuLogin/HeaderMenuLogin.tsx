@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuLogin.scss'
 import Icons from "../../../Icons/Icons";
@@ -7,15 +8,18 @@ import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
 import OpenUrl from "../../../../hooks/OpenUrl";
 import Tile from "../../../UI/Buttons/Tile/Tile";
 
+
 const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
 
+    const { t, i18n } = useTranslation();
+
     const hoverActiveListData = [
-        [0, 'Изи Иви', "https://www.ivi.ru/profile/subscription-izi-ivi"],
-        [1, 'Иви', 'https://www.ivi.ru/profile/subscription'],
-        [2, 'Иви + Amediateka', "https://www.ivi.ru/profile/subscription-ivi-amediateka"],
-        [3, 'Amediateka', "https://www.ivi.ru/profile/subscription-amediateka"],
-        [4, 'Матч Премьер', "https://www.ivi.ru/profile/subscription-matchpremier"],
-        [5, 'Матч Футбол', "https://www.ivi.ru/profile/subscription-matchfootball"]
+        [0, 'header.menuLogin.activeList.easy', "https://www.ivi.ru/profile/subscription-izi-ivi"],
+        [1, 'header.menuLogin.activeList.ivi', 'https://www.ivi.ru/profile/subscription'],
+        [2, 'header.menuLogin.activeList.iviAmedia', "https://www.ivi.ru/profile/subscription-ivi-amediateka"],
+        [3, 'header.menuLogin.activeList.amediateka', "https://www.ivi.ru/profile/subscription-amediateka"],
+        [4, 'header.menuLogin.activeList.premier', "https://www.ivi.ru/profile/subscription-matchpremier"],
+        [5, 'header.menuLogin.activeList.football', "https://www.ivi.ru/profile/subscription-matchfootball"]
     ]
 
     const [activeHover, setActiveHover] = useState<string>('ivi');
@@ -64,21 +68,21 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                 <div className="headerMenuLogin__line">
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
-                            title="Покупки"
+                            title={t('tile.headerMenuLogin.buy')}
                             svg={<Icons className="headerMenuLogin__svg" name='devices' color='#b0afb1' size='20' strokeWidth="2"/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile/purchases')}
                         />   
                     </div>
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
-                            title="Смотреть позже"
+                            title={t('tile.headerMenuLogin.later')}
                             svg={<Icons className="headerMenuLogin__svg" name='bookmark' color='#b0afb1' size='20'/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile/favorites')}
                         />   
                     </div>
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
-                            title="История просмотров"
+                            title={t('tile.headerMenuLogin.history')}
                             svg={<Icons className="headerMenuLogin__svg" name='history' color='#b0afb1' size='20'/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile/watched')}
                         />   
@@ -93,36 +97,36 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                             <Icons className="headerMenuLogin__svg headerMenuLogin__svg_circle" name='circle-flooded' color='red' size='10'/>   
                         </div>
                         <div className="headerMenuLogin__inner headerMenuLogin__inner_bottom">
-                            <p className="headerMenuLogin__text ">Подписки</p>
-                            <p className="headerMenuLogin__text headerMenuLogin__text_small">Подключить</p>
+                            <p className="headerMenuLogin__text ">{t('header.menuLogin.subs')}</p>
+                            <p className="headerMenuLogin__text headerMenuLogin__text_small">{t('header.menuLogin.plug')}</p>
                         </div>
                     </div>
                 </div>
                 <div className="headerMenuLogin__line">
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
-                            title="Активация сертификата"
+                            title={t('tile.headerMenuLogin.sert')}
                             svg={<Icons className="headerMenuLogin__svg" name='medal' color='#b0afb1' size='20' strokeWidth="0"/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile')}
                         />   
                     </div>
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
-                            title="Вход по коду"
+                            title={t('tile.headerMenuLogin.enter')}
                             svg={<Icons className="headerMenuLogin__svg" name='tv' color='#b0afb1' size='20' strokeWidth="2"/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile')}
                         />   
                     </div>
                     <div className="headerMenuLogin__block" onMouseOver={closeBlock} >
                         <Tile 
-                            title="Способы оплаты"
+                            title={t('tile.headerMenuLogin.ways')}
                             svg={<Icons className="headerMenuLogin__svg" name='card' color='#b0afb1' size='20'/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile/cards')}
                         />   
                     </div>
                     <div className="headerMenuLogin__block">
                         <Tile 
-                            title="Пригласить друзей"
+                            title={t('tile.headerMenuLogin.share')}
                             svg={<Icons className="headerMenuLogin__svg" name='share' color='#b0afb1' size='20' strokeWidth="2"/>}
                             onClick={()=>OpenUrl('https://www.ivi.ru/profile/referral')}
                         />   
@@ -132,17 +136,17 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
             <div className="headerMenuLogin__column headerMenuLogin__column_right">
                 <div className=" headerMenuLogin__passiveBlock" ref={passiveBlock}>
                     <Button 
-                        title={['Войти или зарегистрироваться']} 
+                        title={['button.header.menuLogin.enter']} 
                         color="red" 
                         type="ultraWide"
                         onClick={() => OpenUrl('https://www.ivi.ru/profile')}
                     />
                     <div>
                         <a className=" headerMenuLogin__link" href="https://www.ivi.ru/profile/settings">
-                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">Настройки</p>
+                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">{t('header.menuLogin.settings')}</p>
                         </a>
                         <a className=" headerMenuLogin__link" href="https://ask.ivi.ru/">
-                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">Помощь</p>
+                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">{t('header.menuLogin.help')}</p>
                         </a>
                     </div>
                 </div>
@@ -151,7 +155,7 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                     ref={activeBlock}
                 >
                     <div className="headerMenuLogin__internal">
-                        <p className="headerMenuLogin__heading">Подписки</p>
+                        <p className="headerMenuLogin__heading">{t('header.menuLogin.subs')}</p>
                         <HeaderActiveList dataArray={hoverActiveListData} prefixForId="HeaderMenuLogin" onHoverChange={setActiveHover}/>
                     </div>
                     <div className="headerMenuLogin__image-block">

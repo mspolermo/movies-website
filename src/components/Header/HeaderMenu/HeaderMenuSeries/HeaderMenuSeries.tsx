@@ -3,15 +3,18 @@ import { HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuSeries.scss'
 import HeaderAdvertise from "../../HeaderAdvertise/HeaderAdvertise";
 import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
+import { useTranslation } from 'react-i18next';
 
 const HeaderMenuSeries:FC<HeaderMenuProps> = ({id}) => {
+    const { t, i18n } = useTranslation();
+    
     const hoverActiveListData = [
-        [0, 'Новинки', "https://www.ivi.ru/new/series-new"],
-        [1, 'Иви.Рейтинг', 'https://www.ivi.ru/series/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready'],
-        [2, 'Сериалы в HD', 'https://www.ivi.ru/collections/series-hd'],
-        [3, 'Бесплатные сериалы', 'https://www.ivi.ru/collections/tvshow-free?sort=new'],
-        [4, 'Сериалы Amediateka', 'https://www.ivi.ru/collections/serialyi-amediateka'],
-        [5, 'Сериалы Paramount Play', 'https://www.ivi.ru/collections/series-paramount-play']
+        [0, 'header.menuSeries.activeList.new', "https://www.ivi.ru/new/series-new"],
+        [1, 'header.menuSeries.activeList.reit', 'https://www.ivi.ru/series/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready'],
+        [2, 'header.menuSeries.activeList.hd', 'https://www.ivi.ru/collections/series-hd'],
+        [3, 'header.menuSeries.activeList.free', 'https://www.ivi.ru/collections/tvshow-free?sort=new'],
+        [4, 'header.menuSeries.activeList.amedia', 'https://www.ivi.ru/collections/serialyi-amediateka'],
+        [5, 'header.menuSeries.activeList.paramount', 'https://www.ivi.ru/collections/series-paramount-play']
     ];
 
     const [headerAdvertiseProp, setHeaderAdvertiseProp] = useState('ivi');
@@ -19,112 +22,112 @@ const HeaderMenuSeries:FC<HeaderMenuProps> = ({id}) => {
     return(
         <div className="headerMenuSeries headerMenuSeries__hidden" id={id}>
             <div className="headerMenuSeries__column">
-                <h3 className="headerMenuSeries__heading">Жанры</h3>
+                <h3 className="headerMenuSeries__heading">{t('header.menuSeries.genres')}</h3>
                 <ul className="headerMenuSeries__list">
                     <div className="headerMenuSeries__column">
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Биография</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.biography')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Боевики</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.militants')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Военные</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.military')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Детективы</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.detectives')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Для всей семьи</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.famaly')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Документальные</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.doc')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Драмы</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.dram')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Исторические</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.history')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Комедийные</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.comedy')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Криминальные</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.criminals')}</p>
                         </a>
                     </div>
                     <div className="headerMenuSeries__column">
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Медицинские</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.medical')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Мелодрамы</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.melodrams')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Мистические</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.mystical')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Приключения</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.adventures')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Романтические</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.romantical')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Триллеры</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.thrillers')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Турецкие</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.turkish')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Ужасы</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.horrors')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Фантастические</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.fantastic')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Фэнтези</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.fantasy')}</p>
                         </a>
                     </div>
                 </ul>    
             </div>
             <div className="headerMenuSeries__column">
-                <h3 className="headerMenuSeries__heading">Страны</h3>
+                <h3 className="headerMenuSeries__heading">{t('header.menuSeries.countres')}</h3>
                 <ul className="headerMenuSeries__list">
                     <div className="headerMenuSeries__column">
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Русские</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.russian')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Зарубежные</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.abroad')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Американские</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.american')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Украинские</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.ukrain')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Корейские</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.korean')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Турецкие</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.turkish')}</p>
                         </a>
                     </div>
                 </ul>
-                <h3 className="headerMenuSeries__heading">Годы</h3>
+                <h3 className="headerMenuSeries__heading">{t('header.menuSeries.years')}</h3>
                 <ul className="headerMenuSeries__list">
                     <div className="headerMenuSeries__column">
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Сериалы 2023 года</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.2023')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Сериалы 2022 года</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.2022')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Сериалы 2021 года</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.2021')}</p>
                         </a>
                         <a href="" className="headerMenuSeries__link">
-                            <p className="headerMenuSeries__item">Сериалы 2020 года</p>
+                            <p className="headerMenuSeries__item">{t('header.menuSeries.2020')}</p>
                         </a>
                     </div>
                 </ul>

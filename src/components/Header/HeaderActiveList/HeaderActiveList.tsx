@@ -1,9 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import classes from './HeaderActiveList.module.scss'
 import { HeaderActiveListProps } from "../../../types/headerTypes";
+import { useTranslation } from 'react-i18next';
 
 const HeaderActiveList:FC<HeaderActiveListProps> = ( { dataArray, prefixForId, onHoverChange } ) => {
-    
+    const { t, i18n } = useTranslation();
+
     const [activePoint, setActivePoint] = useState(`${prefixForId}-0`);
     const [headerAdvertiseProp, setHeaderAdvertiseProp] = useState('ivi');
 
@@ -30,7 +32,9 @@ const HeaderActiveList:FC<HeaderActiveListProps> = ( { dataArray, prefixForId, o
             setHeaderAdvertiseProp('amediateka')
         } else if (e.currentTarget.innerText.includes("Матч") ) {
             setHeaderAdvertiseProp('match')
-        } else {
+        } else if (e.currentTarget.innerText.includes("Match") ) {
+            setHeaderAdvertiseProp('match')
+        }else {
             setHeaderAdvertiseProp('ivi')
         };
     };
@@ -52,7 +56,7 @@ const HeaderActiveList:FC<HeaderActiveListProps> = ( { dataArray, prefixForId, o
                                     className={`${classes.activeList__item} ${classes.activeList__item_active}`}
                                     onMouseOver={hoverActivator}
                                 >
-                                    {item[1]}
+                                    {t(item[1])}
                                 </p>
                             :
                                 <p 
@@ -60,7 +64,7 @@ const HeaderActiveList:FC<HeaderActiveListProps> = ( { dataArray, prefixForId, o
                                 className={classes.activeList__item}
                                 onMouseOver={hoverActivator}
                                 >
-                                    {item[1]}
+                                    {t(item[1])}
                                 </p>
                             }
                         </a>

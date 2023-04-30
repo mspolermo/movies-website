@@ -40,5 +40,6 @@ export const BtnResetFilters: Story = {
             'producer': '',
             'actor': ''
         },
+        setSelectedFilters: function() {alert('Фильтры сброшены')},
     }
 };
