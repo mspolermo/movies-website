@@ -3,6 +3,9 @@ import Footer from './components/Footer/Footer';
 import'./styles/App.scss'
 import Filters from "./components/Filters/Filters";
 import Header from './components/Header/Header';
+import MoviesPage from "./components/Pages/MoviesPage/MoviesPage";
+import HeaderSearch from "./components/Header/HeaderSearch";
+import FilmCard from "./components/FilmCard/FilmCard";
 
 
 const  App = () => {
@@ -10,9 +13,10 @@ const  App = () => {
     <div>
       <Header />
       <div className="container">
-        <Filters/>
+        <MoviesPage/>
+
         <div className="empty">
-          <h1 className='heading'>Welcome to Movies-Website!</h1> 
+          {/*<h1 className='heading'>Welcome to Movies-Website!</h1> */}
         </div>
       </div>
       <Footer />
