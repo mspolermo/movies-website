@@ -28,6 +28,7 @@ const HeaderSearch = () => {
         return (<BigSearchResult iconName={_.get(MapperIcons,value.rowType)}
                                  title={value.name}
                                  subtitle={value.subtitle}
+                                 key={value.key}
                                  /*Сюда приходит функция goToPage*/
                                  onClick={() => {}}/>
         )

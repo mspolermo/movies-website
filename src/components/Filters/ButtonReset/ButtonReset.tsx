@@ -3,6 +3,7 @@ import './buttonReset.scss'
 import _ from "lodash";
 import {activeFiltersProps} from "../../../types/testCase";
 import Icons from "../../Icons/Icons";
+import {useTranslation} from "react-i18next";
 
 interface ResetFiltersProps {
     selectedFilters: activeFiltersProps,
@@ -10,8 +11,13 @@ interface ResetFiltersProps {
     setSelectedFilters: (activeFilters: activeFiltersProps) => void,
 }
 
-const ButtonReset: FC<PropsWithChildren<ResetFiltersProps>> = ({selectedFilters, activeFilters, setSelectedFilters}) => {
+const ButtonReset: FC<PropsWithChildren<ResetFiltersProps>> = ({
+                                                                   selectedFilters,
+                                                                   activeFilters,
+                                                                   setSelectedFilters
+                                                               }) => {
 
+    const {t, i18n} = useTranslation();
     const emptyFilters = JSON.stringify(selectedFilters) === JSON.stringify(activeFilters)
 
     return (
@@ -23,7 +29,7 @@ const ButtonReset: FC<PropsWithChildren<ResetFiltersProps>> = ({selectedFilters,
                 <Icons className="resetFilters__cross" name='cross' size='20'/>
 
                 <div className="resetFilters__text">
-                    Сбросить фильтры
+                    {t('filters.btnReset')}
                 </div>
 
             </div>
