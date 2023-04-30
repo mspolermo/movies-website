@@ -7,6 +7,7 @@ import MoviesPage from "./components/Pages/MoviesPage/MoviesPage";
 import HeaderSearch from "./components/Header/HeaderSearch";
 import FilmCard from "./components/FilmCard/FilmCard";
 
+
 const  App = () => {
   return (
     <div>
@@ -17,9 +18,7 @@ const  App = () => {
         <div className="empty">
           {/*<h1 className='heading'>Welcome to Movies-Website!</h1> */}
         </div>
-          
       </div>
-
       <Footer />
     </div>
   );

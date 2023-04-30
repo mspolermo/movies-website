@@ -1,0 +1,24 @@
+@import '/src/styles/variables.scss';
+
+.languageChanger {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    &__block {
+        width: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__text {
+        font-size: 14px;
+        color: $textColor;
+    }
+    &__btn {
+        background-color: transparent;
+        color: $textColor;
+        &_active {
+            color: $activeColor;    
+        }
+    }
+}

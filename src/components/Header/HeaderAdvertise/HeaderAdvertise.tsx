@@ -4,10 +4,12 @@ import classes from './HeaderAdvertise.module.scss'
 import Button from "../../UI/Buttons/Button/Button";
 import Icons from "../../Icons/Icons";
 import OpenUrl from "../../../hooks/OpenUrl";
+import { useTranslation } from 'react-i18next';
 
 const HeaderAdvertise:FC<HeaderAdvertiseProps> = ( {variant}) => {
+    const { t, i18n } = useTranslation();
 
-    let title = 'Подписка Иви';
+    let title = 'header.advertise.ivi';
     let imgUrl = 'https://www.ivi.ru/pages/newseason/assets/images/new-logo-short.svg';
     let price = '199';
     let link = 'https://www.ivi.ru/profile/subscription';
@@ -71,8 +73,8 @@ const HeaderAdvertise:FC<HeaderAdvertiseProps> = ( {variant}) => {
                 <div className={classes.advertise__top} ref={animBlock}>
                     <img className={classes.advertise__logo} src={imgUrl} alt="Логотип выбранной подписки"></img>
                     <div className={classes.advertise__right}>
-                        <h4 className={classes.advertise__heading}>{title}</h4> 
-                        <p className={classes.advertise__text}>От {price} ₽ за месяц</p>
+                        <h4 className={classes.advertise__heading}>{t(title)}</h4> 
+                        <p className={classes.advertise__text}>{t('header.advertise.from')} {price} {t('header.advertise.mouth')}</p>
                     </div>
                 </div>
                 <div 
@@ -81,16 +83,16 @@ const HeaderAdvertise:FC<HeaderAdvertiseProps> = ( {variant}) => {
                 >
                     <Button 
                         color="red" 
-                        title={['Подключить']} 
+                        title={['button.header.advertise.plug']} 
                         type="ultraWide"
                         onClick={() => OpenUrl(link)} 
                     />
-                    <p className={classes.advertise__smallText }>Отключить можно в любой момент</p>  
+                    <p className={classes.advertise__smallText }>{t('header.advertise.turnOff')}</p>  
                 </div>
             </div>
             <Button 
                 svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                title={['Смотрите на Smart TV']}
+                title={['button.header.advertise.smart']}
                 onClick={() => OpenUrl('https://www.ivi.tv/pages/tvsmart/')}
             />
         </div>

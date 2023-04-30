@@ -1,8 +1,11 @@
 import React, { FC, useEffect, useState }  from "react";
 import classes from './Button.module.scss'
 import { ButtonProps } from "../../../../types/types";
+import { useTranslation } from 'react-i18next';
 
 const Button:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, title, onClick }) => {
+    const { t, i18n } = useTranslation();
+
     const [btnClass, setBtnClass] = useState ('');
     const [svgClass, setSvgClass] = useState ('');
 
@@ -57,7 +60,7 @@ const Button:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, titl
                 {title.map(elem => <div 
                     key={elem}
                     className={classes.btn__text}
-                >{elem}</div>)}
+                >{t(elem)}</div>)}
             </div>} 
         </div>
     );

@@ -54,6 +54,7 @@
         line-height: 20px;
         &_bigButton{
             text-align: center;
+            transform: translateX(16px);
             color: $textColor;
         }
         &_copyrights{
