@@ -62,10 +62,19 @@
 		left: -890px;
 		position: absolute;
 
+		@media screen and (max-width: 1720px) {
+			left: -1000px
+		}
+
 		&-item {
-			opacity: 0.5;
+			opacity: 0.3;
 			transition-duration: 300ms;
 			padding-right: 16px;
+			width: 100%;
+
+			& img {
+				border-radius: 20px;
+			}
 
 			&_active {
 				opacity: 1;
@@ -97,9 +106,9 @@
 		z-index: 2;
 		cursor: pointer;
 
-		@media screen and (max-width: 820px) {
-			display: none;
-		}
+		//@media screen and (max-width: 820px) {
+		//	display: none;
+		//}
 
 		&_icon {
 			&:hover {

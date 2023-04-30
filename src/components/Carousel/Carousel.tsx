@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useRef, useMemo, Children, useCallback } from "react";
+import { FC, useEffect, useState, useRef, useMemo, Children, useCallback, PropsWithChildren, ReactNode } from "react";
 import './Carousel.scss'
 import Icons from "../Icons/Icons";
 
@@ -103,7 +103,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 			case 'main':
 				setScrollWidth(block.clientWidth);
 				setArrowClassName('carousel__prev-arrow_icon')
-				setTranslateX(childWidthRef.current.offsetWidth)
+				setTranslateX(childWidthRef.current.clientWidth)
 				break;
 		}
 	}, [])
@@ -206,9 +206,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 					{...variant === 'main'
 					&&
 					{
-						style: {
-							left: '15%'
-						}
+						style: { left: '10%' }
 					}
 					}
 				>
@@ -230,9 +228,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 						{...variant === 'main'
 						&&
 						{
-							style: {
-								right: '15%'
-							}
+							style: { right: '11%' }
 						}
 						}
 					>
