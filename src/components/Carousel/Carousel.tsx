@@ -79,7 +79,6 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 		}
 	}, [current, children, sliderItems])
 
-
 	useEffect(() => {
 		let block = el.current
 		setSliderItems(document.querySelectorAll('.carousel__slider-item'))
@@ -97,7 +96,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				break;
 
 			case 'tv':
-				setScrollWidth(block.clientWidth / 100 * 60);
+				setScrollWidth(500);
 				setArrowClassName('carousel__prev-arrow_icon arrow-sm')
 				break;
 			case 'main':
@@ -107,6 +106,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				break;
 		}
 	}, [])
+
 
 	// Для бесконечной прокрутки
 	useEffect(() => {
