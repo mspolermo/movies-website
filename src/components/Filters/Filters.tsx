@@ -14,8 +14,8 @@ import _ from 'lodash';
 import {activeFiltersProps, startFiltersProps} from "../../types/testCase";
 import TypeYear from "./FilterTypes/FilterYears/TypeYear";
 import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
-import {RatingRangeSlider} from "../RatingRangeSlider/RatingRangeSlider";
 import TypeRangeSlider from "./FilterTypes/FilterRating&Grade/TypeRangeSlider";
+import {useTranslation} from "react-i18next";
 
 
 // блоки для тестирования
@@ -45,6 +45,8 @@ const arrAllFilters = {
 
 //основной блок
 const Filters = () => {
+    const { t, i18n } = useTranslation();
+
     const [allFilters, setAllFilters] = useState<startFiltersProps>(arrAllFilters)
     const [selectedFilters, setSelectedFilters] = useState<activeFiltersProps>(_.cloneDeep(activeFilters))
     const [activeBlock, setActiveBlock] = useState('')
@@ -108,7 +110,7 @@ const Filters = () => {
                                          onClick={() => setActiveBlock('')}
                     ></div>}
 
-                    <FilterButton filterName='Жанры'
+                    <FilterButton filterName={t('filters.filterButton.genre')}
                                   selectedFiltersBy={selectedFilters.genres.join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='genre'
@@ -121,7 +123,7 @@ const Filters = () => {
                         />
                     </FilterButton>
 
-                    <FilterButton filterName='Страны'
+                    <FilterButton filterName={t('filters.filterButton.countries')}
                                   selectedFiltersBy={selectedFilters.countries.join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='country'
@@ -134,7 +136,7 @@ const Filters = () => {
                         />
                     </FilterButton>
 
-                    <FilterButton filterName='Год'
+                    <FilterButton filterName={t('filters.filterButton.years')}
                                   selectedFiltersBy={selectedFilters.years}
                                   activeBlock={activeBlock}
                                   blockName='years'
@@ -146,7 +148,7 @@ const Filters = () => {
                     </FilterButton>
 
 
-                    <FilterButton filterName='Рейтинг'
+                    <FilterButton filterName={t('filters.filterButton.rating')}
                                   selectedFiltersBy={selectedFilters.rating === 0 ? '' : selectedFilters.rating}
                                   activeBlock={activeBlock}
                                   blockName='rating'
@@ -155,7 +157,7 @@ const Filters = () => {
                                          blockName='rating'/>
                         </FilterButton>
 
-                    <FilterButton filterName='Количество оценок'
+                    <FilterButton filterName={t('filters.filterButton.grade')}
                                   selectedFiltersBy={selectedFilters.grade === 0 ? '' : selectedFilters.grade}
                                   activeBlock={activeBlock}
                                   blockName='grade'
@@ -164,7 +166,7 @@ const Filters = () => {
                                          blockName='grade'/>
                     </FilterButton>
 
-                    <FilterButton filterName='Режиссер'
+                    <FilterButton filterName={t('filters.filterButton.producer')}
                                   selectedFiltersBy={selectedFilters.producer}
                                   activeBlock={activeBlock}
                                   blockName='producer'
@@ -173,7 +175,7 @@ const Filters = () => {
                         />
                     </FilterButton>
 
-                    <FilterButton filterName='Актер'
+                    <FilterButton filterName={t('filters.filterButton.actor')}
                                   selectedFiltersBy={selectedFilters.actor}
                                   activeBlock={activeBlock}
                                   blockName='actor'

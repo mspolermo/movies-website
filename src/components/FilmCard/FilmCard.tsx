@@ -4,6 +4,7 @@ import similar from '../../static/img/filmcard/similar.svg'
 import like from '../../static/img/filmcard/notlike.svg'
 import notlikeTrue from '../../static/img/filmcard/notlike-true2.svg'
 import Icons from "../Icons/Icons";
+import {useTranslation} from "react-i18next";
 
 interface FilmCardProps {
     film: string;
@@ -11,6 +12,7 @@ interface FilmCardProps {
 }
 
 const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
+    const {t, i18n} = useTranslation();
     const [favorites, setFavorites] = useState(true);
     const [notlike, setNotlike] = useState(true);
     // let ratingArr = film.rating.toString().split('.')
@@ -38,7 +40,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                         <div className="filmcard__icons">
 
                             <div
-                                data-title='Смотреть позже'
+                                data-title={t('filmCard.data-title.watch')}
                                 className="filmcard__icons_style"
                                 onClick={() => setFavorites(prev => !prev)}>
 
@@ -49,19 +51,19 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                             </div>
 
                             <div className="filmcard__icons_style"
-                                 data-title='Похожее'
+                                 data-title={t('filmCard.data-title.similar')}
                             >
                                 <img src={similar} alt="" style={{width: 20.8}}/>
                             </div>
 
                             <div className="filmcard__icons_style"
-                                 data-title='Уже смотрел, оценить'
+                                 data-title={t('filmCard.data-title.already')}
                             >
                                 <Icons className='filmcard__icons_svg' name='grade-star' size='25.8'/>
                             </div>
 
                             <div
-                                data-title='Не нравится такое'
+                                data-title={t('filmCard.data-title.notLike')}
                                 className="filmcard__icons_style"
                                 onClick={() => setNotlike(prev => !prev)}
                             >
