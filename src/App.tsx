@@ -3,6 +3,7 @@ import Footer from './components/Footer/Footer';
 import'./styles/App.scss'
 import Filters from "./components/Filters/Filters";
 import Header from './components/Header/Header';
+import { Carousel } from './components/Carousel/Carousel';
 
 
 const  App = () => {
