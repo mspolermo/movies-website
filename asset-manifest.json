@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/movies-website/static/css/main.7f6a7749.css",
-    "main.js": "/movies-website/static/js/main.22d653b3.js",
+    "main.css": "/movies-website/static/css/main.7b2d3bf2.css",
+    "main.js": "/movies-website/static/js/main.65d5bd4c.js",
+    "static/media/film2.png": "/movies-website/static/media/film2.5db82486d317b0fe58f2.png",
     "static/media/IvyStyleSans-LightItalic.eot": "/movies-website/static/media/IvyStyleSans-LightItalic.fed5019bdac3f3fb6af9.eot",
     "static/media/IvyStyleSans-LightItalic.ttf": "/movies-website/static/media/IvyStyleSans-LightItalic.a0de5daa72b8ff9205ed.ttf",
     "static/media/IvyStyleSans-ThinItalic.eot": "/movies-website/static/media/IvyStyleSans-ThinItalic.c1c452c96fef4814189a.eot",
@@ -22,9 +23,11 @@
     "static/media/IvyStyleSans-SemiBold.ttf": "/movies-website/static/media/IvyStyleSans-SemiBold.2d23b6c69c57af1715c7.ttf",
     "static/media/IvyStyleSans-Bold.eot": "/movies-website/static/media/IvyStyleSans-Bold.43ac8873b0fccef7e4d2.eot",
     "static/media/IvyStyleSans-Bold.ttf": "/movies-website/static/media/IvyStyleSans-Bold.8d33b2053ef410cf7c18.ttf",
+    "static/media/film.png": "/movies-website/static/media/film.8ec366cc4259674e7acd.png",
     "static/media/IvyStyleSans-LightItalic.woff": "/movies-website/static/media/IvyStyleSans-LightItalic.8594c70b1e332a28710f.woff",
     "static/media/IvyStyleSans-Italic.woff": "/movies-website/static/media/IvyStyleSans-Italic.273ca5b4ae3cd68c8c3c.woff",
     "static/media/IvyStyleSans-SemiBoldItalic.woff": "/movies-website/static/media/IvyStyleSans-SemiBoldItalic.3cd2735932ac1b393494.woff",
+    "static/media/icons.svg": "/movies-website/static/media/icons.5fb72bf974bfc23cb81f156a1d1dce7b.svg",
     "static/media/IvyStyleSans-ThinItalic.woff": "/movies-website/static/media/IvyStyleSans-ThinItalic.cf1d259426d112bf90f1.woff",
     "static/media/IvyStyleSans-Light.woff": "/movies-website/static/media/IvyStyleSans-Light.d5aeefcf214ac43aee90.woff",
     "static/media/IvyStyleSans-BoldItalic.woff": "/movies-website/static/media/IvyStyleSans-BoldItalic.4d74df3470c40952cdc9.woff",
@@ -42,19 +45,13 @@
     "static/media/IvyStyleSans-ThinItalic.woff2": "/movies-website/static/media/IvyStyleSans-ThinItalic.f7a021fb968e1c497d1a.woff2",
     "static/media/IvyStyleSans-Bold.woff2": "/movies-website/static/media/IvyStyleSans-Bold.11d18679aadc6ff7fe89.woff2",
     "static/media/IvyStyleSans-Thin.woff2": "/movies-website/static/media/IvyStyleSans-Thin.cc553dfc4210029cf3b2.woff2",
-    "static/media/icons.svg": "/movies-website/static/media/icons.eb61de742fccdea973f26951bbeb194e.svg",
-    "static/media/similar.svg": "/movies-website/static/media/similar.7a5ff7982d0c635a580cc64ed7389c6c.svg",
-    "static/media/notlike-true2.svg": "/movies-website/static/media/notlike-true2.48268e56de4147dd10aeb6aa8a7fb2c8.svg",
-    "static/media/notlike.svg": "/movies-website/static/media/notlike.0b6e7ab8a739f5a8aea2b050e5f421dc.svg",
-    "static/media/favorites.svg": "/movies-website/static/media/favorites.b7dfbdaed20d2ddcee64c6484a380b4b.svg",
-    "static/media/star.svg": "/movies-website/static/media/star.302f73a6582bffc8dc09340fc774ce42.svg",
-    "static/media/favorites-true.svg": "/movies-website/static/media/favorites-true.151a03a13315daeabe5531fc3a29da7e.svg",
     "index.html": "/movies-website/index.html",
-    "main.7f6a7749.css.map": "/movies-website/static/css/main.7f6a7749.css.map",
-    "main.22d653b3.js.map": "/movies-website/static/js/main.22d653b3.js.map"
+    "static/media/getFetch.cjs": "/movies-website/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "main.7b2d3bf2.css.map": "/movies-website/static/css/main.7b2d3bf2.css.map",
+    "main.65d5bd4c.js.map": "/movies-website/static/js/main.65d5bd4c.js.map"
   },
   "entrypoints": [
-    "static/css/main.7f6a7749.css",
-    "static/js/main.22d653b3.js"
+    "static/css/main.7b2d3bf2.css",
+    "static/js/main.65d5bd4c.js"
   ]
 }
