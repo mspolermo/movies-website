@@ -4,6 +4,7 @@ import'./styles/App.scss'
 import Filters from "./components/Filters/Filters";
 import Header from './components/Header/Header';
 
+
 const  App = () => {
   return (
     <div>
@@ -13,9 +14,7 @@ const  App = () => {
         <div className="empty">
           <h1 className='heading'>Welcome to Movies-Website!</h1> 
         </div>
-          
       </div>
-
       <Footer />
     </div>
   );

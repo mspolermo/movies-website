@@ -4,7 +4,10 @@ import Button from "../UI/Buttons/Button/Button";
 import Icons from "../Icons/Icons";
 import OpenUrl from "../../hooks/OpenUrl";
 
+import { useTranslation } from 'react-i18next';
+
 const Footer = () => {
+    const { t, i18n } = useTranslation();
 
     const [btnPhoneStatus, setBtnPhoneStatus] = useState(false);
     function showPhoneNumber () {
@@ -31,71 +34,72 @@ const Footer = () => {
             <div className="container footer__container">
                 <div className="footer__content">
                     <div className="footer__column">
-                        <h3 className="footer__heading">О нас</h3>
+                        <h3 className="footer__heading">{t('footer.aboutUs')}</h3>
                         <ul className="footer__list">
                             <li className="footer__item">
                                 <a href="https://corp.ivi.ru/" className="footer__link">
-                                    <p className="footer__text">О компании</p>
+                                    <p className="footer__text">{t('footer.aboutCompany')}</p>
                                 </a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://corp.ivi.ru/career/#career-vacancy-block" className="footer__link">Вакансии</a>
+                                <a href="https://corp.ivi.ru/career/#career-vacancy-block" className="footer__link">{t('footer.vacancies')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/pages/beta" className="footer__link">Программа бета-тестирования</a>
+                                <a href="https://www.ivi.ru/pages/beta" className="footer__link">{t('footer.test')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/info/partners" className="footer__link">Информация для партнёров</a>
+                                <a href="https://www.ivi.ru/info/partners" className="footer__link">{t('footer.partners')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://corp.ivi.ru/advertisers/" className="footer__link">Размещение рекламы</a>
+                                <a href="https://corp.ivi.ru/advertisers/" className="footer__link">{t('footer.adv')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/info/agreement" className="footer__link">Пользовательское соглашение</a>
+                                <a href="https://www.ivi.ru/info/agreement" className="footer__link">{t('footer.usingTerms')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/info/confidential" className="footer__link">Политика конфиденциальности</a>
+                                <a href="https://www.ivi.ru/info/confidential" className="footer__link">{t('footer.confidential')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/info/goryachaya-liniya-komplaens" className="footer__link">Комплаенс</a>
+                                <a href="https://www.ivi.ru/info/goryachaya-liniya-komplaens" className="footer__link">{t('footer.compliance')}</a>
                             </li>
                         </ul>
                     </div>
                     <div className="footer__column">
-                        <h3 className="footer__heading">Разделы</h3>
+                        <h3 className="footer__heading">{t('footer.sections')}</h3>
                         <ul className="footer__list">
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/" className="footer__link">Мой Иви</a>
+                                <a href="https://www.ivi.ru/" className="footer__link">{t('footer.myIvi')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/new" className="footer__link">Что нового</a>
+                                <a href="https://www.ivi.ru/new" className="footer__link">{t('footer.new')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/movies" className="footer__link">Фильмы</a>
+                                <a href="https://www.ivi.ru/movies" className="footer__link">{t('footer.films')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/series" className="footer__link">Сериалы</a>
+                                <a href="https://www.ivi.ru/series" className="footer__link">{t('footer.series')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/animation" className="footer__link">Мультфильмы</a>
+                                <a href="https://www.ivi.ru/animation" className="footer__link">{t('footer.mults')}</a>
                             </li>
                             <li className="footer__item">
                                 <a href="https://www.ivi.ru/tvplus" className="footer__link">TV+</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/goodmovies" className="footer__link">Что посмотреть</a>
+                                <a href="https://www.ivi.ru/goodmovies" className="footer__link">{t('footer.see')}</a>
                             </li>
                         </ul>
                         <div className="footer__certificateLinkWrapper">
-                            <a href="https://www.ivi.ru/cert" className="footer__link footer__cretificateLink">Активация сертификата</a>
+                            <a href="https://www.ivi.ru/cert" className="footer__link footer__cretificateLink">{t('footer.sert')}</a>
                         </div>
                     </div>
                     <div className="footer__column">
-                        <h3 className="footer__heading">Служба поддержки</h3>
-                        <p className="footer__text">Мы всегда готовы вам&nbsp;помочь. Наши&nbsp;операторы онлайн 24/7</p>
+                        <h3 className="footer__heading">{t('footer.support')}</h3>
+                        <p className="footer__text">{t('footer.ready')}</p>
+                        <p className="footer__text">{t('footer.online')}</p>
                         <div className="footer__buttons">
                             <Button 
-                                title={['Написать в чате']}
+                                title={['button.footer.chat']}
                                 onClick={() => OpenUrl('https://www.ivi.ru/profile')}
                             />
                         </div>
@@ -119,14 +123,14 @@ const Footer = () => {
                             <a href="https://ask.ivi.ru/" className="footer__link">
                                 <p className="footer__text footer__text_additional">ask.ivi.ru</p>
                             </a>
-                            <p className="footer__text">Ответы на вопросы</p>    
+                            <p className="footer__text">{t('footer.answers')}</p>    
                         </div>
                     </div>
                     <a className="footer__column" href="https://www.ivi.ru/subscribe">
                         <div className="footer__bigButton">
                             <Icons name='mute' color='#fff' size='56'/>
                         </div>
-                        <p className="footer__text footer__text_bigButton">Смотрите фильмы, сериалы и мультфильмы без рекламы</p>
+                        <p className="footer__text footer__text_bigButton">{t('footer.info')}</p>
                     </a>
                 </div>
                 <div className="footer__content">
@@ -134,22 +138,22 @@ const Footer = () => {
                         <div className="footer__stores">
                             <Button 
                                 svg={<Icons name='apple' color='#fff' size='20'/>}
-                                title={["Загрузить в", 'App Store']}
+                                title={["button.footer.app", 'App Store']}
                                 onClick={() => OpenUrl('https://apps.apple.com/RU/app/id455705533?mt=8')}
                             />
                             <Button
                                 svg={<Icons name='google' color='#fff' size='20'/>}
-                                title={['Доступно в', 'Google Play']}
+                                title={['button.footer.gplay', 'Google Play']}
                                 onClick={() => OpenUrl('https://play.google.com/store/apps/details?id=ru.ivi.client')}
                             />
                             <Button 
                                 svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                                title={['Смотрите на', 'Smart TV']}
+                                title={['button.footer.smart', 'Smart TV']}
                                 onClick={() => OpenUrl('https://www.ivi.tv/pages/tvsmart/')}
                             />
                             <Button 
                                 svg={<Icons name='devices' color='#fff' size='22'/>}
-                                title={["Все устройства"]}
+                                title={["button.footer.all"]}
                                 onClick={() => OpenUrl('https://www.ivi.tv/devices')}
                             />
                         </div>
@@ -157,7 +161,7 @@ const Footer = () => {
                             <p className="footer__text_copyrights">
                                 <span>©&nbsp;</span>
                                 <span>2023</span>
-                                <span>&nbsp;ООО «Иви.ру»</span>
+                                <span>&nbsp;{t('footer.ivi')}</span>
                             </p>
                             <p className="footer__text footer__text_copyrights">HBO ® and related service marks are the property of Home Box Office, Inc</p>
                         </div>
@@ -208,15 +212,15 @@ const Footer = () => {
                 <ul className="footer__mobile-list">
                     <li className="footer__mobile-item" >
                         <Icons name="home" size='20' color="#a5a1b2"/>
-                        <h5 className="footer__mobile-heading">Мой Иви</h5>
+                        <h5 className="footer__mobile-heading">{t('footer.myIvi')}</h5>
                     </li>
                     <li className="footer__mobile-item">
                         <Icons name="devices" size='20' color="#a5a1b2" />
-                        <h5 className="footer__mobile-heading">Каталог</h5>
+                        <h5 className="footer__mobile-heading">{t('footer.catalog')}</h5>
                     </li>
                     <li className="footer__mobile-item">
                         <Icons name="search" size="20" color="#a5a1b2"/>
-                        <h5 className="footer__mobile-heading">Поиск</h5>
+                        <h5 className="footer__mobile-heading">{t('footer.search')}</h5>
                     </li>
                     <li className="footer__mobile-item">
                         <Icons name="tv" size='20' color="#a5a1b2" />
@@ -229,7 +233,7 @@ const Footer = () => {
                             <Icons name="circle-flooded" size='5' color="#a5a1b2" />       
                         </div>
                         
-                        <h5 className="footer__mobile-heading">Еще</h5>
+                        <h5 className="footer__mobile-heading">{t('footer.more')}</h5>
                     </li>
                 </ul>
             </div>
