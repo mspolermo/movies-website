@@ -12,7 +12,7 @@ interface Sorting {
 }
 
 const Sorting: FC<PropsWithChildren<Sorting>> = ({options, sortValue, setSortValue}) => {
-    const [active, setActive] = useState(true)
+    const [active, setActive] = useState(false)
 
     function changeSettings(option:string) {
         setActive(!active)
