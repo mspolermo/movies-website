@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import MoviesPage from "./components/Pages/MoviesPage/MoviesPage";
 import HeaderSearch from "./components/Header/HeaderSearch";
 import FilmCard from "./components/FilmCard/FilmCard";
+import { Carousel } from './components/Carousel/Carousel';
 
 
 const  App = () => {

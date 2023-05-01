@@ -245,5 +245,39 @@
             "ways": "Payment methods",
             "share": "Invite friends"
         }
+    },
+    "filters": {
+        "search": {
+            "placeholder": "Start typing"
+        },
+        "filterButton": {
+            "genre": "Genres",
+            "countries": "Countries",
+            "years": "Years",
+            "rating": "Rating",
+            "grade": "Estimates",
+            "producer": "Producer",
+            "actor": "Actor"
+        },
+        "btnReset": "Reset filters",
+        "filtersYears": {
+            "allYears": "All years"
+        }
+    },
+    "filmCard": {
+        "data-title": {
+            "watch": "Watch Later",
+            "similar": "Similar",
+            "already": "Already watched, evaluate",
+            "notLike": "Don't like this"
+        }
+    },
+    "sorting": {
+        "title": "Sort",
+        "sort": {
+            "popularity": "Popularity",
+            "rating": "Rating",
+            "novelty": "Novelty"
+        }
     }
 }

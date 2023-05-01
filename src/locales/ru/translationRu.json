@@ -245,5 +245,39 @@
             "ways": "Способы оплаты",
             "share": "Пригласить друзей"
         }
+    },
+    "filters": {
+        "search": {
+            "placeholderP": "Начните вводите"
+        },
+        "filterButton": {
+            "genre": "Жанры",
+            "countries": "Страны",
+            "years": "Годы",
+            "rating": "Рейтинг",
+            "grade": "Кол-во оценок",
+            "producer": "Режиссёр",
+            "actor": "Актер"
+        },
+        "btnReset": "Сбросить фильтры",
+        "filtersYears": {
+            "allYears": "Все годы"
+        }
+    },
+    "filmCard": {
+        "data-title": {
+            "watch": "Смотреть позже",
+            "similar": "Похожее",
+            "already": "Уже смотрел, оценить",
+            "notLike": "Не нравится такое"
+        }
+    },
+    "sorting": {
+        "title": "Сортировать",
+        "sort": {
+            "popularity": "По популярности",
+            "rating": "По рейтингу",
+            "novelty": "По новизне"
+        }
     }
 }

@@ -43,6 +43,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 	}, [])
 
 
+
 	const btnPressPrev = () => {
 		if (block !== undefined && block !== null) {
 

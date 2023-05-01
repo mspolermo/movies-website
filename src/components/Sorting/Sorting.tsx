@@ -2,8 +2,7 @@ import React, {FC, PropsWithChildren, useState} from 'react';
 import './Sorting.scss'
 import Icons from "../Icons/Icons";
 import CreateList from "../CreateList/CreateList";
-import MapperSorting from "../../types/MapperSorting";
-import _ from "lodash";
+import {useTranslation} from "react-i18next";
 
 interface Sorting {
     options: string[];
@@ -12,6 +11,7 @@ interface Sorting {
 }
 
 const Sorting: FC<PropsWithChildren<Sorting>> = ({options, sortValue, setSortValue}) => {
+    const {t, i18n} = useTranslation();
     const [active, setActive] = useState(false)
 
     function changeSettings(option:string) {
@@ -32,7 +32,7 @@ const Sorting: FC<PropsWithChildren<Sorting>> = ({options, sortValue, setSortVal
                         <div className="select__active">
                             <Icons className='select__icon-sorting' name='sorting' size='16'/>
                             <div className="select__title">
-                                {_.get(MapperSorting, sortValue)}
+                                {t(`sorting.sort.${sortValue}`)}
                             </div>
                             <Icons className={active ? 'select__arrow-up' : 'select__arrow-down'} name='chevron-down' size='20'/>
                         </div>
@@ -44,14 +44,14 @@ const Sorting: FC<PropsWithChildren<Sorting>> = ({options, sortValue, setSortVal
 
                             <div className="select__value">
                                 <div className="select__subtitle">
-                                    Сортировать
+                                    {t('sorting.title')}
                                 </div>
                                 <CreateList items={options} renderItem={(option: string) =>
                                     <div className={sortValue === option ? 'select__option-active': 'select__option'}
                                          key={option}
                                          onClick={() => changeSettings(option)}
                                     >
-                                        {_.get(MapperSorting, option)}
+                                        {t(`sorting.sort.${option}`)}
                                     </div>
                                 }/>
                             </div>

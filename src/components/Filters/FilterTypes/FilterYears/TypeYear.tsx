@@ -2,6 +2,7 @@ import React, {FC, PropsWithChildren} from 'react';
 import './TypeYear.scss'
 import CreateList from "../../../CreateList/CreateList";
 import Icons from "../../../Icons/Icons";
+import {useTranslation} from "react-i18next";
 
 interface TypeYearProps {
     allValues: string[];
@@ -9,10 +10,9 @@ interface TypeYearProps {
     handleChangeFilter: (item: string) => void;
 }
 
-//todo: Почему не выбираются фильтры?
-
 const TypeYear: FC<PropsWithChildren<TypeYearProps>> = ({allValues, selectValues, handleChangeFilter}) => {
-   let isActive = selectValues === ''
+    const {t, i18n} = useTranslation();
+    let isActive = selectValues === ''
 
     return (
         <div>
@@ -23,7 +23,7 @@ const TypeYear: FC<PropsWithChildren<TypeYearProps>> = ({allValues, selectValues
                          onClick={() => handleChangeFilter('')}
                     >
                         <div className={isActive ? 'FilterTypeYear__year_white' : 'FilterTypeYear__year selected-year'}>
-                            Все годы
+                            {t('filters.filtersYears.allYears')}
                             {isActive ?
                                 <Icons className='selected-year__circle-mark-checked' name='circle-checked' size='16'/> :
                                 <Icons className='selected-year__circle-mark' name='circle' size='16'/>

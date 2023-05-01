@@ -7,7 +7,7 @@ import Sorting from "../../Sorting/Sorting";
 const MoviesPage = () => {
     const [sortValue, setSortValue] = useState('popularity');
 
-    let sortOptions = ['popularity', 'by_rating', 'novelty']
+    let sortOptions = ['popularity', 'rating', 'novelty']
 
     // useEffect(() => {
     //     fetchMovies()
