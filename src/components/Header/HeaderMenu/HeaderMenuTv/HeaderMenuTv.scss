@@ -46,4 +46,137 @@
     &__slider {
         padding: 0 20px;
     }
+    &__sliderImg{
+        margin-right: 10px;
+        min-width: 100px ;
+        max-width: 100px;
+        min-height: 60px;
+        max-height: 60px;
+        border-radius: 5px;
+        cursor: pointer;
+        &_1 {
+            background: url('../../../../static/img/header/FederalChannelsLogo/1.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_russia1 {
+            background: url('../../../../static/img/header/FederalChannelsLogo/Rossia1.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_matchTv {
+            background: url('../../../../static/img/header/FederalChannelsLogo/MatchTv.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_Ntv {
+            background: url('../../../../static/img/header/FederalChannelsLogo/NTV.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_5ch{
+            background: url('../../../../static/img/header/FederalChannelsLogo/5channel.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_rossiaK {
+            background: url('../../../../static/img/header/FederalChannelsLogo/RossiaK.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_rossia24{
+            background: url('../../../../static/img/header/FederalChannelsLogo/Rossia24.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_karusel{
+            background: url('../../../../static/img/header/FederalChannelsLogo/Karusel.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_otr{
+            background: url('../../../../static/img/header/FederalChannelsLogo/OTR.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_tvc{
+            background: url('../../../../static/img/header/FederalChannelsLogo/TVC.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_renTv{
+            background: url('../../../../static/img/header/FederalChannelsLogo/rentv.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_spas{
+            background: url('../../../../static/img/header/FederalChannelsLogo/SPAS.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_sts{
+            background: url('../../../../static/img/header/FederalChannelsLogo/STS.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_domashniy{
+            background: url('../../../../static/img/header/FederalChannelsLogo/Domashniy.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_tv3{
+            background: url('../../../../static/img/header/FederalChannelsLogo/TV3.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_pyatnica{
+            background: url('../../../../static/img/header/FederalChannelsLogo/Pyatnica.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_zvezda{
+            background: url('../../../../static/img/header/FederalChannelsLogo/zvezda.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_mir{
+            background: url('../../../../static/img/header/FederalChannelsLogo/MIR.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_tnt{
+            background: url('../../../../static/img/header/FederalChannelsLogo/TNT.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_muz{
+            background: url('../../../../static/img/header/FederalChannelsLogo/Muz.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_matchPrem {
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchPremier.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_matchFootball{
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchFoorball.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_matchFootball2{
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchFoorball2.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_matchFootball3{
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchFoorball3.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_boetc {
+            background: url('../../../../static/img/header/SportChannelsLogo/Boetc.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_khl {
+            background: url('../../../../static/img/header/SportChannelsLogo/KHL.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_start {
+            background: url('../../../../static/img/header/SportChannelsLogo/Start.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_khl2{
+            background: url('../../../../static/img/header/SportChannelsLogo/KHL2.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_igra{
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchIgra.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_arena{
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchArena.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+        &_strana{
+            background: url('../../../../static/img/header/SportChannelsLogo/MatchStrana.jpg') no-repeat center center;
+            background-size: 100%;
+        }
+    }
 }

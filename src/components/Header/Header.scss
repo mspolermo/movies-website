@@ -143,7 +143,6 @@
     &__dropDownBody {
         margin: 0 auto;
 
-        //Исправить z-index, согласно Filters и footer-mobile
         z-index: 3;
         display: block;
 
@@ -266,7 +265,7 @@
     }
 }
 
-//Mobile version
+//Mobile versions
 @media (max-width: 1160px) {
     .header {
         &__headerMenu{
@@ -278,4 +277,16 @@
             }
         }
     }     
+}
+@media (max-width: 600px) {
+    .header {
+        &__btn-block{
+            &_notification{
+                display: none;
+            }
+            &_login{
+                display: none;
+            }
+        }
+    }
 }

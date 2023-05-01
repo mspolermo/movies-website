@@ -147,8 +147,7 @@ const Header = () => {
         <div className='header'>
             <LanguageChanger />
             <div className="header__body">
-                <div  className="container header__container" ref={ref} id='header-top'>
-                    
+                <div  className="container header__container" ref={ref} id='header-top'>                 
                     <div className="header__content">
                         <div className="header__block">
                             <div className="header__img">
