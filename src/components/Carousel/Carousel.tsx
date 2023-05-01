@@ -18,6 +18,8 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 
 	const [sliderItems, setSliderItems] = useState<any>([])
 	const [arrowClassName, setArrowClassName] = useState<string>()
+	const [x1, setX1] = useState<number | null>(null)
+	const [y1, setY1] = useState<number | null>(null)
 
 
 	const el = useRef<any>(null)
@@ -26,6 +28,33 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 	const childWidthRef = useRef<any>(null)
 
 	let block = el.current
+
+
+	const handleTouchStart = (e: any) => {
+		const firstTouch = e.touches[0]
+		setX1(firstTouch.clientX)
+		setY1(firstTouch.clientY)
+	}
+
+	const handleTouchMove = (e: any) => {
+		if (!x1 || !y1) {
+			return false
+		}
+		let x2 = e.touches[0].clientX
+		let y2 = e.touches[0].clientY
+		let xDiff = x2 - x1
+		let yDiff = y2 - y1
+		if (Math.abs(xDiff) > Math.abs(yDiff)) {
+			if (xDiff > 5) {
+				actionHandler('prev')
+			}
+			if (xDiff < -5) {
+				actionHandler('next')
+			}
+		}
+		setX1(null)
+		setY1(null)
+	}
 
 
 	const addActiveClass = (type: string) => {
@@ -97,7 +126,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				break;
 
 			case 'tv':
-				setScrollWidth(block.clientWidth / 100 * 60);
+				setScrollWidth(500);
 				setArrowClassName('carousel__prev-arrow_icon arrow-sm')
 				break;
 			case 'main':
@@ -110,7 +139,6 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 
 	// Для бесконечной прокрутки
 	useEffect(() => {
-
 		const transitionEnd = () => {
 			if (slider.current) {
 				if (current === 1 && block !== null) {
@@ -265,6 +293,8 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 						?
 						<div
 							className="carousel__slider"
+							onTouchStart={handleTouchStart}
+							onTouchMove={handleTouchMove}
 							ref={slider}
 							style={{ transform: `translate3d(${-translateX}px, 0, 0)` }}
 						>
