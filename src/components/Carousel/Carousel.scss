@@ -1,3 +1,5 @@
+@import '/src/styles/variables.scss';
+
 .carousel {
 	position: relative;
 	width: 100%;
@@ -7,14 +9,6 @@
 		display: flex;
 		left: calc((-80px + 1920px - 50vw) * -1);
 		position: absolute;
-
-		// @media screen and (max-width: 1720px) {
-		// 	left: calc(780px + (2810px - 63vw) * -1);
-		// }
-
-		// @media screen and (max-width: 900px) {
-		// 	left: -1500px
-		// }
 
 		&-item {
 			opacity: 0.3;
@@ -120,8 +114,8 @@
 
 		&_icon {
 			&:hover {
-				stroke: #fff;
-				fill: #fff;
+				stroke: $activeColor;
+				fill: $activeColor;
 			}
 
 			&:not(:hover) {
