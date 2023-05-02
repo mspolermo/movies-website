@@ -1,8 +1,6 @@
 @import "./src/styles/fonts";
 
-//todo: добавить flex и width сменить на проценты
 .filmcard {
-    max-width: 180px;
     font-family: iviSans, sans-serif;
     color: #D9D7E0;
     font-weight: 400;
@@ -15,6 +13,8 @@
         flex-direction: column;
         padding: 0 12px 24px 12px;
     }
+    &__content{
+    }
 
     &__poster {
         transition-duration: 0.4s;
@@ -24,9 +24,9 @@
 
     &__img {
         position: relative;
-
+        max-width: 100%;
         img {
-            width: 159px;
+            max-width: 100%;
             border-radius: 8px;
         }
 

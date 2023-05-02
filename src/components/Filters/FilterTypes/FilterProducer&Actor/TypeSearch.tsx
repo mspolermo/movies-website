@@ -30,7 +30,7 @@ const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter}
                 <div className="TypeSearch__content">
                     <Search result={searchResults}
                             renderResult={renderResult}
-                            placeholder={t('filters.search.placeholder')} cl={true}
+                            placeholder={t('filters.search.placeholder-small')} cl={true}
                             handleClear={() => handleChangeFilter('')}
                             searchQuery={searchQuery}
                             setSearchQuery={setSearchQuery}/>

@@ -1,13 +1,14 @@
+@import "../../FilmCard/filmcard";
+
 .MoviesPage{
     &__content{
         max-width: 1300px;
         margin: 0 auto;
-        padding: 0 30px;
         color: #FFFFFF;
     }
     &__path{}
     &__header{
-        padding: 32px 0 16px;
+        padding: 32px 12px 16px 12px;
     }
     &__title{
         font-size: 40px;
@@ -28,9 +29,68 @@
         height: 20px;
         display: flex;
         align-items: center;
+
+        padding: 0 12px;
     }
     &__filters{
         margin-top: 20px;
     }
-    &__listMovies{}
+    .listMovies {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 24px;
+        &__film-card{
+            flex: 0 1 14.285%;
+        }
+    }
+}
+
+@media (max-width: 1270px) {
+    .MoviesPage {
+        .listMovies {
+            &__film-card {
+                flex: 0 1 16.666%;
+            }
+        }
+    }
+}
+
+@media (max-width: 1095px) {
+    .MoviesPage {
+        .listMovies {
+            &__film-card {
+                flex: 0 1 20%;
+            }
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .MoviesPage {
+        .listMovies {
+            &__film-card {
+                flex: 0 1 25%;
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .MoviesPage {
+        .listMovies {
+            &__film-card {
+                flex: 0 1 33.333%;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .MoviesPage {
+        .listMovies {
+            &__film-card {
+                flex: 0 1 50%;
+            }
+        }
+    }
 }

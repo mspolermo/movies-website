@@ -3,6 +3,8 @@ import Filters from "../../Filters/Filters";
 import './MoviesPage.scss'
 import Icons from "../../Icons/Icons";
 import Sorting from "../../Sorting/Sorting";
+import CreateList from "../../CreateList/CreateList";
+import FilmCard from "../../FilmCard/FilmCard";
 
 const MoviesPage = () => {
     const [sortValue, setSortValue] = useState('popularity');
@@ -51,8 +53,22 @@ const MoviesPage = () => {
                     <div className="MoviesPage__filters">
                         <Filters/>
                     </div>
-                    <div className="MoviesPage__listMovies"></div>
+                    <div className="MoviesPage__listMovies listMovies">
+                        {/*<CreateList items={films} renderItem={(film:[{}]) =>*/}
+                        {/*    <FilmCard film={film} onClick={переход на страницу фильма}/>*/}
+                        {/*}/>*/}
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
+                        <div className="listMovies__film-card"><FilmCard/></div>
 
+                    </div>
                 </div>
             </div>
         </div>

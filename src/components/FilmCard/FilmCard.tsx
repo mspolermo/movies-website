@@ -16,6 +16,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
     const [favorites, setFavorites] = useState(true);
     const [notlike, setNotlike] = useState(true);
     // let ratingArr = film.rating.toString().split('.')
+    //ratingArr[0] + ',' + ratingArr[1]
 
     return (
         //ToDo: подгрузить данные из API

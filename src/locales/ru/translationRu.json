@@ -248,7 +248,7 @@
     },
     "filters": {
         "search": {
-            "placeholderP": "Начните вводите"
+            "placeholder-small": "Начните вводите"
         },
         "filterButton": {
             "genre": "Жанры",

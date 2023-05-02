@@ -248,7 +248,7 @@
     },
     "filters": {
         "search": {
-            "placeholder": "Start typing"
+            "placeholder-small": "Start typing"
         },
         "filterButton": {
             "genre": "Genres",
