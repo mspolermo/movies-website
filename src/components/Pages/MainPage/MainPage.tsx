@@ -3,6 +3,7 @@ import './MainPage.scss'
 import { Carousel } from "../../Carousel/Carousel";
 import Button from "../../UI/Buttons/Button/Button";
 import FilmCard from "../../FilmCard/FilmCard";
+import { TopWeekFilmCard } from "../../TopWeekCard/TopWeekFilmCard";
 
 interface IMainPageProps { };
 
@@ -18,6 +19,11 @@ export const MainPage: FC<IMainPageProps> = (props) => {
 				</Carousel>
 			</div>
 			<div className="container">
+
+
+
+
+
 				<div className="home__teaser-list">
 					<Button
 						onClick={() => { }}
@@ -29,6 +35,63 @@ export const MainPage: FC<IMainPageProps> = (props) => {
 					/>
 				</div>
 				<section className="pageSection home__pageSection">
+					<div className="pageSection__container">
+						<Carousel variant="cards">
+							<TopWeekFilmCard
+								url='https://thumbs.dfs.ivi.ru/storage15/contents/2/2/b73c42810f30fbd1a5fe65d2bebc38.jpg/304x620//?q=85'
+								titleUrl='https://thumbs.dfs.ivi.ru/storage9/contents/2/c/9f939aecb764dffa13d065ebf93208.png/x200/?q=85'
+								placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number1.svg'
+							/>
+							<TopWeekFilmCard
+								url='https://thumbs.dfs.ivi.ru/storage26/contents/9/8/b2c89d97f81efe2e16746be8d57cb5.jpg/304x620//?q=85'
+								titleUrl='https://thumbs.dfs.ivi.ru/storage15/contents/9/8/b62bd137fb90981fbd639a4f85cf8d.png/x200/?q=85'
+								placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number2.svg'
+							/>
+							<TopWeekFilmCard
+								url='https://thumbs.dfs.ivi.ru/storage28/contents/5/7/60a7c6ae7f39f90163a3e1b72a8173.jpg/304x620//?q=85'
+								titleUrl='https://thumbs.dfs.ivi.ru/storage33/contents/c/6/ebb1f750328adf266b9d867e6ce2d2.png/x200/?q=85'
+								placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number3.svg'
+							/>
+							<TopWeekFilmCard
+								url='https://thumbs.dfs.ivi.ru/storage6/contents/e/0/08c76a2df45108ec28af6300cc5b93.jpg/304x620//?q=85'
+								titleUrl='https://thumbs.dfs.ivi.ru/storage4/contents/b/3/826ab6a9a975f9919837f0d17ba642.png/x200/?q=85'
+								placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number4.svg'
+							/>
+							<TopWeekFilmCard
+								url='https://thumbs.dfs.ivi.ru/storage4/contents/2/d/e1c28af058ab48874c683e1b18dc72.jpg/304x620//?q=85'
+								titleUrl='https://thumbs.dfs.ivi.ru/storage2/contents/c/7/be1a52cb60150edb712932844bb0c8.png/x200/?q=85'
+								placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number5.svg'
+							/>
+							<TopWeekFilmCard
+								url=''
+								titleUrl=''
+								placeUrl=''
+							/>
+							<TopWeekFilmCard
+								url=''
+								titleUrl=''
+								placeUrl=''
+							/>
+							<TopWeekFilmCard
+								url=''
+								titleUrl=''
+								placeUrl=''
+							/>
+							<TopWeekFilmCard
+								url=''
+								titleUrl=''
+								placeUrl=''
+							/>
+							<TopWeekFilmCard
+								url=''
+								titleUrl=''
+								placeUrl=''
+							/>
+
+						</Carousel>
+
+
+					</div>
 					<div className="pageSection__container">
 						<div className="gallery">
 							<div className="gallery__blockHeader">
