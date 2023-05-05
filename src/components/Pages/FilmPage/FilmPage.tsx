@@ -9,6 +9,9 @@ import SummaryBlock from "./SummaryBlock/SummaryBlock";
 import CardsBlock from "./CardsBlock/CardsBlock";
 import DescriptionBlock from "./DescriptionBlock/DescriptionBlock";
 import AdditionalInfoBlock from "./AdditionalInfoBlock/AdditionalInfoBlock";
+import ReactPlayer from "react-player";
+
+
 
 const FilmPage = () => {
 
@@ -50,32 +53,48 @@ const FilmPage = () => {
         <div className="film">
             <div className="container film__container">
 
-            <div className="film__desktop"> 
-                <div className="film__column film__column_left">
-                    <div className="film__video">
-                    <video src={trailerUrl} width="600" height="300" controls={true} autoPlay={true} />
-                        {/* <iframe src={trailerUrl}
-                            allow='autoplay; encrypted-media'
-                            allowFullScreen
-                            title='video'
-                            width={'100%'}
-                            height={'100%'}
-                        /> */}
+                <div className="film__desktop"> 
+                    <div className="film__column film__column_left">
+                        <div className="film__video">
+                            <ReactPlayer
+                                url={trailerUrl}
+                                className = 'film__videoPlayer'
+                                width={'auto'}
+                                height={'auto'}
+                                controls
+                            />
+                        </div>
+                        <div className="film__buttonMenu ">
+                            <Button 
+                                title={['Трейлер']} 
+                                svg={<Icons name="play" size="30"/>}
+                            />
+                            <Button 
+                                svg={<Icons name="bookmark" size="30" className="film__svg_bookmark" strokeWidth="0"/>}
+                            />
+                            <Button 
+                                svg={<Icons name="upload" size="30" className="film__svg_upload"/>}
+                            />
+                        </div>
                     </div>
-                    <div className="film__buttonMenu ">
-                        <Button 
-                            title={['Трейлер']} 
-                            svg={<Icons name="play" size="30"/>}
+                    <div className="film__column film__column_right">
+                        <SummaryBlock 
+                            filmName={filmName}
+                            year={year}
+                            type={type}
+                            ageRating={ageRating}
+                            country={country}
+                            genres={genres}
+                            movieLength={movieLength}
                         />
-                        <Button 
-                            svg={<Icons name="bookmark" size="30" className="film__svg_bookmark" strokeWidth="0"/>}
-                        />
-                        <Button 
-                            svg={<Icons name="upload" size="30" className="film__svg_upload"/>}
-                        />
-                    </div>
+                        <CardsBlock ratingKp={ratingKp} creators={creators}/>
+                        <SloganBlock slogan={slogan} />
+                        <DescriptionBlock description={description} filmName={filmName}/>
+                        <ReitingBlock ratingKp={ratingKp} votesKP={votesKP}/>
+                    </div>    
                 </div>
-                <div className="film__column film__column_right">
+
+                <div className="film__tablet">
                     <SummaryBlock 
                         filmName={filmName}
                         year={year}
@@ -85,21 +104,77 @@ const FilmPage = () => {
                         genres={genres}
                         movieLength={movieLength}
                     />
+                    <div className="film__video">
+                        <ReactPlayer
+                            url={trailerUrl}
+                            className = 'film__videoPlayer'
+                            width={'auto'}
+                            height={'auto'}
+                            controls
+                        />
+                    </div>
+                    <div className="film__body">
+                        <div className="film__column film__column_left">
+                            <CardsBlock ratingKp={ratingKp} creators={creators}/>
+                            <DescriptionBlock description={description} filmName={filmName}/>
+                            <ReitingBlock ratingKp={ratingKp} votesKP={votesKP}/>
+                            <AdditionalInfoBlock />
+                        </div>  
+                        <div className="film__column film__column_right">
+                            <div className="film__buttonMenu ">
+                                <Button 
+                                    type="ultraWide"
+                                    title={['Трейлер']} 
+                                    svg={<Icons name="play" size="30"/>}
+                                />
+                                <div className="film__btns">
+                                    <div className="film__btn">
+                                        <Button
+                                            type="ultraWide"
+                                            svg={<Icons name="bookmark" size="30" className="film__svg_bookmark" strokeWidth="0"/>}
+                                        />
+                                    </div>
+                                    <div className="film__btn">
+                                        <Button 
+                                            type="ultraWide"
+                                            svg={<Icons name="upload" size="30" className="film__svg_upload"/>}
+                                        />
+                                    </div>    
+                                </div>
+                                
+                            </div>
+                            <SloganBlock slogan={slogan} />
+                        </div>   
+                    </div>            
+                </div>
+
+                <div className="film__mobile">
+                    <SummaryBlock 
+                        filmName={filmName}
+                        year={year}
+                        type={type}
+                        ageRating={ageRating}
+                        country={country}
+                        genres={genres}
+                        movieLength={movieLength}
+                    />
+                    <div className="film__video">
+                        <ReactPlayer
+                            url={trailerUrl}
+                            className = 'film__videoPlayer'
+                            width={'auto'}
+                            height={'auto'}
+                            controls
+                        />
+                    </div>
+                    <div className="film__buttonMenu"></div>
                     <CardsBlock ratingKp={ratingKp} creators={creators}/>
                     <SloganBlock slogan={slogan} />
                     <DescriptionBlock description={description} filmName={filmName}/>
                     <ReitingBlock ratingKp={ratingKp} votesKP={votesKP}/>
                     <AdditionalInfoBlock />
-                </div>    
-            </div>
-
-
-
-
+                </div>
                
-
-
-
                 <div className="film__inner">
                     <p className="film__smallHeading">С фильмом «{filmName}» смотрят</p>
                     <div className="film__shortly"></div>

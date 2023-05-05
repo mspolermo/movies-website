@@ -4,6 +4,7 @@
     margin-top: 20px;
     &__container {
     }
+
     &__desktop{
         display: flex;
         justify-content: space-between;
@@ -12,21 +13,48 @@
         display: flex;
         flex-direction: column;
         text-align: center;
+        &_left {
+            margin-right: 40px;
+            flex: 1 1 58%;
+        }
+        &_right {
+            flex: 2 0 40%;
+        }
     }
     &__video {
-        margin-right: 20px;
-            min-width: 719px;
-            min-height: 404px;  
+        position: relative;
+        width: 100%;
+        //height: auto;
+        margin: 20px auto;
+        background: #eee;
+        &::after {
+            content: '';
+            display: block;
+            padding-top: 50%; /*установите ваши пропорции, в данном случае квадрат*/
+          }
+    }
+    &__videoPlayer{
+        position: absolute;
+        background: #555;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
     &__buttonMenu {
         display: flex;
-        margin-top: 20px;
+    }
+    &__tablet {
+        display: none;
+    }
+    &__body {
+        display: none;
+    }
+    &__mobile {
+        display: none;
     }
     
-
-
-
-
+//Нижние блоки
     &__shortly{
         margin-bottom: 20px;
         height: 70px;
@@ -34,8 +62,9 @@
         background-color: aqua;
     }
     &__part {
-        display: flex;
-        justify-content: space-between;
+        display: none;
+        // display: flex;
+        // justify-content: space-between;
     }
     &__inner{
         display: flex;
@@ -61,10 +90,55 @@
 
 @media (max-width: 1160px) {
     .film {
+        &__desktop {
+            display: none;
+        }
+        &__tablet {
+            display: flex;
+            flex-direction: column;
+        }
+        &__body {
+            display: flex;
+            justify-content: space-between;
+        }
         &__column {
-            &_desktop {
-                display: none;
+            &_left {
+                margin-right: 20px;
+                flex: 1 1 70%;
             }
+            &_right {
+                flex: 2 0 30%;
+            }
+        }
+        &__buttonMenu{
+            flex-direction: column;
+            transform: translateX(12px);
+        }
+        &__btns {
+            margin-top: 12px;
+            margin-bottom: 100px;
+            width: 100% !important;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__btn {
+            flex: 1 1 50% !important;
+           
+        }
+    }
+}
+@media (max-width: 880px) {
+    .film {
+        &__tablet {
+            display: none;
+        }
+        &__mobile {
+            display: flex;
+            flex-direction: column;
+        }
+        &__video {
+            transform: translateX(-48px);
+            width: calc(100% + 96px);
         }
     }
 }
