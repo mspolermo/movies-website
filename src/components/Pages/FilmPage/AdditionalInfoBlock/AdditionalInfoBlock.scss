@@ -1,0 +1,36 @@
+@import '/src/styles/variables.scss';
+
+.additionalInfoBlock {
+    margin: 20px 0 40px;
+    display: none;
+    &__line {
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        &_additional {
+            border-top: 1px solid $splitLineColor;
+            border-bottom: 1px solid $splitLineColor;
+        }
+    }
+    &__text {
+        
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        font-style: normal;
+        color: $textColor;
+        
+    }
+    &__icons {
+        width: 180px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 1160px) {
+    .additionalInfoBlock {
+        display: flex;
+        flex-direction: column;
+    }
+}

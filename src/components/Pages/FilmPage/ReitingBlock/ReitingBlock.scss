@@ -1,0 +1,74 @@
+@import '/src/styles/variables.scss';
+
+.reitingBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255,255,255,.08);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    &__inner{
+        display: flex;
+    }
+    &__reiting{
+        margin-right: 10px;
+        width: 64px;
+        height: 64px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background-color: #73a32f;
+    }
+    &__count {
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 700;
+        font-style: normal;
+        height: 28px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: $activeColor;
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    &__heading {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        font-style: normal;
+        color: $headingColor;
+    }
+    &__text {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        font-style: normal;
+        color: $textColor;
+    }
+    &__btn {
+        display: flex;
+        height: 26px;
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 1160px) {
+    .reitingBlock {
+        &__reiting{
+            width: 48px;
+            height: 48px !important;
+        }
+        &__text {
+            &_reit {
+                display: none;
+            }
+        }
+    }
+}
