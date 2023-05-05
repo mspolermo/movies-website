@@ -8,12 +8,12 @@ const meta: Meta<typeof FilterTwoBlocks> = {
     argTypes: {
         popularValues: {
             description: 'Массив популярных значений фильтра',
-            options: []
+            options: [{}]
         },
 
         allValues: {
             description: 'Массив всех значений фильтра',
-            options: []
+            options: [{}]
         },
 
         selectValues: {
@@ -40,8 +40,14 @@ export const FilterBlocks: Story = {
         </div>
     ),
     args: {
-        popularValues: ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?',],
-        allValues: ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
+        popularValues: [{
+            nameRu: '',
+            nameEn:''
+        }],
+        allValues: [{
+            nameRu: '',
+            nameEn:''
+        }],
         selectValues: ['Не выходи', 'Ошибку'],
         handleChangeFilter: function (){}
     }

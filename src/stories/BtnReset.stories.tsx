@@ -32,9 +32,10 @@ export const BtnResetFilters: Story = {
     args: {
         selectedFilters: {
             'popularGenres': [],
+            'popularCountries': [],
             'genres': [],
             'countries': [],
-            'years': '',
+            'years': 0,
             'rating': 0,
             'grade': 0,
             'producer': '',

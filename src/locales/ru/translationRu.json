@@ -177,7 +177,7 @@
         }
     },
     "footer": {
-        "aboutUs":"О нас",
+        "aboutUs": "О нас",
         "aboutCompany": "О компании",
         "vacancies": "Вакансии",
         "test": "Программа бета-тестирования",
@@ -248,7 +248,7 @@
     },
     "filters": {
         "search": {
-            "placeholder-small": "Начните вводите"
+            "placeholder-small": "Начните вводить"
         },
         "filterButton": {
             "genre": "Жанры",
@@ -279,5 +279,19 @@
             "rating": "По рейтингу",
             "novelty": "По новизне"
         }
+    },
+    "moviesPage": {
+        "title": "Фильмы",
+        "filters-genre": "Все жанры",
+        "filters-countries": "Все страны",
+        "filters-year": "Все годы",
+        "btn": "Показать ещё"
+    },
+    "personPage": {
+        "filmography": "Полная фильмография",
+        "films": "Все",
+        "rating": "Рейтинг",
+        "btn-film": "Подробнее",
+        "btn-back": "Назад"
     }
 }

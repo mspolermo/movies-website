@@ -3,25 +3,28 @@ import './filmcard.scss'
 import similar from '../../static/img/filmcard/similar.svg'
 import like from '../../static/img/filmcard/notlike.svg'
 import notlikeTrue from '../../static/img/filmcard/notlike-true2.svg'
+import poster from '../../static/img/filmcard/poster.png'
 import Icons from "../Icons/Icons";
 import {useTranslation} from "react-i18next";
+import {FilmProps} from "../../types/testCase";
+import CreateEnd from "../UI/CreateEnding/CreateEnd";
+
 
 interface FilmCardProps {
-    film: string;
-    onClick: (film: string) => void;
+    film: FilmProps;
+    onClick: (film: FilmProps) => void;
 }
 
 const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
     const {t, i18n} = useTranslation();
     const [favorites, setFavorites] = useState(true);
     const [notlike, setNotlike] = useState(true);
-    // let ratingArr = film.rating.toString().split('.')
-    //ratingArr[0] + ',' + ratingArr[1]
+    let ratingArr = film.rating.toFixed(1).toString().split('.')
 
     return (
-        //ToDo: подгрузить данные из API
         <div
             className='filmcard'
+            key={film.key}
             onClick={() => onClick(film)}
         >
             <div className="filmcard__container">
@@ -29,12 +32,9 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                     <div className='filmcard__poster'>
                         <div className="filmcard__img">
                             <img
-                                src="https://thumbs.dfs.ivi.ru/storage15/contents/3/3/a116328d08b013933940887ad22985.jpg/234x360/?q=85"
+                                src={film.poster ? film.poster : poster}
                                 alt=""/>
                             <div className="filmcard__img_background"></div>
-                        </div>
-                        <div className="filmcard__img_fixed">
-                            12+
                         </div>
                     </div>
                     <div className='filmcard__properties'>
@@ -75,15 +75,17 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                         </div>
                         <div className="filmcard__properties_info">
                             <div className="filmcard__properties_rating">
-                                <div className="filmcard__properties_bigRating">8,</div>
-                                <div className="filmcard__properties_smallRating">2</div>
+                                <div className="filmcard__properties_bigRating">{ratingArr[0] + ','}</div>
+                                <div className="filmcard__properties_smallRating">{ratingArr[1]}</div>
                             </div>
-                            <div className="filmcard__properties_infoShort">Film.age, Film.country, Film.genre</div>
-                            <div className="filmcard__properties_infoTime">Film.duration Film.units</div>
+                            <div className="filmcard__properties_infoShort">{film.year}, США, Фэнтези</div>
+                            <div className="filmcard__properties_infoTime">
+                                <CreateEnd number={film.filmLength} wordOne='минута' wordTwo='минут' wordThree='минуты' wordEn='minutes'/>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="filmcard__name">Film.name</div>
+                <div className="filmcard__name">{i18n.language === 'en' && film.nameEn ? film.nameEn : film.nameRu}</div>
             </div>
         </div>
     );

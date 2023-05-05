@@ -26,6 +26,19 @@ const meta: Meta<typeof Carousel> = {
 export default meta;
 type Story = StoryObj<typeof Carousel>;
 
+const movie = {
+	'key': 1,
+	'nameRu': 'Властелин колец: Братство Кольца',
+	'nameEn': 'The Lord of the Rings: The Fellowship of the Ring',
+	'year': 2001,
+	'poster': 'https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/a2d5bcae-a1a9-442f-8195-f5373a5ba77f/360',
+	'rating': 8.6,
+	'filmLength': 178,
+	'countryRu': 'Новая Зеландия',
+	'countryEn': 'New Zealand',
+	'genreRu': 'фэнтези',
+	'genreEn': 'fantasy',
+}
 
 export const cards: Story = {
 	args: {
@@ -34,22 +47,22 @@ export const cards: Story = {
 	render: () => (
 		<div style={{ padding: '100px', backgroundColor: '#100e19' }}>
 			<Carousel variant='cards'>
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
-				<FilmCard film='film' onClick={() => console.log('film')} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
+				<FilmCard film={movie} onClick={() => console.log(movie)} />
 			</Carousel>
 		</div>
 	)

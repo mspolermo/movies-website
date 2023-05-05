@@ -279,5 +279,19 @@
             "rating": "Rating",
             "novelty": "Novelty"
         }
+    },
+    "moviesPage": {
+        "title": "Movies",
+        "filters-genre": "All genres",
+        "filters-countries": "All countries",
+        "filters-year": "All years",
+        "btn": "Show more"
+    },
+    "personPage": {
+        "filmography": "Full filmography",
+        "films": "All",
+        "rating": "Rating",
+        "btn-film": "More",
+        "btn-back": "Back"
     }
 }

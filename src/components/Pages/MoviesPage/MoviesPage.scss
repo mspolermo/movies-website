@@ -36,9 +36,11 @@
         margin-top: 20px;
     }
     .listMovies {
-        display: flex;
-        flex-wrap: wrap;
-        padding-top: 24px;
+        .filter-element{
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 24px;
+        }
         &__film-card{
             flex: 0 1 14.285%;
         }
@@ -94,3 +96,13 @@
         }
     }
 }
+
+@media (max-width: 600px) {
+    .MoviesPage {
+        &__title{
+            font-size: 28px;
+            line-height: 32px;
+        }
+    }
+}
+
