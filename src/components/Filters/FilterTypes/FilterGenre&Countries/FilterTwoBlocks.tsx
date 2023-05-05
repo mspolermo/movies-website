@@ -4,6 +4,7 @@ import './FilterTwoBlocks.scss'
 import Button from "../../../UI/Buttons/Button/Button";
 import Icons from "../../../Icons/Icons";
 import {Carousel} from "../../../Carousel/Carousel";
+import {useTranslation} from "react-i18next";
 
 //Функция будет принимать:
 // popularValues - список популярных фильмом/стран
@@ -14,9 +15,14 @@ import {Carousel} from "../../../Carousel/Carousel";
 
 //todo: добавить scroll к популярным
 
+interface Item {
+    nameRu: string,
+    nameEn?: string
+}
+
 interface FilterTwoBlocksProps {
-    popularValues: string[];
-    allValues: string[];
+    popularValues: Item[];
+    allValues: Item[];
     selectValues: string[];
     handleChangeFilter: (item: string) => void;
 }
@@ -30,16 +36,22 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
     }
 ) => {
 
+    const { t, i18n } = useTranslation();
+
+    function firstCharUp(str:any) {
+        return str.slice(0,1).toUpperCase() + str.slice(1)
+    }
+
     function createPopularValue() {
         return(
             <CreateList
-                items={popularValues} renderItem={(popular: string) =>
+                items={popularValues} renderItem={(popular: Item) =>
                 <Button
                     type='rounded'
-                    color={selectValues.includes(popular) ? 'purple' : 'transparent' }
-                    title={[popular]}
-                    key={popular}
-                    onClick={() => handleChangeFilter(popular)}
+                    color={selectValues.includes(popular.nameRu) ? 'purple' : 'transparent' }
+                    title={i18n.language === 'en' ? [firstCharUp(popular.nameEn) || firstCharUp(popular.nameRu)] : [firstCharUp(popular.nameRu)]}
+                    key={popular.nameRu}
+                    onClick={() => handleChangeFilter(popular.nameRu)}
                 />
             }/>
         )
@@ -62,14 +74,14 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                         </div>
                         <div className="filterTwoBlocks__list-container list-container">
                             {/*    list, который выводит весь список*/}
-                            <CreateList items={allValues} renderItem={(value: string) =>
-                                <div key={value}
-                                     className={selectValues.includes(value) ? 'list-container__text_white' : 'list-container__text element-text'}
-                                     onClick={() => handleChangeFilter(value)}
+                            <CreateList items={allValues} renderItem={(value: Item) =>
+                                <div key={value.nameRu}
+                                     className={selectValues.includes(value.nameRu) ? 'list-container__text_white' : 'list-container__text element-text'}
+                                     onClick={() => handleChangeFilter(value.nameRu)}
                                 >
-                                    {value}
+                                    {i18n.language === 'en' ? firstCharUp(value.nameEn) || firstCharUp(value.nameRu) : firstCharUp(value.nameRu)}
                                     <div
-                                        className={selectValues.includes(value) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
+                                        className={selectValues.includes(value.nameRu) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
                                         <Icons name='check' size='16'/>
                                     </div>
                                 </div>

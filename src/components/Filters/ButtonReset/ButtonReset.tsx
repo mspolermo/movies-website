@@ -1,7 +1,7 @@
 import React, {FC, PropsWithChildren} from 'react';
 import './buttonReset.scss'
 import _ from "lodash";
-import {activeFiltersProps} from "../../../types/testCase";
+import {activeFiltersProps, startFiltersProps} from "../../../types/testCase";
 import Icons from "../../Icons/Icons";
 import {useTranslation} from "react-i18next";
 

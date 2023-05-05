@@ -38,14 +38,6 @@
         cursor: pointer;
         display: flex;
 
-        &_style {
-            padding: 0 20px 12px 0;
-
-            &:hover {
-                color: #FFFFFF;
-            }
-        }
-
         &_active {
             color: #FFFFFF;
             padding-bottom: 12px;
