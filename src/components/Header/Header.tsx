@@ -15,6 +15,7 @@ import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
 
 import OpenUrl from "../../hooks/OpenUrl";
 import LanguageChanger from "./LanguageChanger/LanguageChanger";
+import HeaderSearch from "./HeaderSearch/HeaderSearch";
 
 const Header = () => {
     const { t, i18n } = useTranslation();
@@ -142,16 +143,40 @@ const Header = () => {
     };
 
     let width = `${GetElementWidth()}px`;
+
+    //Search button 
+
+    const searchSection = React.useRef() as React.MutableRefObject<HTMLDivElement>;
+
+    function OpenSearchSection () {
+        searchSection.current.classList.remove('header__search_hidden');
+    };
+    function CloseSearchSection () {
+        searchSection.current.classList.add('header__search_hidden');
+    };
     
     return (
         <div className='header'>
+            <div className="header__search header__search_hidden" ref={searchSection}>
+                <div className="header__close" onClick={CloseSearchSection}>
+                    <Icons className="" name="cross" size="30"/>    
+                </div>
+                <div className="header__modal"> 
+                    <h2 className="header__heading">Поиск</h2>
+                    <HeaderSearch />      
+                </div>
+            </div>
             <LanguageChanger />
             <div className="header__body">
                 <div  className="container header__container" ref={ref} id='header-top'>                 
                     <div className="header__content">
                         <div className="header__block">
                             <div className="header__img">
-                                <img src='https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg' alt="Логотип Иви" onClick={() => OpenUrl('https://www.ivi.ru/')}/>
+                                <img 
+                                    className="header__logo_ivi"
+                                    src='https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg' 
+                                    alt="Логотип Иви" 
+                                    onClick={() => OpenUrl('https://www.ivi.ru/')}/>
                             </div>
                             <div className="header__headerMenu">
                                 <nav className="headerMenu__navigation">
@@ -218,7 +243,7 @@ const Header = () => {
                                     onClick={() => OpenUrl('https://www.ivi.ru/subscribe')}
                                 />   
                             </div>
-                            <div className="header__btn-block header__btn-block_search">
+                            <div className="header__btn-block header__btn-block_search" onClick={OpenSearchSection}>
                                 <Icons className="header__svg header__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
                                 <p className="header__text">{t('header.search')}</p>
                             </div>

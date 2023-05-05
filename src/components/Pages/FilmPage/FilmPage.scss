@@ -1,0 +1,70 @@
+@import '/src/styles/variables.scss';
+
+.film {
+    margin-top: 20px;
+    &__container {
+    }
+    &__desktop{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__column {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    &__video {
+        margin-right: 20px;
+            min-width: 719px;
+            min-height: 404px;  
+    }
+    &__buttonMenu {
+        display: flex;
+        margin-top: 20px;
+    }
+    
+
+
+
+
+    &__shortly{
+        margin-bottom: 20px;
+        height: 70px;
+        width: 100%;
+        background-color: aqua;
+    }
+    &__part {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__inner{
+        display: flex;
+        flex-direction: column;
+    }
+    &__smallHeading {
+        margin: 10px 0;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 700;
+        font-style: normal;
+        color: $activeColor;
+    }
+    &__svg {
+        &_bookmark{
+            transform: translate(2px, 4px);
+        }
+        &_upload {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+@media (max-width: 1160px) {
+    .film {
+        &__column {
+            &_desktop {
+                display: none;
+            }
+        }
+    }
+}

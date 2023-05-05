@@ -1,0 +1,19 @@
+@import '/src/styles/variables.scss';
+
+.cardsBlock {
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow: hidden;
+    &__card{
+        flex: 1 0 20%;
+    }
+}
+@media (max-width: 1160px) {
+    .cardsBlock {
+        &__card{
+            flex: 1 0 15%;
+        }
+    }
+}

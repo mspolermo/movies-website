@@ -1,0 +1,85 @@
+@import '/src/styles/variables.scss';
+
+.descriptionBlock {
+    //align-self: flex-start;
+    &__hidden {
+        display: none !important;
+    }
+    &__short {
+        -webkit-line-clamp: 6; /* Число отображаемых строк */
+        display: -webkit-box; /* Включаем флексбоксы */
+        -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        overflow: hidden; 
+    }
+    &__text {
+        margin-bottom: 6px;
+        font-size: 15px;
+        line-height: 22px;
+        color: $textColor;
+        text-align: start;
+        &_active {
+            color: $activeColor;
+        }
+        &_gray {
+            color: gray;
+        }
+    }
+    &__block {
+        margin: 30px 0;
+        padding: 30px 0;
+        position: relative;
+        &:before {
+            content: '';
+            background-color: $splitLineColor;
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+        &:after {
+            content: '';
+            background-color: $splitLineColor;
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+    &__icons {
+        max-width: 180px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__btn {
+        padding: 10px 0;
+        font-size: 15px;
+        line-height: 22px;
+        text-align: start;
+        color: $textColor;
+        &_desktop {
+            display: block;
+        }
+        &_mobile {
+            display: none;
+        }
+        @include hover-colorAnim  ($activeColor, $textColor)
+        
+    }
+}
+@media (max-width:1160px) {
+    .descriptionBlock {
+        &__desktop{
+            display: none;
+        }
+        &__btn {
+            &_desktop {
+                display: none;
+            }
+            &_mobile {
+                display: block;
+            }
+        }
+    }
+}

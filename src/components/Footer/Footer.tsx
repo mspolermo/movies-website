@@ -232,7 +232,6 @@ const Footer = () => {
                             <Icons name="circle-flooded" size='5' color="#a5a1b2" className="footer__svg footer__svg_circle-center"/>   
                             <Icons name="circle-flooded" size='5' color="#a5a1b2" />       
                         </div>
-                        
                         <h5 className="footer__mobile-heading">{t('footer.more')}</h5>
                     </li>
                 </ul>

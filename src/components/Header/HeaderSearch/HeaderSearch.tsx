@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Search from "../UI/Inputs/Search/Search";
-import BigSearchResult from "../Search/BigSearchResult/BigSearchResult";
-import MapperIcons from "../../types/MapperIcons";
+import Search from "../../UI/Inputs/Search/Search";
+import BigSearchResult from "../../Search/BigSearchResult/BigSearchResult";
+import MapperIcons from "../../../types/MapperIcons";
 import _ from 'lodash'
 
 interface Result {
