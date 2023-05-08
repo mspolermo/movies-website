@@ -5,13 +5,14 @@ import Sorting from "../../Sorting/Sorting";
 import CreateList from "../../CreateList/CreateList";
 import FilmCard from "../../FilmCard/FilmCard";
 import {useTranslation} from "react-i18next";
-import {activeFiltersProps, FilmProps, startFiltersProps} from "../../../types/testCase";
+import {activeFiltersProps, FilmProps, startFiltersProps} from "../../../types/filtersTypes";
 import _ from "lodash";
 import axios from "axios";
 import Button from "../../UI/Buttons/Button/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import Icons from "../../Icons/Icons";
 import ButtonReset from "../../Filters/ButtonReset/ButtonReset";
+import {firstCharUp, languageFilters} from "./utils";
 
 const activeFilters = {
     'popularGenres': [],
@@ -150,10 +151,6 @@ const MoviesPage = () => {
 
     useEffect(() => {
         fetchMovies()
-    }, [page])
-
-    useEffect(() => {
-        fetchMovies()
         clearPage()
     }, [sortValue])
 
@@ -166,8 +163,11 @@ const MoviesPage = () => {
 
     useEffect(() => {
         fetchFilters()
-        addFilter()
     }, [])
+
+    useEffect(() => {
+        singleFilters()
+    }, [i18n.language])
 
     function singleFilters() {
         let filters: any[] = []
@@ -175,12 +175,30 @@ const MoviesPage = () => {
             setOneFilters(filters)
             return
         }
-        if (selectedFilters.genres.length === 1)
-            filters = filters.concat(selectedFilters.genres)
+        if (selectedFilters.genres.length === 1) {
+            let lang = allFilters.genres.find(genre => genre.nameEn === selectedFilters.genres[0])
+            if (lang) {
+                if(i18n.language === 'en'){
+                    filters = filters.concat(firstCharUp(lang.nameEn))
+                } else{
+                    filters = filters.concat(firstCharUp(lang.nameRu))
+                }
+            }
+        }
+
         if (selectedFilters.years)
             filters.push(selectedFilters.years)
-        if (selectedFilters.countries.length === 1)
-            filters = filters.concat(selectedFilters.countries)
+
+        if (selectedFilters.countries.length === 1) {
+            let lang = allFilters.countries.find(country => country.nameEn === selectedFilters.countries[0])
+            if (lang) {
+                if(i18n.language === 'en'){
+                    filters = filters.concat(lang.nameEn)
+                } else{
+                    filters = filters.concat(lang.nameRu)
+                }
+            }
+        }
 
         setOneFilters(filters)
     }
@@ -191,6 +209,7 @@ const MoviesPage = () => {
 
     function uploadFilms() {
         setPage(page + 1)
+        fetchMovies()
     }
 
     function Persons() {
@@ -201,19 +220,20 @@ const MoviesPage = () => {
     }
 
     async function fetchMovies() {
-
         const response = await axios.get('http://localhost:5000/films/', {
             params: {
                 perPage: limit,
                 page,
                 genres: selectedFilters.genres,
                 countries: selectedFilters.countries,
-                persons: persons,
+                // persons: persons,
                 minRatingKp: selectedFilters.rating,
                 minVotesKp: selectedFilters.grade,
                 sortBy: sortValue,
             }
         })
+
+        console.log(selectedFilters)
 
         // @ts-ignore
         const movies_ = response.data.map(item => {
@@ -239,28 +259,37 @@ const MoviesPage = () => {
             setMovies([...movies, ...movies_])
         }
     }
-
     async function fetchFilters() {
         const response = await axios.get('http://localhost:5000/filters')
 
-        setAllFilters({
+        let filters = {
             ...allFilters,
             genres: response.data.genres,
             // @ts-ignore
             countries: response.data.countries.map((item) => {return{nameRu: item.countryName, nameEn: item.countryName}}),
             years: response.data.years
-        })
+        }
+
+        setAllFilters(filters)
+
+        addFilter(filters)
     }
 
-    function addFilter() {
-        if (params.genres){
-            selectedFilters.genres.push(params.genres)
+    function addFilter(filters: startFiltersProps) {
+        if (params.genre){
+            let genreId = filters.genres.find(genre => genre.nameEn === params.genre)
+            if (genreId){
+                setSelectedFilters({...selectedFilters, genres: [genreId.nameEn]})
+            }
         }
+
         if (params.country){
-            selectedFilters.genres.push(params.country)
+            let addCountry = []
+            addCountry.push(params.country)
+            setSelectedFilters({...selectedFilters, countries: addCountry})
         }
         if (params.year){
-            selectedFilters.genres.push(params.year)
+            setSelectedFilters({...selectedFilters, years: Number(params.year)})
         }
     }
 
@@ -279,8 +308,8 @@ const MoviesPage = () => {
 
                         </div>
                         <div className="MoviesPage__subtitle">
-                            {!selectedFilters.genres.length ? (t('moviesPage.filters-genre') + ', ') : (selectedFilters.genres.join(', ') + ', ')}
-                            {!selectedFilters.countries.length ? (t('moviesPage.filters-countries') + ', ') : (selectedFilters.countries.join(', ') + ', ')}
+                            {!selectedFilters.genres.length ? (t('moviesPage.filters-genre') + ', ') : (languageFilters(selectedFilters.genres, allFilters.genres, i18n.language).join(', ') + ', ')}
+                            {!selectedFilters.countries.length ? (t('moviesPage.filters-countries') + ', ') : (languageFilters(selectedFilters.countries, allFilters.countries, i18n.language).join(', ') + ', ')}
                             {!selectedFilters.years ? t('moviesPage.filters-year') : selectedFilters.years}
                         </div>
                     </div>

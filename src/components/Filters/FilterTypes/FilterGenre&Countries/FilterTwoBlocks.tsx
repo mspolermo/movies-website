@@ -5,11 +5,8 @@ import Button from "../../../UI/Buttons/Button/Button";
 import Icons from "../../../Icons/Icons";
 import {Carousel} from "../../../Carousel/Carousel";
 import {useTranslation} from "react-i18next";
-
-interface Item {
-    nameRu: string,
-    nameEn: string
-}
+import {Item} from "../../../../types/filtersTypes";
+import {firstCharUp} from "../../../Pages/MoviesPage/utils";
 
 interface FilterTwoBlocksProps {
     popularValues: Item[];
@@ -26,12 +23,7 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
         handleChangeFilter,
     }
 ) => {
-
     const { t, i18n } = useTranslation();
-
-    function firstCharUp(str:any) {
-        return str.slice(0,1).toUpperCase() + str.slice(1)
-    }
 
     function createPopularValue() {
         return(
@@ -39,10 +31,10 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                 items={popularValues} renderItem={(popular: Item) =>
                 <Button
                     type='rounded'
-                    color={selectValues.includes(popular.nameRu) ? 'purple' : 'transparent' }
-                    title={i18n.language === 'en' ? [firstCharUp(popular.nameEn) || firstCharUp(popular.nameRu)] : [firstCharUp(popular.nameRu)]}
-                    key={popular.nameRu}
-                    onClick={() => handleChangeFilter(popular.nameRu)}
+                    color={selectValues.includes(popular.nameEn) ? 'purple' : 'transparent' }
+                    title={i18n.language === 'en' ? [firstCharUp(popular.nameEn)] : [firstCharUp(popular.nameRu)]}
+                    key={popular.nameEn}
+                    onClick={() => handleChangeFilter(popular.nameEn)}
                 />
             }/>
         )
@@ -56,7 +48,7 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                 <Button
                     type='rounded'
                     color={selectValues.includes(value.nameEn) ? 'purple' : 'transparent' }
-                    title={i18n.language === 'en' ? [firstCharUp(value.nameEn) || firstCharUp(value.nameRu)] : [firstCharUp(value.nameRu)]}
+                    title={i18n.language === 'en' ? [firstCharUp(value.nameEn)] : [firstCharUp(value.nameRu)]}
                     key={value.nameEn}
                     onClick={() => handleChangeFilter(value.nameEn)}
                 />
@@ -84,12 +76,12 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                             {/*    list, который выводит весь список*/}
                             <CreateList items={allValues} renderItem={(value: Item) =>
                                 <div key={value.nameRu}
-                                     className={selectValues.includes(value.nameRu) ? 'list-container__text_white' : 'list-container__text element-text'}
-                                     onClick={() => handleChangeFilter(value.nameRu)}
+                                     className={selectValues.includes(value.nameEn) ? 'list-container__text_white' : 'list-container__text element-text'}
+                                     onClick={() => handleChangeFilter(value.nameEn)}
                                 >
-                                    {i18n.language === 'en' ? firstCharUp(value.nameEn) || firstCharUp(value.nameRu) : firstCharUp(value.nameRu)}
+                                    {i18n.language === 'en' ? firstCharUp(value.nameEn) : firstCharUp(value.nameRu)}
                                     <div
-                                        className={selectValues.includes(value.nameRu) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
+                                        className={selectValues.includes(value.nameEn) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
                                         <Icons name='check' size='16'/>
                                     </div>
                                 </div>
