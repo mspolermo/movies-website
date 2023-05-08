@@ -4,7 +4,7 @@ import Icons from "../../../Icons/Icons";
 import QualityTag from "../../../UI/Tags/QualityTag/QualityTag";
 
 interface SummaryBlockProps {
-    filmName: string;
+    filmName: string
     year: number;
     movieLength: number;
     type: string;
@@ -16,7 +16,8 @@ interface SummaryBlockProps {
 const SummaryBlock:FC<SummaryBlockProps> = ({filmName, year, type, ageRating, country, genres, movieLength}) => {
     //ToDO: сделать линки на год, страну, жанры
 
-    let lengthHour = Math.round(movieLength/60)
+    
+    let lengthHour = Math.trunc(movieLength/60)
     let lengthMinutes = movieLength - lengthHour*60;
     let length = `${lengthHour}ч. ${lengthMinutes} мин.`
 

@@ -1,16 +1,36 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import './CardsBlock.scss'
 import Card from "../../../UI/Buttons/Card/Card";
 import { array } from "prop-types";
 
 interface CardsBlockProps {
-    ratingKp: number;
-    creators: string[][];
+    ratingKp: number,
+    creators: {
+        id: number,
+        photoUrl: string,
+        nameRu: string,
+        nameEn: string,
+        professions: [
+            {
+                id: number,
+                name: string,
+                PersonProfession: {
+                    "A": number,
+                    "B": number
+                }
+            }
+        ]
+    } []
 }
 
 const CardsBlock:FC<CardsBlockProps> = ({ratingKp, creators}) => {
-    let actors = creators;
-    actors.length = 5;
+   
+    const [actors, setActors] = useState(creators.slice(0,6));
+
+    useEffect( () => {
+        setActors(creators.slice(0,6))
+    },[creators])
+    
     return (
         <div className="cardsBlock">
             <div className="cardsBlock__card">
@@ -19,12 +39,12 @@ const CardsBlock:FC<CardsBlockProps> = ({ratingKp, creators}) => {
                     raitingKP={ratingKp}
                 />    
             </div>
-            {creators.map( actor => 
-                <div className="cardsBlock__card" key={actor[0]}>
+            {actors.map( actor => 
+                <div className="cardsBlock__card" key={actor?.id}>
                     <Card 
                         type="small"
-                        title={actor[0]}
-                        photoUrl={actor[2]}
+                        title={actor?.nameRu}
+                        photoUrl={actor?.photoUrl}
                     />
                 </div>
                 )}

@@ -3,7 +3,7 @@ import './SloganBlock.scss'
 import Icons from "../../../Icons/Icons";
 
 interface SloganBlockProps {
-    slogan: string;
+    slogan: string | undefined;
 }
 
 const SloganBlock:FC<SloganBlockProps> = ({slogan}) => {

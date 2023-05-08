@@ -137,6 +137,7 @@
             flex-direction: column;
         }
         &__video {
+            margin-bottom: 0;
             transform: translateX(-48px);
             width: calc(100% + 96px);
         }
