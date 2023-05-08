@@ -5,6 +5,10 @@
     min-width: 100%;
     padding-right: 10px;
 
+    &__mobile{
+        display: none;
+    }
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -49,5 +53,27 @@
         justify-content: space-between;
         height: 31px;
         color: #FFFFFF;
+    }
+}
+
+@media (max-width: 600px){
+    .FilterTypeYear{
+        position: relative;
+        padding-bottom: 10px;
+        &__content{
+            display: none;
+        }
+        &__mobile{
+            display: contents;
+        }
+        &__scroll{
+            display: flex;
+            .filter-element {
+                display: flex;
+                justify-content: flex-start;
+                flex: 0 0 auto;
+                transition: margin-left 250ms;
+            }
+        }
     }
 }

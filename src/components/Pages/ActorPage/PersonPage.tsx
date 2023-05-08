@@ -84,17 +84,19 @@ const PersonPage = () => {
                         {t('personPage.btn-back')}
                     </div>
 
-                    <PersonHeader person={person}/>
+                    <div className="actorPage__info">
+                        <PersonHeader person={person}/>
 
-                    <div className="actorPage__filmography">
-                        <Filmography movies={films.length}/>
-                        {/*todo: как будет готов эндпоинт с фильмами, проставить корректый navigate*/}
-
-                        <CreateList items={films} renderItem={(film: FilmographyProps) =>
-                            <ShortMovieCard film={film}
-                                            route={(film)  => navigate('/movies-website/film/' + film.key)}/>
-                        }/>
+                        <div className="actorPage__filmography">
+                            <Filmography movies={films.length}/>
+                            <CreateList items={films} renderItem={(film: FilmographyProps) =>
+                                <ShortMovieCard key={film.key}
+                                                film={film}
+                                                route={(film)  => navigate('/movies-website/films/' + film.key)}/>
+                            }/>
+                        </div>
                     </div>
+
 
                 </div>
             </div>

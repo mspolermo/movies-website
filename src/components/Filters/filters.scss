@@ -1,5 +1,5 @@
 .close_block {
-        background-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.5);
         width: 100vw;
         height: 300vh;
         top: -100vh;
@@ -51,3 +51,18 @@
     .filters {
         margin: 20px 0;}
 }
+
+@media (max-width: 600px){
+    .close_block{
+        display: none;
+    }
+    .filters{
+        &__content{
+            background-color: rgba(0, 0, 0, 0);
+        }
+        &__button{
+            display: none;
+        }
+    }
+}
+

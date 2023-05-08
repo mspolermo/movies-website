@@ -33,11 +33,38 @@ const ShortMovieCard: FC<PropsWithChildren<ShortMovieCardProps>> = ({film, route
                             <div className="specification__rating">
                                 {t('personPage.rating')}: {strRating}
                             </div>
+
                         </div>
                     </div>
                     <div className="shortMovieCard__button">
                         <Button title={[t('personPage.btn-film')]}
                                 onClick={()  => route(film)}
+                        />
+                    </div>
+
+                </div>
+            </div>
+
+            <div className="shortMovieCard__mobile">
+                <div className="shortMovieCard__poster">
+                    <img src={film.poster} alt=""/>
+                </div>
+
+                <div className="shortMovieCard__info">
+                    <div className="shortMovieCard__year">
+                        {film.year}
+                    </div>
+                    <div className="shortMovieCard__name">
+                        {i18n.language === 'en' && film.nameEn ? film.nameEn : film.nameRu}
+                    </div>
+                    <div className="shortMovieCard__rating">
+                        {t('personPage.rating')}: {strRating}
+                    </div>
+                    <div className="shortMovieCard__button">
+                        <Button
+                            type={'ultraWide'}
+                            title={[t('personPage.btn-film')]}
+                            onClick={()  => route(film)}
                         />
                     </div>
 

@@ -16,6 +16,9 @@
         border-radius: 10px;
         overflow: hidden;
     }
+    &__mobile{
+        display: none;
+    }
 
     .scrollpane {
         padding-bottom: 16px;
@@ -91,6 +94,31 @@
             column-count: 2;
             grid-template-columns: repeat(2, 1fr);
             cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 600px){
+    .filterTwoBlocks{
+        position: relative;
+        &__container{
+            display: none;
+        }
+        &__mobile{
+            display: contents;
+
+        }
+        .mobile-scroll{
+            padding-bottom: 16px;
+            &__viewport{
+                padding: 0 10px;
+            }
+            .filter-element {
+                display: flex;
+                justify-content: flex-start;
+                flex: 0 0 auto;
+                transition: margin-left 250ms;
+            }
         }
     }
 }
