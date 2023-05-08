@@ -17,10 +17,10 @@ const App = () => {
 
         <div>
             <Header/>
-            <FilmPage />
             <BrowserRouter>
                 <Routes>
                     <Route path={'/movies-website/person/:id'} element={<PersonPage/>}/>
+                    <Route path={'/movies-website/film/:id'} element={<FilmPage/>}/>
                     <Route path={'/movies-website/films/'} element={<MoviesPage/>}/>
                 </Routes>
             </BrowserRouter>

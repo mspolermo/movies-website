@@ -13,6 +13,7 @@ import ReactPlayer from "react-player";
 import PlayerPanel from "./PlayerPanel/PlayerPanel";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 
 interface FilmProps {
@@ -84,6 +85,7 @@ const Film = {
 
 const FilmPage = () => {
     const [film, setFilm] = useState<FilmProps>(Film)
+    const params = useParams()
 
     useEffect(() => {
         fetchFilm()
@@ -91,7 +93,7 @@ const FilmPage = () => {
 
 
     async function fetchFilm() {
-        const response = await axios.get('http://localhost:5000/film/154');
+        const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data;
 
         const film_ = {
