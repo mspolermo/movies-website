@@ -25,6 +25,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
     useEffect ( () => {
 
         switch (type) {
+            
             case 'small':
                 setCardClass(classes.card__small);
                 setBodyClass(classes.card__body_small);
@@ -35,7 +36,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
                 setCardClass(classes.card__reit);
                 setReiting((Math.round(raitingKP! * 10)/10));
                 setBodyClass(classes.card__body_small);
-                if (raitingKP! >= 8) {
+                if (reiting! >= 8) {
                     setGoodClass(classes.card__color_green)
                 };
                 break;
@@ -46,7 +47,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
                 setTitleArray(title!.split(' '));
             break;
         }
-    }, [type])
+    }, [type, raitingKP, reiting])
 
     return (
         <div 

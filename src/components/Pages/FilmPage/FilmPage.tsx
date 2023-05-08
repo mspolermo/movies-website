@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../UI/Buttons/Card/Card";
 import './FilmPage.scss'
 import Button from "../../UI/Buttons/Button/Button";
@@ -10,44 +10,124 @@ import CardsBlock from "./CardsBlock/CardsBlock";
 import DescriptionBlock from "./DescriptionBlock/DescriptionBlock";
 import AdditionalInfoBlock from "./AdditionalInfoBlock/AdditionalInfoBlock";
 import ReactPlayer from "react-player";
+import PlayerPanel from "./PlayerPanel/PlayerPanel";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 
+interface FilmProps {
+    id: number
+    trailerName: string, 
+    trailerUrl: string, 
+    ratingKp: number, 
+    votesKp: number,
+    movieLength: number,
+    filmNameRu: string,
+    filmNameEn: string,
+    description: string,
+    slogan: string,
+    bigPictureUrl: string,
+    smallPictureUrl: string,
+    year: number,
+    persons: {
+        id: number,
+        photoUrl: string,
+        nameRu: string,
+        nameEn: string,
+        professions: [{
+            id: number,
+            name: string,
+            PersonProfession: {
+                "A": number,
+                "B": number
+            }
+        }] 
+    } [],
+    countries: {
+        id: number,
+        countryName: string,
+        countryNameEn: string,
+        FilmCountry: {
+            "A": number,
+            "B": number
+        }
+    }[] ,
+    genres: {
+        id: number,
+        nameRu: string,
+        nameEn: string,
+        FilmGenre: {
+            "A": number,
+            "B": number
+        }
+    } []
+}
+
+const Film = {
+    id: 0,
+    trailerName: '', 
+    trailerUrl: '', 
+    ratingKp: 0, 
+    votesKp: 0,
+    movieLength: 0,
+    filmNameRu: '',
+    filmNameEn: '',
+    description: '',
+    slogan: '',
+    bigPictureUrl: '',
+    smallPictureUrl: '',
+    year: 0,
+    persons: [],
+    countries: [],
+    genres: []
+}
 
 const FilmPage = () => {
+    const [film, setFilm] = useState<FilmProps>(Film)
+    const params = useParams()
 
-    //exist data in db
-    let filmName = 'Форест Гамп';
-    let slogan = 'Мир уже никогда не будет прежним, после того как вы увидите его глазами Форреста Гампа';
-    let ratingKp = 8.918; //попросить округлять на бекенде
-    let votesKP = 812836;
-    let trailerUrl = 'https://www.youtube.com/embed/76WeEuR0qk4';
-    let description = 'Сидя на автобусной остановке, Форрест Гамп — не очень умный, но добрый и открытый парень — рассказывает случайным встречным историю своей необыкновенной жизни. С самого малолетства парень страдал от заболевания ног, соседские мальчишки дразнили его, но в один прекрасный день Форрест открыл в себе невероятные способности к бегу. Подруга детства Дженни всегда его поддерживала и защищала, но вскоре дороги их разошлись.';
-    let bigPictureUrl = 'https://st.kp.yandex.net/images/film_big/448.jpg';
-    let smallPictureUrl = 'https://st.kp.yandex.net/images/film_iphone/iphone360_448.jpg'
-    let year = 1994;
-    let movieLength = 142; 
+    useEffect(() => {
+        fetchFilm()
+    }, [])
+
+
+    async function fetchFilm() {
+        const response = await axios.get(`http://localhost:5000/film/${params.id}`);
+        let data = response.data;
+
+        const film_ = {
+            id: data.id,
+            trailerName: data.trailerName, 
+            trailerUrl: data.trailerUrl, 
+            ratingKp: data.ratingKp, 
+            votesKp: data.votesKp,
+            movieLength: data.movieLength,
+            filmNameRu: data.filmNameRu,
+            filmNameEn: data.filmNameEn,
+            description: data.description,
+            slogan: data.slogan,
+            bigPictureUrl: data.bigPictureUrl,
+            smallPictureUrl: data.smallPictureUrl,
+            year: data.year,
+            persons: data.persons,
+            countries: data.countries,
+            genres: data.genres
+        }
+
+        setFilm(film_)
+    }
+
     
+    //Todo - En version, загрушка для отстутствующих трейлеров
 
     //need data
     let type = 'Фильм';
     let ageRating = '16+';
     let country = 'США';
     let genres =['Драмы', 'Комедии', 'Мелодрамы'] //не больше 3
-    let creators = [
-        ["Юлия Пересильд", 'актёр', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_1537279.jpg'],
-        ['Донни Йен', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg'],
-        ['Киану Ривз', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_7836.jpg'],
-        ['Хироюки Санада', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg'],
-        ['Иэн Бартоломью', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_56856.jpg'],
-        ['Кэри Элвес', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_23722.jpg'],
-        ['Тим Сейфи', 'режисер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_229308.jpg'],
-        ['Аксель Устун', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_3057622.jpg'],
-        ['Доган Барыш Яшар', 'монтажер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_5934832.jpg'],
-        ['Винсент Ван', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_29870.jpg'],
-        ['Александр Андрющенко', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_2003892.jpg'],
-        ['Денис Баглай', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_6009923.jpg'],
-        ['Рёсукэ Цуда', 'актер', 'https://st.kp.yandex.net/images/actor_iphone/iphone360_5251631.jpg']
-    ]
+    //Возможно-ли блок persons сортировать на бекенде, чтобы приходящие 5 первых записей были главные роли?
+    //Должны сразу приходить отзывы к фильму
 
     return (
         <div className="film">
@@ -57,7 +137,7 @@ const FilmPage = () => {
                     <div className="film__column film__column_left">
                         <div className="film__video">
                             <ReactPlayer
-                                url={trailerUrl}
+                                url={film.trailerUrl}
                                 className = 'film__videoPlayer'
                                 width={'auto'}
                                 height={'auto'}
@@ -79,34 +159,34 @@ const FilmPage = () => {
                     </div>
                     <div className="film__column film__column_right">
                         <SummaryBlock 
-                            filmName={filmName}
-                            year={year}
+                            filmName={film.filmNameRu}
+                            year={film.year}
                             type={type}
                             ageRating={ageRating}
                             country={country}
                             genres={genres}
-                            movieLength={movieLength}
+                            movieLength={film.movieLength}
                         />
-                        <CardsBlock ratingKp={ratingKp} creators={creators}/>
-                        <SloganBlock slogan={slogan} />
-                        <DescriptionBlock description={description} filmName={filmName}/>
-                        <ReitingBlock ratingKp={ratingKp} votesKP={votesKP}/>
+                        <CardsBlock ratingKp={film.ratingKp} creators={film.persons}/>
+                        <SloganBlock slogan={film?.slogan} />
+                        <DescriptionBlock description={film?.description} filmName={film?.filmNameRu}/>
+                        <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
                     </div>    
                 </div>
 
                 <div className="film__tablet">
                     <SummaryBlock 
-                        filmName={filmName}
-                        year={year}
+                        filmName={film?.filmNameRu}
+                        year={film?.year}
                         type={type}
                         ageRating={ageRating}
                         country={country}
                         genres={genres}
-                        movieLength={movieLength}
+                        movieLength={film?.movieLength}
                     />
                     <div className="film__video">
                         <ReactPlayer
-                            url={trailerUrl}
+                            url={film?.trailerUrl}
                             className = 'film__videoPlayer'
                             width={'auto'}
                             height={'auto'}
@@ -115,9 +195,9 @@ const FilmPage = () => {
                     </div>
                     <div className="film__body">
                         <div className="film__column film__column_left">
-                            <CardsBlock ratingKp={ratingKp} creators={creators}/>
-                            <DescriptionBlock description={description} filmName={filmName}/>
-                            <ReitingBlock ratingKp={ratingKp} votesKP={votesKP}/>
+                            <CardsBlock ratingKp={film?.ratingKp} creators={film.persons}/>
+                            <DescriptionBlock description={film?.description} filmName={film?.filmNameRu}/>
+                            <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
                             <AdditionalInfoBlock />
                         </div>  
                         <div className="film__column film__column_right">
@@ -143,40 +223,40 @@ const FilmPage = () => {
                                 </div>
                                 
                             </div>
-                            <SloganBlock slogan={slogan} />
+                            <SloganBlock slogan={film?.slogan} />
                         </div>   
                     </div>            
                 </div>
 
                 <div className="film__mobile">
                     <SummaryBlock 
-                        filmName={filmName}
-                        year={year}
+                        filmName={film?.filmNameRu}
+                        year={film?.year}
                         type={type}
                         ageRating={ageRating}
                         country={country}
                         genres={genres}
-                        movieLength={movieLength}
+                        movieLength={film?.movieLength}
                     />
                     <div className="film__video">
                         <ReactPlayer
-                            url={trailerUrl}
+                            url={film?.trailerUrl}
                             className = 'film__videoPlayer'
                             width={'auto'}
                             height={'auto'}
                             controls
                         />
                     </div>
-                    <div className="film__buttonMenu"></div>
-                    <CardsBlock ratingKp={ratingKp} creators={creators}/>
-                    <SloganBlock slogan={slogan} />
-                    <DescriptionBlock description={description} filmName={filmName}/>
-                    <ReitingBlock ratingKp={ratingKp} votesKP={votesKP}/>
+                    <PlayerPanel />
+                    <CardsBlock ratingKp={film?.ratingKp} creators={film.persons}/>
+                    <SloganBlock slogan={film?.slogan} />
+                    <DescriptionBlock description={film?.description} filmName={film?.filmNameRu}/>
+                    <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
                     <AdditionalInfoBlock />
                 </div>
                
                 <div className="film__inner">
-                    <p className="film__smallHeading">С фильмом «{filmName}» смотрят</p>
+                    <p className="film__smallHeading">С фильмом «{film?.filmNameRu}» смотрят</p>
                     <div className="film__shortly"></div>
                 </div>
                 <div className="film__inner">
@@ -255,7 +335,7 @@ const FilmPage = () => {
                     <div className="film__shortly"></div>
                 </div>
                 <div className="film__inner">
-                    <p className="film__smallHeading">Cмотреть «{filmName}» на всех устройствах</p>
+                    <p className="film__smallHeading">Cмотреть «{film?.filmNameRu}» на всех устройствах</p>
                     <div className="film__shortly"></div>
                 </div>
             </div>
