@@ -5,14 +5,14 @@ import Icons from "../../../Icons/Icons";
 import {useTranslation} from "react-i18next";
 
 interface TypeYearProps {
-    allValues: string[];
-    selectValues: string;
-    handleChangeFilter: (item: string) => void;
+    allValues: number[];
+    selectValues: number;
+    handleChangeFilter: (item: number) => void;
 }
 
 const TypeYear: FC<PropsWithChildren<TypeYearProps>> = ({allValues, selectValues, handleChangeFilter}) => {
     const {t, i18n} = useTranslation();
-    let isActive = selectValues === ''
+    let isActive = selectValues === 0
 
     return (
         <div>
@@ -20,7 +20,7 @@ const TypeYear: FC<PropsWithChildren<TypeYearProps>> = ({allValues, selectValues
                 <div className="FilterTypeYear__content">
 
                     <div className="FilterTypeYear__selectAll"
-                         onClick={() => handleChangeFilter('')}
+                         onClick={() => handleChangeFilter(0)}
                     >
                         <div className={isActive ? 'FilterTypeYear__year_white' : 'FilterTypeYear__year selected-year'}>
                             {t('filters.filtersYears.allYears')}
@@ -30,13 +30,13 @@ const TypeYear: FC<PropsWithChildren<TypeYearProps>> = ({allValues, selectValues
                             }
                         </div>
                     </div>
-                    <CreateList items={allValues} renderItem={(year: string) =>
+                    <CreateList items={allValues} renderItem={(year: number) =>
                         <div key={year}
-                             className={selectValues.includes(year) ? 'FilterTypeYear__year_white' : 'FilterTypeYear__year selected-year'}
+                             className={selectValues === year ? 'FilterTypeYear__year_white' : 'FilterTypeYear__year selected-year'}
                              onClick={() => handleChangeFilter(year)}
                         >
                             {year}
-                            {selectValues.includes(year) ?
+                            {selectValues === year ?
                                 <Icons className='selected-year__circle-mark-checked' name='circle-checked' size='16'/> :
                                 <Icons className='selected-year__circle-mark' name='circle' size='16'/>
                             }

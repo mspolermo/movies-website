@@ -1,17 +1,18 @@
 import React, {FC, PropsWithChildren} from 'react';
 import Button from "../../../UI/Buttons/Button/Button";
 import './ShortMovieCard.scss'
+import {FilmographyProps} from "../../../../types/testCase";
+import {useTranslation} from "react-i18next";
 
 interface ShortMovieCardProps{
-    'poster': string,
-    'filmName': string,
-    'year': number,
-    'rating': number
+    film: FilmographyProps,
+    route: (film: FilmographyProps) => void
 }
 
-const ShortMovieCard: FC<PropsWithChildren<ShortMovieCardProps>> = ({poster, filmName, year, rating}) => {
+const ShortMovieCard: FC<PropsWithChildren<ShortMovieCardProps>> = ({film, route}) => {
+    const {t, i18n} = useTranslation();
 
-    let strRating = rating.toString().replace('.', ',')
+    let strRating = film.rating.toString().replace('.', ',')
 
     return (
         <div className="shortMovieCard">
@@ -20,22 +21,23 @@ const ShortMovieCard: FC<PropsWithChildren<ShortMovieCardProps>> = ({poster, fil
 
                     <div className="shortMovieCard__movie">
                         <div className="shortMovieCard__poster">
-                            <img src={poster} alt=""/>
+                            <img src={film.poster} alt=""/>
                         </div>
                         <div className="shortMovieCard__specification specification">
                             <div className="specification__year">
-                                {year}
+                                {film.year}
                             </div>
                             <div className="specification__name">
-                                {filmName}
+                                {i18n.language === 'en' && film.nameEn ? film.nameEn : film.nameRu}
                             </div>
                             <div className="specification__rating">
-                                Рейтинг Иви: {strRating}
+                                {t('personPage.rating')}: {strRating}
                             </div>
                         </div>
                     </div>
                     <div className="shortMovieCard__button">
-                        <Button title={['Подробнее']}
+                        <Button title={[t('personPage.btn-film')]}
+                                onClick={()  => route(film)}
                         />
                     </div>
 
