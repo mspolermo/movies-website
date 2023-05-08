@@ -6,7 +6,7 @@ import notlikeTrue from '../../static/img/filmcard/notlike-true2.svg'
 import poster from '../../static/img/filmcard/poster.png'
 import Icons from "../Icons/Icons";
 import {useTranslation} from "react-i18next";
-import {FilmProps} from "../../types/testCase";
+import {FilmProps} from "../../types/filtersTypes";
 import CreateEnd from "../UI/CreateEnding/CreateEnd";
 
 
@@ -78,9 +78,11 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
                                 <div className="filmcard__properties_bigRating">{ratingArr[0] + ','}</div>
                                 <div className="filmcard__properties_smallRating">{ratingArr[1]}</div>
                             </div>
-                            <div className="filmcard__properties_infoShort">{film.year}, США, Фэнтези</div>
+                            <div className="filmcard__properties_infoShort">{film.year ? (film.year + ', ') : ''}США, Фэнтези</div>
                             <div className="filmcard__properties_infoTime">
-                                <CreateEnd number={film.filmLength} wordOne='минута' wordTwo='минут' wordThree='минуты' wordEn='minutes'/>
+                                {film.filmLength &&
+                                    <CreateEnd number={film.filmLength} wordOne='минута' wordTwo='минут' wordThree='минуты' wordEn='minutes'/>
+                                }
                             </div>
                         </div>
                     </div>
