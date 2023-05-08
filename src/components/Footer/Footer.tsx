@@ -5,9 +5,11 @@ import Icons from "../Icons/Icons";
 import OpenUrl from "../../hooks/OpenUrl";
 
 import { useTranslation } from 'react-i18next';
+import {useNavigate} from "react-router-dom";
 
 const Footer = () => {
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
 
     const [btnPhoneStatus, setBtnPhoneStatus] = useState(false);
     function showPhoneNumber () {
@@ -74,7 +76,11 @@ const Footer = () => {
                                 <a href="https://www.ivi.ru/new" className="footer__link">{t('footer.new')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/movies" className="footer__link">{t('footer.films')}</a>
+                                <div className="footer__link"
+                                     onClick={() => navigate('/movies-website/films/')}
+                                >
+                                    {t('footer.films')}
+                                </div>
                             </li>
                             <li className="footer__item">
                                 <a href="https://www.ivi.ru/series" className="footer__link">{t('footer.series')}</a>

@@ -39,7 +39,7 @@ export const NotActive: Story = {
     args: {
         filterName: 'Жанр',
         selectedFiltersBy: '',
-        activeBlock: '',
+        activeBlock: [],
         blockName: 'genre',
         setActiveBlock: function (){}
     }
@@ -50,7 +50,7 @@ export const IsActive: Story = {
     args: {
         filterName: 'Жанр',
         selectedFiltersBy: '',
-        activeBlock: 'genre',
+        activeBlock: ['genre'],
         blockName: 'genre',
         setActiveBlock: function (){}
     }

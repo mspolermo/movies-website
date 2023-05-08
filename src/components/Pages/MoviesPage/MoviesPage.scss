@@ -1,28 +1,38 @@
 @import "../../FilmCard/filmcard";
 
-.MoviesPage{
-    &__content{
+.MoviesPage {
+    &__mobile {
+        display: none;
+    }
+
+    &__content {
         max-width: 1300px;
         margin: 0 auto;
         color: #FFFFFF;
     }
-    &__path{}
-    &__header{
+
+    &__path {
+    }
+
+    &__header {
         padding: 32px 12px 16px 12px;
     }
-    &__title{
+
+    &__title {
         font-size: 40px;
         line-height: 44px;
         font-weight: 700;
     }
-    &__subtitle{
+
+    &__subtitle {
         margin-top: 8px;
         color: #a5a1b2;
         font-size: 15px;
         line-height: 20px;
         font-weight: 400;
     }
-    &__sorting{
+
+    &__sorting {
         font-size: 15px;
         line-height: 20px;
         font-weight: 500;
@@ -32,16 +42,19 @@
 
         padding: 0 12px;
     }
-    &__filters{
+
+    &__filters {
         margin-top: 20px;
     }
+
     .listMovies {
-        .filter-element{
+        .filter-element {
             display: flex;
             flex-wrap: wrap;
             padding-top: 24px;
         }
-        &__film-card{
+
+        &__film-card {
             flex: 0 1 14.285%;
         }
     }
@@ -52,6 +65,7 @@
         .listMovies {
             &__film-card {
                 flex: 0 1 16.666%;
+                margin-right: -8px;
             }
         }
     }
@@ -62,6 +76,7 @@
         .listMovies {
             &__film-card {
                 flex: 0 1 20%;
+                margin-right: -8px;
             }
         }
     }
@@ -72,6 +87,7 @@
         .listMovies {
             &__film-card {
                 flex: 0 1 25%;
+                margin-right: -8px;
             }
         }
     }
@@ -82,16 +98,18 @@
         .listMovies {
             &__film-card {
                 flex: 0 1 33.333%;
+                margin-right: -8px;
             }
         }
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 375px) {
     .MoviesPage {
         .listMovies {
             &__film-card {
                 flex: 0 1 50%;
+                margin-right: -8px;
             }
         }
     }
@@ -99,9 +117,101 @@
 
 @media (max-width: 600px) {
     .MoviesPage {
-        &__title{
-            font-size: 28px;
-            line-height: 32px;
+        &__container {
+            display: none;
+        }
+
+        &__mobile {
+            display: contents;
+            position: relative;
+            color: #FFFFFF;
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 700;
+        }
+
+        &__header {
+            background-color: #1f1b2e;
+            padding: 32px 0 12px 20px;
+            margin-bottom: 12px;
+        }
+
+        &__title {
+            font-size: 24px;
+            line-height: 28px;
+            font-weight: 900;
+        }
+
+        &__subtitle {
+            margin: 8px 0;
+        }
+
+        &__mobile-content {
+            padding: 0 8px 0 12px;
+
+        }
+
+        &__sorting {
+            margin-top: 24px;
+        }
+
+        &__filters {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+
+            &_btn {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 0 20px 20px 30px;
+            }
+
+            &_title {
+                font-size: 24px;
+                line-height: 28px;
+                font-weight: 900;
+                margin: 60px 0 40px 24px;
+            }
+        }
+
+        &__btn-show{
+            padding-bottom: 10px;
+        }
+
+        &__cross {
+            position: fixed;
+            right: 20px;
+        }
+
+        &__btn-filters {
+            position: relative;
+        }
+
+        &__btn-circle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ea003d;
+            box-shadow: 0 2px 8px rgba(234, 0, 61, .8);
+            left: 32px;
+            top: 4px;
+        }
+
+        .listMovies {
+            display: flex;
+
+            &__film-card {
+                flex: 0 1 50%
+            }
         }
     }
 }

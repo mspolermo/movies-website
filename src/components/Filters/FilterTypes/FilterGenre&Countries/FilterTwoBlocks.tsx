@@ -6,18 +6,9 @@ import Icons from "../../../Icons/Icons";
 import {Carousel} from "../../../Carousel/Carousel";
 import {useTranslation} from "react-i18next";
 
-//Функция будет принимать:
-// popularValues - список популярных фильмом/стран
-// selectedFiltersBy - фильтры, выбранные пользователем
-// setSelectedFiltersBy
-// listValues - весь перечень стран/фильмов
-// onClick
-
-//todo: добавить scroll к популярным
-
 interface Item {
     nameRu: string,
-    nameEn?: string
+    nameEn: string
 }
 
 interface FilterTwoBlocksProps {
@@ -58,9 +49,26 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
 
     }
 
+    function createMobile() {
+        return(
+            <CreateList
+                items={allValues} renderItem={(value: Item) =>
+                <Button
+                    type='rounded'
+                    color={selectValues.includes(value.nameEn) ? 'purple' : 'transparent' }
+                    title={i18n.language === 'en' ? [firstCharUp(value.nameEn) || firstCharUp(value.nameRu)] : [firstCharUp(value.nameRu)]}
+                    key={value.nameEn}
+                    onClick={() => handleChangeFilter(value.nameEn)}
+                />
+            }/>
+        )
+
+    }
+
     return (
         <div>
             <div className='filterTwoBlocks'>
+
                 <div className="filterTwoBlocks__container">
                     <div className="filterTwoBlocks__content"
                          onClick={(e) => e.stopPropagation()}
@@ -90,6 +98,15 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
 
                     </div>
                 </div>
+
+                <div className="filterTwoBlocks__mobile">
+                    <div className="filterTwoBlocks__scroll mobile-scroll">
+                        <div className="mobile-scroll__viewport">
+                            <Carousel variant='filters' children={createMobile()}/>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

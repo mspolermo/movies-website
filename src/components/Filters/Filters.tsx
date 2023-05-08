@@ -3,7 +3,6 @@ import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
 import FilterTwoBlocks from "./FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 import ButtonReset from "./ButtonReset/ButtonReset";
-import _ from 'lodash';
 import {activeFiltersProps, startFiltersProps} from "../../types/testCase";
 import TypeYear from "./FilterTypes/FilterYears/TypeYear";
 import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
@@ -19,7 +18,7 @@ interface FiltersProps {
 
 const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters, selectedFilters, setSelectedFilters}) => {
     const { t, i18n } = useTranslation();
-    const [activeBlock, setActiveBlock] = useState('')
+    const [activeBlock, setActiveBlock] = useState<string[]>([])
 
     function selectedGenres(genre: string) {
         let arrGenres = selectedFilters.genres
@@ -76,9 +75,9 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
             <div className="filters__content">
                 <div className="filters__blocks">
 
-                    {activeBlock && <div className="close_block"
-                                         onClick={() => setActiveBlock('')}
-                    ></div>}
+                    {activeBlock.length > 0 ? <div className="close_block"
+                                         onClick={() => setActiveBlock([])}
+                    ></div> : ''}
 
                     <FilterButton filterName={t('filters.filterButton.genre')}
                                   selectedFiltersBy={selectedFilters.genres.join(', ')}

@@ -16,7 +16,7 @@ interface Result {
 const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter}) => {
     const { t, i18n } = useTranslation();
 
-    const [searchResults, setSearchResult] = useState<Result[]>([{name: 'name', key: 'key'}])
+    const [searchResults, setSearchResult] = useState<Result[]>([])
     const [searchQuery, setSearchQuery] = useState('')
     
     function renderResult(value: Result){

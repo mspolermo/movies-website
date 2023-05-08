@@ -44,3 +44,16 @@
         stroke-width: 3;
     }
 }
+
+.resetMobile{
+    display: none;
+}
+
+@media (max-width: 600px){
+    .resetFilters{
+        display: none;
+    }
+    .resetMobile{
+        display: contents;
+    }
+}

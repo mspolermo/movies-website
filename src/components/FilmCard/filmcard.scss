@@ -6,12 +6,12 @@
     font-weight: 400;
     cursor: pointer;
     z-index: 1;
-    margin: 0 8px 24px 8px;
+    margin: 0 8px 24px 0;
+    padding-left: 8px;
     &__content{
         position: relative;
         display: flex;
         flex-direction: column;
-
     }
 
     &__poster {

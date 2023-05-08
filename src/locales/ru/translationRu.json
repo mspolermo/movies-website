@@ -285,7 +285,10 @@
         "filters-genre": "Все жанры",
         "filters-countries": "Все страны",
         "filters-year": "Все годы",
-        "btn": "Показать ещё"
+        "btn": "Показать ещё",
+        "filters": "Фильтры",
+        "reset": "Сбросить фильтры",
+        "show": "Показать результат"
     },
     "personPage": {
         "filmography": "Полная фильмография",
