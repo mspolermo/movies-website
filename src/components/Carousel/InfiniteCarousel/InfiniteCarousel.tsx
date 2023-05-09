@@ -59,12 +59,10 @@ export const InfiniteCarousel: FC<IInfiniteCarouselProps> = ({ children, block }
 				}
 			} else {
 				if (current === children.length) {
-					sliderItems[current - 2].classList.add("carousel__slider-item_active")
+					sliderItems[2].classList.add("carousel__slider-item_active")
 
 				}
 				sliderItems[current + 2].classList.add("carousel__slider-item_active")
-
-
 			}
 		}
 

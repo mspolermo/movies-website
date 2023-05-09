@@ -3,8 +3,8 @@ import './TopWeekFilmCard.scss'
 
 interface ITopWeekFilmCardProps {
 	url: string
-	titleUrl: string
-	placeUrl: string
+	titleUrl?: string
+	placeUrl?: string
 };
 
 export const TopWeekFilmCard: FC<ITopWeekFilmCardProps> = ({ url, titleUrl, placeUrl }) => {
