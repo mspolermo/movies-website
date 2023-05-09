@@ -1,6 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
 import TypeYear from "../components/Filters/FilterTypes/FilterYears/TypeYear";
-import FilterTwoBlocks from "../components/Filters/FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 
 const meta: Meta<typeof TypeYear> = {
     title: 'Components/Filters/FilterYear',
@@ -34,8 +33,8 @@ export const Default: Story = {
        </div>
     ),
     args: {
-        allValues: ['2023', '2010-2015', 'до 1980'],
-        selectValues: '',
+        allValues: [2023, 2010, 2015, 1980],
+        selectValues: 0,
         handleChangeFilter: function (){}
     }
 };

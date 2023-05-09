@@ -2,19 +2,12 @@ import React, {FC, PropsWithChildren} from 'react';
 import './FilterButton.scss'
 import Icons from "../../Icons/Icons";
 
-// filterName - название фильтра на кнопке
-// selectedFiltersBy - фильтры, выбранные пользователем
-// children - компонент, который выводится при нажатии
-// activeBlock - нажата кнопка или нет(смена стилей, отображение блока)
-// blockName - название кнопки(задаем сами, уникальное)
-// setActiveBlock - задаем активный блок(передаём blockName, навешиваем на onClick)
-
 interface FilterButtonProps {
     filterName: string;
     selectedFiltersBy: string | number;
-    activeBlock: string;
+    activeBlock: string[];
     blockName: string;
-    setActiveBlock: (activeBlockName:string) => void;
+    setActiveBlock: (activeBlockName:string[]) => void;
 }
 
 const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
@@ -28,13 +21,18 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
     }
 ) => {
 
-    let isActive = activeBlock === blockName
+    let isActive = activeBlock.includes(blockName)
+
+    function activeBl() {
+        let result = activeBlock.filter(item => item !== blockName)
+        setActiveBlock(result)
+    }
 
     return (
         <div className="filterButton">
             <div className="filterButton__container">
                 <div className={isActive ? "filterButton__content content-active" : "filterButton__content"}
-                     onClick={() => {isActive ? setActiveBlock('') : setActiveBlock(blockName)}}
+                     onClick={() => {isActive ? setActiveBlock([]) : setActiveBlock([blockName])}}
                 >
                     <div className="filterButton__header">
                         <div className="filterButton__title">
@@ -52,6 +50,25 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
                 <div className="filterButton__menu">
                     {isActive && children}
                 </div>
+            </div>
+
+            <div className="filterButton__mobile">
+
+                <div className="filterButton__btn-header btn-header"
+                     onClick={() => {isActive ? activeBl() : setActiveBlock([...activeBlock, blockName])}}
+                >
+                    <div className="btn-header__title">
+                        {filterName}
+                    </div>
+                    <div className={isActive ? "btn-header__arrow_reverse" : "btn-header__arrow"
+                    }>
+                        <Icons name='chevron-down' size='16'/>
+                    </div>
+                </div>
+                <div className="filterButton__menu">
+                    {isActive && children}
+                </div>
+
             </div>
         </div>
     );

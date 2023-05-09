@@ -1,7 +1,7 @@
 .actorHeader {
     &__content {
         font-family: Helvetica;
-        padding-top: 80px;
+        padding-top: 8px;
     }
 
     &__foto {
@@ -10,7 +10,7 @@
         img {
             object-fit: cover;
             width: 120px;
-            height: 120px;
+            height: 140px;
             border-radius: 16px;
         }
     }
@@ -30,6 +30,14 @@
             font-size: 15px;
             line-height: 22px;
             font-weight: 400;
+        }
+    }
+}
+
+@media (max-width: 600px){
+    .actorHeader{
+        &__content{
+            padding-top: 28px;
         }
     }
 }

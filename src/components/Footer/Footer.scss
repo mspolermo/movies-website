@@ -177,6 +177,8 @@
         &__copyrights{
             &_mobile {
                 padding-bottom: 80px;
+                word-wrap: normal;
+                max-width: 600px;
             }
         }
         &__mobile-text{
@@ -198,12 +200,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            //Исправить z-index, согласно Filters и header-desktop
             z-index: 2;
         }
         &__mobile-list {
             flex: 1  0 100%;
-            max-width: 610px;
+            max-width: 600px;
             display: flex;
             justify-content: space-between;
         }
@@ -234,6 +235,13 @@
             &_circle-center{
                 margin: 0 2px;
             }
+        }
+    }
+}
+@media (max-width: 650px) {
+    .footer {
+        &__mobile-container {
+            display: none;
         }
     }
 }

@@ -16,7 +16,7 @@ interface Result {
 const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter}) => {
     const { t, i18n } = useTranslation();
 
-    const [searchResults, setSearchResult] = useState<Result[]>([{name: 'name', key: 'key'}])
+    const [searchResults, setSearchResult] = useState<Result[]>([])
     const [searchQuery, setSearchQuery] = useState('')
     
     function renderResult(value: Result){
@@ -30,7 +30,7 @@ const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter}
                 <div className="TypeSearch__content">
                     <Search result={searchResults}
                             renderResult={renderResult}
-                            placeholder={t('filters.search.placeholder')} cl={true}
+                            placeholder={t('filters.search.placeholder-small')} cl={true}
                             handleClear={() => handleChangeFilter('')}
                             searchQuery={searchQuery}
                             setSearchQuery={setSearchQuery}/>

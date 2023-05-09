@@ -248,7 +248,7 @@
     },
     "filters": {
         "search": {
-            "placeholder": "Start typing"
+            "placeholder-small": "Start typing"
         },
         "filterButton": {
             "genre": "Genres",
@@ -279,5 +279,22 @@
             "rating": "Rating",
             "novelty": "Novelty"
         }
+    },
+    "moviesPage": {
+        "title": "Movies",
+        "filters-genre": "All genres",
+        "filters-countries": "All countries",
+        "filters-year": "All years",
+        "btn": "Show more",
+        "filters": "Filters",
+        "reset": "Reset filters",
+        "show": "Show result"
+    },
+    "personPage": {
+        "filmography": "Full filmography",
+        "films": "All",
+        "rating": "Rating",
+        "btn-film": "More",
+        "btn-back": "Back"
     }
 }

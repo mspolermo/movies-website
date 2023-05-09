@@ -16,7 +16,9 @@ const meta: Meta<typeof Icons> = {
                 'history', 'brilliant', 'circle-flooded', 'medal', 'tv',
                 'card', 'share', 'grade-star', 'bookmark', 'bookmark-true',
                 'cross', 'check', 'back', 'circle', 'circle-checked', 'chevron-down',
-                'person-search', 'movie-search', 'series', 'home'
+                'person-search', 'movie-search', 'series', 'sorting', 'home',
+                'slogan-open', 'slogan-close', 'volume-down', 'keyboard', 'play',
+                'upload' 
             ],
             control: {
                 type: 'select'

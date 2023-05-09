@@ -1,55 +1,25 @@
-//Функция будет принимать:
-// popularValues - список популярных фильмом/стран
-// allFilters - фильтры, выбранные пользователем
-// setAllFilters
-// listValues - весь перечень стран/фильмов
-// onClick
-
-import React, {useState} from 'react';
+import React, {FC, PropsWithChildren, useState} from 'react';
 import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
 import FilterTwoBlocks from "./FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 import ButtonReset from "./ButtonReset/ButtonReset";
-import _ from 'lodash';
-import {activeFiltersProps, startFiltersProps} from "../../types/testCase";
+import {activeFiltersProps, Item, startFiltersProps} from "../../types/filtersTypes";
 import TypeYear from "./FilterTypes/FilterYears/TypeYear";
 import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
 import TypeRangeSlider from "./FilterTypes/FilterRating&Grade/TypeRangeSlider";
 import {useTranslation} from "react-i18next";
+import {languageFilters} from "../Pages/MoviesPage/utils";
 
-
-// блоки для тестирования
-
-const activeFilters = {
-    'popularGenres': [],
-    'genres': [],
-    'countries': [],
-    'years': '',
-    'rating': 0,
-    'grade': 0,
-    'producer':'',
-    'actor': ''
+interface FiltersProps {
+    activeFilters: activeFiltersProps,
+    allFilters: startFiltersProps,
+    selectedFilters: activeFiltersProps,
+    setSelectedFilters: (selectedFilters: activeFiltersProps) => void
 }
 
-const arrAllFilters = {
-    'popularGenres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?',],
-    'genres': ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
-    'countries': ['Австралия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия', 'Венгрия', 'Ирландия', 'Норвегия', 'Германия'],
-    'years': ['до 1980', '2022 год', '2022-2023', '2000-2010'],
-    'rating': 0,
-    'grade': 0,
-    'producer': [],
-    'actor': []
-}
-
-
-//основной блок
-const Filters = () => {
+const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters, selectedFilters, setSelectedFilters}) => {
     const { t, i18n } = useTranslation();
-
-    const [allFilters, setAllFilters] = useState<startFiltersProps>(arrAllFilters)
-    const [selectedFilters, setSelectedFilters] = useState<activeFiltersProps>(_.cloneDeep(activeFilters))
-    const [activeBlock, setActiveBlock] = useState('')
+    const [activeBlock, setActiveBlock] = useState<string[]>([])
 
     function selectedGenres(genre: string) {
         let arrGenres = selectedFilters.genres
@@ -58,6 +28,7 @@ const Filters = () => {
         } else {
             arrGenres.push(genre)
         }
+
         setSelectedFilters({...selectedFilters, genres: arrGenres})
     }
 
@@ -71,7 +42,7 @@ const Filters = () => {
         setSelectedFilters({...selectedFilters, countries: arrCountries})
     }
 
-    function selectedYears(year: string) {
+    function selectedYears(year: number) {
         if (selectedFilters.years !== year) {
             setSelectedFilters({...selectedFilters, years: year})
         }
@@ -106,12 +77,12 @@ const Filters = () => {
             <div className="filters__content">
                 <div className="filters__blocks">
 
-                    {activeBlock && <div className="close_block"
-                                         onClick={() => setActiveBlock('')}
-                    ></div>}
+                    {activeBlock.length > 0 ? <div className="close_block"
+                                         onClick={() => setActiveBlock([])}
+                    ></div> : ''}
 
                     <FilterButton filterName={t('filters.filterButton.genre')}
-                                  selectedFiltersBy={selectedFilters.genres.join(', ')}
+                                  selectedFiltersBy={languageFilters(selectedFilters.genres, allFilters.genres, i18n.language).join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='genre'
                                   setActiveBlock={setActiveBlock}>
@@ -124,12 +95,12 @@ const Filters = () => {
                     </FilterButton>
 
                     <FilterButton filterName={t('filters.filterButton.countries')}
-                                  selectedFiltersBy={selectedFilters.countries.join(', ')}
+                                  selectedFiltersBy={languageFilters(selectedFilters.countries, allFilters.countries, i18n.language).join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='country'
                                   setActiveBlock={setActiveBlock}>
                         <FilterTwoBlocks
-                            popularValues={allFilters.popularGenres}
+                            popularValues={allFilters.popularCountries}
                             allValues={allFilters.countries}
                             selectValues={selectedFilters.countries}
                             handleChangeFilter={selectedCountries}
@@ -137,7 +108,7 @@ const Filters = () => {
                     </FilterButton>
 
                     <FilterButton filterName={t('filters.filterButton.years')}
-                                  selectedFiltersBy={selectedFilters.years}
+                                  selectedFiltersBy={selectedFilters.years ? selectedFilters.years : ''}
                                   activeBlock={activeBlock}
                                   blockName='years'
                                   setActiveBlock={setActiveBlock}>

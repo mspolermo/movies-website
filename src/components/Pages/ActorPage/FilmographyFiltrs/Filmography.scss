@@ -38,19 +38,25 @@
         cursor: pointer;
         display: flex;
 
-        &_style {
-            padding: 0 20px 12px 0;
-
-            &:hover {
-                color: #FFFFFF;
-            }
-        }
-
         &_active {
             color: #FFFFFF;
             padding-bottom: 12px;
             margin-right: 20px;
             border-bottom: 4px solid #ea003d;
+        }
+    }
+}
+
+@media (max-width: 600px){
+    .filmography{
+        &__header{
+            display: flex;
+            flex-direction: column;
+        }
+        &__role{
+            &_active{
+                margin-right: 0;
+            }
         }
     }
 }

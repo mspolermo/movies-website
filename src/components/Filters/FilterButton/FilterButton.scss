@@ -8,6 +8,10 @@
     cursor: pointer;
     position: relative;
 
+    &__mobile{
+        display: none;
+    }
+
     &__content {
         height: 56px;
         padding: 8px 16px 8px 16px;
@@ -70,8 +74,22 @@
     }
 }
 
-@media (max-width: 599px){
+@media (max-width: 600px){
     .filterButton{
         flex: 0 1 100%;
+        &__container{
+            display: none;
+        }
+        &__mobile{
+            display: contents;
+        }
+        .btn-header{
+            display: flex;
+            height: 22px;
+            margin-bottom: 16px;
+            &__title{
+                margin-right: 8px;
+            }
+        }
     }
 }
