@@ -1,10 +1,14 @@
 .shortMovieCard {
     margin-top: 16px;
 
+    &__mobile {
+        display: none;
+    }
+
     &__content {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
 
         color: #FFFFFF;
         font-size: 15px;
@@ -15,6 +19,12 @@
     &__movie {
         display: flex;
         align-items: center;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     &__poster {
@@ -39,6 +49,36 @@
             font-size: 13px;
             line-height: 16px;
             color: #a5a1b2;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .shortMovieCard {
+        &__content {
+            display: none;
+        }
+        &__mobile{
+            display: flex;
+            color: #FFFFFF;
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: 600;
+        }
+        &__info {
+            display: flex;
+            flex: 0 1 100%;
+            flex-direction: column;
+            align-items: start;
+            margin-left: 16px;
+        }
+        &__rating {
+            font-size: 13px;
+            line-height: 16px;
+            color: #a5a1b2;
+        }
+        &__button{
+            min-width: 100%;
         }
     }
 }

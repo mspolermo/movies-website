@@ -10,7 +10,7 @@ export interface activeFiltersProps {
     'actor': string,
 }
 
-export interface ActorPageProps {
+export interface PersonPageProps {
     id: number,
     nameRu: string,
     nameEn: string,
@@ -66,4 +66,9 @@ export interface startFiltersProps {
     'grade': number,
     'producer': string,
     'actor': string,
+}
+
+export interface Item {
+    nameRu: string,
+    nameEn: string
 }

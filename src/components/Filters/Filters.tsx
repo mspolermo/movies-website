@@ -3,12 +3,12 @@ import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
 import FilterTwoBlocks from "./FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 import ButtonReset from "./ButtonReset/ButtonReset";
-import _ from 'lodash';
-import {activeFiltersProps, startFiltersProps} from "../../types/testCase";
+import {activeFiltersProps, Item, startFiltersProps} from "../../types/filtersTypes";
 import TypeYear from "./FilterTypes/FilterYears/TypeYear";
 import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
 import TypeRangeSlider from "./FilterTypes/FilterRating&Grade/TypeRangeSlider";
 import {useTranslation} from "react-i18next";
+import {languageFilters} from "../Pages/MoviesPage/utils";
 
 interface FiltersProps {
     activeFilters: activeFiltersProps,
@@ -19,7 +19,7 @@ interface FiltersProps {
 
 const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters, selectedFilters, setSelectedFilters}) => {
     const { t, i18n } = useTranslation();
-    const [activeBlock, setActiveBlock] = useState('')
+    const [activeBlock, setActiveBlock] = useState<string[]>([])
 
     function selectedGenres(genre: string) {
         let arrGenres = selectedFilters.genres
@@ -28,6 +28,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
         } else {
             arrGenres.push(genre)
         }
+
         setSelectedFilters({...selectedFilters, genres: arrGenres})
     }
 
@@ -76,12 +77,12 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
             <div className="filters__content">
                 <div className="filters__blocks">
 
-                    {activeBlock && <div className="close_block"
-                                         onClick={() => setActiveBlock('')}
-                    ></div>}
+                    {activeBlock.length > 0 ? <div className="close_block"
+                                         onClick={() => setActiveBlock([])}
+                    ></div> : ''}
 
                     <FilterButton filterName={t('filters.filterButton.genre')}
-                                  selectedFiltersBy={selectedFilters.genres.join(', ')}
+                                  selectedFiltersBy={languageFilters(selectedFilters.genres, allFilters.genres, i18n.language).join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='genre'
                                   setActiveBlock={setActiveBlock}>
@@ -94,7 +95,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                     </FilterButton>
 
                     <FilterButton filterName={t('filters.filterButton.countries')}
-                                  selectedFiltersBy={selectedFilters.countries.join(', ')}
+                                  selectedFiltersBy={languageFilters(selectedFilters.countries, allFilters.countries, i18n.language).join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='country'
                                   setActiveBlock={setActiveBlock}>

@@ -285,7 +285,10 @@
         "filters-genre": "All genres",
         "filters-countries": "All countries",
         "filters-year": "All years",
-        "btn": "Show more"
+        "btn": "Show more",
+        "filters": "Filters",
+        "reset": "Reset filters",
+        "show": "Show result"
     },
     "personPage": {
         "filmography": "Full filmography",

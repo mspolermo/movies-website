@@ -1,10 +1,10 @@
 import React, {FC, PropsWithChildren} from 'react';
 import './PersonHeader.scss'
 import {useTranslation} from "react-i18next";
-import {ActorPageProps} from "../../../../types/testCase";
+import {PersonPageProps} from "../../../../types/filtersTypes";
 
 interface PersonHeaderProps {
-    'person':ActorPageProps
+    'person':PersonPageProps
 }
 
 const PersonHeader: FC<PropsWithChildren<PersonHeaderProps>> = ({person}) => {

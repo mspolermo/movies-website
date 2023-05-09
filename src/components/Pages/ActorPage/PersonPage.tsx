@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import ShortMovieCard from "./ShortMovieCard/ShortMovieCard";
-import {ActorPageProps, FilmographyProps} from "../../../types/testCase";
+import {PersonPageProps, FilmographyProps} from "../../../types/filtersTypes";
 import PersonHeader from "./PersonHeader/PersonHeader";
 import Filmography from "./FilmographyFiltrs/Filmography";
 import './PersonPage.scss'
@@ -21,7 +21,7 @@ const PersonPage = () => {
     const {t, i18n} = useTranslation();
     const navigate = useNavigate()
     const params = useParams()
-    const [person, setPerson] = useState<ActorPageProps>(Person)
+    const [person, setPerson] = useState<PersonPageProps>(Person)
     const [films, setFilms] = useState<FilmographyProps[]>([])
     const [subtitle, setSubtitle] = useState('')
 
@@ -84,17 +84,19 @@ const PersonPage = () => {
                         {t('personPage.btn-back')}
                     </div>
 
-                    <PersonHeader person={person}/>
+                    <div className="actorPage__info">
+                        <PersonHeader person={person}/>
 
-                    <div className="actorPage__filmography">
-                        <Filmography movies={films.length}/>
-                        {/*todo: как будет готов эндпоинт с фильмами, проставить корректый navigate*/}
-
-                        <CreateList items={films} renderItem={(film: FilmographyProps) =>
-                            <ShortMovieCard film={film}
-                                            route={(film)  => navigate('/movies-website/film/' + film.key)}/>
-                        }/>
+                        <div className="actorPage__filmography">
+                            <Filmography movies={films.length}/>
+                            <CreateList items={films} renderItem={(film: FilmographyProps) =>
+                                <ShortMovieCard key={film.key}
+                                                film={film}
+                                                route={(film)  => navigate('/movies-website/films/' + film.key)}/>
+                            }/>
+                        </div>
                     </div>
+
 
                 </div>
             </div>
