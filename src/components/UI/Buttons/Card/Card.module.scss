@@ -217,7 +217,40 @@
 
 @media (max-width: 600px) {
     .card {
-        max-width: 72px;
-        max-height: 72px;
+        &__small{
+            width: 72px;
+            height: 80px;
+        }
+        &__body{
+            &_small{
+                width: 44px;
+                min-height: 44px;
+                height: 44px;
+            }
+        }
+        &__img{
+            &_small{
+                max-height: 36px;
+                max-width: 36px;
+            }
+        }
+        &__color {
+            max-height: 36px;
+            max-width: 36px;
+            &_green {
+                max-height: 36px;
+                max-width: 36px;
+            }
+        }
+        &__text{
+            &_small{
+                font-size: 10px;
+                line-height: 14px;
+            }
+            &_reit{
+                font-size: 10px;
+                line-height: 4px;
+            }
+        }
     }
 }

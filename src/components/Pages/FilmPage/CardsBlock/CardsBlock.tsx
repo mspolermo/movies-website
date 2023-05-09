@@ -25,10 +25,10 @@ interface CardsBlockProps {
 
 const CardsBlock:FC<CardsBlockProps> = ({ratingKp, creators}) => {
    
-    const [actors, setActors] = useState(creators.slice(0,6));
+    const [actors, setActors] = useState(creators.slice(0,5));
 
     useEffect( () => {
-        setActors(creators.slice(0,6))
+        setActors(creators.slice(0,5))
     },[creators])
     
     return (

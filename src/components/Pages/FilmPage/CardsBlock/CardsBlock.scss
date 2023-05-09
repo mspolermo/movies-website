@@ -13,7 +13,21 @@
 @media (max-width: 1160px) {
     .cardsBlock {
         &__card{
-            flex: 1 0 15%;
+            flex: 1 0 16.6%;
+        }
+    }
+}
+@media (max-width: 510px) {
+    .cardsBlock {
+        &__card{
+            flex: 1 0 20%;
+        }
+    }
+}
+@media (max-width: 440px) {
+    .cardsBlock {
+        &__card{
+            flex: 1 0 25%;
         }
     }
 }

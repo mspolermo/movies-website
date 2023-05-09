@@ -14,6 +14,9 @@ import PlayerPanel from "./PlayerPanel/PlayerPanel";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import WatchesBlock from "./WatchesBlock/WatchesBlock";
+import LanguageHook from "../../../hooks/LanguageHook";
+
 
 
 interface FilmProps {
@@ -84,12 +87,19 @@ const Film = {
 }
 
 const FilmPage = () => {
-    const [film, setFilm] = useState<FilmProps>(Film)
-    const params = useParams()
+    const params = useParams();
+    const {t, i18n} = useTranslation();
+
+    const [film, setFilm] = useState<FilmProps>(Film);
+    const [filmName, setFilmName] = useState('');
 
     useEffect(() => {
-        fetchFilm()
+        fetchFilm();
     }, [])
+
+    useEffect(() => {
+        setFilmName( LanguageHook( film.filmNameRu, film.filmNameEn, i18n.language) );
+    }, [i18n.language])
 
 
     async function fetchFilm() {
@@ -115,19 +125,17 @@ const FilmPage = () => {
             genres: data.genres
         }
 
-        setFilm(film_)
-    }
 
+        setFilm(film_);
+        setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
+        //setCountry( LanguageHook ( data.countries[0].countryName, data.countries[0].countryNameEn, i18n.language) );
+    }
     
     //Todo - En version, загрушка для отстутствующих трейлеров
 
     //need data
-    let type = 'Фильм';
     let ageRating = '16+';
-    let country = 'США';
-    let genres =['Драмы', 'Комедии', 'Мелодрамы'] //не больше 3
-    //Возможно-ли блок persons сортировать на бекенде, чтобы приходящие 5 первых записей были главные роли?
-    //Должны сразу приходить отзывы к фильму
+   //Должны сразу приходить отзывы к фильму
 
     return (
         <div className="film">
@@ -159,13 +167,12 @@ const FilmPage = () => {
                     </div>
                     <div className="film__column film__column_right">
                         <SummaryBlock 
-                            filmName={film.filmNameRu}
+                            filmName={filmName}
                             year={film.year}
-                            type={type}
                             ageRating={ageRating}
-                            country={country}
-                            genres={genres}
+                            genres={film.genres}
                             movieLength={film.movieLength}
+                            countries={film.countries}
                         />
                         <CardsBlock ratingKp={film.ratingKp} creators={film.persons}/>
                         <SloganBlock slogan={film?.slogan} />
@@ -178,11 +185,10 @@ const FilmPage = () => {
                     <SummaryBlock 
                         filmName={film?.filmNameRu}
                         year={film?.year}
-                        type={type}
                         ageRating={ageRating}
-                        country={country}
-                        genres={genres}
+                        genres={film.genres}
                         movieLength={film?.movieLength}
+                        countries={film.countries}
                     />
                     <div className="film__video">
                         <ReactPlayer
@@ -232,11 +238,10 @@ const FilmPage = () => {
                     <SummaryBlock 
                         filmName={film?.filmNameRu}
                         year={film?.year}
-                        type={type}
                         ageRating={ageRating}
-                        country={country}
-                        genres={genres}
+                        genres={film.genres}
                         movieLength={film?.movieLength}
+                        countries={film.countries}
                     />
                     <div className="film__video">
                         <ReactPlayer
@@ -334,10 +339,9 @@ const FilmPage = () => {
                     <p className="film__smallHeading">Отзывы</p>
                     <div className="film__shortly"></div>
                 </div>
-                <div className="film__inner">
-                    <p className="film__smallHeading">Cмотреть «{film?.filmNameRu}» на всех устройствах</p>
-                    <div className="film__shortly"></div>
-                </div>
+
+                <WatchesBlock filmName={film.filmNameRu} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
+            
             </div>
         </div>
     )
