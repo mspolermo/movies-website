@@ -20,7 +20,10 @@
         align-items: center;
         justify-content: center;
         border-radius: 8px;
-        background-color: #73a32f;
+        background-color: gray;
+        &_green {
+            background-color: #73a32f;
+        }
     }
     &__count {
         font-size: 24px;
@@ -70,6 +73,25 @@
             &_reit {
                 display: none;
             }
+        }
+    }
+}
+@media (max-width: 440px) {
+    .reitingBlock {
+        &__inner{
+            flex: 1 0 60%;
+        }
+        &__btn {
+            flex: 0 1 30%;
+            max-width: 90px;
+        }
+        &__heading {
+            font-size: 12px;
+            line-height: 12px;
+        }
+        &__text {
+            font-size: 12px;
+            line-height: 12px;
         }
     }
 }

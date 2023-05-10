@@ -1,32 +1,39 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import './ReitingBlock.scss'
 import Button from "../../../UI/Buttons/Button/Button";
-
-interface ReitingBlockProps {
-    ratingKp: number;
-    votesKP: number
-}
+import { ReitingBlockProps } from "../../../../types/filmPageTypes";
 
 const ReitingBlock:FC<ReitingBlockProps> = ({ratingKp , votesKP}) => {
+    const {t, i18n} = useTranslation();
+
     let reiting = (Math.round(ratingKp! * 10)/10);
+    const [goodClass, setGoodCLass] = useState('reitingBlock__reiting');
+
+    useEffect( () => {
+        if (reiting >= 7) {
+            setGoodCLass('reitingBlock__reiting reitingBlock__reiting_green')
+        };
+    },[reiting]);
+
  
     return (
         <div className="reitingBlock">
             <div className="reitingBlock__inner">
-                <div className="reitingBlock__reiting">
+                <div className={goodClass}>
                     <p className="reitingBlock__count">{reiting}</p>
                 </div>
                 <div className="reitingBlock__info">
-                    <p className="reitingBlock__heading">Рейтинг Иви</p>
-                    <p className="reitingBlock__text">Интересный сюжет</p>
-                    <p className="reitingBlock__text reitingBlock__text_reit">{votesKP} оценки</p>
+                    <p className="reitingBlock__heading">{t('filmPage.reitingBlock.reit')}</p>
+                    <p className="reitingBlock__text">{t('filmPage.reitingBlock.int')}</p>
+                    <p className="reitingBlock__text reitingBlock__text_reit">{votesKP} {t('filmPage.reitingBlock.votes')}</p>
                 </div> 
             </div>
             <div className="reitingBlock__btn">
-                <Button color="transparent" onClick={() => {}} title={['Оценить']}/>    
+                <Button color="transparent" onClick={() => {}} title={['filmPage.reitingBlock.btn']}/>    
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ReitingBlock;
