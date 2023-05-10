@@ -1,339 +1,359 @@
 {
-    "header": {
-        "myIvi": "My Ivi",
-        "new": "What's new",
-        "films": "Movies",
-        "series": "Series",
-        "mults": "Cartoons",
-        "search": "Search",
-        "menuFilms": {
-            "genres": "Genres",
-            "arthouse": "Arthouse",
-            "militants": "Actions",
-            "western": "Western",
-            "military": "Military",
-            "detectives": "Detectives",
-            "famaly": "For family",
-            "child": "For children",
-            "doc": "Documentaries",
-            "dram": "Dramas",
-            "history": "Historical",
-            "catastrophes": "Catastrophes",
-            "comedy": "Comedy",
-            "criminals": "Criminal",
-            "melodrams": "Melodramas",
-            "mystical": "Mystical",
-            "comics": "Comics",
-            "adventures": "Adventures",
-            "sport": "Sport",
-            "thrillers": "Thrillers",
-            "horrors": "Horrors",
-            "fantastic": "Fantastic",
-            "fantasy": "Fantasy",
-            "countres": "Countries",
-            "russian": "Russians",
-            "abroad": "USA",
-            "ussr": "Soviet cinema",
-            "years": "Years",
-            "2023": "Movies 2023",
-            "2022": "Movies 2022",
-            "2021": "Movies 2021",
-            "2020": "Movies 2020",
-            "activeList": {
-                "new": "New",
-                "collect": "Collections",
-                "reit": "Ivi.Rating",
-                "soon": "Coming soon",
-                "trailers": "Trailers",
-                "see": "What to see",
-                "hd": "Movies in HD",
-                "choice": "Ivi choice",
-                "newSub": "Subscription news",
-                "amedia": "Amediateka movies",
-                "popular": "Popular movies",
-                "iviFilms": "Ivi movies"
-            }
-        },
-        "menuSeries": {
-            "genres": "Genres",
-            "biography": "Biography",
-            "militants": "Actions",
-            "military": "Military",
-            "detectives": "Detectives",
-            "famaly": "For famaly",
-            "doc": "Documentaries",
-            "doram": "Dorams",
-            "dram": "Dramas",
-            "history": "Historical",
-            "comedy": "Comedy",
-            "criminals": "Criminal",
-            "medical": "Medical",
-            "melodrams": "Melodramas",
-            "mystical": "Mystical",
-            "adventures": "Adventures",
-            "romantical": "Romantic",
-            "tv": "TV show",
-            "thrillers": "Thrillers",
-            "turkish": "Turkish",
-            "horrors": "Horrors",
-            "fantastic": "Fantastic",
-            "fantasy": "Fantasy",
-            "countres": "Countries",
-            "russian": "Russians",
-            "abroad": "Foreign",
-            "american": "American",
-            "ukrain": "Ukrainian",
-            "korean": "Korean",
-            "years": "Years",
-            "2023": "Series 2023",
-            "2022": "Series 2022",
-            "2021": "Series 2021",
-            "2020": "Series 2020",
-            "activeList": {
-                "new": "New",
-                "reit": "Ivi.Rating",
-                "hd": "Series in HD",
-                "free": "Free series",
-                "amedia": "Amediateka series",
-                "paramount": "Paramount Play series"
-            }
-        },
-        "menuMults": {
-            "genres": "Genres",
-            "anime": "Anime",
-            "militants": "Action",
-            "detectives": "Detective",
-            "adult": "For adults",
-            "famaly": "For famaly",
-            "child": "For children",
-            "dram": "Dramas",
-            "history": "Historical",
-            "comedy": "Comedy",
-            "criminals": "Criminal",
-            "musical": "Musical",
-            "full": "Feature-length",
-            "adventures": "Adventures",
-            "educational": "Educational",
-            "series": "Series",
-            "sport": "Sport",
-            "thrillers": "Thrillers",
-            "horrors": "Horrors",
-            "fantastic": "Fantastic",
-            "fantasy": "Fantasy",
-            "countres": "Countries",
-            "ussr": "Soviet",
-            "russian": "Russians",
-            "american": "American",
-            "abroad": "Foreign",
-            "years": "Years",
-            "2023": "Cartoons 2023",
-            "2022": "Cartoons 2022",
-            "2021": "Cartoons 2021",
-            "2020": "Cartoons 2020",
-            "activeList": {
-                "new": "New",
-                "hd": "Cartoons in HD",
-                "paramount": "Paramount Play / Nickelodeon",
-                "dreamworks": "Dreamworks cartoons",
-                "ctc": "STS Kids cartoons"
-            }
-        },
-        "menuTV": {
-            "online": "TV online",
-            "channels": "TV channels",
-            "fun": "Entertainment",
-            "child": "Children",
-            "sportTv": "Sports TV",
-            "doc": "Documentary",
-            "federal": "Federal channels",
-            "sport": "Sports channels"
-        },
-        "menuSubscribe": {
-            "sub": "Ivi Subscription",
-            "price": "Cost 399 ₽ per month, automatic renewal",
-            "turnOff": "You can turn it off",
-            "moment": "at any time"
-        },
-        "menuNotify": {
-            "init": "Only important messages appear here"
-        },
-        "menuLogin": {
-            "settings": "Settings",
-            "help": "Help",
-            "subs": "Subscriptions",
-            "plug": "To plug",
-            "activeList": {
-                "easy": "Easy Ivi",
-                "ivi": "Ivi",
-                "iviAmedia": "Ivi + Amediateka",
-                "amediateka": "Amediateka",
-                "premier": "Match Premier",
-                "football": "Match Football"
-            }
-        },
-        "advertise": {
-            "ivi": "Ivi subscription",
-            "from": "From",
-            "mouth": "₽ per month",
-            "turnOff": "You can turn it off at any time"
-        }
-    },
-    "footer": {
-        "aboutUs": "About us",
-        "aboutCompany": "About company",
-        "vacancies": "Vacancy",
-        "test": "Beta program",
-        "partners": "Information for partners",
-        "adv": "Advertising placement",
-        "usingTerms": "Terms of use",
-        "confidential": "Privacy policy",
-        "compliance": "Compliance",
-        "sections": "Sections",
-        "myIvi": "My Ivi",
-        "new": "What's new",
-        "films": "Movies",
-        "series": "Series",
-        "mults": "Cartoons",
-        "see": "What to see",
-        "sert": "Certificate activation",
-        "support": "Support",
-        "ready": "We are always ready to help you.",
-        "online": "Our operators are online 24/7",
-        "answers": "Answers on questions",
-        "info": "Watch movies, series and cartoons without ads",
-        "ivi": "OOO 'Ivi.ru'",
-        "catalog": "Catalog",
-        "search": "Search",
-        "more": "More"
-    },
-    "button": {
-        "header": {
-            "menuTV": {
-                "program": "TV program"
-            },
-            "menuSubscribe": {
-                "adv": "Watch 30 days for 1 ₽"
-            },
-            "menuLogin": {
-                "enter": "Enter or register"
-            },
-            "advertise": {
-                "plug": "To plug",
-                "smart": " Watch on Smart TV"
-            }
-        },
-        "footer": {
-            "chat": "Contact via chat",
-            "app": "Download in",
-            "gplay": "Available in",
-            "smart": "Watch on",
-            "all": "All devices"
-        }
-    },
-    "tile": {
-        "headerMenuSubscribe": {
-            "new": "New series and films",
-            "weekly": "Weekly replenishment of films and series from around the world",
-            "adv": "Movies and series without ads",
-            "famaly": "Family account on 5 devices",
-            "mobile": "Download to mobile devices"
-        },
-        "headerMenuLogin": {
-            "buy": "Purchases",
-            "later": "Watch later",
-            "history": "Browsing history",
-            "sert": "Certificate activation",
-            "enter": "Login by code",
-            "ways": "Payment methods",
-            "share": "Invite friends"
-        }
-    },
-    "filters": {
-        "search": {
-            "placeholder-small": "Start typing"
-        },
-        "filterButton": {
-            "genre": "Genres",
-            "countries": "Countries",
-            "years": "Years",
-            "rating": "Rating",
-            "grade": "Estimates",
-            "producer": "Producer",
-            "actor": "Actor"
-        },
-        "btnReset": "Reset filters",
-        "filtersYears": {
-            "allYears": "All years"
-        }
-    },
-    "filmCard": {
-        "data-title": {
-            "watch": "Watch Later",
-            "similar": "Similar",
-            "already": "Already watched, evaluate",
-            "notLike": "Don't like this"
-        }
-    },
-    "sorting": {
-        "title": "Sort",
-        "sort": {
-            "popularity": "Popularity",
-            "rating": "Rating",
-            "novelty": "Novelty"
-        }
-    },
-    "moviesPage": {
-        "title": "Movies",
-        "filters-genre": "All genres",
-        "filters-countries": "All countries",
-        "filters-year": "All years",
-        "btn": "Show more",
-        "filters": "Filters",
-        "reset": "Reset filters",
-        "show": "Show result"
-    },
-    "personPage": {
-        "filmography": "Full filmography",
-        "films": "All",
-        "rating": "Rating",
-        "btn-film": "More",
-        "btn-back": "Back"
-    },
-    "filmPage": {
-        "playerPanel": {
-            "trailer" : "Trailer"
-        },
-        "summaryBlock": {
-            "ru": "Ru"
-        },
-        "descriptionBlock": {
-            "invite": "We invite you to watch the movie ",
-            "inviteAdd": "in our online cinema in good HD quality. Enjoy watching!",
-            "details": "Movie details",
-            "read": "Read more",
-            "lang": "Languages",
-            "langs": "Russian, English",
-            "sub": "Subtitles",
-            "img": "Image and sound. ",
-            "info": "Actual quality may vary by device and copyright restrictions.",
-            "minDetails": "Collapse details",
-            "min": "Collapse"
-        },
-        "reitingBlock": {
-            "reit": "Ivi rating",
-            "int": "Interesting story",
-            "votes": "votes",
-            "btn": "Estimate"
-        },
-        "additionalInfoBlock": {
-            "lang": "Languages",
-            "langs": "Russian, English",
-            "sub": "Subtitles",
-            "qality": "Quality"
-        }
-    },
-    "card": {
-        "reit": "Ivi",
-        "ivi": "Rating"
-    }
+	"header": {
+		"myIvi": "My Ivi",
+		"new": "What's new",
+		"films": "Movies",
+		"series": "Series",
+		"mults": "Cartoons",
+		"search": "Search",
+		"menuFilms": {
+			"genres": "Genres",
+			"arthouse": "Arthouse",
+			"militants": "Actions",
+			"western": "Western",
+			"military": "Military",
+			"detectives": "Detectives",
+			"famaly": "For family",
+			"child": "For children",
+			"doc": "Documentaries",
+			"dram": "Dramas",
+			"history": "Historical",
+			"catastrophes": "Catastrophes",
+			"comedy": "Comedy",
+			"criminals": "Criminal",
+			"melodrams": "Melodramas",
+			"mystical": "Mystical",
+			"comics": "Comics",
+			"adventures": "Adventures",
+			"sport": "Sport",
+			"thrillers": "Thrillers",
+			"horrors": "Horrors",
+			"fantastic": "Fantastic",
+			"fantasy": "Fantasy",
+			"countres": "Countries",
+			"russian": "Russians",
+			"abroad": "USA",
+			"ussr": "Soviet cinema",
+			"years": "Years",
+			"2023": "Movies 2023",
+			"2022": "Movies 2022",
+			"2021": "Movies 2021",
+			"2020": "Movies 2020",
+			"activeList": {
+				"new": "New",
+				"collect": "Collections",
+				"reit": "Ivi.Rating",
+				"soon": "Coming soon",
+				"trailers": "Trailers",
+				"see": "What to see",
+				"hd": "Movies in HD",
+				"choice": "Ivi choice",
+				"newSub": "Subscription news",
+				"amedia": "Amediateka movies",
+				"popular": "Popular movies",
+				"iviFilms": "Ivi movies"
+			}
+		},
+		"menuSeries": {
+			"genres": "Genres",
+			"biography": "Biography",
+			"militants": "Actions",
+			"military": "Military",
+			"detectives": "Detectives",
+			"famaly": "For famaly",
+			"doc": "Documentaries",
+			"doram": "Dorams",
+			"dram": "Dramas",
+			"history": "Historical",
+			"comedy": "Comedy",
+			"criminals": "Criminal",
+			"medical": "Medical",
+			"melodrams": "Melodramas",
+			"mystical": "Mystical",
+			"adventures": "Adventures",
+			"romantical": "Romantic",
+			"tv": "TV show",
+			"thrillers": "Thrillers",
+			"turkish": "Turkish",
+			"horrors": "Horrors",
+			"fantastic": "Fantastic",
+			"fantasy": "Fantasy",
+			"countres": "Countries",
+			"russian": "Russians",
+			"abroad": "Foreign",
+			"american": "American",
+			"ukrain": "Ukrainian",
+			"korean": "Korean",
+			"years": "Years",
+			"2023": "Series 2023",
+			"2022": "Series 2022",
+			"2021": "Series 2021",
+			"2020": "Series 2020",
+			"activeList": {
+				"new": "New",
+				"reit": "Ivi.Rating",
+				"hd": "Series in HD",
+				"free": "Free series",
+				"amedia": "Amediateka series",
+				"paramount": "Paramount Play series"
+			}
+		},
+		"menuMults": {
+			"genres": "Genres",
+			"anime": "Anime",
+			"militants": "Action",
+			"detectives": "Detective",
+			"adult": "For adults",
+			"famaly": "For famaly",
+			"child": "For children",
+			"dram": "Dramas",
+			"history": "Historical",
+			"comedy": "Comedy",
+			"criminals": "Criminal",
+			"musical": "Musical",
+			"full": "Feature-length",
+			"adventures": "Adventures",
+			"educational": "Educational",
+			"series": "Series",
+			"sport": "Sport",
+			"thrillers": "Thrillers",
+			"horrors": "Horrors",
+			"fantastic": "Fantastic",
+			"fantasy": "Fantasy",
+			"countres": "Countries",
+			"ussr": "Soviet",
+			"russian": "Russians",
+			"american": "American",
+			"abroad": "Foreign",
+			"years": "Years",
+			"2023": "Cartoons 2023",
+			"2022": "Cartoons 2022",
+			"2021": "Cartoons 2021",
+			"2020": "Cartoons 2020",
+			"activeList": {
+				"new": "New",
+				"hd": "Cartoons in HD",
+				"paramount": "Paramount Play / Nickelodeon",
+				"dreamworks": "Dreamworks cartoons",
+				"ctc": "STS Kids cartoons"
+			}
+		},
+		"menuTV": {
+			"online": "TV online",
+			"channels": "TV channels",
+			"fun": "Entertainment",
+			"child": "Children",
+			"sportTv": "Sports TV",
+			"doc": "Documentary",
+			"federal": "Federal channels",
+			"sport": "Sports channels"
+		},
+		"menuSubscribe": {
+			"sub": "Ivi Subscription",
+			"price": "Cost 399 ₽ per month, automatic renewal",
+			"turnOff": "You can turn it off",
+			"moment": "at any time"
+		},
+		"menuNotify": {
+			"init": "Only important messages appear here"
+		},
+		"menuLogin": {
+			"settings": "Settings",
+			"help": "Help",
+			"subs": "Subscriptions",
+			"plug": "To plug",
+			"activeList": {
+				"easy": "Easy Ivi",
+				"ivi": "Ivi",
+				"iviAmedia": "Ivi + Amediateka",
+				"amediateka": "Amediateka",
+				"premier": "Match Premier",
+				"football": "Match Football"
+			}
+		},
+		"advertise": {
+			"ivi": "Ivi subscription",
+			"from": "From",
+			"mouth": "₽ per month",
+			"turnOff": "You can turn it off at any time"
+		}
+	},
+	"footer": {
+		"aboutUs": "About us",
+		"aboutCompany": "About company",
+		"vacancies": "Vacancy",
+		"test": "Beta program",
+		"partners": "Information for partners",
+		"adv": "Advertising placement",
+		"usingTerms": "Terms of use",
+		"confidential": "Privacy policy",
+		"compliance": "Compliance",
+		"sections": "Sections",
+		"myIvi": "My Ivi",
+		"new": "What's new",
+		"films": "Movies",
+		"series": "Series",
+		"mults": "Cartoons",
+		"see": "What to see",
+		"sert": "Certificate activation",
+		"support": "Support",
+		"ready": "We are always ready to help you.",
+		"online": "Our operators are online 24/7",
+		"answers": "Answers on questions",
+		"info": "Watch movies, series and cartoons without ads",
+		"ivi": "OOO 'Ivi.ru'",
+		"catalog": "Catalog",
+		"search": "Search",
+		"more": "More"
+	},
+	"button": {
+		"header": {
+			"menuTV": {
+				"program": "TV program"
+			},
+			"menuSubscribe": {
+				"adv": "Watch 30 days for 1 ₽"
+			},
+			"menuLogin": {
+				"enter": "Enter or register"
+			},
+			"advertise": {
+				"plug": "To plug",
+				"smart": " Watch on Smart TV"
+			}
+		},
+		"footer": {
+			"chat": "Contact via chat",
+			"app": "Download in",
+			"gplay": "Available in",
+			"smart": "Watch on",
+			"all": "All devices"
+		}
+	},
+	"tile": {
+		"headerMenuSubscribe": {
+			"new": "New series and films",
+			"weekly": "Weekly replenishment of films and series from around the world",
+			"adv": "Movies and series without ads",
+			"famaly": "Family account on 5 devices",
+			"mobile": "Download to mobile devices"
+		},
+		"headerMenuLogin": {
+			"buy": "Purchases",
+			"later": "Watch later",
+			"history": "Browsing history",
+			"sert": "Certificate activation",
+			"enter": "Login by code",
+			"ways": "Payment methods",
+			"share": "Invite friends"
+		}
+	},
+	"filters": {
+		"search": {
+			"placeholder-small": "Start typing"
+		},
+		"filterButton": {
+			"genre": "Genres",
+			"countries": "Countries",
+			"years": "Years",
+			"rating": "Rating",
+			"grade": "Estimates",
+			"producer": "Producer",
+			"actor": "Actor"
+		},
+		"btnReset": "Reset filters",
+		"filtersYears": {
+			"allYears": "All years"
+		}
+	},
+	"filmCard": {
+		"data-title": {
+			"watch": "Watch Later",
+			"similar": "Similar",
+			"already": "Already watched, evaluate",
+			"notLike": "Don't like this"
+		}
+	},
+	"sorting": {
+		"title": "Sort",
+		"sort": {
+			"popularity": "Popularity",
+			"rating": "Rating",
+			"novelty": "Novelty"
+		}
+	},
+	"moviesPage": {
+		"title": "Movies",
+		"filters-genre": "All genres",
+		"filters-countries": "All countries",
+		"filters-year": "All years",
+		"btn": "Show more",
+		"filters": "Filters",
+		"reset": "Reset filters",
+		"show": "Show result"
+	},
+	"personPage": {
+		"filmography": "Full filmography",
+		"films": "All",
+		"rating": "Rating",
+		"btn-film": "More",
+		"btn-back": "Back"
+	},
+	"filmPage": {
+		"playerPanel": {
+			"trailer": "Trailer"
+		},
+		"summaryBlock": {
+			"ru": "Ru"
+		},
+		"descriptionBlock": {
+			"invite": "We invite you to watch the movie ",
+			"inviteAdd": "in our online cinema in good HD quality. Enjoy watching!",
+			"details": "Movie details",
+			"read": "Read more",
+			"lang": "Languages",
+			"langs": "Russian, English",
+			"sub": "Subtitles",
+			"img": "Image and sound. ",
+			"info": "Actual quality may vary by device and copyright restrictions.",
+			"minDetails": "Collapse details",
+			"min": "Collapse"
+		},
+		"reitingBlock": {
+			"reit": "Ivi rating",
+			"int": "Interesting story",
+			"votes": "votes",
+			"btn": "Estimate"
+		},
+		"additionalInfoBlock": {
+			"lang": "Languages",
+			"langs": "Russian, English",
+			"sub": "Subtitles",
+			"qality": "Quality"
+		}
+	},
+	"card": {
+		"reit": "Ivi",
+		"ivi": "Rating"
+	},
+	"mainPage": {
+		"topCompilation": "of the week",
+		"clauseBlock": {
+			"title": "Ivi online cinema: Movies in good quality are always a real pleasure",
+			"paragraph_1": "Every day, millions of people search for movies online, and no one wants to make things difficult for themselves - and you must be one of them! And if so, then Ivi is exactly the resource that you need. You are literally one click away from the best films in HD quality. We do not just free you from the need to go to the cinema or study the TV program - visitors to our resource have much more opportunities.",
+			"paragraph_2": "Ivi's video library is a constantly growing collection in RuNet, which has more than 60 thousand domestic and foreign content available for viewing online. We were the first in Russia to sign contracts with the largest Hollywood studios (Walt Disney, Warner Bros., Sony, 20th Century Fox, Universal, Paramount, MGM and others) and we constantly cooperate with the largest Russian companies and TV channels.",
+			"paragraph_3": "Online cinema ivi.ru is:",
+			"paragraph_4": "Discover the opportunity to watch movies online for free in excellent quality with the Ivy cinema!",
+			"listEl_1": "a unique recommendation system that takes into account your preferences and offers to watch exactly what you will definitely like;",
+			"listEl_2": "one-touch viewing on any of the devices connected to your Ivy account - from smartphones to TVs with Smart TV technology;",
+			"listEl_3": "the ability to download licensed content to the memory of a mobile device and watch it without access to the Internet;",
+			"listEl_4": "unique conditions and benefits for owners of the Evie subscription, which makes movie viewing comfortable and enjoyable;",
+			"listEl_5": "convenient and advanced notification system, you will not miss the release of a cool discussed blockbuster - we will notify you of the appearance in a way suitable for you;",
+			"listEl_6": "the ability to add movies to 'watch later' to return to them in your free time;",
+			"listEl_7": "content that does not require installing video players or looking for codecs to view;",
+			"listEl_8": "viewing online content of good resolution without registration and SMS.",
+			"toggleShow": "Expand",
+			"toggleHide": "Collapse"
+		}
+	}
 }
