@@ -78,7 +78,9 @@ const PersonPage = () => {
             <div className="actorPage__container">
                 <div className="actorPage__content">
 
-                    <div className="actorPage__btn-back btn-back">
+                    <div className="actorPage__btn-back btn-back"
+                         onClick={() => navigate(-1)}
+                    >
                         <Icons className='actorPage__arrow_small' name='back' size='40'/>
                         <Icons className='actorPage__arrow_big' name='back' size='50'/>
                         {t('personPage.btn-back')}
