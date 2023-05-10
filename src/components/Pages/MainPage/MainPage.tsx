@@ -7,36 +7,89 @@ import { TopWeekFilmCard } from "../../TopWeekCard/TopWeekFilmCard";
 import axios from "axios";
 import Icons from "../../Icons/Icons";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { FilmBanner } from "../../filmBanner/FilmBanner";
+import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
 
 
 interface IMainPageProps { };
 
 export const MainPage: FC<IMainPageProps> = (props) => {
 
-	const { t, i18n } = useTranslation();
+	const navigate = useNavigate()
+	const { t, i18n } = useTranslation([]);
+	const [films, setFilms] = useState<Array<any>>([])
 
-	// useEffect(() => {
-	// 	fetchData()
-	// }, [])
 
-	// async function fetchData() {
-	// 	const response = await axios.get('http://localhost:5000/filters')
-	// 	console.log(response.data)
-	// }
+
+	useEffect(() => {
+		fetchData()
+	}, [])
+
+	async function fetchData() {
+		const response = await axios.get('http://localhost:5000/films', {
+			params: {
+				perPage: 19,
+				page: 1,
+				genres: 'drama'
+			}
+		})
+		const movies = response.data.map((item: any) => {
+			return {
+				key: item.id,
+				nameRu: item.filmNameRu,
+				nameEn: item.filmNameEn,
+				year: item.year,
+				poster: item.smallPictureUrl,
+				rating: item.ratingKp,
+				filmLength: item.movieLength,
+				countryRu: '',
+				countryEn: '',
+				genreRu: '',
+				genreEn: '',
+			}
+
+		})
+		setFilms(movies)
+	}
 
 	const [isClauseSectionTruncated, setIsClauseSectionTruncated] = useState<boolean>(false)
 
 	return (
 		<div className="home">
-			<div className="hove__promo-slider">
+			<div className="home__promoSlider promoSlider">
 				<Carousel variant='main'>
-					<img src="https://thumbs.dfs.ivi.ru/storage2/contents/f/b/e127018037ec40b6aba9d848097aea.jpg/1216x524/?q=85" alt="" />
-					<img src="https://thumbs.dfs.ivi.ru/storage15/contents/2/9/f14be40a738a287d115b71f5e8f8ff.jpg/1216x524/?q=85" alt="" />
-					<img src="https://thumbs.dfs.ivi.ru/storage9/contents/8/9/bb4117c54b4e0ac89cb429fa753626.jpg/1216x524/?q=85" alt="" />
-					<img src="https://thumbs.dfs.ivi.ru/storage26/contents/4/5/0a9a5152f4ef1c2358c8b22bbdbebf.jpg/1216x524/?q=85" alt="" />
-					<img src="https://pic.fullrest.ru/ixzc7Cid.jpg" alt="" />
-					<img src="https://xage.ru/media/uploads/2017/01/kong_skull_island.jpg" alt="" />
-					<img src="https://static.okko.tv/images/v2/10254530?scale=1&quality=80" alt="" />
+					<FilmBanner
+						description="Столичные богачи учатся выживать в деревне. Продолжение хитового сериала с россыпью звёзд"
+						img="https://thumbs.dfs.ivi.ru/storage28/contents/7/3/311c6a4093803c950d1153b674e3d7.jpg/1216x524/?q=85"
+						imgSm="https://thumbs.dfs.ivi.ru/storage33/contents/8/5/f1efb4f8b074d5275e5414569ca667.jpg/1216x1358/?q=60"
+						logo="https://thumbs.dfs.ivi.ru/storage33/contents/c/6/ebb1f750328adf266b9d867e6ce2d2.png/x200/"
+						id="71"
+					/>
+
+					<FilmBanner
+						description="Бывший военный готовит план мести за убитого бандитами брата. Боевик с Владимиром Епифанцевым"
+						img="https://thumbs.dfs.ivi.ru/storage3/contents/5/e/57e62a9708f79edf703813a3f48eaa.jpg/1216x524/?q=60"
+						imgSm="https://thumbs.dfs.ivi.ru/storage31/contents/8/4/c0b052a572a98100a246e2a9c12261.jpg/1216x1358/?q=60"
+						logo="https://thumbs.dfs.ivi.ru/storage3/contents/b/4/53b2eb53a78e7761c394e17c52069f.png/x200/"
+						id="103"
+					/>
+
+					<FilmBanner
+						description="Экранизация подросткового бестселлера о страстной любви отличницы и бойца без правил"
+						img="https://thumbs.dfs.ivi.ru/storage2/contents/9/1/4985aa6b1bea7a90e4ecd766a3871c.jpg/1216x524/?q=60"
+						imgSm="https://thumbs.dfs.ivi.ru/storage2/contents/d/1/bdfc4cc20a287961b5d997fb703c74.jpg/1216x1358/?q=60"
+						logo="https://thumbs.dfs.ivi.ru/storage4/contents/f/1/3aa0a1cd2eee0614ac0bc92c48b135.png/x200/"
+						id="6"
+					/>
+
+					<FilmBanner
+						description="За кулисами эпохального процесса завязывается опасный заговор. Историческая драма Николая Лебедева"
+						img="https://thumbs.dfs.ivi.ru/storage5/contents/f/6/e9a5c19056bd6b9826c35733be0a5a.jpg/1216x524/?q=60"
+						imgSm="https://thumbs.dfs.ivi.ru/storage26/contents/a/4/96e659bef3541a13920d01054381ff.jpg/1216x1358/?q=60"
+						logo="https://thumbs.dfs.ivi.ru/storage6/contents/4/5/f96ec81818f51fef8f269df712d488.png/x200/"
+						id="26"
+					/>
 				</Carousel>
 			</div>
 			<div className="container">
@@ -181,42 +234,8 @@ export const MainPage: FC<IMainPageProps> = (props) => {
 						</div>
 					</div>
 				</section>
-				<section className="pageSection home__pageSection">
-					<div className="pageSection__container">
-						<div className="gallery">
-							<div className="gallery__blockHeader">
-								Test
-								<span>
-									<Icons
-										name="arrowRight"
-										size={'15'}
-										color="white"
-									/>
-								</span>
-							</div>
-							<div className="gallery__carousel">
-								{/* <Carousel variant='cards'>
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-									<FilmCard film='film' onClick={() => console.log('film')} />
-								</Carousel> */}
-							</div>
-						</div>
-					</div>
-				</section>
+				<FilmsCompilation title="Боевики" genre="action" />
+				<FilmsCompilation title="Драмы" genre="drama" />
 			</div>
 
 		</div>

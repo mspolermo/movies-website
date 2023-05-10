@@ -14,6 +14,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 	const [scrollWidth, setScrollWidth] = useState<any>(0)
 
 	const [arrowClassName, setArrowClassName] = useState<string>()
+	const [blockWidth, setBlockWidth] = useState<number>(0)
 
 	const el = useRef<any>(null)
 
@@ -23,6 +24,10 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 
 	useEffect(() => {
 		let block = el.current
+		// для корректного подсчета ширины блока
+		setTimeout(() => {
+			setBlockWidth(block.scrollWidth)
+		}, 500);
 		switch (variant) {
 			case 'cards':
 				// Ширина прокрутки в процентах от ширины контейнера
@@ -41,6 +46,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				break;
 		}
 	}, [])
+
 
 
 
@@ -73,10 +79,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 		<div className="carousel">
 			{scroll > 0
 				?
-				<div
-					className="carousel__prev-arrow"
-					onClick={btnPressPrev}
-				>
+				<div className="carousel__prev-arrow" onClick={btnPressPrev}>
 					<Icons
 						name="arrowLeft"
 						size={variant === 'cards' ? '30' : '15'}
@@ -89,10 +92,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 			{
 				block && scroll + block.clientWidth < block.scrollWidth
 					?
-					<div
-						className="carousel__next-arrow"
-						onClick={btnPressNext}
-					>
+					<div className="carousel__next-arrow" onClick={btnPressNext}>
 						<Icons
 							name="arrowRight"
 							size={variant === 'cards' ? '30' : '15'}
@@ -104,6 +104,7 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 			}
 			<div
 				ref={el}
+				onClick={() => setBlockWidth(block.scrollWidth)}
 				className={`
 					${'carousel__container'} 
 					${variant === 'tv'
@@ -134,3 +135,4 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 		</div>
 	);
 }
+
