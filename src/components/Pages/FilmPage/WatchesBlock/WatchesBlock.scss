@@ -141,3 +141,11 @@
     }
     
 }
+@media (max-width: 350px) {
+    .watchesBlock {
+        &__image-container{
+            margin-left: -24px;
+            margin-right: -24px;
+        }
+    }
+}

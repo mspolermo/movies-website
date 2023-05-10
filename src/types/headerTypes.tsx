@@ -11,3 +11,9 @@ export interface HeaderActiveListProps {
     prefixForId: string;
     onHoverChange: (currentHoverValue: string) => void;
 };
+
+export interface HeaderMenuFilmsAllFiltresProps {
+    genresFirst:[ { nameRu: string, nameEn: string} ];
+    genresSecond:[ { nameRu: string, nameEn: string} ];
+    years: number [];
+};

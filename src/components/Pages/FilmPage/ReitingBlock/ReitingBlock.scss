@@ -76,3 +76,22 @@
         }
     }
 }
+@media (max-width: 440px) {
+    .reitingBlock {
+        &__inner{
+            flex: 1 0 60%;
+        }
+        &__btn {
+            flex: 0 1 30%;
+            max-width: 90px;
+        }
+        &__heading {
+            font-size: 12px;
+            line-height: 12px;
+        }
+        &__text {
+            font-size: 12px;
+            line-height: 12px;
+        }
+    }
+}

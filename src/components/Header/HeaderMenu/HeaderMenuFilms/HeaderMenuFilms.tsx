@@ -1,13 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
-import { HeaderMenuProps } from "../../../../types/headerTypes";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { HeaderMenuFilmsAllFiltresProps, HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuFilms.scss';
+
 import HeaderAdvertise from "../../HeaderAdvertise/HeaderAdvertise";
 import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
-import { useTranslation } from 'react-i18next';
-import axios from "axios";
+
+import CreateList from "../../../CreateList/CreateList";
 
 const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
-    const { t, i18n } = useTranslation();
     const hoverActiveListData = [
         [0, 'header.menuFilms.activeList.new', "https://www.ivi.ru/new/movie-new"],
         [1, 'header.menuFilms.activeList.collect', 'https://www.ivi.ru/collections'],
@@ -23,18 +26,31 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
         [11, 'header.menuFilms.activeList.iviFilms', 'https://www.ivi.ru/collections/ivi-originals']
     ];
 
+    const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
+
     const [headerAdvertiseProp, setHeaderAdvertiseProp] = useState('ivi');
 
-    const [ allFiltres, setAllFiltres]= useState({})
+    const [ allFiltres, setAllFiltres] = useState<HeaderMenuFilmsAllFiltresProps>(
+        {
+            genresFirst:[ {nameRu:'', nameEn: ''  } ],
+            genresSecond:[ {nameRu:'', nameEn: ''  } ],
+            years:[]
+        }
+    );
+    
     async function fetchFiltres() {
+
         const response = await axios.get('http://localhost:5000/filters')
 
-        setAllFiltres( {
-            genres: response.data.genres,
-            countries: response.data.countries.map((item:any) => {return{nameRu: item.counntryName}}),
-            years: response.data.years.reverse().slice (2 , 6 )
-        })
-    }
+        const filtres_ = {
+            genresFirst: response.data.genres.slice (0 , response.data.genres.length / 2 ),
+            genresSecond: response.data.genres.slice ( (response.data.genres.length / 2), response.data.genres.length ),
+            years: response.data.years.reverse().slice( 2 , 6 )
+        };
+
+        setAllFiltres(filtres_); 
+    };
 
     useEffect( () => {
         fetchFiltres();   
@@ -42,120 +58,83 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
     
     return(
         <div className="headerMenuFilms" id={id}>
+
             <div className="headerMenuFilms__column">
+
                 <h3 className="headerMenuFilms__heading">{t('header.menuFilms.genres')}</h3>
+                
                 <ul className="headerMenuFilms__list">
+        
                     <div className="headerMenuFilms__column">
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.arthouse')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.militants')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.western')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.military')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.detectives')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.famaly')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.child')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.doc')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.dram')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.history')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.catastrophes')}</p>
-                        </a>
+                        <CreateList items={allFiltres.genresFirst} renderItem={filter =>
+                            <p className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
+                                {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
+                            </p>
+                        } />
                     </div>
+
                     <div className="headerMenuFilms__column">
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.comedy')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.criminals')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.melodrams')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.mystical')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.comics')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.adventures')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.sport')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.thrillers')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.horrors')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.fantastic')}</p>
-                        </a>
-                        <a href="" className="headerMenuFilms__link">
-                            <p className="headerMenuFilms__item">{t('header.menuFilms.fantasy')}</p>
-                        </a>
+                        <CreateList items={allFiltres.genresSecond} renderItem={filter =>
+                            <p className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
+                                {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
+                            </p>
+                        }/> 
                     </div>
+
                 </ul>    
             </div>
+
             <div className="headerMenuFilms__column">
+                    
                     <h3 className="headerMenuFilms__heading">{t('header.menuFilms.countres')}</h3>
                     <ul className="headerMenuFilms__list">
                         <div className="headerMenuFilms__column">
-                            <a href="" className="headerMenuFilms__link">
+
+                            <a 
+                                className="headerMenuFilms__link"
+                                onClick={() => navigate (`/movies-website/films/country/Россия`)}
+                            >
                                 <p className="headerMenuFilms__item">{t('header.menuFilms.russian')}</p>
                             </a>
-                            <a href="" className="headerMenuFilms__link">
-                                <p className="headerMenuFilms__item">{t('header.menuFilms.abroad')}</p>
-                            </a>
-                            <a href="" className="headerMenuFilms__link">
+
+                            <a 
+                                className="headerMenuFilms__link" 
+                                onClick={() => navigate (`/movies-website/films/country/СССР`)}
+                            >
                                 <p className="headerMenuFilms__item">{t('header.menuFilms.ussr')}</p>
                             </a>
+
+                            <a 
+                                className="headerMenuFilms__link"
+                                onClick={() => navigate (`/movies-website/films/country/США`)}
+                            >
+                                <p className="headerMenuFilms__item">{t('header.menuFilms.abroad')}</p>
+                            </a>
+                        </div>
+
+                    </ul>
+
+                    <h3 className="headerMenuFilms__heading">{t('header.menuFilms.years')}</h3>
+                    <ul className="headerMenuFilms__list">
+                        <div className="headerMenuFilms__column">
+                            <CreateList items={allFiltres.years} renderItem={filter =>
+                                <p className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/year/${filter}`)}>
+                                    {t(`header.menuFilms.${filter}`)}
+                                </p>
+                            } />
                         </div>
                     </ul>
-                    <h3 className="headerMenuFilms__heading">{t('header.menuFilms.years')}</h3>
-                        <ul className="headerMenuFilms__list">
-                            <div className="headerMenuFilms__column">
-                                <a href="" className="headerMenuFilms__link">
-                                    <p className="headerMenuFilms__item">{t('header.menuFilms.2023')}</p>
-                                </a>
-                                <a href="" className="headerMenuFilms__link">
-                                    <p className="headerMenuFilms__item">{t('header.menuFilms.2022')}</p>
-                                </a>
-                                <a href="" className="headerMenuFilms__link">
-                                    <p className="headerMenuFilms__item">{t('header.menuFilms.2021')}</p>
-                                </a>
-                                <a href="" className="headerMenuFilms__link">
-                                    <p className="headerMenuFilms__item">{t('header.menuFilms.2020')}</p>
-                                </a>
-                            </div>
-                        </ul>
+
             </div>
+
             <div className="headerMenuFilms__block">
                 <HeaderActiveList dataArray={hoverActiveListData} prefixForId="HeaderMenuFilms" onHoverChange={setHeaderAdvertiseProp}/>
             </div>
+
             <HeaderAdvertise variant={headerAdvertiseProp}/>
+
         </div>
-    )
- }
+    );
+ };
 
  export default HeaderMenuFilms;

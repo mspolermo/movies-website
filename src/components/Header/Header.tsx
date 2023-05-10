@@ -16,9 +16,11 @@ import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
 import OpenUrl from "../../hooks/OpenUrl";
 import LanguageChanger from "./LanguageChanger/LanguageChanger";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
 
     const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
     const[dropDownVariant, setDropDownVariant] = useState ( 'headerMenuFilms' );
@@ -192,7 +194,11 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li className="headerMenu__listItem">
-                                            <a href="" title="Фильмы" className="headerMenu__link">
+                                            <a 
+                                                title="Фильмы" 
+                                                className="headerMenu__link"
+                                                onClick={() => navigate (`/movies-website/films/`)}
+                                            >
                                                 <p 
                                                     className="headerMenu__text"
                                                     onMouseOver={hoverListener}
@@ -201,7 +207,7 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li className="headerMenu__listItem">
-                                            <a href="" title="Сериалы" className="headerMenu__link">
+                                            <a href="https://www.ivi.ru/series" title="Сериалы" className="headerMenu__link">
                                                 <p 
                                                     className="headerMenu__text"
                                                     onMouseOver={hoverListener}
@@ -210,7 +216,11 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li className="headerMenu__listItem">
-                                            <a href="" title="Мультфильмы" className="headerMenu__link">
+                                            <a 
+                                                title="Мультфильмы" 
+                                                className="headerMenu__link"
+                                                onClick={() => navigate (`/movies-website/films/genre/cartoon`)}
+                                            >
                                                 <p 
                                                     className="headerMenu__text"
                                                     onMouseOver={hoverListener}
@@ -219,7 +229,7 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li className="headerMenu__listItem">
-                                            <a href="" title="TV+" className="headerMenu__link">
+                                            <a href="https://www.ivi.ru/tvplus" title="TV+" className="headerMenu__link">
                                                 <p 
                                                     className="headerMenu__text"
                                                     onMouseOver={hoverListener}
