@@ -1,13 +1,12 @@
 import React, { FC, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuMults.scss'
+
 import HeaderAdvertise from "../../HeaderAdvertise/HeaderAdvertise";
 import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
-import { useTranslation } from 'react-i18next';
 
 const HeaderMenuMults:FC<HeaderMenuProps> = ({id}) => {
-    const { t, i18n } = useTranslation();
-    
     const hoverActiveListData = [
         [0, 'header.menuMults.activeList.new', "https://www.ivi.ru/new/animation-new"],
         [1, 'header.menuMults.activeList.hd', 'https://www.ivi.ru/collections/cartoons-hd'],
@@ -16,6 +15,8 @@ const HeaderMenuMults:FC<HeaderMenuProps> = ({id}) => {
         [4, 'header.menuMults.activeList.ctc', 'https://www.ivi.ru/collections/ctc-kids']
     ];
 
+    const { t, i18n } = useTranslation();
+    
     const [headerAdvertiseProp, setHeaderAdvertiseProp] = useState('ivi');
 
     return(

@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
-
+import { useNavigate } from "react-router-dom";
 import './Header.scss';
-import Button from "../UI/Buttons/Button/Button";
-import Icons from "../Icons/Icons";
 
 import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms/HeaderMenuFilms";
 import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries/HeaderMenuSeries";
@@ -13,10 +11,12 @@ import HeaderMenuSubscribe from "./HeaderMenu/HeaderMenuSubscribe/HeaderMenuSubs
 import HeaderMenuNotify from "./HeaderMenu/HeaderMenuNotify/HeaderMenuNotify";
 import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
 
-import OpenUrl from "../../hooks/OpenUrl";
 import LanguageChanger from "./LanguageChanger/LanguageChanger";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
-import { useNavigate } from "react-router-dom";
+import Button from "../UI/Buttons/Button/Button";
+import Icons from "../Icons/Icons";
+
+import OpenUrl from "../../hooks/OpenUrl";
 
 const Header = () => {
     const { t, i18n } = useTranslation();
@@ -159,6 +159,7 @@ const Header = () => {
     
     return (
         <div className='header'>
+
             <div className="header__search header__search_hidden" ref={searchSection}>
                 <div className="header__close" onClick={CloseSearchSection}>
                     <Icons className="" name="cross" size="30"/>    
@@ -168,11 +169,15 @@ const Header = () => {
                     <HeaderSearch />      
                 </div>
             </div>
+
             <LanguageChanger />
+
             <div className="header__body">
                 <div  className="container header__container" ref={ref} id='header-top'>                 
                     <div className="header__content">
+
                         <div className="header__block">
+
                             <div className="header__img">
                                 <img 
                                     className="header__logo_ivi"
@@ -180,19 +185,23 @@ const Header = () => {
                                     alt="Логотип Иви" 
                                     onClick={() => OpenUrl('https://www.ivi.ru/')}/>
                             </div>
+
                             <div className="header__headerMenu">
                                 <nav className="headerMenu__navigation">
                                     <ul className="headerMenu__list">
+
                                         <li className="headerMenu__listItem">
                                             <a href="https://www.ivi.ru/" title="Мой Иви" className="headerMenu__link">
                                                 <p className="headerMenu__text">{t('header.myIvi')}</p>
                                             </a>
                                         </li>
+
                                         <li className="headerMenu__listItem">
                                             <a href="https://www.ivi.ru/new" title="Что нового" className="headerMenu__link">
                                                 <p className="headerMenu__text">{t('header.new')}</p>
                                             </a>
                                         </li>
+
                                         <li className="headerMenu__listItem">
                                             <a 
                                                 title="Фильмы" 
@@ -206,6 +215,7 @@ const Header = () => {
                                                 >{t('header.films')}</p>
                                             </a>
                                         </li>
+
                                         <li className="headerMenu__listItem">
                                             <a href="https://www.ivi.ru/series" title="Сериалы" className="headerMenu__link">
                                                 <p 
@@ -215,6 +225,7 @@ const Header = () => {
                                                 >{t('header.series')}</p>
                                             </a>
                                         </li>
+
                                         <li className="headerMenu__listItem">
                                             <a 
                                                 title="Мультфильмы" 
@@ -228,6 +239,7 @@ const Header = () => {
                                                 >{t('header.mults')}</p>
                                             </a>
                                         </li>
+
                                         <li className="headerMenu__listItem">
                                             <a href="https://www.ivi.ru/tvplus" title="TV+" className="headerMenu__link">
                                                 <p 
@@ -237,11 +249,16 @@ const Header = () => {
                                                 >TV+</p>
                                             </a>
                                         </li>
+
                                     </ul>
                                 </nav>
+
                             </div>
+
                         </div>
+
                         <div className="header__block">
+
                             <div 
                                 className="header__btn-block"
                                 onMouseOver={hoverListener}
@@ -253,10 +270,12 @@ const Header = () => {
                                     onClick={() => OpenUrl('https://www.ivi.ru/subscribe')}
                                 />   
                             </div>
+
                             <div className="header__btn-block header__btn-block_search" onClick={OpenSearchSection}>
                                 <Icons className="header__svg header__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
                                 <p className="header__text">{t('header.search')}</p>
                             </div>
+
                             <div 
                                 className="header__btn-block header__btn-block_notification"
                                 onMouseOver={hoverListener}
@@ -265,6 +284,7 @@ const Header = () => {
                             > 
                                 <Icons className="header__svg header__svg_notification" name='notification' color='#fff' size='16'/>
                             </div>
+
                             <div 
                                 className="header__btn-block header__btn-block_login"
                                 onMouseOver={hoverListener}
@@ -275,7 +295,9 @@ const Header = () => {
                                     <Icons className="header__svg header__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
                                 </div> 
                             </div>
+                            
                         </div>
+
                     </div>
                 </div>
                 <div 
@@ -296,6 +318,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

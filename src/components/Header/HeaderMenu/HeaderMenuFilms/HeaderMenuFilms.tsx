@@ -67,7 +67,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
         
                     <div className="headerMenuFilms__column">
                         <CreateList items={allFiltres.genresFirst} renderItem={filter =>
-                            <p className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
+                            <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
                                 {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
                             </p>
                         } />
@@ -75,7 +75,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
 
                     <div className="headerMenuFilms__column">
                         <CreateList items={allFiltres.genresSecond} renderItem={filter =>
-                            <p className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
+                            <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
                                 {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
                             </p>
                         }/> 
@@ -118,7 +118,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
                     <ul className="headerMenuFilms__list">
                         <div className="headerMenuFilms__column">
                             <CreateList items={allFiltres.years} renderItem={filter =>
-                                <p className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/year/${filter}`)}>
+                                <p key={filter } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/year/${filter}`)}>
                                     {t(`header.menuFilms.${filter}`)}
                                 </p>
                             } />
