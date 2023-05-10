@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../UI/Buttons/Card/Card";
 import './FilmPage.scss'
-import Button from "../../UI/Buttons/Button/Button";
-import Icons from "../../Icons/Icons";
 import ReitingBlock from "./ReitingBlock/ReitingBlock";
 import SloganBlock from "./SloganBlock/SloganBlock";
 import SummaryBlock from "./SummaryBlock/SummaryBlock";
@@ -103,6 +101,7 @@ const FilmPage = () => {
 
 
     async function fetchFilm() {
+
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data;
 
@@ -125,16 +124,11 @@ const FilmPage = () => {
             genres: data.genres
         }
 
-
         setFilm(film_);
         setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
-        //setCountry( LanguageHook ( data.countries[0].countryName, data.countries[0].countryNameEn, i18n.language) );
     }
     
     //Todo - En version, загрушка для отстутствующих трейлеров
-
-    //need data
-    let ageRating = '16+';
    //Должны сразу приходить отзывы к фильму
 
     return (
@@ -152,42 +146,29 @@ const FilmPage = () => {
                                 controls
                             />
                         </div>
-                        <div className="film__buttonMenu ">
-                            <Button 
-                                title={['Трейлер']} 
-                                svg={<Icons name="play" size="30"/>}
-                            />
-                            <Button 
-                                svg={<Icons name="bookmark" size="30" className="film__svg_bookmark" strokeWidth="0"/>}
-                            />
-                            <Button 
-                                svg={<Icons name="upload" size="30" className="film__svg_upload"/>}
-                            />
-                        </div>
+                        <PlayerPanel />
                     </div>
                     <div className="film__column film__column_right">
                         <SummaryBlock 
                             filmName={filmName}
                             year={film.year}
-                            ageRating={ageRating}
                             genres={film.genres}
                             movieLength={film.movieLength}
                             countries={film.countries}
                         />
                         <CardsBlock ratingKp={film.ratingKp} creators={film.persons}/>
                         <SloganBlock slogan={film?.slogan} />
-                        <DescriptionBlock description={film?.description} filmName={film?.filmNameRu}/>
+                        <DescriptionBlock description={film?.description} filmName={filmName}/>
                         <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
                     </div>    
                 </div>
 
                 <div className="film__tablet">
                     <SummaryBlock 
-                        filmName={film?.filmNameRu}
-                        year={film?.year}
-                        ageRating={ageRating}
+                        filmName={filmName}
+                        year={film.year}
                         genres={film.genres}
-                        movieLength={film?.movieLength}
+                        movieLength={film.movieLength}
                         countries={film.countries}
                     />
                     <div className="film__video">
@@ -202,33 +183,12 @@ const FilmPage = () => {
                     <div className="film__body">
                         <div className="film__column film__column_left">
                             <CardsBlock ratingKp={film?.ratingKp} creators={film.persons}/>
-                            <DescriptionBlock description={film?.description} filmName={film?.filmNameRu}/>
+                            <DescriptionBlock description={film?.description} filmName={filmName}/>
                             <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
                             <AdditionalInfoBlock />
                         </div>  
                         <div className="film__column film__column_right">
-                            <div className="film__buttonMenu ">
-                                <Button 
-                                    type="ultraWide"
-                                    title={['Трейлер']} 
-                                    svg={<Icons name="play" size="30"/>}
-                                />
-                                <div className="film__btns">
-                                    <div className="film__btn">
-                                        <Button
-                                            type="ultraWide"
-                                            svg={<Icons name="bookmark" size="30" className="film__svg_bookmark" strokeWidth="0"/>}
-                                        />
-                                    </div>
-                                    <div className="film__btn">
-                                        <Button 
-                                            type="ultraWide"
-                                            svg={<Icons name="upload" size="30" className="film__svg_upload"/>}
-                                        />
-                                    </div>    
-                                </div>
-                                
-                            </div>
+                            <PlayerPanel />
                             <SloganBlock slogan={film?.slogan} />
                         </div>   
                     </div>            
@@ -236,11 +196,10 @@ const FilmPage = () => {
 
                 <div className="film__mobile">
                     <SummaryBlock 
-                        filmName={film?.filmNameRu}
-                        year={film?.year}
-                        ageRating={ageRating}
+                        filmName={filmName}
+                        year={film.year}
                         genres={film.genres}
-                        movieLength={film?.movieLength}
+                        movieLength={film.movieLength}
                         countries={film.countries}
                     />
                     <div className="film__video">
@@ -255,13 +214,19 @@ const FilmPage = () => {
                     <PlayerPanel />
                     <CardsBlock ratingKp={film?.ratingKp} creators={film.persons}/>
                     <SloganBlock slogan={film?.slogan} />
-                    <DescriptionBlock description={film?.description} filmName={film?.filmNameRu}/>
+                    <DescriptionBlock description={film?.description} filmName={filmName}/>
                     <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
                     <AdditionalInfoBlock />
                 </div>
                
+
+
+
+
+
+
                 <div className="film__inner">
-                    <p className="film__smallHeading">С фильмом «{film?.filmNameRu}» смотрят</p>
+                    <p className="film__smallHeading">С фильмом «{filmName}» смотрят</p>
                     <div className="film__shortly"></div>
                 </div>
                 <div className="film__inner">
@@ -340,7 +305,7 @@ const FilmPage = () => {
                     <div className="film__shortly"></div>
                 </div>
 
-                <WatchesBlock filmName={film.filmNameRu} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
+                <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
             </div>
         </div>

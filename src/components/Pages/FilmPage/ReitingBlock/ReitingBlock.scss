@@ -20,7 +20,10 @@
         align-items: center;
         justify-content: center;
         border-radius: 8px;
-        background-color: #73a32f;
+        background-color: gray;
+        &_green {
+            background-color: #73a32f;
+        }
     }
     &__count {
         font-size: 24px;

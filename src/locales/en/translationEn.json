@@ -296,5 +296,42 @@
         "rating": "Rating",
         "btn-film": "More",
         "btn-back": "Back"
+    },
+    "filmPage": {
+        "playerPanel": {
+            "trailer" : "Trailer"
+        },
+        "summaryBlock": {
+            "ru": "Ru"
+        },
+        "descriptionBlock": {
+            "invite": "We invite you to watch the movie ",
+            "inviteAdd": "in our online cinema in good HD quality. Enjoy watching!",
+            "details": "Movie details",
+            "read": "Read more",
+            "lang": "Languages",
+            "langs": "Russian, English",
+            "sub": "Subtitles",
+            "img": "Image and sound. ",
+            "info": "Actual quality may vary by device and copyright restrictions.",
+            "minDetails": "Collapse details",
+            "min": "Collapse"
+        },
+        "reitingBlock": {
+            "reit": "Ivi rating",
+            "int": "Interesting story",
+            "votes": "votes",
+            "btn": "Estimate"
+        },
+        "additionalInfoBlock": {
+            "lang": "Languages",
+            "langs": "Russian, English",
+            "sub": "Subtitles",
+            "qality": "Quality"
+        }
+    },
+    "card": {
+        "reit": "Ivi",
+        "ivi": "Rating"
     }
 }

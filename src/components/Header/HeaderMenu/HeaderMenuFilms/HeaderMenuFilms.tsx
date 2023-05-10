@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuFilms.scss';
 import HeaderAdvertise from "../../HeaderAdvertise/HeaderAdvertise";
 import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
 import { useTranslation } from 'react-i18next';
+import axios from "axios";
 
 const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
     const { t, i18n } = useTranslation();
@@ -24,6 +25,21 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
 
     const [headerAdvertiseProp, setHeaderAdvertiseProp] = useState('ivi');
 
+    const [ allFiltres, setAllFiltres]= useState({})
+    async function fetchFiltres() {
+        const response = await axios.get('http://localhost:5000/filters')
+
+        setAllFiltres( {
+            genres: response.data.genres,
+            countries: response.data.countries.map((item:any) => {return{nameRu: item.counntryName}}),
+            years: response.data.years.reverse().slice (2 , 6 )
+        })
+    }
+
+    useEffect( () => {
+        fetchFiltres();   
+    }, [])
+    
     return(
         <div className="headerMenuFilms" id={id}>
             <div className="headerMenuFilms__column">

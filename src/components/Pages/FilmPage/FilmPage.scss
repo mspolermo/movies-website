@@ -41,9 +41,6 @@
         bottom: 0;
         right: 0;
     }
-    &__buttonMenu {
-        display: flex;
-    }
     &__tablet {
         display: none;
     }
@@ -78,14 +75,6 @@
         font-style: normal;
         color: $activeColor;
     }
-    &__svg {
-        &_bookmark{
-            transform: translate(2px, 4px);
-        }
-        &_upload {
-            transform: translateY(-2px);
-        }
-    }
 }
 
 @media (max-width: 1160px) {
@@ -110,21 +99,7 @@
                 flex: 2 0 30%;
             }
         }
-        &__buttonMenu{
-            flex-direction: column;
-            transform: translateX(12px);
-        }
-        &__btns {
-            margin-top: 12px;
-            margin-bottom: 100px;
-            width: 100% !important;
-            display: flex;
-            justify-content: space-between;
-        }
-        &__btn {
-            flex: 1 1 50% !important;
-           
-        }
+
     }
 }
 @media (max-width: 880px) {
