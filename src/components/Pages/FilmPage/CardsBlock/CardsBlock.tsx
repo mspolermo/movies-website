@@ -6,6 +6,8 @@ import { CardsBlockProps } from "../../../../types/filmPageTypes";
 
 import Card from "../../../UI/Buttons/Card/Card";
 import LanguageHook from "../../../../hooks/LanguageHook";
+import { useDispatch } from "react-redux";
+import { gradeTrue } from "../../../../store/reducers/gradeReducer";
 
 const CardsBlock:FC<CardsBlockProps> = ({ratingKp, creators}) => {
     const navigate = useNavigate();
@@ -22,9 +24,15 @@ const CardsBlock:FC<CardsBlockProps> = ({ratingKp, creators}) => {
         }
         
     },[creators]);
+
+    //Redux
+    const dispatch = useDispatch();
+    const onIncrement = () => {
+        dispatch(gradeTrue())
+    }
     
     return (
-        <div className="cardsBlock">
+        <div className="cardsBlock" onClick={onIncrement}>
             <div className="cardsBlock__card">
                 <Card 
                     type="reit"

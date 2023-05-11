@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import Search from "../../UI/Inputs/Search/Search";
 import BigSearchResult from "../../Search/BigSearchResult/BigSearchResult";
 import MapperIcons from "../../../types/MapperIcons";
 import _ from 'lodash'
+import Icons from '../../Icons/Icons';
+import './HeaderSearch.scss'
 
 interface Result {
     name: string,
@@ -11,7 +13,12 @@ interface Result {
     rowType: string
 }
 
-const HeaderSearch = () => {
+interface HeaderSearchProps {
+    toggleSearchSection: (e: React.MouseEvent<HTMLDivElement>) => void;
+    searchSection: React.MutableRefObject<HTMLDivElement>
+}
+
+const HeaderSearch:FC<HeaderSearchProps> = ({toggleSearchSection, searchSection}) => {
     const [searchResults, setSearchResult] = useState<Result[]>([{name: 'name', key: 'key', subtitle: 'subtitle', rowType: 'person'}])
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -35,9 +42,16 @@ const HeaderSearch = () => {
     }
 
     return (
-        <div>
-            <Search result={searchResults} renderResult={renderResult} placeholder={'Фильмы, персоны, жанры'} cl={false} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+        <div className="searchBlock searchBlock__hidden" ref={searchSection}>
+                <div className="searchBlock__close" onClick={toggleSearchSection}>
+                    <Icons className="" name="cross" size="30"/>    
+                </div>
+                <div className="searchBlock__modal"> 
+                    <h2 className="searchBlock__heading">Поиск</h2>
+                    <Search result={searchResults} renderResult={renderResult} placeholder={'Фильмы, персоны, жанры'} cl={false} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>    
+                </div>
         </div>
+
     );
 };
 

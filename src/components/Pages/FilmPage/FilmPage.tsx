@@ -17,6 +17,7 @@ import WatchesBlock from "./WatchesBlock/WatchesBlock";
 import LanguageHook from "../../../hooks/LanguageHook";
 import Card from "../../UI/Buttons/Card/Card";
 import Loader from "../../UI/Loader/Loader";
+import GradeBlock from "./GradeBlock/GradeBlock";
 
 
 interface FilmProps {
@@ -99,6 +100,7 @@ const FilmPage = () => {
 
     useEffect(() => {
         fetchFilm();
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
 
     useEffect(() => {
@@ -140,7 +142,7 @@ const FilmPage = () => {
         // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
         setIsPageLoading(false);
     };
-    
+
     return (
         <div className="film">
             {isPageLoading 
@@ -301,6 +303,7 @@ const FilmPage = () => {
 
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
+                <GradeBlock />
             </div>
             }
         </div>
