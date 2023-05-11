@@ -5,6 +5,7 @@ import {activeFiltersProps, startFiltersProps} from "../../../types/filtersTypes
 import Icons from "../../Icons/Icons";
 import {useTranslation} from "react-i18next";
 import Button from "../../UI/Buttons/Button/Button";
+import {useNavigate} from "react-router-dom";
 
 interface ResetFiltersProps {
     selectedFilters: activeFiltersProps,
@@ -20,11 +21,17 @@ const ButtonReset: FC<PropsWithChildren<ResetFiltersProps>> = ({
 
     const {t, i18n} = useTranslation();
     const emptyFilters = JSON.stringify(selectedFilters) === JSON.stringify(activeFilters)
+    const navigate = useNavigate()
+
+    function handle() {
+        setSelectedFilters(_.cloneDeep(activeFilters))
+        navigate('/movies-website/films/')
+    }
 
     return (
         <div>
             <div className="resetFilters"
-                 onClick={() => setSelectedFilters(_.cloneDeep(activeFilters))}
+                 onClick={() => handle()}
             >
                 <div className={emptyFilters ? "resetFilters__content_opacity" : "resetFilters__content"}>
 
@@ -38,7 +45,7 @@ const ButtonReset: FC<PropsWithChildren<ResetFiltersProps>> = ({
             </div>
 
             <div className="resetMobile"
-                 onClick={() => setSelectedFilters(_.cloneDeep(activeFilters))}
+                 onClick={() => handle()}
             >
                 <Button type='ultraWide' color='transparent' title={[t('moviesPage.reset')]}/>
 
