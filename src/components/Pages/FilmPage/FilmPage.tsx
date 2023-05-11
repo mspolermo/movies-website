@@ -17,6 +17,7 @@ import WatchesBlock from "./WatchesBlock/WatchesBlock";
 import LanguageHook from "../../../hooks/LanguageHook";
 import Card from "../../UI/Buttons/Card/Card";
 import Loader from "../../UI/Loader/Loader";
+import GradeBlock from "./GradeBlock/GradeBlock";
 
 
 interface FilmProps {
@@ -301,6 +302,7 @@ const FilmPage = () => {
 
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
+                <GradeBlock />
             </div>
             }
         </div>
