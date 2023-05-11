@@ -4,6 +4,7 @@ import { Carousel } from "../Carousel/Carousel";
 import FilmCard from "../FilmCard/FilmCard";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 interface IFilmsCompilationProps {
 	genre: string
@@ -14,7 +15,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title }) =
 	const navigate = useNavigate()
 	const [films, setFilms] = useState<Array<any>>([])
 
-
+	const { t, i18n } = useTranslation([]);
 
 	useEffect(() => {
 		fetchData()
@@ -72,7 +73,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title }) =
 								)
 							})}
 							<div onClick={() => navigate(`/movies-website/films/genre/${genre}`)} className="linkCard">
-								Посмотреть все
+								{t('mainPage.viewAll')}
 							</div>
 						</Carousel>
 					</div>

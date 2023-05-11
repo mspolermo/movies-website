@@ -69,18 +69,24 @@
 }
 
 .linkCard {
-	min-width: 153px;
-	min-height: 235px;
+	min-width: 13.6%;
+	max-height: 230px;
+	border-radius: 10px;
 	display: flex;
-	color: white;
+	color: #a5a1b2;
+	;
 	background-color: #1f1b2e;
 	justify-content: center;
 	align-items: center;
 	padding: 0px 20px;
 	transform: scale(0.97);
 	cursor: pointer;
+	transition: all .4s;
 
 	&:hover {
+		cursor: pointer;
+		background-color: #413960;
+		color: white;
 		transform: scale(1);
 	}
 }
