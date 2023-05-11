@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import classes from './Card.module.scss'
+import { useTranslation } from "react-i18next";
 
 interface CardProps {
     type: 'small' | 'big' | 'reit';
@@ -11,7 +12,8 @@ interface CardProps {
 }
 
 const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, onClick } ) => {
-    
+    const {t, i18n} = useTranslation();
+
     const [cardClass, setCardClass] = useState(classes.card);
     const [imgClass, setImgClass] = useState(classes.card__img);
     const [bodyClass, setBodyClass] = useState(classes.card__body);
@@ -36,7 +38,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
                 setCardClass(classes.card__reit);
                 setReiting((Math.round(raitingKP! * 10)/10));
                 setBodyClass(classes.card__body_small);
-                if (reiting! >= 8) {
+                if (reiting! >= 7) {
                     setGoodClass(classes.card__color_green)
                 };
                 break;
@@ -63,8 +65,8 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
             <div>
                 { (title) && (!titleArray[1]) && <p className={textClass}>{title}</p>}
 
-                { (raitingKP) && <p className={classes.card__text_reit}>Рейтинг</p>}
-                { (raitingKP) && <p className={classes.card__text_reit}> Иви</p>}
+                { (raitingKP) && <p className={classes.card__text_reit}>{t('card.reit')}</p>}
+                { (raitingKP) && <p className={classes.card__text_reit}>{t('card.ivi')}</p>}
 
                 { (titleArray.length = 2) && <div>
                     <p className={classes.card__text_big}>{titleArray[0]}</p>

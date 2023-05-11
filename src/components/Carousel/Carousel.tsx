@@ -1,6 +1,7 @@
-import { FC, useEffect, useState, useRef, useMemo, Children, useCallback, PropsWithChildren, ReactNode } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import './Carousel.scss'
 import Icons from "../Icons/Icons";
+import { InfiniteCarousel } from "./InfiniteCarousel/InfiniteCarousel";
 
 interface ICarouselProps {
 	variant: string
@@ -12,77 +13,21 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 	const [scroll, setScroll] = useState<number>(0)
 	const [scrollWidth, setScrollWidth] = useState<any>(0)
 
-	const [current, setCurrent] = useState<number>(1)
-
-	const [translateX, setTranslateX] = useState<number>(0)
-
-	const [sliderItems, setSliderItems] = useState<any>([])
 	const [arrowClassName, setArrowClassName] = useState<string>()
-
+	const [blockWidth, setBlockWidth] = useState<number>(0)
 
 	const el = useRef<any>(null)
-	const slider = useRef<any>(null)
-	const interval = useRef<any>(null)
-	const childWidthRef = useRef<any>(null)
 
 	let block = el.current
 
 
-	const addActiveClass = (type: string) => {
-		for (let i = 0; i < sliderItems.length; i++) {
-			sliderItems[i].classList.remove("carousel__slider-item_active");
-		}
-		if (sliderItems[current]) {
-
-			if (type === 'prev') {
-				sliderItems[current].classList.add("carousel__slider-item_active")
-				if (current === 1) {
-					sliderItems[current + children.length].classList.add("carousel__slider-item_active")
-				}
-			} else {
-				if (current === children.length) {
-					sliderItems[current - 2].classList.add("carousel__slider-item_active")
-
-				}
-				sliderItems[current + 2].classList.add("carousel__slider-item_active")
-
-
-			}
-		}
-
-	}
-
-	const actionHandler = useCallback((mode: string) => {
-		slider.current.style.transitionDuration = '400ms'
-		if (mode === 'prev') {
-			if (current <= 1) {
-				setTranslateX(0)
-				setCurrent(children.length)
-				addActiveClass('prev')
-			} else {
-				setTranslateX(childWidthRef.current.clientWidth * (current - 1))
-				setCurrent((prev: any) => --prev)
-				addActiveClass('prev')
-			}
-
-		} else if (mode === 'next') {
-			if (current === children.length) {
-				setCurrent(1)
-				setTranslateX(childWidthRef.current.clientWidth * (children.length + 1))
-				addActiveClass('next')
-
-			} else {
-				setTranslateX((childWidthRef.current.clientWidth) * (current + 1))
-				setCurrent((prev: any) => ++prev)
-				addActiveClass('next')
-			}
-		}
-	}, [current, children, sliderItems])
 
 	useEffect(() => {
 		let block = el.current
-		setSliderItems(document.querySelectorAll('.carousel__slider-item'))
-		document.querySelectorAll('.carousel__slider-item')[current + 1]?.classList.add('carousel__slider-item_active')
+		// для корректного подсчета ширины блока
+		setTimeout(() => {
+			setBlockWidth(block.scrollWidth)
+		}, 500);
 		switch (variant) {
 			case 'cards':
 				// Ширина прокрутки в процентах от ширины контейнера
@@ -99,57 +44,10 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				setScrollWidth(500);
 				setArrowClassName('carousel__prev-arrow_icon arrow-sm')
 				break;
-			case 'main':
-				setScrollWidth(block.clientWidth);
-				setArrowClassName('carousel__prev-arrow_icon')
-				setTranslateX(childWidthRef.current.clientWidth)
-				break;
 		}
 	}, [])
 
 
-	// Для бесконечной прокрутки
-	useEffect(() => {
-
-		const transitionEnd = () => {
-			if (slider.current) {
-				if (current === 1 && block !== null) {
-					slider.current.style.transitionDuration = '0ms'
-					setTranslateX((childWidthRef.current.clientWidth * current))
-				}
-
-				if (current === children.length) {
-					slider.current.style.transitionDuration = '0ms'
-					setTranslateX(childWidthRef.current.clientWidth * children.length)
-				}
-			}
-
-		}
-		document.addEventListener('transitionend', transitionEnd)
-
-		return () => {
-			document.removeEventListener('transitionend', transitionEnd)
-		}
-
-	}, [current, children])
-
-
-	// Автоматический скролл
-	useEffect(() => {
-		if (slider.current) {
-			if (interval.current) {
-				clearInterval(interval.current)
-			}
-			interval.current = setInterval(() => {
-				actionHandler('next')
-			}, 5000)
-			return () => {
-				if (interval.current) {
-					clearInterval(interval.current)
-				}
-			}
-		}
-	}, [actionHandler])
 
 
 	const btnPressPrev = () => {
@@ -177,42 +75,14 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 	}
 
 
-	const slides: any | Element[] = useMemo(() => {
-		if (children.length > 1) {
-			let items = Children.map(children, (child, index) => (
-				<div ref={childWidthRef} className="carousel__slider-item" key={index}>{child}</div>
-			))
-			return [
-				<div className="carousel__slider-item" key={children.length + 5}>{children[children.length - 2]}</div>,
-				<div className="carousel__slider-item" key={children.length + 1}>{children[children.length - 1]}</div>,
-				...items,
-				<div className="carousel__slider-item" key={children.length + 2}>{children[0]}</div>,
-				<div className="carousel__slider-item" key={children.length + 3}>{children[1]}</div>
-			]
-		}
-
-		return (
-			<div >{children[0]}</div>
-		)
-	}, [children])
-
 	return (
 		<div className="carousel">
-			{scroll > 0 || variant === 'main'
+			{scroll > 0
 				?
-				<div
-					className="carousel__prev-arrow"
-					onClick={variant === 'main' ? () => actionHandler('prev') : btnPressPrev}
-					{...variant === 'main'
-					&&
-					{
-						style: { left: '10%' }
-					}
-					}
-				>
+				<div className="carousel__prev-arrow" onClick={btnPressPrev}>
 					<Icons
 						name="arrowLeft"
-						size={variant === 'cards' || variant === 'main' ? '30' : '15'}
+						size={variant === 'cards' ? '30' : '15'}
 						className={arrowClassName}
 						color="rgba(255, 255, 255, 0.7)"
 					/>
@@ -220,21 +90,12 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 				: ''
 			}
 			{
-				block && scroll + block.clientWidth < block.scrollWidth || variant === 'main'
+				block && scroll + block.clientWidth < block.scrollWidth
 					?
-					<div
-						className="carousel__next-arrow"
-						onClick={variant === 'main' ? () => actionHandler('next') : btnPressNext}
-						{...variant === 'main'
-						&&
-						{
-							style: { right: '11%' }
-						}
-						}
-					>
+					<div className="carousel__next-arrow" onClick={btnPressNext}>
 						<Icons
 							name="arrowRight"
-							size={variant === 'cards' || variant === 'main' ? '30' : '15'}
+							size={variant === 'cards' ? '30' : '15'}
 							className={arrowClassName}
 							color="rgba(255, 255, 255, 0.7)"
 						/>
@@ -243,8 +104,9 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 			}
 			<div
 				ref={el}
+				onClick={() => setBlockWidth(block.scrollWidth)}
 				className={`
-					${variant === 'main' ? 'carousel__slider-container' : 'carousel__container'} 
+					${'carousel__container'} 
 					${variant === 'tv'
 						&&
 						block
@@ -259,22 +121,18 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 							:
 							'carousel__container_fade-left'
 					}
-					`} >
+					`}
+			>
 				{
 					variant === 'main'
 						?
-						<div
-							className="carousel__slider"
-							ref={slider}
-							style={{ transform: `translate3d(${-translateX}px, 0, 0)`, transitionDuration: '400ms' }}
-						>
-							{slides}
-
-						</div>
+						<InfiniteCarousel block={block} children={children} />
 						:
 						children
 				}
 			</div>
+
 		</div>
 	);
 }
+

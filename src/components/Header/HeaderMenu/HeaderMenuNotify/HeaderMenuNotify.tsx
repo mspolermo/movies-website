@@ -1,8 +1,8 @@
 import React, { FC } from "react";
+import { useTranslation } from 'react-i18next';
 import { HeaderMenuProps } from "../../../../types/headerTypes";
 import './HeaderMenuNotify.scss'
 import Icons from "../../../Icons/Icons";
-import { useTranslation } from 'react-i18next';
 
 const HeaderMenuNotify:FC<HeaderMenuProps> = ({id}) => {
     const { t, i18n } = useTranslation();
@@ -13,7 +13,7 @@ const HeaderMenuNotify:FC<HeaderMenuProps> = ({id}) => {
                 <p className="headerMenuNotify__text">{t('header.menuNotify.init')}</p>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HeaderMenuNotify;

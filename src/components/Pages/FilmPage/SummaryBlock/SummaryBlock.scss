@@ -20,12 +20,14 @@
             margin-bottom: 0px;
         }
     }
+    &__link{
+        @include hover-colorAnim ($activeColor, $textColor)
+    }
     &__additional {
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        //max-width: 400px;
     }
     &__svg {
         margin: 0 5px;

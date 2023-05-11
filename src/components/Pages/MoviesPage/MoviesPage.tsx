@@ -123,7 +123,7 @@ const MoviesPage = () => {
             }
         })
 
-        console.log(selectedFilters)
+        // console.log(selectedFilters)
 
         // @ts-ignore
         const movies_ = response.data.map(item => {

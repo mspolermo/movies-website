@@ -1,17 +1,19 @@
+@import '/src/styles/variables.scss';
+
 input[type='range'] {
 	-webkit-appearance: none;
 	appearance: none;
 	height: 3px;
 	background-color: #fff;
 	border-radius: 5px;
-	background-image: linear-gradient(#c4375c, #c4375c);
+	background-image: linear-gradient($redColor, $redColor);
 	background-repeat: no-repeat;
 	width: 100%;
 
 	&::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		border-radius: 10px;
-		background: #c4375c;
+		background: $redColor;
 		cursor: pointer;
 		box-shadow: 0 0 2px 0 #555;
 		transition: all 0.1s;

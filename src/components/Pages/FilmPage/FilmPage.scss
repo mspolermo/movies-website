@@ -2,18 +2,39 @@
 
 .film {
     margin-top: 20px;
+    &__loader{
+        height: 700px;
+        width: 100px;
+        padding: 100px;
+        color: white;
+        font-size: 40px;
+    }
     &__container {
     }
-
-    &__desktop{
+    &__body {
         display: flex;
         justify-content: space-between;
     }
+    &__desktop{
+        display: block;
+    }
+    &__tablet {
+        display: none;
+    }
+    &__mobile {
+        display: none;
+    }
+
     &__column {
         display: flex;
         flex-direction: column;
         text-align: center;
         &_left {
+            position: sticky;
+            top: 0;
+            height: 440px; //только для липучки
+
+
             margin-right: 40px;
             flex: 1 1 58%;
         }
@@ -41,19 +62,16 @@
         bottom: 0;
         right: 0;
     }
-    &__buttonMenu {
-        display: flex;
+    &__slogan{
+        display: block;
     }
-    &__tablet {
-        display: none;
+    &__side{
+        &_right{
+            display: none;    
+        }
+        
     }
-    &__body {
-        display: none;
-    }
-    &__mobile {
-        display: none;
-    }
-    
+
 //Нижние блоки
     &__shortly{
         margin-bottom: 20px;
@@ -67,6 +85,7 @@
         // justify-content: space-between;
     }
     &__inner{
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
     }
@@ -78,30 +97,40 @@
         font-style: normal;
         color: $activeColor;
     }
-    &__svg {
-        &_bookmark{
-            transform: translate(2px, 4px);
-        }
-        &_upload {
-            transform: translateY(-2px);
-        }
-    }
 }
 
 @media (max-width: 1160px) {
     .film {
-        &__desktop {
+        &__desktop{
             display: none;
         }
-        &__tablet {
-            display: flex;
-            flex-direction: column;
+        &__slogan{
+            display: none;
+        }
+        &__tablet{
+            display: block;
         }
         &__body {
-            display: flex;
-            justify-content: space-between;
+            display: block;
         }
         &__column {
+            display: block;
+            &_left {
+                position: relative;
+                top: auto;
+                height: auto;
+                margin-right: 0;
+            }
+            &_right {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        &__side {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
             &_left {
                 margin-right: 20px;
                 flex: 1 1 70%;
@@ -110,36 +139,40 @@
                 flex: 2 0 30%;
             }
         }
-        &__buttonMenu{
-            flex-direction: column;
-            transform: translateX(12px);
-        }
-        &__btns {
-            margin-top: 12px;
-            margin-bottom: 100px;
-            width: 100% !important;
-            display: flex;
-            justify-content: space-between;
-        }
-        &__btn {
-            flex: 1 1 50% !important;
-           
-        }
     }
 }
 @media (max-width: 880px) {
     .film {
-        &__tablet {
-            display: none;
-        }
         &__mobile {
             display: flex;
             flex-direction: column;
         }
+        &__slogan{
+            display: block;
+        }
+        &__side {
+            &_left {
+                margin-right: 0;
+            }
+            &_right{
+                display: none;    
+            }
+        }
         &__video {
             margin-bottom: 0;
-            transform: translateX(-48px);
-            width: calc(100% + 96px);
+            transform: translateX(-42px);
+            width: calc(100% + 84px);
+        }
+    }
+}
+@media (max-width: 600px) {
+    .film {
+        &__container {
+            padding: 0 30px;
+        }
+        &__video {
+            transform: translateX(-30px);
+            width: calc(100% + 60px);
         }
     }
 }
