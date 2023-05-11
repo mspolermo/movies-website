@@ -6,6 +6,7 @@ import FilmPage from "../Pages/FilmPage/FilmPage";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { MainPage } from '../Pages/MainPage/MainPage';
+import AdminPage from "../Pages/AdminPage/AdminPage";
 
 const Router = () => {
 	return (
@@ -24,6 +25,8 @@ const Router = () => {
 
 				<Route path={'/movies-website/'} element={<MainPage />} />
 				<Route path={'*'} element={<MainPage />} />
+
+				<Route path={'/movies-website/admin/'} element={<AdminPage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>

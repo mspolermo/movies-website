@@ -2,8 +2,13 @@ import React, {useEffect, useState} from 'react';
 import CreateList from "../../../CreateList/CreateList";
 import {Item} from "../../../../types/filtersTypes";
 import Button from "../../../UI/Buttons/Button/Button";
-import Icons from "../../../Icons";
 import axios from "axios";
+import Icons from "../../../Icons/Icons";
+
+const Genre = {
+    nameRu: '',
+    nameEn: ''
+}
 
 const GenresBlock = () => {
     const [genres, setGenres] = useState<Item[]>([])
@@ -16,31 +21,37 @@ const GenresBlock = () => {
     async function fetchGenres() {
         const response = await axios.get('http://localhost:5000/filters')
 
-        let filters = {
-            genres: response.data.genres
-        }
+        // @ts-ignore
+        let filters = response.data.genres.map(item => {
+            return {
+                nameRu: response.data.genres.nameRu,
+                nameEn: response.data.genres.nameEn
+            }
+        })
 
         setGenres(filters)
     }
 
-    function editGenres(genre) {
+    function editGenres() {
         const response = axios.get(`http://localhost:5000/filters/${genre?.nameEn}`, {
             params: {
                 nameRu: genre?.nameRu,
                 nameEn: genre?.nameEn
             }
         })
-        setGenre({})
+        setGenre(Genre)
     }
+
+    console.log(genres)
 
     return (
         <div className="GenresBlock">
             <div className="GenresBlock__genres genres">
-                <CreateList items={genres} renderItem={(genre: Item) =>
+                <CreateList items={genres} renderItem={(value: Item) =>
                     <div className="genres__genre"
-                         key={genre.nameEn}
+                         key={value.nameEn}
                     >
-                            {genre.nameRu}
+                            {value.nameRu}
                         <div className="genres__editing">
                             <Button type='default'
                                     color='default'
@@ -65,7 +76,7 @@ const GenresBlock = () => {
                     <Button type='default'
                             color='default'
                             title={['Внести изменения']}
-                            onClick={() => editGenres(genre)}/>
+                            onClick={() => editGenres()}/>
                 </div>
             }
 

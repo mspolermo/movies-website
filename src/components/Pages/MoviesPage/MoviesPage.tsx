@@ -56,6 +56,10 @@ const MoviesPage = () => {
     }, [])
 
     useEffect(() => {
+        addFilter(allFilters)
+    }, [params])
+
+    useEffect(() => {
         singleFilters()
     }, [i18n.language])
 
@@ -166,20 +170,23 @@ const MoviesPage = () => {
     }
 
     function addFilter(filters: startFiltersProps) {
+        let emptyFilters = _.cloneDeep(activeFilters)
+
         if (params.genre){
             let genreId = filters.genres.find(genre => genre.nameEn === params.genre)
             if (genreId){
-                setSelectedFilters({...selectedFilters, genres: [genreId.nameEn]})
+                return setSelectedFilters({...emptyFilters, genres: [genreId.nameEn]})
             }
         }
 
         if (params.country){
             let addCountry = []
             addCountry.push(params.country)
-            setSelectedFilters({...selectedFilters, countries: addCountry})
+            return setSelectedFilters({...emptyFilters, countries: addCountry})
         }
+
         if (params.year){
-            setSelectedFilters({...selectedFilters, years: Number(params.year)})
+           return setSelectedFilters({...emptyFilters, years: Number(params.year)})
         }
     }
 
