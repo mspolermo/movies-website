@@ -17,3 +17,9 @@ export interface HeaderMenuFilmsAllFiltresProps {
     genresSecond:[ { nameRu: string, nameEn: string} ];
     years: number [];
 };
+
+export interface HeaderSectionsProps {
+    hoverListener: (e: React.DragEvent<HTMLDivElement>) => void;
+    leaveListener: (e: React.DragEvent<HTMLDivElement>) => void;
+    toggleSearchSection: (e: React.MouseEvent<HTMLDivElement>) => void;
+};

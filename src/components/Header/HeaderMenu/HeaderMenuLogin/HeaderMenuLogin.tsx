@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { HeaderMenuProps } from "../../../../types/headerTypes";
+import { useNavigate } from "react-router-dom";
 import './HeaderMenuLogin.scss'
 
 import Icons from "../../../Icons/Icons";
@@ -21,6 +22,7 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
     ];
 
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
 
     const [activeHover, setActiveHover] = useState<string>('ivi');
     let imgUrl = 'https://www.ivi.ru/pages/newseason/assets/images/new-logo-short.svg'
@@ -145,6 +147,9 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
                         onClick={() => OpenUrl('https://www.ivi.ru/profile')}
                     />
                     <div>
+                        <a className=" headerMenuLogin__link" onClick={() => navigate(`/movies-website/admin`)}>
+                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">AdminPage</p>
+                        </a>
                         <a className=" headerMenuLogin__link" href="https://www.ivi.ru/profile/settings">
                             <p className="headerMenuLogin__text headerMenuLogin__text_additional">{t('header.menuLogin.settings')}</p>
                         </a>
