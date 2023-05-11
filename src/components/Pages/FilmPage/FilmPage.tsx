@@ -100,6 +100,7 @@ const FilmPage = () => {
 
     useEffect(() => {
         fetchFilm();
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
 
     useEffect(() => {
@@ -141,7 +142,7 @@ const FilmPage = () => {
         // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
         setIsPageLoading(false);
     };
-    
+
     return (
         <div className="film">
             {isPageLoading 

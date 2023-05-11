@@ -12,6 +12,7 @@
     justify-content: center;
     
     background:rgba(0,0,0,.9);
+
     &__hidden {
         display: none;
     }
@@ -26,6 +27,9 @@
         //display: flex;
         //flex-direction: column;
         width: 50vw;
+        &_hidden {
+            display: none;
+        }
     }
     &__heading {
         font-size: 40px;
@@ -122,6 +126,11 @@
         }
         &_right {
           padding-right: 8px;  
+        }
+    }
+    &__svg {
+        &_complete {
+            margin-bottom: 10px;
         }
     }
 }
