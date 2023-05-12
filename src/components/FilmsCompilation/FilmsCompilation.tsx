@@ -7,18 +7,25 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 interface IFilmsCompilationProps {
-	genre: string
+	variant: string
+	genre?: string
 	title: string
+	similarFilms?: {}[]
 };
 
-export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title }) => {
+export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, variant, similarFilms }) => {
 	const navigate = useNavigate()
 	const [films, setFilms] = useState<Array<any>>([])
 
 	const { t, i18n } = useTranslation([]);
 
 	useEffect(() => {
-		fetchData()
+		if (variant === 'similarFilms' && similarFilms) {
+			convertData(similarFilms)
+		}
+		if (variant === 'genreCompilation') {
+			fetchData()
+		}
 	}, [])
 
 	async function fetchData() {
@@ -47,12 +54,37 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title }) =
 		})
 		setFilms(movies)
 	}
+
+	function convertData(data: {}[]) {
+		const movies = data.map((item: any) => {
+			return {
+				key: item.id,
+				nameRu: item.filmNameRu,
+				nameEn: item.filmNameEn,
+				year: item.year,
+				poster: item.smallPictureUrl,
+				rating: item.ratingKp,
+				filmLength: item.movieLength,
+				countryRu: '',
+				countryEn: '',
+				genreRu: '',
+				genreEn: '',
+			}
+		})
+		setFilms(movies)
+	}
 	return (
 		<section className="pageSection home__pageSection">
 			<div className="pageSection__container">
 				<div className="gallery">
 					<div onClick={() => navigate(`/movies-website/films/genre/${genre}`)} className="gallery__blockHeader">
-						{title}
+						{
+							variant === 'similarFilms'
+								?
+								`С фильмом ${title} смотрят`
+								:
+								title
+						}
 						<span>
 							<Icons
 								name="arrowRight"
@@ -85,3 +117,4 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title }) =
 
 	);
 }
+
