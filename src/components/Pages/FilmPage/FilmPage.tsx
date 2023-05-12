@@ -93,6 +93,10 @@ const FilmPage = () => {
         fetchFilm();
         //document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
+    useEffect(() => {
+        fetchFilm();
+        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }, [params]);
 
     useEffect(() => {
 
@@ -109,6 +113,7 @@ const FilmPage = () => {
 
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data.film;
+        console.log('data',data)
 
         const film_ = {
             id: data.id,
