@@ -227,11 +227,19 @@
                 min-height: 44px;
                 height: 44px;
             }
+            &_big {
+                max-height: 72px;
+                max-width: 72px;
+            }
         }
         &__img{
             &_small{
                 max-height: 36px;
                 max-width: 36px;
+            }
+            &_big{
+                max-height: 72px;
+                max-width: 72px;
             }
         }
         &__color {

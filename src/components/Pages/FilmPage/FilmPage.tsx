@@ -19,6 +19,7 @@ import Card from "../../UI/Buttons/Card/Card";
 import Loader from "../../UI/Loader/Loader";
 import GradeBlock from "./GradeBlock/GradeBlock";
 import { SimilarFilmsBlock } from "./SimilarFilmsBlock/SimilarFilmsBlock";
+import CreatorsBlock from "./CreatorsBlock/CreatorsBlock";
 
 
 interface FilmProps {
@@ -88,10 +89,9 @@ const FilmPage = () => {
     const [filmName, setFilmName] = useState('');
     const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM')
 
-    console.log(similarFilms)
     useEffect(() => {
         fetchFilm();
-        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
 
     useEffect(() => {
@@ -100,8 +100,7 @@ const FilmPage = () => {
 
         if ( (film.trailerName) && ( film.trailerUrl.includes('youtube') ) ) {
             setTrailer(film.trailerUrl);
-        }
-
+        } 
     }, [i18n.language, film]);
 
     async function fetchFilm() {
@@ -134,6 +133,7 @@ const FilmPage = () => {
         setSimilarFilms(similarFilms_)
         // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
         setIsPageLoading(false);
+
     };
 
     return (
@@ -214,87 +214,11 @@ const FilmPage = () => {
 
                 </div>
 
-                {/* <div className="film__inner">
-                    <p className="film__smallHeading">С фильмом «{filmName}» смотрят</p>
-                    <div className="film__shortly"></div>
-                </div> */}
                 <SimilarFilmsBlock similarFilms={similarFilms} title={filmName}/>
-                <div className="film__inner">
-                    <p className="film__smallHeading">Актёры и создатели</p>
-                    <div className="film__part">
-                        <Card 
-                            type="big"
-                            title={"Киану Ривз"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_7836.jpg"}
-                        />    
-                        <Card 
-                            type="big"
-                            title={"Юлия Пересильд"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_1537279.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Донни Йен"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Киану Ривз"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_7836.jpg"}
-                        />    
-                        <Card 
-                            type="big"
-                            title={"Юлия Пересильд"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_1537279.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Донни Йен"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Донни Йен"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />  
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />  
-                    </div>
-                </div>
+                <CreatorsBlock creators={film.persons}/>
                 <div className="film__inner">
                     <p className="film__smallHeading">Отзывы</p>
-                    {/* <div className="film__shortly"></div> */}
                 </div>
-
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
                 <GradeBlock />
