@@ -75,7 +75,7 @@ const PersonPage = () => {
 
     return (
         <div className="actorPage">
-            <div className="actorPage__container">
+            <div className="actorPage__container container">
                 <div className="actorPage__content">
 
                     <div className="actorPage__btn-back btn-back"
@@ -94,7 +94,7 @@ const PersonPage = () => {
                             <CreateList items={films} renderItem={(film: FilmographyProps) =>
                                 <ShortMovieCard key={film.key}
                                                 film={film}
-                                                route={(film)  => navigate('/movies-website/films/' + film.key)}/>
+                                                route={(film)  => navigate('/movies-website/film/' + film.key)}/>
                             }/>
                         </div>
                     </div>
