@@ -93,6 +93,7 @@ const FilmPage = () => {
         fetchFilm();
         //document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
+
     useEffect(() => {
         fetchFilm();
         //document.body.scrollTop = document.documentElement.scrollTop = 0;
