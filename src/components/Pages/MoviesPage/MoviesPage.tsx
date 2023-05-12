@@ -177,17 +177,16 @@ const MoviesPage = () => {
             if (genreId){
                 return setSelectedFilters({...emptyFilters, genres: [genreId.nameEn]})
             }
-        }
-
-        if (params.country){
+        } else if (params.country){
             let addCountry = []
             addCountry.push(params.country)
             return setSelectedFilters({...emptyFilters, countries: addCountry})
+        } else if (params.year){
+           return setSelectedFilters({...emptyFilters, years: Number(params.year)})
+        } else {
+            return setSelectedFilters(emptyFilters)
         }
 
-        if (params.year){
-           return setSelectedFilters({...emptyFilters, years: Number(params.year)})
-        }
     }
 
     return (
@@ -222,7 +221,7 @@ const MoviesPage = () => {
                         <CreateList items={movies} renderItem={(movie: FilmProps) =>
                             <div className="listMovies__film-card"
                                  key={movie.key}>
-                                <FilmCard
+                                <FilmCard icons={true}
                                           film={movie}
                                           onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
                                 />
@@ -299,6 +298,7 @@ const MoviesPage = () => {
                                 <div className="listMovies__film-card"
                                      key={movie.key}>
                                     <FilmCard
+                                        icons={true}
                                         film={movie}
                                         onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
                                     />

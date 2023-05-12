@@ -13,9 +13,10 @@ import CreateEnd from "../UI/CreateEnding/CreateEnd";
 interface FilmCardProps {
     film: FilmProps;
     onClick: (film: FilmProps) => void;
+    icons?: boolean
 }
 
-const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
+const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = false}) => {
     const {t, i18n} = useTranslation();
     const [favorites, setFavorites] = useState(true);
     const [notlike, setNotlike] = useState(true);
@@ -29,7 +30,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
         >
             <div className="filmcard__container">
                 <div className='filmcard__content'>
-                    <div className='filmcard__poster'>
+                    <div className={icons ? 'filmcard__poster' : 'filmcard__poster-two'}>
                         <div className="filmcard__img">
                             <img
                                 src={film.poster ? film.poster : poster}
@@ -51,26 +52,29 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick}) => {
 
                             </div>
 
-                            <div className="filmcard__icons_style"
-                                 data-title={t('filmCard.data-title.similar')}
-                            >
-                                <img src={similar} alt="" style={{width: 20.8}}/>
-                            </div>
+                            {icons &&
+                                <div>
+                                    <div className="filmcard__icons_style"
+                                         data-title={t('filmCard.data-title.similar')}
+                                    >
+                                        <img src={similar} alt="" style={{width: 20.8}}/>
+                                    </div>
 
-                            <div className="filmcard__icons_style"
-                                 data-title={t('filmCard.data-title.already')}
-                            >
-                                <Icons className='filmcard__icons_svg' name='grade-star' size='25.8'/>
-                            </div>
+                                    <div className="filmcard__icons_style"
+                                         data-title={t('filmCard.data-title.already')}
+                                    >
+                                        <Icons className='filmcard__icons_svg' name='grade-star' size='25.8'/>
+                                    </div>
 
-                            <div
-                                data-title={t('filmCard.data-title.notLike')}
-                                className="filmcard__icons_style"
-                                onClick={() => setNotlike(prev => !prev)}
-                            >
-                                {notlike ? <img src={like} alt='' style={{width: 20.8}}/>
-                                    : <img src={notlikeTrue} alt='' style={{width: 20.8}}/>}
-                            </div>
+                                    <div
+                                        data-title={t('filmCard.data-title.notLike')}
+                                        className="filmcard__icons_style"
+                                        onClick={() => setNotlike(prev => !prev)}
+                                    >
+                                        {notlike ? <img src={like} alt='' style={{width: 20.8}}/>
+                                            : <img src={notlikeTrue} alt='' style={{width: 20.8}}/>}
+                                    </div>
+                            </div>}
 
                         </div>
                         <div className="filmcard__properties_info">
