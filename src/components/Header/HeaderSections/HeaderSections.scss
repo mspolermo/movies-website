@@ -1,0 +1,201 @@
+@import '/src/styles/variables.scss';
+
+.headerSections {
+
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    &::after{
+        content: '';
+        background-color: $splitLineColor;
+        height: 1px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    &__block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__img{
+        cursor: pointer;
+    }
+    &__text {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+
+        color: $textColor;
+    }
+    &__headerMenu {
+        margin-left: 32px;
+    }
+    &__btn-block {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        &_search {
+            margin: 0 12px 0 8px;
+            &:hover {
+                cursor: pointer;
+                .headerSections__svg_search {
+                    stroke: $activeColor;
+                    fill: $activeColor;
+                    transition-duration: 0.4s;
+                }
+                .headerSections__text {
+                    color: $activeColor;
+                    transition-duration: 0.4s;
+                }
+            }
+            &:not(:hover):not(:active) {
+                .headerSections__svg_search {
+                    stroke: $textColor;
+                    fill: $textColor;
+                    transition-duration: 0.4s;
+                }
+                .headerSections__text {
+                    color: $textColor;
+                    transition-duration: 0.4s;
+                }
+            }
+        }
+        &_notification{
+            padding: 0 20px 0 8px;
+            &:hover {
+                cursor: pointer;
+                .headerSections__svg_notification {
+                    stroke: $activeColor;
+                    fill: $activeColor;
+                    transition-duration: 0.4s;
+                }
+            }
+            &:not(:hover):not(:active) {
+                .headerSections__svg_notification {
+                    stroke: $textColor;
+                    fill: $textColor;
+                    transition-duration: 0.4s;
+                }
+            }
+        }
+        &_login {
+            &:hover {
+                .headerSections__svg-border{
+                    box-shadow: 0 0 6px $activeColor;
+                    border-color: $activeColor;
+                    transition-duration: 0.4s;
+                    cursor: pointer;    
+                }
+                .headerSections__svg_login{
+                    stroke: $activeColor;
+                    fill: $activeColor;
+                    transition-duration: 0.4s;
+                }
+            }
+            &:not(:hover):not(:active) {
+                .headerSections__svg-border{
+                    border-color: $textColor;
+                    transition-duration: 0.4s;
+                }
+                .headerSections__svg_login {
+                    stroke: $textColor;
+                    fill: $textColor;
+                    transition-duration: 0.4s;
+                }
+            }
+        }  
+    }
+    &__svg-border {
+        padding: 8px;
+
+        border-radius: 8px;
+        border: 1px solid $textColor;
+        background-color: transparent;
+    }
+    &__svg {
+        &_search {
+            margin-right: 8px;
+        }
+    }
+}
+
+.headerMenu {
+    &__navigation {
+    }
+    &__list {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__listItem {
+        
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+    &__link {
+        padding: 10px;
+        cursor: pointer;
+    }
+    &__text {
+        padding: 0 0 14px 16px;
+        transform: translateY(6px);
+        padding-left: 16px;
+        padding-bottom: 14px;
+        height: 100%;
+
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        color: $textColor;
+
+        @include hover-colorAnim ($activeColor, $textColor)
+    }
+}
+
+@media (max-width: 1160px) {
+    .headerSections{
+        &__headerMenu{
+            display: none;
+        }
+        &__btn-block{
+            &_search{
+                display: none;
+            }
+        }
+    }     
+}
+@media (max-width: 600px) {
+    .headerSections {
+        &__btn-block{
+            &_notification{
+                display: none;
+            }
+            &_login{
+                display: none;
+            }
+        }
+        &__block {
+            height: 64px;
+            .Button_btn__textBlock__IVFdx {
+                max-width: 180px;
+                max-height: 16px;
+            }    
+            .Button_btn__text__OS4PO{
+                font-size: 11px;
+                line-height: 16px;
+            }
+        }
+        &__logo{
+            &_ivi{
+                height: 40px;
+            }
+        }
+        
+    }
+}

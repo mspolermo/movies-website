@@ -18,7 +18,7 @@ const meta: Meta<typeof Icons> = {
                 'cross', 'check', 'back', 'circle', 'circle-checked', 'chevron-down',
                 'person-search', 'movie-search', 'series', 'sorting', 'home',
                 'slogan-open', 'slogan-close', 'volume-down', 'keyboard', 'play',
-                'upload' 
+                'upload', 'complete' 
             ],
             control: {
                 type: 'select'

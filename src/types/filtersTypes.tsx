@@ -40,6 +40,14 @@ export interface FilmProps {
     'genreEn': string,
 }
 
+export interface MovieProps {
+    'key': number,
+    'nameRu': string,
+    'nameEn': string,
+    'genreRu': string,
+    'genreEn': string,
+}
+
 export interface startFiltersProps {
     'genres':
         {
@@ -71,4 +79,120 @@ export interface startFiltersProps {
 export interface Item {
     nameRu: string,
     nameEn: string
+}
+
+export const arrAllFilters = {
+    'popularGenres': [
+        {
+            'nameRu': 'драма',
+            'nameEn': 'drama'
+        },
+        {
+            'nameRu': 'боевик',
+            'nameEn': 'action'
+        },
+        {
+            'nameRu': 'триллер',
+            'nameEn': 'thriller'
+        },
+        {
+            'nameRu': 'криминал',
+            'nameEn': 'crime'
+        },
+        {
+            'nameRu': 'комедия',
+            'nameEn': 'comedy'
+        },
+        {
+            'nameRu': 'фантастика',
+            'nameEn': 'fantastic'
+        },
+        {
+            'nameRu': 'приключения',
+            'nameEn': 'adventures'
+        },
+        {
+            'nameRu': 'семейный',
+            'nameEn': 'family'
+        },
+        {
+            'nameRu': 'аниме',
+            'nameEn': 'anime'
+        },
+        {
+            'nameRu': 'фэнтези',
+            'nameEn': 'fantasy'
+        }
+    ],
+    'genres': [
+        {
+            'nameRu': '',
+            'nameEn': ''
+        }
+    ],
+    'popularCountries': [
+        {
+            'nameRu': 'Россия',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'США',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Германия',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Великобритания',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Япония',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Китай',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Корея Южная',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Индия',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'СССР',
+            'nameEn': ''
+        },
+        {
+            'nameRu': 'Франция',
+            'nameEn': ''
+        }
+    ],
+    'countries': [
+        {
+            'nameRu': '',
+            'nameEn': ''
+        }
+    ],
+    'years': [],
+    'rating': 0,
+    'grade': 0,
+    'producer': '',
+    'actor': ''
+}
+
+export const activeFilters = {
+    'popularGenres': [],
+    'genres': [],
+    'popularCountries': [],
+    'countries': [],
+    'years': 0,
+    'rating': 0,
+    'grade': 0,
+    'producer': '',
+    'actor': ''
 }

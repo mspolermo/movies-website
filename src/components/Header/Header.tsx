@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from "react-router-dom";
 import './Header.scss';
 
+import HeaderSections from "./HeaderSections/HeaderSections";
 import HeaderMenuFilms from "./HeaderMenu/HeaderMenuFilms/HeaderMenuFilms";
 import HeaderMenuSeries from "./HeaderMenu/HeaderMenuSeries/HeaderMenuSeries";
 import HeaderMenuMults from "./HeaderMenu/HeaderMenuMults/HeaderMenuMults";
@@ -13,116 +12,10 @@ import HeaderMenuLogin from "./HeaderMenu/HeaderMenuLogin/HeaderMenuLogin";
 
 import LanguageChanger from "./LanguageChanger/LanguageChanger";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
-import Button from "../UI/Buttons/Button/Button";
-import Icons from "../Icons/Icons";
-
-import OpenUrl from "../../hooks/OpenUrl";
 
 const Header = () => {
-    const { t, i18n } = useTranslation();
-    const navigate = useNavigate();
 
-    const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
-    const[dropDownVariant, setDropDownVariant] = useState ( 'headerMenuFilms' );
-    const[variantID, setVariatnID] = useState( '#drop-down-films' );
-    
-    const[chosenVariant, setChosenVariant] = useState('');
-    let block = null;
-     
-    useEffect( () => {
-
-        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}__hidden`);
-
-        //workaroud для отображения пунктов выпадающего списка
-        let variant='';
-
-        if ( (chosenVariant == 'Фильмы') || (chosenVariant == 'Movies') ) {
-            variant = 'films'
-        } else if ( (chosenVariant == 'Сериалы') || (chosenVariant == 'Series') ) {
-            variant = 'series'
-        } else if ( (chosenVariant == 'Мультфильмы') || (chosenVariant == 'Cartoons') ) {
-            variant = 'cartoons'
-        } else if (chosenVariant.includes('notification')) {
-            variant = 'notification'
-        } else if(chosenVariant.includes('person')) {
-            variant = 'person'
-        }else if( (chosenVariant.includes('дней')) || (chosenVariant.includes('days'))) {
-            variant = 'subscribe'
-        } else {variant=chosenVariant};
-
-        switch(variant) {
-            case ("films" ):
-                block = document.querySelector('#drop-down-films')
-                block?.classList.remove('headerMenuFilms__hidden')
-                setVariatnID('#drop-down-films')
-                setDropDownVariant('headerMenuFilms')
-                break;
-            case "series":
-                block = document.querySelector('#drop-down-series')
-                block?.classList.remove('headerMenuSeries__hidden')
-                setVariatnID('#drop-down-series')
-                setDropDownVariant('headerMenuSeries')
-                break;
-            case "cartoons":
-                block = document.querySelector('#drop-down-mults')
-                block?.classList.remove('headerMenuMults__hidden')
-                setVariatnID('#drop-down-mults')
-                setDropDownVariant('headerMenuMults')
-                break;
-            case 'TV+':
-                block = document.querySelector('#drop-down-tv')
-                block?.classList.remove('headerMenuTv__hidden')
-                setVariatnID('#drop-down-tv')
-                setDropDownVariant('headerMenuTv')
-                break;
-            case ('notification'):
-                block = document.querySelector('#drop-down-notify')
-                block?.classList.remove('headerMenuNotify__hidden')
-                setVariatnID('#drop-down-notify')
-                setDropDownVariant('headerMenuNotify')
-                break;
-            case ('subscribe'):
-                block = document.querySelector('#drop-down-subscribe')
-                block?.classList.remove('headerMenuSubscribe__hidden')
-                setVariatnID('#drop-down-subscribe')
-                setDropDownVariant('headerMenuSubscribe')
-                break;
-            case ('person'):
-                block = document.querySelector('#drop-down-login')
-                block?.classList.remove('headerMenuLogin__hidden')
-                setVariatnID('#drop-down-login')
-                setDropDownVariant('headerMenuLogin')
-                break;
-        };
-    }, [chosenVariant]);
-
-    const hoverListener = (e: React.DragEvent<HTMLDivElement>) => {
-        let checkWidth = parseInt(width.replace(/[^\d]/g, ''))
-
-        if ( checkWidth > 1099 ) {
-
-            const dropdownBlock = document.querySelector('#drop-down-block');
-            const headerTop = document.querySelector('#header-top');
-
-            dropdownBlock?.classList.remove('header__dropDownBody_hidden');
-            headerTop?.classList.add('header__container_active');
-
-            //Условие для workaround (длина выпадающего списка всегда >1000, длина кнопок меню <300)
-            if (e.currentTarget.innerHTML.length < 300) {
-                setChosenVariant(e.currentTarget.innerHTML); 
-            };
-
-        };
-    };
-
-    const leaveListener = (e: React.DragEvent<HTMLDivElement>) => {
-        const dropdownBlock = document.querySelector('#drop-down-block');
-        const headerTop = document.querySelector('#header-top');
-
-        dropdownBlock?.classList.add('header__dropDownBody_hidden');
-        headerTop?.classList.remove('header__container_active');
-    };
-
+    //Получение ширины постоянно отображающегося хедера
     const ref = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
     const GetElementWidth = () => {
@@ -146,160 +39,114 @@ const Header = () => {
 
     let width = `${GetElementWidth()}px`;
 
-    //Search button 
+    //Логика открытия выпадающего меню
+    const dropDown = React.useRef() as React.MutableRefObject<HTMLDivElement>;
+    const[dropDownVariant, setDropDownVariant] = useState ( 'headerMenuFilms' );
+    const[variantID, setVariatnID] = useState( '#drop-down-films' );
+    
+    const[chosenVariant, setChosenVariant] = useState('');
+    let block = null;
+    const dropdownBlock = document.querySelector('#drop-down-block');
+    const headerTop = document.querySelector('#header-top');
 
+    useEffect( () => {
+
+        document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}__hidden`);
+
+        //workaroud для отображения пунктов выпадающего списка
+
+        if ( (chosenVariant == 'Фильмы') || (chosenVariant == 'Movies') ) {
+            block = document.querySelector('#drop-down-films')
+            block?.classList.remove('headerMenuFilms__hidden')
+            setVariatnID('#drop-down-films')
+            setDropDownVariant('headerMenuFilms')
+        } else if ( (chosenVariant == 'Сериалы') || (chosenVariant == 'Series') ) {
+            block = document.querySelector('#drop-down-series')
+            block?.classList.remove('headerMenuSeries__hidden')
+            setVariatnID('#drop-down-series')
+            setDropDownVariant('headerMenuSeries')
+        } else if ( (chosenVariant == 'Мультфильмы') || (chosenVariant == 'Cartoons') ) {
+            block = document.querySelector('#drop-down-mults')
+            block?.classList.remove('headerMenuMults__hidden')
+            setVariatnID('#drop-down-mults')
+            setDropDownVariant('headerMenuMults')
+        } else if (chosenVariant == 'TV+') {
+            block = document.querySelector('#drop-down-tv')
+            block?.classList.remove('headerMenuTv__hidden')
+            setVariatnID('#drop-down-tv')
+            setDropDownVariant('headerMenuTv')
+        } else if (chosenVariant.includes('notification')) {
+            block = document.querySelector('#drop-down-notify')
+            block?.classList.remove('headerMenuNotify__hidden')
+            setVariatnID('#drop-down-notify')
+            setDropDownVariant('headerMenuNotify')
+        } else if(chosenVariant.includes('person')) {
+            block = document.querySelector('#drop-down-login')
+            block?.classList.remove('headerMenuLogin__hidden')
+            setVariatnID('#drop-down-login')
+            setDropDownVariant('headerMenuLogin')
+        }else if( (chosenVariant.includes('дней')) || (chosenVariant.includes('days'))) {
+            block = document.querySelector('#drop-down-subscribe')
+            block?.classList.remove('headerMenuSubscribe__hidden')
+            setVariatnID('#drop-down-subscribe')
+            setDropDownVariant('headerMenuSubscribe')
+        } 
+
+    }, [chosenVariant]);
+
+    const hoverListener = (e: React.DragEvent<HTMLDivElement>) => {
+        let checkWidth = parseInt(width.replace(/[^\d]/g, ''))
+        
+
+        if ( checkWidth > 1099 ) {
+
+            dropdownBlock?.classList.remove('header__dropDownBody_hidden');
+            headerTop?.classList.add('header__container_active');
+                
+            //console.log(e.currentTarget.innerHTML.length)
+            //Условие для workaround (длина выпадающего списка всегда >1000, длина кнопок меню <350)
+            if (e.currentTarget.innerHTML.length < 350) {
+                setChosenVariant(e.currentTarget.innerHTML); 
+            };
+
+        };
+    };
+
+    const leaveListener = (e: React.DragEvent<HTMLDivElement>) => {
+        
+        headerTop?.classList.remove('header__container_active');
+        dropdownBlock?.classList.add('header__dropDownBody_hidden');
+        
+    };
+
+    //Открытие блока поиска
     const searchSection = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
-    function OpenSearchSection () {
-        searchSection.current.classList.remove('header__search_hidden');
-    };
-    function CloseSearchSection () {
-        searchSection.current.classList.add('header__search_hidden');
+    function toggleSearchSection (e: React.MouseEvent<HTMLDivElement>) {
+
+        searchSection.current.classList.toggle('searchBlock__hidden');
+
+        if ( e.currentTarget.className.includes('headerSections__btn-block_search')) {
+            window.onscroll = () => { window.scroll(0, 0); };
+        } else {
+            window.onscroll = () => { window.scroll(); };
+        };
     };
     
     return (
         <div className='header'>
-
-            <div className="header__search header__search_hidden" ref={searchSection}>
-                <div className="header__close" onClick={CloseSearchSection}>
-                    <Icons className="" name="cross" size="30"/>    
-                </div>
-                <div className="header__modal"> 
-                    <h2 className="header__heading">Поиск</h2>
-                    <HeaderSearch />      
-                </div>
-            </div>
-
             <LanguageChanger />
 
             <div className="header__body">
-                <div  className="container header__container" ref={ref} id='header-top'>                 
-                    <div className="header__content">
 
-                        <div className="header__block">
-
-                            <div className="header__img">
-                                <img 
-                                    className="header__logo_ivi"
-                                    src='https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg' 
-                                    alt="Логотип Иви" 
-                                    onClick={() => OpenUrl('https://www.ivi.ru/')}/>
-                            </div>
-
-                            <div className="header__headerMenu">
-                                <nav className="headerMenu__navigation">
-                                    <ul className="headerMenu__list">
-
-                                        <li className="headerMenu__listItem">
-                                            <a href="https://www.ivi.ru/" title="Мой Иви" className="headerMenu__link">
-                                                <p className="headerMenu__text">{t('header.myIvi')}</p>
-                                            </a>
-                                        </li>
-
-                                        <li className="headerMenu__listItem">
-                                            <a href="https://www.ivi.ru/new" title="Что нового" className="headerMenu__link">
-                                                <p className="headerMenu__text">{t('header.new')}</p>
-                                            </a>
-                                        </li>
-
-                                        <li className="headerMenu__listItem">
-                                            <a 
-                                                title="Фильмы" 
-                                                className="headerMenu__link"
-                                                onClick={() => navigate (`/movies-website/films/`)}
-                                            >
-                                                <p 
-                                                    className="headerMenu__text"
-                                                    onMouseOver={hoverListener}
-                                                    onMouseLeave={leaveListener}
-                                                >{t('header.films')}</p>
-                                            </a>
-                                        </li>
-
-                                        <li className="headerMenu__listItem">
-                                            <a href="https://www.ivi.ru/series" title="Сериалы" className="headerMenu__link">
-                                                <p 
-                                                    className="headerMenu__text"
-                                                    onMouseOver={hoverListener}
-                                                    onMouseLeave={leaveListener}
-                                                >{t('header.series')}</p>
-                                            </a>
-                                        </li>
-
-                                        <li className="headerMenu__listItem">
-                                            <a 
-                                                title="Мультфильмы" 
-                                                className="headerMenu__link"
-                                                onClick={() => navigate (`/movies-website/films/genre/cartoon`)}
-                                            >
-                                                <p 
-                                                    className="headerMenu__text"
-                                                    onMouseOver={hoverListener}
-                                                    onMouseLeave={leaveListener}
-                                                >{t('header.mults')}</p>
-                                            </a>
-                                        </li>
-
-                                        <li className="headerMenu__listItem">
-                                            <a href="https://www.ivi.ru/tvplus" title="TV+" className="headerMenu__link">
-                                                <p 
-                                                    className="headerMenu__text"
-                                                    onMouseOver={hoverListener}
-                                                    onMouseLeave={leaveListener}
-                                                >TV+</p>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </nav>
-
-                            </div>
-
-                        </div>
-
-                        <div className="header__block">
-
-                            <div 
-                                className="header__btn-block"
-                                onMouseOver={hoverListener}
-                                onMouseLeave={leaveListener}
-                            >
-                                <Button 
-                                    title={['button.header.menuSubscribe.adv']} 
-                                    color="red"
-                                    onClick={() => OpenUrl('https://www.ivi.ru/subscribe')}
-                                />   
-                            </div>
-
-                            <div className="header__btn-block header__btn-block_search" onClick={OpenSearchSection}>
-                                <Icons className="header__svg header__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
-                                <p className="header__text">{t('header.search')}</p>
-                            </div>
-
-                            <div 
-                                className="header__btn-block header__btn-block_notification"
-                                onMouseOver={hoverListener}
-                                onMouseLeave={leaveListener}
-                                onClick={() => OpenUrl('https://www.ivi.ru/profile/pull_notifications')}
-                            > 
-                                <Icons className="header__svg header__svg_notification" name='notification' color='#fff' size='16'/>
-                            </div>
-
-                            <div 
-                                className="header__btn-block header__btn-block_login"
-                                onMouseOver={hoverListener}
-                                onMouseLeave={leaveListener}
-                                onClick={() => OpenUrl('https://www.ivi.ru/profile')}
-                            >
-                                <div className="header__svg-border">
-                                    <Icons className="header__svg header__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
-                                </div> 
-                            </div>
-                            
-                        </div>
-
-                    </div>
+                <div  className="container header__container" ref={ref} id='header-top'>
+                    <HeaderSections 
+                        hoverListener={hoverListener} 
+                        leaveListener={leaveListener}
+                        toggleSearchSection={toggleSearchSection} 
+                    />
                 </div>
+
                 <div 
                     className="header__dropDownBody header__dropDownBody_hidden"
                     id='drop-down-block'
@@ -319,6 +166,7 @@ const Header = () => {
                 </div>
             </div>
 
+            <HeaderSearch searchSection={searchSection} toggleSearchSection={toggleSearchSection}/> 
         </div>
     )
 }

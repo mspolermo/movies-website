@@ -92,6 +92,11 @@
 }
 
 .gallery {
+	&__film{
+		min-width: 160px;
+		min-height: 230px;
+		margin-bottom: -24px;
+	}
 	&__blockHeader {
 		color: white;
 		font-size: 24px;

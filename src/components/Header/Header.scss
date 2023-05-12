@@ -1,7 +1,8 @@
 @import '/src/styles/variables.scss';
 
 .header {
-    z-index: 2;
+    position: relative;
+    z-index: 3;
     &__body {
         max-width: 1300px;
         margin: 0 auto;
@@ -17,129 +18,6 @@
             border-radius: 12px 12px 0 0;  
         }
     }
-    &__content {  
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        &::after{
-            content: '';
-            background-color: $splitLineColor;
-            height: 1px;
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-        }
-    }
-    &__block {
-        
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    &__img{
-        cursor: pointer;
-    }
-    &__btn-block {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        &_search {
-            margin: 0 12px 0 8px;
-            &:hover {
-                cursor: pointer;
-                .header__svg_search {
-                    stroke: $activeColor;
-                    fill: $activeColor;
-                    transition-duration: 0.4s;
-                }
-                .header__text {
-                    color: $activeColor;
-                    transition-duration: 0.4s;
-                }
-            }
-            &:not(:hover):not(:active) {
-                .header__svg_search {
-                    stroke: $textColor;
-                    fill: $textColor;
-                    transition-duration: 0.4s;
-                }
-                .header__text {
-                    color: $textColor;
-                    transition-duration: 0.4s;
-                }
-            }
-        }
-        &_notification{
-            padding: 0 20px 0 8px;
-            &:hover {
-                cursor: pointer;
-                .header__svg_notification {
-                    stroke: $activeColor;
-                    fill: $activeColor;
-                    transition-duration: 0.4s;
-                }
-            }
-            &:not(:hover):not(:active) {
-                .header__svg_notification {
-                    stroke: $textColor;
-                    fill: $textColor;
-                    transition-duration: 0.4s;
-                }
-            }
-        }
-        &_login {
-            &:hover {
-                .header__svg-border{
-                    box-shadow: 0 0 6px $activeColor;
-                    border-color: $activeColor;
-                    transition-duration: 0.4s;
-                    cursor: pointer;    
-                }
-                .header__svg_login {
-                    stroke: $activeColor;
-                    fill: $activeColor;
-                    transition-duration: 0.4s;
-                }
-            }
-            &:not(:hover):not(:active) {
-                .header__svg-border{
-                    border-color: $textColor;
-                    transition-duration: 0.4s;
-                }
-                .header__svg_login {
-                    stroke: $textColor;
-                    fill: $textColor;
-                    transition-duration: 0.4s;
-                }
-            }
-        }  
-    }
-    &__svg-border {
-        padding: 8px;
-
-        border-radius: 8px;
-        border: 1px solid $textColor;
-        background-color: transparent;
-    }
-    &__svg {
-        &_search {
-            margin-right: 8px;
-        }
-    }
-    &__text {
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-
-        color: $textColor;
-    }
-    &__headerMenu {
-        margin-left: 32px;
-    }
     &__dropDownBody {
         margin: 0 auto;
 
@@ -153,73 +31,11 @@
         
         position: absolute;
         &_hidden {
-            display: block;
-            //выполняется в анимации
-            //display: none;
-            //z-index: -2;
-        }
-
-    }
-    &__search {
-        position:fixed;
-        display: flex;
-        justify-content: center;
-        width:100%;
-        height:100vh;
-        background:rgba(0,0,0,.8);
-        z-index:4;
-        transform: translateY(-20px);
-        &_hidden {
             display: none;
+            z-index: -2;
+            //должно выполнятся в анимации, переделать
         }
-    }
-    
-    &__close {
-        position: absolute;
-        right: 30px;
-        top: 30px;
-        cursor: pointer;
-    }
-    &__modal {
-        width: 50%;
-    }
-    &__heading {
-        padding-top: 64px;
-        padding-bottom: 40px;
-        font-size: 40px;
-        font-weight: 700;
-        color: $headingColor;
-    }
-}
 
-.headerMenu {
-    &__navigation {
-    }
-    &__list {
-        display: flex;
-        justify-content: space-between;
-    }
-    &__listItem {
-        &:first-child {
-            padding-left: 0;
-        }
-    }
-    &__link {
-        padding: 10px;
-    }
-    &__text {
-        padding: 0 0 14px 16px;
-        transform: translateY(6px);
-        padding-left: 16px;
-        padding-bottom: 14px;
-        height: 100%;
-
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-        color: $textColor;
-
-        @include hover-colorAnim ($activeColor, $textColor)
     }
 }
 
@@ -231,6 +47,7 @@
 
 //Animation dropDownMenu
 .header {
+    
     &__dropDownBody {
         animation-name: open;
         animation-duration: 0.4s;
@@ -239,6 +56,7 @@
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
         animation-delay: 0s;
+        
     &__container{
         &_active {
             animation-name: open;
@@ -252,7 +70,7 @@
     }
         &_hidden {
             animation-name: close;
-            animation-duration: 0.2s;
+            animation-duration: 0.6s;
             animation-iteration-count: 1;
             animation-direction: normal;
             animation-timing-function: ease-out;
@@ -296,48 +114,11 @@
     }
 }
 
-//Mobile versions
-@media (max-width: 1160px) {
-    .header {
-        &__headerMenu{
-            display: none;
-        }
-        &__btn-block{
-            &_search{
-                display: none;
-            }
-        }
-    }     
-}
+//Mobile version
 @media (max-width: 600px) {
     .header {
         &__container {
             padding: 0 0;
         }
-        &__btn-block{
-            &_notification{
-                display: none;
-            }
-            &_login{
-                display: none;
-            }
-        }
-        &__block {
-            height: 64px;
-            .Button_btn__textBlock__IVFdx {
-                max-width: 180px;
-                max-height: 16px;
-            }    
-            .Button_btn__text__OS4PO{
-                font-size: 13px;
-                line-height: 16px;
-            }
-        }
-        &__logo{
-            &_ivi{
-                height: 40px;
-            }
-        }
-        
     }
 }

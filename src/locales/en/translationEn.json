@@ -279,7 +279,8 @@
 		"sort": {
 			"popularity": "Popularity",
 			"rating": "Rating",
-			"novelty": "Novelty"
+			"novelty": "Novelty",
+            "alphabet": "Alphabet"
 		}
 	},
 	"moviesPage": {

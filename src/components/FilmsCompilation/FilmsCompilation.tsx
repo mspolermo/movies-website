@@ -65,11 +65,14 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title }) =
 						<Carousel variant='cards'>
 							{films && films.map(i => {
 								return (
-									<FilmCard
-										key={i.key}
-										film={i}
-										onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
-									/>
+									<div className="gallery__film">
+										<FilmCard
+											key={i.key}
+											film={i}
+											onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
+										/>
+									</div>
+
 								)
 							})}
 							<div onClick={() => navigate(`/movies-website/films/genre/${genre}`)} className="linkCard">

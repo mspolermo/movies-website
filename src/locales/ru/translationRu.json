@@ -279,7 +279,8 @@
 		"sort": {
 			"popularity": "По популярности",
 			"rating": "По рейтингу",
-			"novelty": "По новизне"
+			"novelty": "По новизне",
+            "alphabet": "По алфавиту"
 		}
 	},
 	"moviesPage": {

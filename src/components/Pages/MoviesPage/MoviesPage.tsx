@@ -5,7 +5,13 @@ import Sorting from "../../Sorting/Sorting";
 import CreateList from "../../CreateList/CreateList";
 import FilmCard from "../../FilmCard/FilmCard";
 import {useTranslation} from "react-i18next";
-import {activeFiltersProps, FilmProps, startFiltersProps} from "../../../types/filtersTypes";
+import {
+    activeFilters,
+    activeFiltersProps,
+    arrAllFilters,
+    FilmProps,
+    startFiltersProps
+} from "../../../types/filtersTypes";
 import _ from "lodash";
 import axios from "axios";
 import Button from "../../UI/Buttons/Button/Button";
@@ -13,122 +19,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import Icons from "../../Icons/Icons";
 import ButtonReset from "../../Filters/ButtonReset/ButtonReset";
 import {firstCharUp, languageFilters} from "./utils";
-
-const activeFilters = {
-    'popularGenres': [],
-    'genres': [],
-    'popularCountries': [],
-    'countries': [],
-    'years': 0,
-    'rating': 0,
-    'grade': 0,
-    'producer': '',
-    'actor': ''
-}
-
-const arrAllFilters = {
-    'popularGenres': [
-        {
-            'nameRu': 'драма',
-            'nameEn': 'drama'
-        },
-        {
-            'nameRu': 'боевик',
-            'nameEn': 'action'
-        },
-        {
-            'nameRu': 'триллер',
-            'nameEn': 'thriller'
-        },
-        {
-            'nameRu': 'криминал',
-            'nameEn': 'crime'
-        },
-        {
-            'nameRu': 'комедия',
-            'nameEn': 'comedy'
-        },
-        {
-            'nameRu': 'фантастика',
-            'nameEn': 'fantastic'
-        },
-        {
-            'nameRu': 'приключения',
-            'nameEn': 'adventures'
-        },
-        {
-            'nameRu': 'семейный',
-            'nameEn': 'family'
-        },
-        {
-            'nameRu': 'аниме',
-            'nameEn': 'anime'
-        },
-        {
-            'nameRu': 'фэнтези',
-            'nameEn': 'fantasy'
-        }
-    ],
-    'genres': [
-        {
-            'nameRu': '',
-            'nameEn': ''
-        }
-    ],
-    'popularCountries': [
-        {
-            'nameRu': 'Россия',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'США',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Германия',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Великобритания',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Япония',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Китай',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Корея Южная',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Индия',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'СССР',
-            'nameEn': ''
-        },
-        {
-            'nameRu': 'Франция',
-            'nameEn': ''
-        }
-    ],
-    'countries': [
-        {
-            'nameRu': '',
-            'nameEn': ''
-        }
-    ],
-    'years': [],
-    'rating': 0,
-    'grade': 0,
-    'producer': '',
-    'actor': ''
-}
 
 const MoviesPage = () => {
     const {t, i18n} = useTranslation();
@@ -147,7 +37,7 @@ const MoviesPage = () => {
     const emptyFilters = JSON.stringify(selectedFilters) === JSON.stringify(activeFilters)
 
 
-    let sortOptions = ['popularity', 'rating', 'novelty']
+    let sortOptions = ['popularity', 'rating', 'novelty', 'alphabet']
 
     useEffect(() => {
         fetchMovies()
@@ -164,6 +54,10 @@ const MoviesPage = () => {
     useEffect(() => {
         fetchFilters()
     }, [])
+
+    useEffect(() => {
+        addFilter(allFilters)
+    }, [params])
 
     useEffect(() => {
         singleFilters()
@@ -276,26 +170,29 @@ const MoviesPage = () => {
     }
 
     function addFilter(filters: startFiltersProps) {
+        let emptyFilters = _.cloneDeep(activeFilters)
+
         if (params.genre){
             let genreId = filters.genres.find(genre => genre.nameEn === params.genre)
             if (genreId){
-                setSelectedFilters({...selectedFilters, genres: [genreId.nameEn]})
+                return setSelectedFilters({...emptyFilters, genres: [genreId.nameEn]})
             }
         }
 
         if (params.country){
             let addCountry = []
             addCountry.push(params.country)
-            setSelectedFilters({...selectedFilters, countries: addCountry})
+            return setSelectedFilters({...emptyFilters, countries: addCountry})
         }
+
         if (params.year){
-            setSelectedFilters({...selectedFilters, years: Number(params.year)})
+           return setSelectedFilters({...emptyFilters, years: Number(params.year)})
         }
     }
 
     return (
         <div className='MoviesPage'>
-            <div className="MoviesPage__container">
+            <div className="MoviesPage__container container">
                 <div className="MoviesPage__content">
 
                     <div className="MoviesPage__header">
@@ -334,9 +231,11 @@ const MoviesPage = () => {
 
                     </div>
 
-                    <Button type={'ultraWide'} color={'transparent'}
-                            title={[t('moviesPage.btn')]}
-                            onClick={() => uploadFilms()}/>
+                    <div className="MoviesPage__btn">
+                        <Button type={'ultraWide'} color={'transparent'}
+                                title={[t('moviesPage.btn')]}
+                                onClick={() => uploadFilms()}/>
+                    </div>
 
                 </div>
             </div>
