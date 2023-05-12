@@ -27,11 +27,11 @@ export const Carousel: FC<ICarouselProps> = ({ variant, children }) => {
 		// для корректного подсчета ширины блока
 		setTimeout(() => {
 			setBlockWidth(block.scrollWidth)
-		}, 500);
+		}, 1000);
 		switch (variant) {
 			case 'cards':
 				// Ширина прокрутки в процентах от ширины контейнера
-				setScrollWidth(block.clientWidth / 100 * 86);
+				setScrollWidth(block.clientWidth / 100 * 80);
 				setArrowClassName('carousel__prev-arrow_icon')
 				break;
 
