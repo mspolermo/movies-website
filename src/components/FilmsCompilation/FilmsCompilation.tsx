@@ -73,11 +73,21 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 		})
 		setFilms(movies)
 	}
+
+	function linkToFilm() {
+		if (variant === 'genreCompilation') {
+			navigate(`/movies-website/films/genre/${genre}`)
+		}
+	}
+
 	return (
 		<section className="pageSection home__pageSection">
 			<div className="pageSection__container">
 				<div className="gallery">
-					<div onClick={() => navigate(`/movies-website/films/genre/${genre}`)} className="gallery__blockHeader">
+					<div
+						onClick={linkToFilm}
+						className="gallery__blockHeader"
+					>
 						{
 							variant === 'similarFilms'
 								?
@@ -85,13 +95,17 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 								:
 								title
 						}
-						<span>
-							<Icons
-								name="arrowRight"
-								size={'15'}
-								color="white"
-							/>
-						</span>
+						{
+							variant === 'genreCompilation'
+							&&
+							<span>
+								<Icons
+									name="arrowRight"
+									size={'15'}
+									color="white"
+								/>
+							</span>
+						}
 					</div>
 					<div className="gallery__carousel">
 						<Carousel variant='cards'>
@@ -106,9 +120,12 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 
 								)
 							})}
-							<div onClick={() => navigate(`/movies-website/films/genre/${genre}`)} className="linkCard">
-								{t('mainPage.viewAll')}
-							</div>
+							{variant === 'genreCompilation'
+								&&
+								<div onClick={() => navigate(`/movies-website/films/genre/${genre}`)} className="linkCard">
+									{t('mainPage.viewAll')}
+								</div>
+							}
 						</Carousel>
 					</div>
 				</div>
