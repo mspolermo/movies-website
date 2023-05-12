@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
-import './GradeBlock.scss'
-import Icons from "../../../Icons/Icons";
-import { useTypedSelector } from "../../../../hooks/useTypedSelector";
+import { useTranslation } from "react-i18next";
+import './GradeBlock.scss';
+
 import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../../../../hooks/useTypedSelector";
 import { gradeFalse } from "../../../../store/reducers/gradeReducer";
 
+import Icons from "../../../Icons/Icons";
+
 const GradeBlock = () => {
+    const {t, i18n} = useTranslation();
     const grades = Array.from({length: 10}, (_, index) => index + 1);
 
     //Действия для ответа в модальном блоке
@@ -28,6 +32,11 @@ const GradeBlock = () => {
         questionBlock?.classList.remove('gradeBlock__modal_hidden');
     }
 
+    useEffect( () => {
+        dispatch(gradeFalse());
+        window.onscroll = () => { window.scroll(); };
+    },[])
+
     useEffect(() => {
         if (value) {
             gradeBlock?.classList.remove('gradeBlock__hidden');
@@ -48,8 +57,8 @@ const GradeBlock = () => {
             </div>
 
             <div className="gradeBlock__modal" id='question-block'> 
-                <h2 className="gradeBlock__heading">Ваша оценка</h2>
-                <p className="gradeBlock__text">Оценки улучшают рекомендации</p>
+                <h2 className="gradeBlock__heading">{t('filmPage.gradeBlock.grade')}</h2>
+                <p className="gradeBlock__text">{t('filmPage.gradeBlock.rec')}</p>
                 <div className="gradeBlock__optionSelector">
                   
                     <div className="gradeBlock__box">
@@ -65,16 +74,16 @@ const GradeBlock = () => {
                     </div>
 
                     <div className="gradeBlock__labelBlock">
-                        <div className="gradeBlock__label gradeBlock__label_left">очень плохо</div>
-                        <div className="gradeBlock__label gradeBlock__label_right">отлично</div>
+                        <div className="gradeBlock__label gradeBlock__label_left">{t('filmPage.gradeBlock.bad')}</div>
+                        <div className="gradeBlock__label gradeBlock__label_right">{t('filmPage.gradeBlock.good')}</div>
                     </div>
                 </div>    
             </div>
 
             <div className="gradeBlock__modal gradeBlock__modal_hidden" id='complete-block'>
                 <Icons className="gradeBlock__svg gradeBlock__svg_complete" name="complete" size="68" color="green"/> 
-                <h2 className="gradeBlock__heading">Ваша оценка принята</h2>
-                <p className="gradeBlock__text">Спасибо,  что поделились своим мнением</p>
+                <h2 className="gradeBlock__heading">{t('filmPage.gradeBlock.get')}</h2>
+                <p className="gradeBlock__text">{t('filmPage.gradeBlock.thank')}</p>
             </div>
 
         </div>

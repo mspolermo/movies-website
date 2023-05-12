@@ -18,6 +18,7 @@ import LanguageHook from "../../../hooks/LanguageHook";
 import Card from "../../UI/Buttons/Card/Card";
 import Loader from "../../UI/Loader/Loader";
 import GradeBlock from "./GradeBlock/GradeBlock";
+import { SimilarFilmsBlock } from "./SimilarFilmsBlock/SimilarFilmsBlock";
 
 
 interface FilmProps {
@@ -42,31 +43,19 @@ interface FilmProps {
         professions: [{
             id: number,
             name: string,
-            PersonProfession: {
-                "A": number,
-                "B": number
-            }
         }] 
     } [],
     countries: {
         id: number,
         countryName: string,
         countryNameEn: string,
-        FilmCountry: {
-            "A": number,
-            "B": number
-        }
     }[] ,
     genres: {
         id: number,
         nameRu: string,
         nameEn: string,
-        FilmGenre: {
-            "A": number,
-            "B": number
-        }
     } []
-}
+};
 
 const Film = {
     id: 0,
@@ -85,7 +74,7 @@ const Film = {
     persons: [],
     countries: [],
     genres: []
-}
+};
 
 const FilmPage = () => {
     //Todo - кнопки, additional blocks, En version,
@@ -95,13 +84,19 @@ const FilmPage = () => {
     const [isPageLoading, setIsPageLoading] = useState(false);
 
     const [film, setFilm] = useState<FilmProps>(Film);
+    const [similarFilms, setSimilarFilms] = useState([{}]);
     const [filmName, setFilmName] = useState('');
     const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM')
 
+    console.log(similarFilms)
     useEffect(() => {
         fetchFilm();
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        //document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
+    useEffect(() => {
+        fetchFilm();
+        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }, [params]);
 
     useEffect(() => {
 
@@ -117,7 +112,8 @@ const FilmPage = () => {
         setIsPageLoading(true);
 
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
-        let data = response.data;
+        let data = response.data.film;
+        console.log('data',data)
 
         const film_ = {
             id: data.id,
@@ -136,9 +132,11 @@ const FilmPage = () => {
             persons: data.persons,
             countries: data.countries,
             genres: data.genres
-        }
+        };
+        const similarFilms_ = response.data.similarFilms.slice(0 ,30);
 
         setFilm(film_);
+        setSimilarFilms(similarFilms_)
         // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
         setIsPageLoading(false);
     };
@@ -221,10 +219,11 @@ const FilmPage = () => {
 
                 </div>
 
-                <div className="film__inner">
+                {/* <div className="film__inner">
                     <p className="film__smallHeading">С фильмом «{filmName}» смотрят</p>
                     <div className="film__shortly"></div>
-                </div>
+                </div> */}
+                <SimilarFilmsBlock similarFilms={similarFilms} title={filmName}/>
                 <div className="film__inner">
                     <p className="film__smallHeading">Актёры и создатели</p>
                     <div className="film__part">
@@ -298,7 +297,7 @@ const FilmPage = () => {
                 </div>
                 <div className="film__inner">
                     <p className="film__smallHeading">Отзывы</p>
-                    <div className="film__shortly"></div>
+                    {/* <div className="film__shortly"></div> */}
                 </div>
 
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />

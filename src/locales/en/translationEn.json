@@ -331,7 +331,15 @@
 			"langs": "Russian, English",
 			"sub": "Subtitles",
 			"qality": "Quality"
-		}
+		},
+		"gradeBlock": {
+			"grade": "Your rating",
+			"rec": "Ratings improve recommendations",
+			"bad": "very bad",
+			"good": "great",
+			"get": "Your rating has been accepted",
+			"thank": "Thank you for sharing your opinion"
+		} 
 	},
 	"card": {
 		"reit": "Ivi",
