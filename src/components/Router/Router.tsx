@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { MainPage } from '../Pages/MainPage/MainPage';
 import AdminPage from "../Pages/AdminPage/AdminPage";
+import { AuthPage } from '../Pages/AuthPage/AuthPage';
 
 const Router = () => {
 	return (
@@ -27,6 +28,7 @@ const Router = () => {
 				<Route path={'*'} element={<MainPage />} />
 
 				<Route path={'/movies-website/admin/'} element={<AdminPage />} />
+				<Route path={'/movies-website/auth'} element={<AuthPage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
