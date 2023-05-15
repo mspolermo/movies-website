@@ -1,0 +1,94 @@
+@import '/src/styles/variables.scss';
+
+.commentsBlock {
+    margin: 40px 0;
+    &__top {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__part{
+
+    }
+    &__header{
+        display: flex;
+        color: $textColor;
+        &_no {
+            padding-top: 24px;
+            margin-bottom: 240px;
+        }
+    }
+    &__heading {
+        color: white;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+    &__count{
+        padding-left: 6px;
+    }
+
+
+
+    &__inner{
+        padding: 20px;
+        background-color: #1f1b2e;
+        margin-right: 20px;
+        min-width: 300px;
+        min-height: 180px;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__comment-header {
+        color: #a5a1b2;
+        margin-bottom: 8px;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 700;
+        font-style: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        min-height: 16px;    
+    }
+    &__comment-body{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 400;
+        color: $activeColor;
+
+        -webkit-line-clamp: 3; /* Число отображаемых строк */
+        display: -webkit-box; /* Включаем флексбоксы */
+        -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        overflow: hidden; 
+    }
+    &__comment-bottom{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__comment-date{
+        color: #a5a1b2;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+        font-style: normal;
+    }
+    &__comment-like {
+        display: flex;
+        align-items: center;
+    }
+
+    &__likeCounter {
+        color: #73a32f;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 700;
+        font-style: normal;
+        padding: 0 8px;
+    }
+}

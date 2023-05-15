@@ -15,11 +15,11 @@ import PlayerPanel from "./PlayerPanel/PlayerPanel";
 import WatchesBlock from "./WatchesBlock/WatchesBlock";
 
 import LanguageHook from "../../../hooks/LanguageHook";
-import Card from "../../UI/Buttons/Card/Card";
 import Loader from "../../UI/Loader/Loader";
 import GradeBlock from "./GradeBlock/GradeBlock";
-import { SimilarFilmsBlock } from "./SimilarFilmsBlock/SimilarFilmsBlock";
 import CreatorsBlock from "./CreatorsBlock/CreatorsBlock";
+import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
+import CommentsBlock from "./CommentsBlock/CommentsBlock";
 
 
 interface FilmProps {
@@ -55,7 +55,17 @@ interface FilmProps {
         id: number,
         nameRu: string,
         nameEn: string,
-    } []
+    } [],
+    comments: IComment []
+};
+interface IComment {
+    id: number,
+    header: string,
+    value: string,
+    authorId: number,
+    parentId: number,
+    createdAt: Date,
+    filmId: number,
 };
 
 const Film = {
@@ -74,7 +84,8 @@ const Film = {
     year: 0,
     persons: [],
     countries: [],
-    genres: []
+    genres: [],
+    comments: []
 };
 
 const FilmPage = () => {
@@ -93,6 +104,7 @@ const FilmPage = () => {
         fetchFilm();
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, []);
+
     useEffect(() => {
         fetchFilm();
         //document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -112,7 +124,6 @@ const FilmPage = () => {
 
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data.film;
-        console.log('data',data)
 
         const film_ = {
             id: data.id,
@@ -130,7 +141,8 @@ const FilmPage = () => {
             year: data.year,
             persons: data.persons,
             countries: data.countries,
-            genres: data.genres
+            genres: data.genres,
+            comments: data.comments
         };
         const similarFilms_ = response.data.similarFilms.slice(0 ,30);
 
@@ -204,7 +216,7 @@ const FilmPage = () => {
 
                             <DescriptionBlock description={film?.description} filmName={filmName}/>
                             <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
-                            <AdditionalInfoBlock />
+                            <AdditionalInfoBlock/>
 
                         </div>
 
@@ -219,11 +231,9 @@ const FilmPage = () => {
 
                 </div>
 
-                <SimilarFilmsBlock similarFilms={similarFilms} title={filmName}/>
+                <FilmsCompilation variant="similarFilms" similarFilms={similarFilms} title={filmName} />
                 <CreatorsBlock creators={film.persons}/>
-                <div className="film__inner">
-                    <p className="film__smallHeading">Отзывы</p>
-                </div>
+                <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
                 <GradeBlock />

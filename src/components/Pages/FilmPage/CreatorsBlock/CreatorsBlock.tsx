@@ -25,22 +25,34 @@ const CreatorsBlock:FC<CreatorsBlockProps> = ({creators}) => {
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
 
-    const [actors, setActors] = useState(creators.slice(0,11));
-    console.log(actors)
-    console.log(creators)
+    const [actors, setActors] = useState(creators.slice(0,10));
+
     useEffect( () => {
         let filtredList = creators.filter(actor => actor.professions[0].name === 'актеры');
-        if (filtredList.slice(0,1).length < 10) {
+        if (filtredList.slice(0,10).length < 10) {
             setActors(creators.slice(0,10));
         } else {
             setActors(filtredList.slice(0,10));    
         }
     },[creators]);
 
-    
+    useEffect( () => {
+        setActors(creators.slice(0,0));  
+
+        setTimeout( () => {
+            let filtredList = creators.filter(actor => actor.professions[0].name === 'актеры');
+            if (filtredList.slice(0,10).length < 10) {
+                setActors(creators.slice(0,10));
+            } else {
+                setActors(filtredList.slice(0,10));    
+            } 
+            }, 100) 
+    },[i18n.language]);
+
+
     return (
         <div className="creatorsBlock">
-            <h3 className="creatorsBlock__heading">Актеры и создатели</h3>
+            <h3 className="creatorsBlock__heading">{t('filmPage.creatorsBlock.header')}</h3>
             <div className="creatorsBlock__body">
 
                     {actors.map( actor => 
@@ -50,16 +62,16 @@ const CreatorsBlock:FC<CreatorsBlockProps> = ({creators}) => {
                             onClick={() => navigate (`/movies-website/person/${actor.id}`)}
                         >
                             <Card 
+                                title={LanguageHook (actor.nameRu, actor.nameEn, i18n.language)}
                                 type="big"
                                 role="актёр"
-                                title={LanguageHook (actor.nameRu, actor.nameEn, i18n.language)}
                                 photoUrl={actor?.photoUrl}
                             />
                         </div>
                     )}
 
                     <div className="creatorsBlock__round">
-                        <p>Еще</p>    
+                        <p>{t('filmPage.creatorsBlock.more')}</p>    
                     </div> 
                      
             </div>
