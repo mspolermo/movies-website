@@ -1,25 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
-import './CreatorsBlock.scss'
-import Card from "../../../UI/Buttons/Card/Card";
-import LanguageHook from "../../../../hooks/LanguageHook";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import './CreatorsBlock.scss';
+import { CreatorsBlockProps } from "../../../../types/filmPageTypes";
 
-
-interface CreatorsBlockProps {
-    creators: {
-        id: number,
-        photoUrl: string,
-        nameRu: string,
-        nameEn: string,
-        professions: [
-            {
-                id: number,
-                name: string,
-            }
-        ]
-    } [];
-}
+import Card from "../../../UI/Buttons/Card/Card";
+import LanguageHook from "../../../../hooks/LanguageHook";
 
 const CreatorsBlock:FC<CreatorsBlockProps> = ({creators}) => {
     const {t, i18n} = useTranslation();
@@ -76,7 +62,7 @@ const CreatorsBlock:FC<CreatorsBlockProps> = ({creators}) => {
                      
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default CreatorsBlock;

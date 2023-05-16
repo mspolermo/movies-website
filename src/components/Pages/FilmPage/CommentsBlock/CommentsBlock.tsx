@@ -1,24 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
-import './CommentsBlock.scss'
+import { useTranslation } from "react-i18next";
+import './CommentsBlock.scss';
+import { CommentsBlockProps, IComment } from "../../../../types/filmPageTypes";
+
 import Button from "../../../UI/Buttons/Button/Button";
 import { Carousel } from "../../../Carousel/Carousel";
 import Icons from "../../../Icons/Icons";
-import { useTranslation } from "react-i18next";
-
-interface CommentsBlockProps {
-    filmName: string;
-    comments: IComment []
-};
-
-interface IComment {
-    id: number,
-    header: string,
-    value: string,
-    authorId: number,
-    parentId: number,
-    createdAt: Date,
-    filmId: number,
-};
 
 const CommentsBlock: FC<CommentsBlockProps> = ({filmName, comments}) => {
     const {t, i18n} = useTranslation();

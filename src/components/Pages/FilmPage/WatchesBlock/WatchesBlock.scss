@@ -61,6 +61,14 @@
         width: 337px;
         height: 192px;
         border-radius: 2px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+    }
+    &__posterTv{
+        height: 100%;
     }
     &__poster-tablet {
         position: absolute;
@@ -70,6 +78,14 @@
         height: 102px;
         border-radius: 4px;
         z-index: 1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+    }
+    &__posterTablet{
+        height: 100%;
     }
     &__desktop {
         display: block;

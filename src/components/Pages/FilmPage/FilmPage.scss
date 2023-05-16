@@ -2,13 +2,6 @@
 
 .film {
     margin-top: 20px;
-    &__loader{
-        height: 700px;
-        width: 100px;
-        padding: 100px;
-        color: white;
-        font-size: 40px;
-    }
     &__container {
     }
     &__body {
@@ -69,7 +62,6 @@
         &_right{
             display: none;    
         }
-        
     }
 }
 

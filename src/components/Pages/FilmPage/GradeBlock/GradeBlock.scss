@@ -24,8 +24,6 @@
     }
     &__modal {
         margin-top: 30vh;
-        //display: flex;
-        //flex-direction: column;
         width: 50vw;
         &_hidden {
             display: none;
@@ -47,9 +45,6 @@
         font-weight: 400;
         font-style: normal;
     }
-
-
-
     &__optionSelector{
         margin-top: 24px;
     }
@@ -174,7 +169,7 @@
             font-size: 13px;
         }
         &__box{
-            background-color: #1f1b2e;
+            background-color: $backgroundElements;
             height: 40px;
         }
         &__optionWrapper{

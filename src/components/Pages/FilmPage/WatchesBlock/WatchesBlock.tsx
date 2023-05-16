@@ -1,15 +1,11 @@
 import React, { FC } from "react";
-import './WatchesBlock.scss'
+import { useTranslation } from "react-i18next";
+import './WatchesBlock.scss';
+import { WatchesBlockProps } from "../../../../types/filmPageTypes";
+
 import Button from "../../../UI/Buttons/Button/Button";
 import imageTv from '../../../../static/img/FilmPage/tv-without-poster.png'
 import imageTablet from '../../../../static/img/FilmPage/ipad-without-poster.png'
-import { useTranslation } from "react-i18next";
-
-interface WatchesBlockProps {
-    filmName: string;
-    bigPictureUrl: string,
-    smallPictureUrl: string
-}
 
 const WatchesBlock:FC<WatchesBlockProps> = ({filmName, bigPictureUrl, smallPictureUrl}) => {
     const {t, i18n} = useTranslation();
@@ -31,8 +27,12 @@ const WatchesBlock:FC<WatchesBlockProps> = ({filmName, bigPictureUrl, smallPictu
                     <div className="watchesBlock__image-container">
                         <img className="watchesBlock__image-tv" src={imageTv} alt="Tv" />
                         <img className="watchesBlock__image-tablet" src={imageTablet} alt="Tablet" />
-                        <img className="watchesBlock__poster-tv" src={bigPictureUrl} alt="TvPoster" />
-                        <img className="watchesBlock__poster-tablet" src={smallPictureUrl} alt="TabletPoster" />
+                        <div className="watchesBlock__poster-tv">
+                            <img className="watchesBlock__posterTv" src={bigPictureUrl} alt="TvPoster" />
+                        </div>
+                        <div className="watchesBlock__poster-tablet">
+                            <img className="watchesBlock__posterTablet" src={smallPictureUrl} alt="TabletPoster" />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ReactPlayer from "react-player";
-import './FilmPage.scss'
+import './FilmPage.scss';
+import { FilmPageProps } from "../../../types/filmPageTypes";
 
 import ReitingBlock from "./ReitingBlock/ReitingBlock";
 import SloganBlock from "./SloganBlock/SloganBlock";
@@ -13,60 +14,13 @@ import DescriptionBlock from "./DescriptionBlock/DescriptionBlock";
 import AdditionalInfoBlock from "./AdditionalInfoBlock/AdditionalInfoBlock";
 import PlayerPanel from "./PlayerPanel/PlayerPanel";
 import WatchesBlock from "./WatchesBlock/WatchesBlock";
+import GradeBlock from "./GradeBlock/GradeBlock";
+import CreatorsBlock from "./CreatorsBlock/CreatorsBlock";
+import CommentsBlock from "./CommentsBlock/CommentsBlock";
+import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
 
 import LanguageHook from "../../../hooks/LanguageHook";
 import Loader from "../../UI/Loader/Loader";
-import GradeBlock from "./GradeBlock/GradeBlock";
-import CreatorsBlock from "./CreatorsBlock/CreatorsBlock";
-import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
-import CommentsBlock from "./CommentsBlock/CommentsBlock";
-
-
-interface FilmProps {
-    id: number
-    trailerName: string, 
-    trailerUrl: string, 
-    ratingKp: number, 
-    votesKp: number,
-    movieLength: number,
-    filmNameRu: string,
-    filmNameEn: string,
-    description: string,
-    slogan: string,
-    bigPictureUrl: string,
-    smallPictureUrl: string,
-    year: number,
-    persons: {
-        id: number,
-        photoUrl: string,
-        nameRu: string,
-        nameEn: string,
-        professions: [{
-            id: number,
-            name: string,
-        }] 
-    } [],
-    countries: {
-        id: number,
-        countryName: string,
-        countryNameEn: string,
-    }[] ,
-    genres: {
-        id: number,
-        nameRu: string,
-        nameEn: string,
-    } [],
-    comments: IComment []
-};
-interface IComment {
-    id: number,
-    header: string,
-    value: string,
-    authorId: number,
-    parentId: number,
-    createdAt: Date,
-    filmId: number,
-};
 
 const Film = {
     id: 0,
@@ -89,13 +43,13 @@ const Film = {
 };
 
 const FilmPage = () => {
-    //Todo - кнопки, additional blocks, En version,
+    //Todo - кнопки, доп страница
 
     const params = useParams();
     const {t, i18n} = useTranslation();
     const [isPageLoading, setIsPageLoading] = useState(false);
 
-    const [film, setFilm] = useState<FilmProps>(Film);
+    const [film, setFilm] = useState<FilmPageProps>(Film);
     const [similarFilms, setSimilarFilms] = useState([{}]);
     const [filmName, setFilmName] = useState('');
     const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM')

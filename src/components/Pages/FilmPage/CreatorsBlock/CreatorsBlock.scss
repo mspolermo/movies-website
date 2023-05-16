@@ -2,15 +2,15 @@
 
 .creatorsBlock {
     &__heading {
-        color: white;
+        margin-bottom: 24px;
+        
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: 24px;
+        color: $activeColor;
     }
     &__body{
         display: flex;
         justify-content: space-between;
-
     }
     &__part{
         display: flex;
@@ -28,7 +28,7 @@
         align-items: center;
 
         color: $textColor;
-        background-color: #1f1b2e;
+        background-color: $backgroundElements;
         border-radius: 50%;
 
         cursor: pointer;
