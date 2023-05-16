@@ -1,15 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
-import classes from './Card.module.scss'
+import classes from './Card.module.scss';
+import { CardProps } from "../../../../types/UiTypes";
 import { useTranslation } from "react-i18next";
-
-interface CardProps {
-    type: 'small' | 'big' | 'reit';
-    title?: string;
-    raitingKP?: number;
-    photoUrl?: string;
-    role?: string;
-    onClick?: () => void;
-}
 
 const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, onClick } ) => {
     const {t, i18n} = useTranslation();
@@ -22,7 +14,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
     const [goodClass, setGoodClass] = useState(classes.card__color);
     const [reiting, setReiting] = useState(raitingKP);
 
-    const [titleArray, setTitleArray] = useState([''])
+    const [titleArray, setTitleArray] = useState(['']);
 
     useEffect ( () => {
 
@@ -49,7 +41,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
                 setTitleArray(title!.split(' '));
             break;
         }
-    }, [type, raitingKP, reiting])
+    }, [type, raitingKP, reiting]);
 
     return (
         <div 
@@ -75,7 +67,7 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
                 { (role) && <p className={classes.card__text_role}>{role}</p>}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Card;

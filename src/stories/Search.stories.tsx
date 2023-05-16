@@ -4,7 +4,7 @@ import RowSearchResult from "../components/Search/RowSearchResult/RowSearchResul
 
 
 const meta: Meta<typeof Search> = {
-    title: '/UI/Search',
+    title: 'UI/Search',
     component: Search,
     tags: ['autodocs'],
     argTypes: {
