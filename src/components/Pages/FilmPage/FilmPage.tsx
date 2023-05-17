@@ -6,21 +6,24 @@ import ReactPlayer from "react-player";
 import './FilmPage.scss';
 import { FilmPageProps } from "../../../types/filmPageTypes";
 
-import ReitingBlock from "./ReitingBlock/ReitingBlock";
-import SloganBlock from "./SloganBlock/SloganBlock";
-import SummaryBlock from "./SummaryBlock/SummaryBlock";
-import CardsBlock from "./CardsBlock/CardsBlock";
-import DescriptionBlock from "./DescriptionBlock/DescriptionBlock";
-import AdditionalInfoBlock from "./AdditionalInfoBlock/AdditionalInfoBlock";
-import PlayerPanel from "./PlayerPanel/PlayerPanel";
-import WatchesBlock from "./WatchesBlock/WatchesBlock";
-import GradeBlock from "./GradeBlock/GradeBlock";
-import CreatorsBlock from "./CreatorsBlock/CreatorsBlock";
-import CommentsBlock from "./CommentsBlock/CommentsBlock";
+import ReitingBlock from "./BodyBlocks/ReitingBlock/ReitingBlock";
+import SloganBlock from "./BodyBlocks/SloganBlock/SloganBlock";
+import SummaryBlock from "./BodyBlocks/SummaryBlock/SummaryBlock";
+import CardsBlock from "./BodyBlocks/CardsBlock/CardsBlock";
+import DescriptionBlock from "./BodyBlocks/DescriptionBlock/DescriptionBlock";
+import AdditionalInfoBlock from "./BodyBlocks/AdditionalInfoBlock/AdditionalInfoBlock";
+import PlayerPanel from "./BodyBlocks/PlayerPanel/PlayerPanel";
+import WatchesBlock from "./SecondaryBlocks/WatchesBlock/WatchesBlock";
+import GradeBlock from "./OpeningBlocks/GradeBlock/GradeBlock";
+import CreatorsBlock from "./SecondaryBlocks/CreatorsBlock/CreatorsBlock";
+import CommentsBlock from "./SecondaryBlocks/CommentsBlock/CommentsBlock";
 import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
 
 import LanguageHook from "../../../hooks/LanguageHook";
 import Loader from "../../UI/Loader/Loader";
+import InternalPage from "./OpeningBlocks/InternalPage/InternalPage";
+import { useDispatch } from "react-redux";
+import { internalPageFalse } from "../../../store/reducers/internalPageReducer";
 
 const Film = {
     id: 0,
@@ -39,6 +42,13 @@ const Film = {
     persons: [],
     countries: [],
     genres: [],
+    fact: {
+        id: 0,
+        value: '',
+        type: '',
+        spoiler: false,
+        filmId: 0
+    },
     comments: []
 };
 
@@ -47,6 +57,7 @@ const FilmPage = () => {
 
     const params = useParams();
     const {t, i18n} = useTranslation();
+    const dispatch = useDispatch();
     const [isPageLoading, setIsPageLoading] = useState(false);
 
     const [film, setFilm] = useState<FilmPageProps>(Film);
@@ -57,6 +68,7 @@ const FilmPage = () => {
     useEffect(() => {
         fetchFilm();
         document.body.scrollTop = document.documentElement.scrollTop = 0;
+        dispatch(internalPageFalse());
     }, []);
 
     useEffect(() => {
@@ -96,6 +108,7 @@ const FilmPage = () => {
             persons: data.persons,
             countries: data.countries,
             genres: data.genres,
+            fact: data.fact,
             comments: data.comments
         };
         const similarFilms_ = response.data.similarFilms.slice(0 ,30);
@@ -191,6 +204,7 @@ const FilmPage = () => {
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
                 <GradeBlock />
+                <InternalPage film={film}/>
             </div>
             }
         </div>

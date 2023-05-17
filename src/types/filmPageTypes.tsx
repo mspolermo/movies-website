@@ -32,6 +32,13 @@ export interface FilmPageProps {
         nameRu: string,
         nameEn: string,
     } [],
+    fact: {
+        id: number,
+        value: string,
+        type: string,
+        spoiler: boolean,
+        filmId: number
+    },
     comments: IComment []
 };
 

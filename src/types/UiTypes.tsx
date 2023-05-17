@@ -3,7 +3,7 @@ export interface ButtonProps {
     color?: 'default' | 'red' | 'gray' | 'gradient' | 'transparent'| 'purple';
     svg?: React.ReactElement;
     title?: Array<string> | undefined;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 export interface TileProps {

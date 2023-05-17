@@ -1,0 +1,207 @@
+@import '/src/styles/variables.scss'; 
+
+@mixin animPreset ($animName) {
+    animation-name: $animName;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+}
+
+.creatorsBlock {
+    display: flex;
+    flex-direction: column;
+    &__heading {
+        align-self: flex-start;
+        padding-bottom: 4px;
+        margin-bottom: 24px;
+        
+        font-size: 24px;
+        font-weight: 700;
+        color: $activeColor;
+
+        border-bottom: 1px solid $splitLineColor;
+        &:hover {
+            cursor: pointer;
+            @include animPreset (hoverLineOn);
+        }
+        &:not(:hover):not(:active) {
+            @include animPreset (hoverLineOff);
+        }
+    }
+    &__body{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__part{
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+    &__card {
+        min-width: 100px;
+    }
+    &__round {
+        height: 88px;
+        width: 88px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: $textColor;
+        background-color: $backgroundElements;
+        border-radius: 50%;
+
+        &:hover{
+            @include animPreset (hoverMoreOn);
+            cursor: pointer;
+            .creatorsBlock__roundText {
+                color: $activeColor;
+            }    
+        }
+        &:not(:hover):not(:active) {
+            @include animPreset (hoverMoreOff);
+            .creatorsBlock__roundText {
+                color: $textColor;
+            }
+        }
+    }
+    &__roundText {
+        color: $textColor;
+    }
+}
+
+@media (max-width: 1260px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+10) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 1160px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+9) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 1060px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+8) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 950px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+7) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 840px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+6) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 720px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+5) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 600px) {
+    .creatorsBlock {
+        &__round {
+            flex-shrink: 0;
+            height: 72px;
+            width: 72px;
+        }
+        &__card {
+            min-width: 80px;
+            &:nth-child(n) {
+                display: block;
+        } 
+            &:nth-child(n+6) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 560px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+5) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 470px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+4) {
+                    display: none;
+            }    
+        }
+    }
+}
+@media (max-width: 380px) {
+    .creatorsBlock {
+        &__card {
+            &:nth-child(n+3) {
+                    display: none;
+            }    
+        }
+    }
+}
+
+@keyframes hoverLineOn {
+    0% {
+        border-bottom: 1px solid $splitLineColor;
+    }
+    100% {
+        border-bottom: 1px solid $activeColor;
+    }
+}
+@keyframes hoverLineOff {
+    0% {
+        border-bottom: 1px solid $activeColor;
+    }
+    100% {
+        border-bottom: 1px solid $splitLineColor;
+    }
+}
+@keyframes hoverMoreOn {
+    0% {
+        background-color: $backgroundElements;
+    }
+    100% {
+        background-color: $defaultIconColor;   
+    }
+}
+@keyframes hoverMoreOff {
+    0% {
+        background-color: $defaultIconColor;
+    }
+    100% {
+        background-color: $backgroundElements;    
+    }
+}

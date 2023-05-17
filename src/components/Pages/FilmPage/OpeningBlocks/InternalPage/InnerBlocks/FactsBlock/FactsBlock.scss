@@ -1,0 +1,15 @@
+@import '/src/styles/variables.scss';
+
+.factsBlock {
+
+    &__heading {
+        margin: 40px 0;
+        font-size: 30px;
+        color: white;
+    }
+    &__text {
+        max-width: 400px;
+        color: White;
+        margin-bottom: 3000px;
+    } 
+}
