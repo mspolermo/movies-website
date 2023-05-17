@@ -7,7 +7,7 @@ import axios from "axios";
 
 interface TypeSearchProps {
     handleChangeFilter: (item:string) => void,
-    key: number
+    professionId: number
 }
 
 interface Result {
@@ -15,27 +15,36 @@ interface Result {
     nameRu: string,
     key: number,
 }
-//todo: ошибка при поиске
-const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter, key}) => {
+
+const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter, professionId}) => {
     const { t, i18n } = useTranslation();
 
     const [searchResults, setSearchResult] = useState<Result[]>([])
     const [searchQuery, setSearchQuery] = useState('')
 
     useEffect(() => {
-        fetchFilm()
+        if(searchQuery){
+            fetchFilm()
+        } else {
+            setSearchResult([])
+        }
     }, [searchQuery])
+
+    function select(value: string) {
+        handleChangeFilter(value)
+        setSearchResult([])
+    }
 
     function renderResult(value: Result){
         return (<RowSearchResult title={(i18n.language === 'en' && value.nameEn) ? value.nameEn: value.nameRu}
                                  key={value.key}
-                                 onClick={() => handleChangeFilter(value.nameEn)}/>
+                                 onClick={() => select(value.nameRu)}/>
         )
     }
     async function fetchFilm() {
         const response = await axios.get('http://localhost:5000/findPersonsByNameAndProfession', {
             params: {
-                id: key,
+                id: professionId,
                 name: searchQuery
             }
         })

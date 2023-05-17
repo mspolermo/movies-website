@@ -4,7 +4,6 @@ import {Item, MovieProps, MovieSearchProps} from "../../../../types/filtersTypes
 import Button from "../../../UI/Buttons/Button/Button";
 import axios from "axios";
 import RowSearchResult from "../../../Search/RowSearchResult/RowSearchResult";
-import _ from 'lodash'
 import './filmBlock.scss'
 import {useTranslation} from "react-i18next";
 
