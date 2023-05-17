@@ -91,7 +91,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 						{
 							variant === 'similarFilms'
 								?
-								`С фильмом ${title} смотрят`
+								`${t('filmPage.filmsCompilation.similar')} "${title}" ${t('filmPage.filmsCompilation.watches')}`
 								:
 								title
 						}

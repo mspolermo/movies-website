@@ -18,7 +18,7 @@ const meta: Meta<typeof Button> = {
         color: {
             description: 'Варианты цветов кнопки',
             defaultValue: 'default',
-            options: ['default', 'red', 'gray', 'gradient', 'transparent'],
+            options: ['default', 'red', 'gray', 'gradient', 'transparent', 'purple'],
             control: {
                 type: 'radio'
             }

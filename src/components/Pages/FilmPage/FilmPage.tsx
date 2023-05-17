@@ -3,59 +3,27 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ReactPlayer from "react-player";
-import './FilmPage.scss'
+import './FilmPage.scss';
+import { FilmPageProps } from "../../../types/filmPageTypes";
 
-import ReitingBlock from "./ReitingBlock/ReitingBlock";
-import SloganBlock from "./SloganBlock/SloganBlock";
-import SummaryBlock from "./SummaryBlock/SummaryBlock";
-import CardsBlock from "./CardsBlock/CardsBlock";
-import DescriptionBlock from "./DescriptionBlock/DescriptionBlock";
-import AdditionalInfoBlock from "./AdditionalInfoBlock/AdditionalInfoBlock";
-import PlayerPanel from "./PlayerPanel/PlayerPanel";
-import WatchesBlock from "./WatchesBlock/WatchesBlock";
+import ReitingBlock from "./BodyBlocks/ReitingBlock/ReitingBlock";
+import SloganBlock from "./BodyBlocks/SloganBlock/SloganBlock";
+import SummaryBlock from "./BodyBlocks/SummaryBlock/SummaryBlock";
+import CardsBlock from "./BodyBlocks/CardsBlock/CardsBlock";
+import DescriptionBlock from "./BodyBlocks/DescriptionBlock/DescriptionBlock";
+import AdditionalInfoBlock from "./BodyBlocks/AdditionalInfoBlock/AdditionalInfoBlock";
+import PlayerPanel from "./BodyBlocks/PlayerPanel/PlayerPanel";
+import WatchesBlock from "./SecondaryBlocks/WatchesBlock/WatchesBlock";
+import GradeBlock from "./OpeningBlocks/GradeBlock/GradeBlock";
+import CreatorsBlock from "./SecondaryBlocks/CreatorsBlock/CreatorsBlock";
+import CommentsBlock from "./SecondaryBlocks/CommentsBlock/CommentsBlock";
+import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
 
 import LanguageHook from "../../../hooks/LanguageHook";
-import Card from "../../UI/Buttons/Card/Card";
 import Loader from "../../UI/Loader/Loader";
-import GradeBlock from "./GradeBlock/GradeBlock";
-import { SimilarFilmsBlock } from "./SimilarFilmsBlock/SimilarFilmsBlock";
-
-
-interface FilmProps {
-    id: number
-    trailerName: string, 
-    trailerUrl: string, 
-    ratingKp: number, 
-    votesKp: number,
-    movieLength: number,
-    filmNameRu: string,
-    filmNameEn: string,
-    description: string,
-    slogan: string,
-    bigPictureUrl: string,
-    smallPictureUrl: string,
-    year: number,
-    persons: {
-        id: number,
-        photoUrl: string,
-        nameRu: string,
-        nameEn: string,
-        professions: [{
-            id: number,
-            name: string,
-        }] 
-    } [],
-    countries: {
-        id: number,
-        countryName: string,
-        countryNameEn: string,
-    }[] ,
-    genres: {
-        id: number,
-        nameRu: string,
-        nameEn: string,
-    } []
-};
+import InternalPage from "./OpeningBlocks/InternalPage/InternalPage";
+import { useDispatch } from "react-redux";
+import { internalPageFalse } from "../../../store/reducers/internalPageReducer";
 
 const Film = {
     id: 0,
@@ -73,25 +41,34 @@ const Film = {
     year: 0,
     persons: [],
     countries: [],
-    genres: []
+    genres: [],
+    fact: {
+        id: 0,
+        value: '',
+        type: '',
+        spoiler: false,
+        filmId: 0
+    },
+    comments: []
 };
 
 const FilmPage = () => {
-    //Todo - кнопки, additional blocks, En version,
+    //Todo - кнопки, доп страница
 
     const params = useParams();
     const {t, i18n} = useTranslation();
+    const dispatch = useDispatch();
     const [isPageLoading, setIsPageLoading] = useState(false);
 
-    const [film, setFilm] = useState<FilmProps>(Film);
+    const [film, setFilm] = useState<FilmPageProps>(Film);
     const [similarFilms, setSimilarFilms] = useState([{}]);
     const [filmName, setFilmName] = useState('');
     const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM')
 
-    console.log(similarFilms)
     useEffect(() => {
         fetchFilm();
-        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        dispatch(internalPageFalse());
     }, []);
 
     useEffect(() => {
@@ -105,8 +82,7 @@ const FilmPage = () => {
 
         if ( (film.trailerName) && ( film.trailerUrl.includes('youtube') ) ) {
             setTrailer(film.trailerUrl);
-        }
-
+        } 
     }, [i18n.language, film]);
 
     async function fetchFilm() {
@@ -114,7 +90,6 @@ const FilmPage = () => {
 
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data.film;
-        console.log('data',data)
 
         const film_ = {
             id: data.id,
@@ -132,7 +107,9 @@ const FilmPage = () => {
             year: data.year,
             persons: data.persons,
             countries: data.countries,
-            genres: data.genres
+            genres: data.genres,
+            fact: data.fact,
+            comments: data.comments
         };
         const similarFilms_ = response.data.similarFilms.slice(0 ,30);
 
@@ -140,6 +117,7 @@ const FilmPage = () => {
         setSimilarFilms(similarFilms_)
         // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
         setIsPageLoading(false);
+
     };
 
     return (
@@ -205,7 +183,7 @@ const FilmPage = () => {
 
                             <DescriptionBlock description={film?.description} filmName={filmName}/>
                             <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
-                            <AdditionalInfoBlock />
+                            <AdditionalInfoBlock/>
 
                         </div>
 
@@ -220,90 +198,13 @@ const FilmPage = () => {
 
                 </div>
 
-                {/* <div className="film__inner">
-                    <p className="film__smallHeading">С фильмом «{filmName}» смотрят</p>
-                    <div className="film__shortly"></div>
-                </div> */}
-                <SimilarFilmsBlock similarFilms={similarFilms} title={filmName}/>
-                <div className="film__inner">
-                    <p className="film__smallHeading">Актёры и создатели</p>
-                    <div className="film__part">
-                        <Card 
-                            type="big"
-                            title={"Киану Ривз"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_7836.jpg"}
-                        />    
-                        <Card 
-                            type="big"
-                            title={"Юлия Пересильд"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_1537279.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Донни Йен"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Киану Ривз"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_7836.jpg"}
-                        />    
-                        <Card 
-                            type="big"
-                            title={"Юлия Пересильд"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_1537279.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Донни Йен"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Донни Йен"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_16393.jpg"}
-                        />   
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />  
-                        <Card 
-                            type="big"
-                            title={"Хироюки Санада"}
-                            role="актёр"
-                            photoUrl={"https://st.kp.yandex.net/images/actor_iphone/iphone360_30769.jpg"}
-                        />  
-                    </div>
-                </div>
-                <div className="film__inner">
-                    <p className="film__smallHeading">Отзывы</p>
-                    {/* <div className="film__shortly"></div> */}
-                </div>
-
+                <FilmsCompilation variant="similarFilms" similarFilms={similarFilms} title={filmName} />
+                <CreatorsBlock creators={film.persons}/>
+                <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
                 <GradeBlock />
+                <InternalPage film={film}/>
             </div>
             }
         </div>

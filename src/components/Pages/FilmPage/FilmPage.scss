@@ -2,13 +2,6 @@
 
 .film {
     margin-top: 20px;
-    &__loader{
-        height: 700px;
-        width: 100px;
-        padding: 100px;
-        color: white;
-        font-size: 40px;
-    }
     &__container {
     }
     &__body {
@@ -47,7 +40,7 @@
         width: 100%;
         //height: auto;
         margin: 20px auto;
-        background: #eee;
+        //background: #eee;
         &::after {
             content: '';
             display: block;
@@ -56,7 +49,7 @@
     }
     &__videoPlayer{
         position: absolute;
-        background: #555;
+        //background: #555;
         top: 0;
         left: 0;
         bottom: 0;
@@ -69,33 +62,6 @@
         &_right{
             display: none;    
         }
-        
-    }
-
-//Нижние блоки
-    &__shortly{
-        margin-bottom: 20px;
-        height: 70px;
-        width: 100%;
-        background-color: aqua;
-    }
-    &__part {
-        display: none;
-        // display: flex;
-        // justify-content: space-between;
-    }
-    &__inner{
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-    }
-    &__smallHeading {
-        margin: 10px 0;
-        font-size: 24px;
-        line-height: 28px;
-        font-weight: 700;
-        font-style: normal;
-        color: $activeColor;
     }
 }
 

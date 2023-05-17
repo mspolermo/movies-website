@@ -1,3 +1,5 @@
+@import '/src/styles/variables.scss';
+
 .btn {
     margin-right: 12px;
     padding: 9px 15px;
@@ -6,17 +8,17 @@
     align-items: center;
     
     border-radius: 8px;
-    background-color: #2b2640;
-    color: #fff;
+    background-color: $defaultIconColor;
+    color: $headingColor;
     transition-property: background-color;
     white-space: nowrap;
     &:hover {
         cursor: pointer;
-        background-color: #413960;
+        background-color: $defaultIconColor-hover;
         transition-duration: 0.4s;
     }
     &:not(:hover):not(:active) {
-        background-color: #2b2640;
+        background-color: $defaultIconColor;
         transition-duration: 0.4s;
     }
     &__ultraWide {
@@ -29,13 +31,13 @@
         border-radius: 16px;
     }
     &__red {
-       background-color: #ea003d;
+       background-color: $redColor;
        &:hover {
-            background-color: #ff1a57;
+            background-color: $activeRedColor;
             transition-duration: 0.4s;
         }
         &:not(:hover):not(:active) {
-            background-color: #ea003d;
+            background-color: $redColor;
             transition-duration: 0.4s;
         }
     }
@@ -68,7 +70,7 @@
     &__transparent {
         background-color: inherit;
         border: 1px solid rgba(255,255,255,.32);
-        color: #fff;
+        color: $headingColor;
         transition-property: border;
         &:hover {
             background-color: inherit;

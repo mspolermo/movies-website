@@ -1,0 +1,13 @@
+@import '/src/styles/variables.scss';
+
+.commentsCreatingBlock {
+    &__heading {
+        margin: 40px 0;
+        font-size: 30px;
+        color: white;
+    }
+    &__text {
+        color: White;
+        margin-bottom: 3000px;
+    } 
+}

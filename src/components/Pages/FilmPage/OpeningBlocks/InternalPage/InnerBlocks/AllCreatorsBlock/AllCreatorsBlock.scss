@@ -1,0 +1,45 @@
+@import '/src/styles/variables.scss';
+
+.allCreatorsBlock {
+    margin-bottom: 60px;
+    &__profession {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 40px 0;
+        color: white;
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+    &__cards{
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        
+        column-gap: auto;
+
+        justify-content: stretch;
+
+        &_short {
+            grid-template-rows: auto auto auto auto;
+            grid-auto-rows: 0;
+            overflow-y: hidden;
+        }
+    }
+    &__card {
+        margin-bottom: 30px;
+    }
+    &__btn{
+        &_hidden {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .allCreatorsBlock {
+        &__cards{
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

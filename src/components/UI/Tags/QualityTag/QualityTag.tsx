@@ -1,9 +1,6 @@
 import React, { FC } from "react";
 import classes from './QualityTag.module.scss'
-
-interface QualityTagProps {
-    quality: 'FullHD' | 'HD' | '1080' | '720'
-}
+import { QualityTagProps } from "../../../../types/UiTypes";
 
 const QualityTag:FC<QualityTagProps> = ({quality}) => {
     return (

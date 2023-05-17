@@ -1,0 +1,21 @@
+@import '/src/styles/variables.scss';
+
+.iPnavPanel {
+    &__navList{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__item{
+        cursor: pointer;
+        width: 100%;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $splitLineColor;
+        text-align: center;
+        &_active {
+            border-bottom: 3px solid red;
+        }
+    }
+    &__text{
+        color: $textColor;
+    }
+}
