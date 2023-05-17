@@ -19,6 +19,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import Icons from "../../Icons/Icons";
 import ButtonReset from "../../Filters/ButtonReset/ButtonReset";
 import {firstCharUp, languageFilters} from "./utils";
+import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 
 const MoviesPage = () => {
     const {t, i18n} = useTranslation();
@@ -31,7 +32,7 @@ const MoviesPage = () => {
     const [oneFilters, setOneFilters] = useState<string[]>([]);
     const [limit, setLimit] = useState(35);
     const [page, setPage] = useState(1);
-    const [persons, setPersons] = useState<string[]>([]);
+    const [persons, setPersons] = useState<string[]>();
     const [visible, setVisible] = useState(false);
 
     const emptyFilters = JSON.stringify(selectedFilters) === JSON.stringify(activeFilters)
@@ -61,6 +62,7 @@ const MoviesPage = () => {
 
     useEffect(() => {
         singleFilters()
+        breadFilter()
     }, [i18n.language])
 
     function singleFilters() {
@@ -70,7 +72,7 @@ const MoviesPage = () => {
             return
         }
         if (selectedFilters.genres.length === 1) {
-            let lang = allFilters.genres.find(genre => genre.nameEn === selectedFilters.genres[0])
+            let lang = allFilters.genres.find(genre => genre.nameRu === selectedFilters.genres[0])
             if (lang) {
                 if(i18n.language === 'en'){
                     filters = filters.concat(firstCharUp(lang.nameEn))
@@ -84,7 +86,7 @@ const MoviesPage = () => {
             filters.push(selectedFilters.years)
 
         if (selectedFilters.countries.length === 1) {
-            let lang = allFilters.countries.find(country => country.nameEn === selectedFilters.countries[0])
+            let lang = allFilters.countries.find(country => country.nameRu === selectedFilters.countries[0])
             if (lang) {
                 if(i18n.language === 'en'){
                     filters = filters.concat(lang.nameEn)
@@ -120,14 +122,13 @@ const MoviesPage = () => {
                 page,
                 genres: selectedFilters.genres,
                 countries: selectedFilters.countries,
+                year: selectedFilters.years,
                 // persons: persons,
                 minRatingKp: selectedFilters.rating,
                 minVotesKp: selectedFilters.grade,
                 sortBy: sortValue,
             }
         })
-
-        // console.log(selectedFilters)
 
         // @ts-ignore
         const movies_ = response.data.map(item => {
@@ -160,7 +161,7 @@ const MoviesPage = () => {
             ...allFilters,
             genres: response.data.genres,
             // @ts-ignore
-            countries: response.data.countries.map((item) => {return{nameRu: item.countryName, nameEn: item.countryName}}),
+            countries: response.data.countries.map((item) => {return{nameRu: item.countryName, nameEn: item.countryNameEn}}),
             years: response.data.years
         }
 
@@ -173,20 +174,51 @@ const MoviesPage = () => {
         let emptyFilters = _.cloneDeep(activeFilters)
 
         if (params.genre){
-            let genreId = filters.genres.find(genre => genre.nameEn === params.genre)
+            let genreId = filters.genres.find(genre => genre.nameRu === params.genre)
             if (genreId){
-                return setSelectedFilters({...emptyFilters, genres: [genreId.nameEn]})
+                return setSelectedFilters({...emptyFilters, genres: [genreId.nameRu]})
             }
         } else if (params.country){
-            let addCountry = []
-            addCountry.push(params.country)
-            return setSelectedFilters({...emptyFilters, countries: addCountry})
+            let countryId = filters.countries.find(country => country.nameRu === params.country)
+            if (countryId){
+                return setSelectedFilters({...emptyFilters, countries: [countryId.nameRu]})
+            }
         } else if (params.year){
            return setSelectedFilters({...emptyFilters, years: Number(params.year)})
         } else {
             return setSelectedFilters(emptyFilters)
         }
 
+    }
+
+    function breadFilter() {
+        if(selectedFilters.genres.length === 1) {
+            let lang = allFilters.genres.find(genre => genre.nameRu === selectedFilters.genres[0])
+            if(lang) {
+                if(i18n.language === 'en'){
+                    return firstCharUp(lang.nameEn)
+                } else {
+                    return firstCharUp(lang.nameRu)
+                }
+
+            }
+        } else if (selectedFilters.countries.length === 1) {
+            let lang = allFilters.countries.find(country => country.nameRu === selectedFilters.countries[0])
+            if(lang) {
+                if(i18n.language === 'en'){
+                    return firstCharUp(lang.nameEn)
+                } else {
+                    return firstCharUp(lang.nameRu)
+                }
+            }
+        } else {
+            return ''
+        }
+    }
+
+    function navigateBread() {
+        navigate('/movies-website/films/')
+        setSelectedFilters(_.cloneDeep(activeFilters))
     }
 
     return (
@@ -196,7 +228,7 @@ const MoviesPage = () => {
 
                     <div className="MoviesPage__header">
                         <div className="MoviesPage__path">
-                            {/*    хлебные крошки(только жанры)*/}
+                            <Breadcrumbs filters={breadFilter()} onClick={() => navigateBread()}/>
                         </div>
                         <div className="MoviesPage__title">
                             {t('moviesPage.title')}
@@ -310,8 +342,8 @@ const MoviesPage = () => {
                     </div>
 
                     <Button type={'ultraWide'} color={'transparent'}
-                            title={[t('moviesPage.btn')]}
-                            onClick={() => uploadFilms()}/>
+                                                    title={[t('moviesPage.btn')]}
+                                                    onClick={() => uploadFilms()}/>
 
                 </div>
 

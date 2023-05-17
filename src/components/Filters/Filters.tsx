@@ -143,6 +143,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                   blockName='producer'
                                   setActiveBlock={setActiveBlock}>
                         <TypeSearch handleChangeFilter={selectedProducer}
+                                    professionId={2}
                         />
                     </FilterButton>
 
@@ -151,7 +152,9 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                   activeBlock={activeBlock}
                                   blockName='actor'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeSearch handleChangeFilter={selectedActor}/>
+                        <TypeSearch handleChangeFilter={selectedActor}
+                                    professionId={1}
+                        />
                     </FilterButton>
 
                 </div>

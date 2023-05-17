@@ -31,10 +31,10 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                 items={popularValues} renderItem={(popular: Item) =>
                 <Button
                     type='rounded'
-                    color={selectValues.includes(popular.nameEn) ? 'purple' : 'transparent' }
+                    color={selectValues.includes(popular.nameRu) ? 'purple' : 'transparent' }
                     title={i18n.language === 'en' ? [firstCharUp(popular.nameEn)] : [firstCharUp(popular.nameRu)]}
-                    key={popular.nameEn}
-                    onClick={() => handleChangeFilter(popular.nameEn)}
+                    key={popular.nameRu}
+                    onClick={() => handleChangeFilter(popular.nameRu)}
                 />
             }/>
         )
@@ -47,10 +47,10 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                 items={allValues} renderItem={(value: Item) =>
                 <Button
                     type='rounded'
-                    color={selectValues.includes(value.nameEn) ? 'purple' : 'transparent' }
+                    color={selectValues.includes(value.nameRu) ? 'purple' : 'transparent' }
                     title={i18n.language === 'en' ? [firstCharUp(value.nameEn)] : [firstCharUp(value.nameRu)]}
-                    key={value.nameEn}
-                    onClick={() => handleChangeFilter(value.nameEn)}
+                    key={value.nameRu}
+                    onClick={() => handleChangeFilter(value.nameRu)}
                 />
             }/>
         )
@@ -76,12 +76,12 @@ const FilterTwoBlocks: FC<PropsWithChildren<FilterTwoBlocksProps>> = (
                             {/*    list, который выводит весь список*/}
                             <CreateList items={allValues} renderItem={(value: Item) =>
                                 <div key={value.nameRu}
-                                     className={selectValues.includes(value.nameEn) ? 'list-container__text_white' : 'list-container__text element-text'}
-                                     onClick={() => handleChangeFilter(value.nameEn)}
+                                     className={selectValues.includes(value.nameRu) ? 'list-container__text_white' : 'list-container__text element-text'}
+                                     onClick={() => handleChangeFilter(value.nameRu)}
                                 >
                                     {i18n.language === 'en' ? firstCharUp(value.nameEn) : firstCharUp(value.nameRu)}
                                     <div
-                                        className={selectValues.includes(value.nameEn) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
+                                        className={selectValues.includes(value.nameRu) ? "element-text__checkmark_white" : 'element-text__checkmark'}>
                                         <Icons name='check' size='16'/>
                                     </div>
                                 </div>

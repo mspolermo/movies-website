@@ -3,7 +3,7 @@ import {Item} from "../../../types/filtersTypes";
 export function languageFilters(filters: string[], allFilters: Item[], language: string) {
     let filtersBy: Item[] = []
     for (let filter of filters){
-        let genreId = allFilters.find(all => all.nameEn === filter)
+        let genreId = allFilters.find(all => all.nameRu === filter)
         if (genreId){
             filtersBy.push(genreId)
         }
