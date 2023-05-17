@@ -24,7 +24,7 @@ export default function Search<T> (
         cl = false,
     }: SearchProps<T>
     ) {
-
+    const [active, setActive ] = useState(false)
 
     return (
         <div className='Search'>
@@ -32,7 +32,7 @@ export default function Search<T> (
                 <div className="Search__input input">
 
                     <div className="input__block">
-                        <div className={searchQuery ? "input__title_small" : 'input__title'}>
+                        <div className={active ? "input__title_small" : 'input__title'}>
                             {placeholder}
                         </div>
                         <input className='input__input'
@@ -40,7 +40,7 @@ export default function Search<T> (
                                placeholder=''
                                value={searchQuery}
                                onChange={e => setSearchQuery(e.target.value)}
-                               onClick={() => setSearchQuery(' ')}
+                               onClick={() => setActive(true)}
                         />
                         <div className="input__icons"
                              onClick={() => setSearchQuery('')}
@@ -67,7 +67,7 @@ export default function Search<T> (
                 </div>
             }
 
-            <div className="Search__result">
+            <div className={cl ? "Search__result" : "Search__result-column"}>
                 {result.map(renderResult)}
             </div>
         </div>

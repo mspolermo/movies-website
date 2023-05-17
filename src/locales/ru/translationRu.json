@@ -365,5 +365,9 @@
 			"toggleShow": "Развернуть",
 			"toggleHide": "Свернуть"
 		}
+	},
+	"breadcrumbs": {
+		"films": "Фильмы",
+		"home": "Мой Иви"
 	}
 }

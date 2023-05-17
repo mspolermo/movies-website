@@ -1,10 +1,25 @@
 .FilmBlock{
+    margin: 30px 0;
+    min-height: 700px;
     &__search{}
-    &__result{}
-    &__nameRu{}
-    &__nameEn{}
-    &__change{
+    &__result{
+        margin-top: 50px;
+    }
+    &__nameRu, &__nameEn{
+        color: #1f1b2e;
+        &_input{
+            margin-bottom: 20px;
+            padding: 5px 10px;
+            font-size: 18px;
 
+            min-height: 35px;
+            min-width: 300px;
+            border-radius: 5px;
+            background-color: #d9d7e0;
+        }
+    }
+    &__change{
+        margin-bottom: 10px;
     }
     &__delete{}
 }

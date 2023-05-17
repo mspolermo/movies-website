@@ -6,9 +6,8 @@ export interface IconsSearchProps {
 
 const IconsSearch: IconsSearchProps =
     {
-        'person': 'person-search',
-        'movies': 'movie-search',
-        'series': 'series',
+        'people': 'person-search',
+        'films': 'movie-search',
     }
 
 export default IconsSearch;
