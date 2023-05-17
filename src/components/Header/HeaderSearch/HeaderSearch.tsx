@@ -36,7 +36,11 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     }
 
     useEffect(() => {
-        fetchFilm()
+        if(searchQuery){
+            fetchFilm()
+        } else {
+            setSearchResult([])
+        }
     }, [searchQuery])
 
     async function fetchFilm() {
@@ -75,11 +79,12 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     }
 
     function renderResult(value: Result) {
-        return (searchQuery &&
+        console.log('renderResult', value)
+        return (
                 <BigSearchResult iconName={_.get(MapperIcons, value.rowType)}
                                  title={(i18n.language === 'en' && value.nameEn) ? value.nameEn : value.nameRu}
                                  subtitle={(i18n.language === 'en' && value.nameEn) ? value.nameRu : value.nameEn}
-                                 key={value.key}
+                                 key={value.key + value.rowType}
                                  onClick={() => goToPage(value)}/>
         )
     }
