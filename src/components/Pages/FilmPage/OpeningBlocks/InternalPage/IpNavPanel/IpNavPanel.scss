@@ -16,6 +16,30 @@
         }
     }
     &__text{
+        display: inline-block;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+
         color: $textColor;
+        @include hover-colorAnim ($activeColor, $textColor)
+    }
+    &__counter {
+        margin-left: 5px;
+        display: inline-block;
+        transform: translateY(-6px);
+        font-size: 12px;
+        color: #a5a1b2;
+    }
+}
+@media (max-width: 400px) {
+    .iPnavPanel {
+        &__text{
+            font-size: 10px;
+            line-height: 10px;
+        }
+        &__counter {
+            font-size: 8px;
+        }
     }
 }

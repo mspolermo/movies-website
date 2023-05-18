@@ -70,19 +70,19 @@ const InternalPage:FC<InternalPageProps> = ({film}) => {
 
             <div className="internalPage__previous" onClick={closeInternalPage}>
                     <Icons className='internalPage__svg_big' name='back' size='50'/>
-                    <p className="internalPage__text internalPage__text_btn">К фильму</p>
+                    <p className="internalPage__text internalPage__text_btn">{t('internalPage.toFilm')}</p>
             </div>
 
-            <div className="container internalPage__main">
+            <div className="internalPage__main">
 
                 <div className="internalPage__body">
-                    <h2 className="internalPage__heading">{filmName} ({filmType} {film.year})</h2>
-                    <IpNavPanel />
+                    <h3 className="internalPage__heading">{filmName} ({filmType} {film.year})</h3>
+                    <IpNavPanel comments={film.comments} trailer={film.trailerUrl}/>
 
 
                     {(allCreatorsBlockStatus) && <AllCreatorsBlock persons={film.persons}/>}
                     {(factsBlockStatus) && <FactsBlock fact={film.fact}/>}
-                    {(treilersBlockStatus) && <TreilersBlock /> }
+                    {(treilersBlockStatus) && <TreilersBlock trailer={film.trailerUrl}/> }
                     {(commentsCreatingBlockStatus) && <CommentsCreatingBlock />}
                     
                 </div>

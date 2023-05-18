@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import './FactsBlock.scss'
+import { useTranslation } from "react-i18next";
 
 interface FactsBlockProps {
     fact: {
@@ -12,11 +13,12 @@ interface FactsBlockProps {
 }
 
 const FactsBlock:FC<FactsBlockProps> = ({fact}) => {
+    const {t, i18n} = useTranslation();
     return (
         <div className="factsBlock">
-            <h2 className="factsBlock__heading">Факты о фильме</h2>
+            <h2 className="factsBlock__heading">{t('internalPage.factsBlock.facts')}</h2>
             {(fact) && <p className="factsBlock__text">{fact.value}</p>}  
-            {(!fact) && <p className="factsBlock__text">К сожалению мы ничего не знаем</p>}   
+            {(!fact) && <p className="factsBlock__text">{t('internalPage.factsBlock.noInfo')}</p>}   
 
         </div>
     )
