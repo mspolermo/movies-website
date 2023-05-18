@@ -1,7 +1,20 @@
-import { IUser } from "./IUser"
 
-export interface AuthResponse {
-	accessToken: string
-	refreshToken: string
-	user: IUser
+export interface LoginResponse {
+	Email: string
+	token: {
+		token: string
+	}
+}
+
+export interface RegistrationResponse {
+	User: {
+		id: string
+		email: string
+		password: string
+		updatedAt: string
+		createdAt: string
+	},
+	token: {
+		token: string
+	}
 }
