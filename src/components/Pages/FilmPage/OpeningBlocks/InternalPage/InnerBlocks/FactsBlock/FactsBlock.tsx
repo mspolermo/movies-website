@@ -15,7 +15,8 @@ const FactsBlock:FC<FactsBlockProps> = ({fact}) => {
     return (
         <div className="factsBlock">
             <h2 className="factsBlock__heading">Факты о фильме</h2>
-            <p className="factsBlock__text">{fact.value}</p>   
+            {(fact) && <p className="factsBlock__text">{fact.value}</p>}  
+            {(!fact) && <p className="factsBlock__text">К сожалению мы ничего не знаем</p>}   
 
         </div>
     )
