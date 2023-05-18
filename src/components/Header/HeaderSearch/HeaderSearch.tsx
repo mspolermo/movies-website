@@ -96,8 +96,14 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
             </div>
             <div className="searchBlock__modal">
                 <h2 className="searchBlock__heading">Поиск</h2>
-                <Search result={searchResults} renderResult={renderResult} placeholder={'Фильмы, персоны, жанры'}
-                        cl={false} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+                <Search result={searchResults}
+                        renderResult={renderResult}
+                        placeholder={'Фильмы, персоны, жанры'}
+                        cl={false}
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                        search={true}
+                />
             </div>
         </div>
 

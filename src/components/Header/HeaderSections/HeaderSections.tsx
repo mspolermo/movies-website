@@ -70,7 +70,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                                 <a 
                                     title="Мультфильмы" 
                                     className="headerMenu__link"
-                                    onClick={() => navigate (`/movies-website/films/genre/cartoon`)}
+                                    onClick={() => navigate (`/movies-website/films/genre/мультфильм`)}
                                 >
                                     <p 
                                         className="headerMenu__text"

@@ -205,8 +205,8 @@ export const MainPage: FC<IMainPageProps> = (props) => {
 						</div>
 					</div>
 				</section>
-				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.militants')} genre="action" />
-				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.dram')} genre="drama" />
+				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.militants')} genre="боевик" />
+				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.dram')} genre="драма" />
 			</div>
 
 		</div>

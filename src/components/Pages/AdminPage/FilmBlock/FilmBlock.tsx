@@ -63,10 +63,8 @@ const FilmBlock = () => {
     function editFilm() {
         if(film){
             const response = axios.patch(`http://localhost:5000/film/${film.key}`, {
-                params: {
                     filmNameRu: film?.nameRu,
                     filmNameEn: film?.nameEn
-                }
             })
         }
     }
@@ -104,7 +102,9 @@ const FilmBlock = () => {
                         renderResult={renderResult}
                         placeholder={'Начните вводить название фильма'} cl={false}
                         searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}/>
+                        setSearchQuery={setSearchQuery}
+                        search={true}
+                />
             </div>
 
             <div className="FilmBlock__result">
