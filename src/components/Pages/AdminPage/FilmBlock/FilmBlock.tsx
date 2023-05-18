@@ -104,7 +104,9 @@ const FilmBlock = () => {
                         renderResult={renderResult}
                         placeholder={'Начните вводить название фильма'} cl={false}
                         searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}/>
+                        setSearchQuery={setSearchQuery}
+                        search={true}
+                />
             </div>
 
             <div className="FilmBlock__result">

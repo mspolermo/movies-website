@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CreateList from "../../../CreateList/CreateList";
-import {Item} from "../../../../types/filtersTypes";
+import {genreAdmin, Item} from "../../../../types/filtersTypes";
 import Button from "../../../UI/Buttons/Button/Button";
 import axios from "axios";
 import Icons from "../../../Icons/Icons";
@@ -8,24 +8,26 @@ import './genresBlock.scss'
 import {firstCharUp} from "../../MoviesPage/utils";
 
 const Genre = {
+    id: 0,
     nameRu: '',
     nameEn: ''
 }
 
 const GenresBlock = () => {
-    const [genres, setGenres] = useState<Item[]>([])
-    const [genre, setGenre] = useState<Item>(Genre)
+    const [genres, setGenres] = useState<genreAdmin[]>([])
+    const [genre, setGenre] = useState<genreAdmin>(Genre)
 
     useEffect(() => {
         fetchGenres()
     }, [])
 
     async function fetchGenres() {
-        const response = await axios.get('http://localhost:5000/filters')
+        const response = await axios.get('http://localhost:5000/genres')
 
         // @ts-ignore
-        let filters = response.data.genres.map(item => {
+        let filters = response.data.map(item => {
             return {
+                id: item.id,
                 nameRu: item.nameRu,
                 nameEn: item.nameEn
             }
@@ -35,10 +37,11 @@ const GenresBlock = () => {
     }
 
     function editGenres() {
-        const response = axios.patch(`http://localhost:5000/filters/${genre?.nameEn}`, {
+        const response = axios.patch(`http://localhost:5000/genre/${genre?.id}`, {
             params: {
-                nameRu: genre?.nameRu,
-                nameEn: genre?.nameEn
+                id: genre.id,
+                nameRu: genre.nameRu,
+                nameEn: genre.nameEn
             }
         })
         setGenre(Genre)
@@ -47,9 +50,9 @@ const GenresBlock = () => {
     return (
         <div className="GenresBlock">
             <div className="GenresBlock__genres">
-                <CreateList items={genres} renderItem={(value: Item) =>
+                <CreateList items={genres} renderItem={(value: genreAdmin) =>
                     <div className="GenresBlock__genre genre"
-                         key={value.nameEn}
+                         key={value.id}
                          onClick={() => setGenre(value)}
                     >
                             {firstCharUp(value.nameRu)}
@@ -72,7 +75,7 @@ const GenresBlock = () => {
                                 <input className='GenresBlock__edit-name_input'
                                        type="text"
                                        value={genre.nameRu}
-                                       onChange={e => e.target.value}
+                                       onChange={e => setGenre( {...genre, nameRu: e.target.value})}
                                 />
                             </div>
 
@@ -81,7 +84,7 @@ const GenresBlock = () => {
                                 <input className='GenresBlock__edit-name_input'
                                        type="text"
                                        value={genre.nameEn}
-                                       onChange={e => e.target.value}
+                                       onChange={e => setGenre( {...genre, nameEn: e.target.value})}
                                 />
                             </div>
 
