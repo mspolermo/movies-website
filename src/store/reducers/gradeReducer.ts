@@ -11,9 +11,6 @@ reducers: {
     },
     gradeFalse: state => {
         state.value = false
-    },
-    gradeTrueByAmount: (state, action) => {
-        state.value = action.payload
     }
 }
 })

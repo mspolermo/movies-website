@@ -1,0 +1,47 @@
+@import '/src/styles/variables.scss';
+
+.shortInfoBlock {
+    margin-left: 120px;
+    &__img{
+        margin-bottom: 30px;
+        max-height: 196px;
+        border-radius: 10px;
+        transition-property: transform;
+        transition: all ease 1s;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1)
+        }
+    }
+    &__inner{
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    &__reit{
+        margin-right: 10px;
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+    }
+    &__svg {
+        &_rate{
+            transform: rotate(90deg);
+        }
+        &_time {
+            margin-right: 6px;
+        }
+    }
+    &__text{
+        color: $textColor;
+        &_btn {
+            transform: translate(-20px, 6px);
+        }
+    }
+}
+
+@media (max-width: 880px) {
+    .shortInfoBlock{
+        display: none;
+    }
+}

@@ -1,9 +1,11 @@
+import {number} from "prop-types";
+
 export interface activeFiltersProps {
     'genres': string[],
     'popularGenres': string[],
     'popularCountries': string[],
     'countries': string[],
-    'years': number,
+    'years': number | string,
     'rating': number,
     'grade': number,
     'producer': string,
@@ -48,6 +50,12 @@ export interface MovieProps {
     'genreEn': string,
 }
 
+export interface MovieSearchProps {
+    'key': number,
+    'nameRu': string,
+    'nameEn': string,
+}
+
 export interface startFiltersProps {
     'genres':
         {
@@ -77,6 +85,12 @@ export interface startFiltersProps {
 }
 
 export interface Item {
+    nameRu: string,
+    nameEn: string
+}
+
+export interface genreAdmin {
+    id: number,
     nameRu: string,
     nameEn: string
 }
@@ -133,43 +147,43 @@ export const arrAllFilters = {
     'popularCountries': [
         {
             'nameRu': 'Россия',
-            'nameEn': ''
+            'nameEn': 'Russia'
         },
         {
             'nameRu': 'США',
-            'nameEn': ''
+            'nameEn': 'USA'
         },
         {
             'nameRu': 'Германия',
-            'nameEn': ''
+            'nameEn': 'Germany'
         },
         {
             'nameRu': 'Великобритания',
-            'nameEn': ''
+            'nameEn': 'Great Britain'
         },
         {
             'nameRu': 'Япония',
-            'nameEn': ''
+            'nameEn': 'Japan'
         },
         {
             'nameRu': 'Китай',
-            'nameEn': ''
+            'nameEn': 'China'
         },
         {
             'nameRu': 'Корея Южная',
-            'nameEn': ''
+            'nameEn': 'South Korea'
         },
         {
             'nameRu': 'Индия',
-            'nameEn': ''
+            'nameEn': 'India'
         },
         {
             'nameRu': 'СССР',
-            'nameEn': ''
+            'nameEn': 'SSSR'
         },
         {
             'nameRu': 'Франция',
-            'nameEn': ''
+            'nameEn': 'France'
         }
     ],
     'countries': [
@@ -190,7 +204,7 @@ export const activeFilters = {
     'genres': [],
     'popularCountries': [],
     'countries': [],
-    'years': 0,
+    'years': '',
     'rating': 0,
     'grade': 0,
     'producer': '',

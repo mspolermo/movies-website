@@ -1,31 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import CreateList from "../../../CreateList/CreateList";
-import {Item} from "../../../../types/filtersTypes";
+import {genreAdmin, Item} from "../../../../types/filtersTypes";
 import Button from "../../../UI/Buttons/Button/Button";
 import axios from "axios";
 import Icons from "../../../Icons/Icons";
+import './genresBlock.scss'
+import {firstCharUp} from "../../MoviesPage/utils";
 
 const Genre = {
+    id: 0,
     nameRu: '',
     nameEn: ''
 }
 
 const GenresBlock = () => {
-    const [genres, setGenres] = useState<Item[]>([])
-    const [genre, setGenre] = useState<Item>()
+    const [genres, setGenres] = useState<genreAdmin[]>([])
+    const [genre, setGenre] = useState<genreAdmin>(Genre)
 
     useEffect(() => {
         fetchGenres()
     }, [])
 
     async function fetchGenres() {
-        const response = await axios.get('http://localhost:5000/filters')
+        const response = await axios.get('http://localhost:5000/genres')
 
         // @ts-ignore
-        let filters = response.data.genres.map(item => {
+        let filters = response.data.map(item => {
             return {
-                nameRu: response.data.genres.nameRu,
-                nameEn: response.data.genres.nameEn
+                id: item.id,
+                nameRu: item.nameRu,
+                nameEn: item.nameEn
             }
         })
 
@@ -33,53 +37,62 @@ const GenresBlock = () => {
     }
 
     function editGenres() {
-        const response = axios.get(`http://localhost:5000/filters/${genre?.nameEn}`, {
-            params: {
-                nameRu: genre?.nameRu,
-                nameEn: genre?.nameEn
-            }
+        const response = axios.patch(`http://localhost:5000/genre/${genre?.id}`, {
+                nameRu: genre.nameRu,
+                nameEn: genre.nameEn
         })
         setGenre(Genre)
     }
 
-    console.log(genres)
-
     return (
         <div className="GenresBlock">
-            <div className="GenresBlock__genres genres">
-                <CreateList items={genres} renderItem={(value: Item) =>
-                    <div className="genres__genre"
-                         key={value.nameEn}
+            <div className="GenresBlock__genres">
+                <CreateList items={genres} renderItem={(value: genreAdmin) =>
+                    <div className="GenresBlock__genre genre"
+                         key={value.id}
+                         onClick={() => setGenre(value)}
                     >
-                            {value.nameRu}
-                        <div className="genres__editing">
-                            <Button type='default'
-                                    color='default'
-                                    svg={<Icons name='edit' size='24'/>}
-                                    onClick={() => setGenre(genre)}/>
+                            {firstCharUp(value.nameRu)}
+                        <div className="genre__editing">
+                            <Icons name='edit' size='24'/>
                         </div>
                     </div>
                 }/>
             </div>
-            {genre &&
-                <div className="genres__edit-block">
-                    <div className="genres__edit-name">
-                        <input type="text"
-                               name={genre.nameRu}
-                               onChange={e => e.target.value}
-                        />
-                        <input type="text"
-                               name={genre.nameRu}
-                               onChange={e => e.target.value}
-                        />
+            {genre !== Genre &&
+                <div className="GenresBlock__block"
+                     onClick={() => setGenre(Genre)}
+                >
+                    <div className="GenresBlock__edit-block"
+                         onClick={(event) => event.stopPropagation() }
+                    >
+                        <div className="GenresBlock__edit-name">
+                            <div className="GenresBlock__edit-name_ru">
+                                Название на русском
+                                <input className='GenresBlock__edit-name_input'
+                                       type="text"
+                                       value={genre.nameRu}
+                                       onChange={e => setGenre( {...genre, nameRu: e.target.value})}
+                                />
+                            </div>
+
+                            <div className="GenresBlock__edit-name_en">
+                                Название на английском
+                                <input className='GenresBlock__edit-name_input'
+                                       type="text"
+                                       value={genre.nameEn}
+                                       onChange={e => setGenre( {...genre, nameEn: e.target.value})}
+                                />
+                            </div>
+
+                        </div>
+                        <Button type='default'
+                                color='default'
+                                title={['Внести изменения']}
+                                onClick={() => editGenres()}/>
                     </div>
-                    <Button type='default'
-                            color='default'
-                            title={['Внести изменения']}
-                            onClick={() => editGenres()}/>
                 </div>
             }
-
         </div>
     );
 };

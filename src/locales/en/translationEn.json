@@ -339,7 +339,28 @@
 			"good": "great",
 			"get": "Your rating has been accepted",
 			"thank": "Thank you for sharing your opinion"
-		} 
+		},
+		"filmsCompilation": {
+			"similar": "Similar with",
+			"watches": ""
+		},
+		"creatorsBlock": {
+			"header": "Actors and creators",
+			"more": "More"
+		},
+		"commentsBlock": {
+			"reviews": "Reviews",
+			"about": "about the film",
+			"tofilm": "There are no reviews for ",
+			"no": "yet.",
+			"btn": "Create review"
+		},
+		"watchesBlock": {
+			"watch": "Watch",
+			"all": "on all devices",
+			"available": "The application is available for download on iOS, Android, SmartTV and set-top boxes",
+			"connect": "Connect devices"
+ 		}     
 	},
 	"card": {
 		"reit": "Ivi",
@@ -365,5 +386,9 @@
 			"toggleShow": "Expand",
 			"toggleHide": "Collapse"
 		}
+	},
+	"breadcrumbs": {
+		"films": "Films",
+		"home": "My Ivi"
 	}
 }

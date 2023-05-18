@@ -1,0 +1,130 @@
+@import '/src/styles/variables.scss';
+
+@mixin animPreset ($animName) {
+    animation-name: $animName;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+}
+
+.commentsBlock {
+    margin: 40px 0;
+    &__top {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__part{
+    }
+    &__header{
+        display: flex;
+        color: $textColor;
+        &_no {
+            padding-top: 24px;
+            margin-bottom: 240px;
+        }
+    }
+    &__heading {
+        margin-bottom: 14px;
+        
+        font-size: 24px;
+        font-weight: 700;
+        color: $activeColor;
+        border-bottom: 1px solid $splitLineColor;
+        &:hover {
+            cursor: pointer;
+            @include animPreset (hoverLineOn);
+        }
+        &:not(:hover):not(:active) {
+            @include animPreset (hoverLineOff);
+        }
+    }
+    &__count{
+        padding-left: 6px;
+    }
+    &__inner{
+        padding: 20px;
+        margin-right: 20px;
+        min-width: 300px;
+        min-height: 180px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        background-color: $backgroundElements;
+        border-radius: 5px;
+    }
+    &__comment-header {
+        margin-bottom: 8px;
+        min-height: 16px; 
+
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 700;
+        font-style: normal;
+        color: $textColor;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; 
+    }
+    &__comment-body{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 400;
+        color: $activeColor;
+
+        -webkit-line-clamp: 3; /* Число отображаемых строк */
+        display: -webkit-box; /* Включаем флексбоксы */
+        -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        overflow: hidden; 
+    }
+    &__comment-bottom{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__comment-date{
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+        font-style: normal;
+        color: $textColor;
+    }
+    &__comment-like {
+        display: flex;
+        align-items: center;
+    }
+
+    &__likeCounter {
+        padding: 0 8px;
+        
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 700;
+        font-style: normal;
+        color: #73a32f;
+    }
+}
+
+@keyframes hoverLineOn {
+    0% {
+        border-bottom: 1px solid $splitLineColor;
+    }
+    100% {
+        border-bottom: 1px solid $activeColor;
+    }
+}
+@keyframes hoverLineOff {
+    0% {
+        border-bottom: 1px solid $activeColor;
+    }
+    100% {
+        border-bottom: 1px solid $splitLineColor;
+    }
+}

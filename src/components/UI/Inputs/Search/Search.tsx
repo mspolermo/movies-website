@@ -1,7 +1,9 @@
-import React, {FC, PropsWithChildren, useState} from 'react';
+import React, {useState} from 'react';
 import Icons from "../../../Icons/Icons";
 import './Search.scss'
-import ButtonReset from "../../../Filters/ButtonReset/ButtonReset";
+
+// В result можно передать пустой массив([])
+// В renderResult стрелочную функцию, возвращающую пустой массив
 
 interface SearchProps<T> {
     result: T[],
@@ -9,6 +11,7 @@ interface SearchProps<T> {
     handleClear?: () => void,
     placeholder: string,
     cl: boolean,
+    search: boolean,
     searchQuery: string,
     setSearchQuery: (searchQuery: string) => void
 }
@@ -22,9 +25,10 @@ export default function Search<T> (
         searchQuery,
         setSearchQuery,
         cl = false,
+        search = true
     }: SearchProps<T>
     ) {
-
+    const [active, setActive ] = useState(false)
 
     return (
         <div className='Search'>
@@ -32,23 +36,31 @@ export default function Search<T> (
                 <div className="Search__input input">
 
                     <div className="input__block">
-                        <div className={searchQuery ? "input__title_small" : 'input__title'}>
+                        {!search && <Icons className='input__icon' name='person' size='30'/>}
+                        {search ? (<div className={active ? "input__title_small" : 'input__title'}>
                             {placeholder}
-                        </div>
-                        <input className='input__input'
+                        </div>) :
+                            (<div className={active ? "input__title-mail_small" : 'input__title-mail'}>
+                                {placeholder}
+                            </div>)}
+
+                        <input className={search ? 'input__input' :'input__input-mail'}
                                type="text"
                                placeholder=''
                                value={searchQuery}
                                onChange={e => setSearchQuery(e.target.value)}
-                               onClick={() => setSearchQuery(' ')}
+                               onClick={() => setActive(true)}
                         />
-                        <div className="input__icons"
-                             onClick={() => setSearchQuery('')}
-                        >
-                            {searchQuery ? <Icons className="input__cross" name='cross' size='24'/>
-                                : <Icons className="input__search" name='search' size='24'/>}
+                        {
+                            search &&
+                            <div className="input__icons"
+                                           onClick={() => setSearchQuery('')}
+                            >
+                                {searchQuery ? <Icons className="input__cross" name='cross' size='24'/>
+                                    : <Icons className="input__search" name='search' size='24'/>}
 
-                        </div>
+                            </div>
+                        }
                     </div>
 
                 </div>
@@ -67,9 +79,13 @@ export default function Search<T> (
                 </div>
             }
 
-            <div className="Search__result">
-                {result.map(renderResult)}
-            </div>
+            {
+                search &&
+                <div className={cl ? "Search__result" : "Search__result-column"}>
+                    {result.map(renderResult)}
+                </div>
+            }
+
         </div>
     )
 };

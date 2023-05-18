@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Header from '../components/Header/Header';
 import'../styles/App.scss'
 
+import { BrowserRouter} from "react-router-dom";
 
 const meta: Meta<typeof Header> = {
     title: 'Components/Header/Header',
@@ -13,14 +14,16 @@ type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
     render: (args) => (
-      <div style={
-            {
-                'backgroundColor': '#100e19', 
-                'width': '1400px' 
-            }
-        }>
-                <Header />  
-      </div>
+      <BrowserRouter >
+        <div style={
+              {
+                  'backgroundColor': '#100e19', 
+                  'width': '1400px' 
+              }
+          }>
+                  <Header />  
+        </div>
+      </BrowserRouter>
     ),
     args: {
     }

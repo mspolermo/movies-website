@@ -13,7 +13,7 @@
         padding: 0 12px;
         margin-top: 10px;
         &_active {
-            background: $backfroundElements;
+            background: $backgroundElements;
             box-shadow: 0 20px 96px #12101b;
             border-radius: 12px 12px 0 0;  
         }
@@ -24,7 +24,7 @@
         z-index: 3;
         display: block;
 
-        background: $backfroundElements;
+        background: $backgroundElements;
         box-shadow: 0 20px 96px #12101b;
         border-top: none;
         border-radius: 0 0 12px 12px;

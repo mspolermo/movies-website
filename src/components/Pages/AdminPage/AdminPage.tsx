@@ -6,18 +6,6 @@ import './AdminPage.scss'
 const AdminPage = () => {
     const [activeBlock, setActiveBlock] = useState('')
 
-    //
-    // function changeGenres(genre: string) {
-    //     if (filmGenre.includes(genre)) {
-    //         let genresNew = filmGenre.filter(genres => genres !== genre)
-    //         setFilmGenre(genresNew)
-    //     } else {
-    //         let genresNew = filmGenre
-    //         genresNew.push(genre)
-    //         setFilmGenre(genresNew)
-    //     }
-    // }
-
     return (
         <div className="AdminPage">
             <div className="AdminPage__container container">

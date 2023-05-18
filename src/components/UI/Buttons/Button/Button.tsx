@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState }  from "react";
 import classes from './Button.module.scss'
-import { ButtonProps } from "../../../../types/types";
+import { ButtonProps } from "../../../../types/UiTypes";
 import { useTranslation } from 'react-i18next';
 
 const Button:FC<ButtonProps> = ({ type = 'default', color = 'default', svg, title, onClick }) => {

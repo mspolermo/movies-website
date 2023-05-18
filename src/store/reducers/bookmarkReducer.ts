@@ -11,9 +11,6 @@ reducers: {
     },
     bookmarkFalse: state => {
         state.value = false
-    },
-    bookmarkTrueByAmount: (state, action) => {
-        state.value = action.payload
     }
 }
 })

@@ -4,7 +4,6 @@
         font-size: 25px;
         line-height: 28px;
         font-weight: 700;
-        cursor: pointer;
     }
     &__btn{
         border-bottom: 1px solid rgba(255,255,255,.32);
@@ -14,9 +13,12 @@
     &__block-film{
         padding: 5px 20px 10px 10px;
         border-radius: 10px;
+        cursor: pointer;
+
     }
     &__block-genre{
         padding: 5px 20px 10px 10px;
         border-radius: 10px;
+        cursor: pointer;
     }
 }

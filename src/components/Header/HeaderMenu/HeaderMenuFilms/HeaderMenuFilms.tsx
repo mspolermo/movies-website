@@ -67,7 +67,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
         
                     <div className="headerMenuFilms__column">
                         <CreateList items={allFiltres.genresFirst} renderItem={filter =>
-                            <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
+                            <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameRu}`)}>
                                 {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
                             </p>
                         } />
@@ -75,7 +75,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
 
                     <div className="headerMenuFilms__column">
                         <CreateList items={allFiltres.genresSecond} renderItem={filter =>
-                            <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameEn}`)}>
+                            <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameRu}`)}>
                                 {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
                             </p>
                         }/> 
