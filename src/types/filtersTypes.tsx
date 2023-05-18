@@ -89,6 +89,12 @@ export interface Item {
     nameEn: string
 }
 
+export interface genreAdmin {
+    id: number,
+    nameRu: string,
+    nameEn: string
+}
+
 export const arrAllFilters = {
     'popularGenres': [
         {
