@@ -38,11 +38,8 @@ const GenresBlock = () => {
 
     function editGenres() {
         const response = axios.patch(`http://localhost:5000/genre/${genre?.id}`, {
-            params: {
-                id: genre.id,
                 nameRu: genre.nameRu,
                 nameEn: genre.nameEn
-            }
         })
         setGenre(Genre)
     }

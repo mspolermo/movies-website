@@ -63,10 +63,8 @@ const FilmBlock = () => {
     function editFilm() {
         if(film){
             const response = axios.patch(`http://localhost:5000/film/${film.key}`, {
-                params: {
                     filmNameRu: film?.nameRu,
                     filmNameEn: film?.nameEn
-                }
             })
         }
     }
