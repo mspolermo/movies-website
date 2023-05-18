@@ -113,6 +113,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 								return (
 									<div key={i.key} className="gallery__film">
 										<FilmCard
+											icons={variant === 'genreCompilation' && true}
 											film={i}
 											onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
 										/>
