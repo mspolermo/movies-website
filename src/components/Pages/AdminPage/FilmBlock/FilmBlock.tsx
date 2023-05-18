@@ -1,41 +1,53 @@
 import React, {useEffect, useState} from 'react';
 import Search from "../../../UI/Inputs/Search/Search";
-import {Item, MovieProps} from "../../../../types/filtersTypes";
+import {Item, MovieProps, MovieSearchProps} from "../../../../types/filtersTypes";
 import Button from "../../../UI/Buttons/Button/Button";
 import axios from "axios";
 import RowSearchResult from "../../../Search/RowSearchResult/RowSearchResult";
-import _ from 'lodash'
 import './filmBlock.scss'
+import {useTranslation} from "react-i18next";
 
 const Name = {
     nameRu: '',
-    nameEn: ''
+    nameEn: '',
+    key: 0
 }
 
 const FilmBlock = () => {
-    const [film, setFilm] = useState<MovieProps>()
+    const [film, setFilm] = useState<MovieSearchProps>(Name)
     const [films, setFilms] = useState<MovieProps[]>([])
-    const [editName, setEdinName] = useState<Item>(_.cloneDeep(Name))
     const [searchQuery, setSearchQuery] = useState('')
-    const limit = 10
+    const {t, i18n} = useTranslation();
 
     useEffect(() => {
         fetchFilm()
     }, [searchQuery])
 
+    useEffect(() => {
+        fetchFilm()
+    }, [])
+
+    useEffect(() => {
+        if(film) {
+            inputName(film.nameEn)
+            inputName(film.nameRu)
+        }
+    }, [film])
+
     async function fetchFilm() {
-        const response = await axios.get('http://localhost:5000/film', {
+        const response = await axios.get('http://localhost:5000/search', {
             params: {
-                perPage: limit,
-                search: searchQuery,
+                name: searchQuery,
             }
         })
+
+        let films = response.data.films
         // @ts-ignore
-        let searchFilms = response.data.map(item => {
+        let searchFilms = films.map(item => {
             return {
                 key: item.id,
-                nameRu: item.filmNameRu,
-                nameEn: item.filmNameEn,
+                nameRu: item.nameRu,
+                nameEn: item.nameEn,
             }
         })
 
@@ -44,28 +56,45 @@ const FilmBlock = () => {
 
     function deleteFilm() {
         if(film){
-            const response = axios.get(`http://localhost:5000/film/${film.key}`, {
-                params: {
-                    delete: true
-                }
-            })
+            const response = axios.delete(`http://localhost:5000/film/${film.key}`)
         }
     }
 
     function editFilm() {
         if(film){
-            const response = axios.get(`http://localhost:5000/film/${film.key}`, {
+            const response = axios.patch(`http://localhost:5000/film/${film.key}`, {
                 params: {
-                    nameRu: editName?.nameRu,
-                    nameEn: editName?.nameEn
+                    filmNameRu: film?.nameRu,
+                    filmNameEn: film?.nameEn
                 }
             })
         }
     }
 
+    function titleLang(film: MovieSearchProps) {
+        if(i18n.language === 'en' && film.nameEn){
+            return film.nameEn
+        } else {
+            return film.nameRu
+        }
+    }
+
+    function actionSearch(value:MovieSearchProps) {
+        setFilm(value)
+        setSearchQuery('')
+    }
+
     function renderResult(value: MovieProps) {
-        return (<RowSearchResult title={value.nameRu} key={value.key} onClick={() => setFilm(value)}/>
-        )
+        if(searchQuery){
+            return (<RowSearchResult title={titleLang(value)} key={value.key} onClick={() => actionSearch(value)}/>
+            )
+        }
+    }
+
+    function inputName(value: string) {
+        if(film){
+           return value
+        }
     }
 
     return (
@@ -80,15 +109,17 @@ const FilmBlock = () => {
 
             <div className="FilmBlock__result">
                 <div className="FilmBlock__nameRu">
-                    <input type="text"
-                           name={film?.nameRu}
-                           onChange={e => setEdinName( {...editName, nameRu: e.target.value})}
+                    <input className="FilmBlock__nameRu_input"
+                           type="text"
+                           value={film ? inputName(film.nameRu) : ''}
+                           onChange={e => setFilm( {...film, nameRu: e.target.value})}
                     />
                 </div>
                 <div className="FilmBlock__nameEn">
-                    <input type="text"
-                           name={film?.nameEn}
-                           onChange={e => setEdinName({...editName, nameEn: e.target.value})}
+                    <input className="FilmBlock__nameEn_input"
+                           type="text"
+                           value={film ? inputName(film.nameEn) : ''}
+                           onChange={e => setFilm({...film, nameEn: e.target.value})}
                     />
                 </div>
             </div>

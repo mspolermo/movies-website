@@ -1,6 +1,7 @@
 @import "../../FilmCard/filmcard";
 
 .MoviesPage {
+    margin-bottom: 20px;
     &__mobile {
         display: none;
     }
@@ -25,6 +26,7 @@
         font-size: 40px;
         line-height: 44px;
         font-weight: 700;
+        margin-top: 25px;
     }
 
     &__subtitle {

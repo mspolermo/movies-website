@@ -386,5 +386,9 @@
 			"toggleShow": "Expand",
 			"toggleHide": "Collapse"
 		}
+	},
+	"breadcrumbs": {
+		"films": "Films",
+		"home": "My Ivi"
 	}
 }

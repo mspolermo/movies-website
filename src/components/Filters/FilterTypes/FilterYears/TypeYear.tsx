@@ -8,7 +8,7 @@ import {Carousel} from "../../../Carousel/Carousel";
 
 interface TypeYearProps {
     allValues: number[];
-    selectValues: number;
+    selectValues: number | string;
     handleChangeFilter: (item: number) => void;
 }
 
