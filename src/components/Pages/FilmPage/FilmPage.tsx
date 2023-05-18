@@ -24,6 +24,7 @@ import Loader from "../../UI/Loader/Loader";
 import InternalPage from "./OpeningBlocks/InternalPage/InternalPage";
 import { useDispatch } from "react-redux";
 import { internalPageFalse } from "../../../store/reducers/internalPageReducer";
+import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 
 const Film = {
     id: 0,
@@ -119,6 +120,7 @@ const FilmPage = () => {
         setIsPageLoading(false);
 
     };
+
 
     return (
         <div className="film">

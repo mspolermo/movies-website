@@ -47,7 +47,7 @@ export interface IComment {
     header: string,
     value: string,
     authorId: number,
-    parentId: number,
+    parentId: number | null,
     createdAt: Date,
     filmId: number,
 };
@@ -122,4 +122,9 @@ export interface WatchesBlockProps {
     filmName: string;
     bigPictureUrl: string,
     smallPictureUrl: string
-}
+};
+
+export interface ISoretedComments {
+    parent: IComment,
+    children: IComment[] | []
+};

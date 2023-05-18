@@ -83,7 +83,7 @@ const InternalPage:FC<InternalPageProps> = ({film}) => {
                     {(allCreatorsBlockStatus) && <AllCreatorsBlock persons={film.persons}/>}
                     {(factsBlockStatus) && <FactsBlock fact={film.fact}/>}
                     {(treilersBlockStatus) && <TreilersBlock trailer={film.trailerUrl}/> }
-                    {(commentsCreatingBlockStatus) && <CommentsCreatingBlock />}
+                    {(commentsCreatingBlockStatus) && <CommentsCreatingBlock comments={film.comments}/>}
                     
                 </div>
 

@@ -1,13 +1,157 @@
 @import '/src/styles/variables.scss';
 
 .commentsCreatingBlock {
-    &__heading {
-        margin: 40px 0;
-        font-size: 30px;
-        color: white;
-    }
+
     &__text {
-        color: White;
-        margin-bottom: 3000px;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+        font-style: normal;
+        color: $textColor;
+        &_last {
+            margin-top: 40px;
+           margin-bottom: 3000px; 
+        }
+        
     } 
+
+    &__existsComments{
+        margin-top: 20px;
+    }
+
+    &__tree{
+        bottom: 50px 0;
+    }
+
+
+
+
+    &__rewiev{
+        padding: 20px;
+        margin-bottom: 20px;
+        min-width: 300px;
+        min-height: 180px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        background-color: $backgroundElements;
+        border-radius: 5px;
+        &_child {
+            margin-left: 80px;
+        }
+    }
+    
+    &__left {
+        margin-right: 30px;
+        flex: 1 1 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__rewiev-date{ 
+    }
+    &__right{
+        flex: 1 1 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        //align-items: center;
+    }
+    &__top {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__rewiev-header {
+        margin-bottom: 10px;
+        min-height: 16px; 
+
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 700;
+        font-style: normal;
+        color: $textColor;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; 
+    }
+    &__rewiev-body{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 400;
+        color: $textColor;
+
+        // -webkit-line-clamp: 3; /* Число отображаемых строк */
+        // display: -webkit-box; /* Включаем флексбоксы */
+        // -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        // overflow: hidden; 
+    }
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    &__rewiev-like {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__likeCounter {
+        padding: 0 8px;
+        
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 700;
+        font-style: normal;
+        color: #73a32f;
+    }
+
+
+
+    &__comment{
+        padding: 20px;
+        margin-left: 80px;
+        margin-bottom: 20px;
+        //min-width: 300px;
+        min-height: 80px;
+
+        display: flex;
+        justify-content: space-between;
+
+        background-color: $backgroundElements;
+        border-radius: 5px;
+    }
+    &__comment-left {
+        margin-right: 30px;
+        flex: 1 1 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__comment-right{
+        flex: 1 1 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        //align-items: center;
+    }
+    &__comment-body{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 400;
+        color: $textColor;
+    }
+    &__comment-like {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        //justify-self: flex-end;
+        align-self: flex-end;
+    }
 }
