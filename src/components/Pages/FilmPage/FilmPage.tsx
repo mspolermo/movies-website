@@ -14,7 +14,7 @@ import DescriptionBlock from "./BodyBlocks/DescriptionBlock/DescriptionBlock";
 import AdditionalInfoBlock from "./BodyBlocks/AdditionalInfoBlock/AdditionalInfoBlock";
 import PlayerPanel from "./BodyBlocks/PlayerPanel/PlayerPanel";
 import WatchesBlock from "./SecondaryBlocks/WatchesBlock/WatchesBlock";
-import GradeBlock from "./OpeningBlocks/GradeBlock/GradeBlock";
+import GradeBlock from "../../GradeBlock/GradeBlock";
 import CreatorsBlock from "./SecondaryBlocks/CreatorsBlock/CreatorsBlock";
 import CommentsBlock from "./SecondaryBlocks/CommentsBlock/CommentsBlock";
 import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
@@ -24,6 +24,7 @@ import Loader from "../../UI/Loader/Loader";
 import InternalPage from "./OpeningBlocks/InternalPage/InternalPage";
 import { useDispatch } from "react-redux";
 import { internalPageFalse } from "../../../store/reducers/internalPageReducer";
+import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 
 const Film = {
     id: 0,
@@ -50,10 +51,11 @@ const Film = {
         filmId: 0
     },
     comments: []
+
 };
 
 const FilmPage = () => {
-    //Todo - кнопки, доп страница
+    //Todo - 2 кнопки, подсчет комментов через редакс, подключить хлебные крошки, наследование типов
 
     const params = useParams();
     const {t, i18n} = useTranslation();
@@ -73,7 +75,7 @@ const FilmPage = () => {
 
     useEffect(() => {
         fetchFilm();
-        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, [params]);
 
     useEffect(() => {
@@ -90,6 +92,15 @@ const FilmPage = () => {
 
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data.film;
+
+        const commentsResponse = await axios.get(`http://localhost:5000/comments/${response.data.film.id}`);
+
+        let reviews = []
+        if (commentsResponse.data.length > 0) {
+           for(let i=0; i<commentsResponse.data.length; i++) {
+                reviews.push(commentsResponse.data[i][0])
+           }
+        }
 
         const film_ = {
             id: data.id,
@@ -109,16 +120,16 @@ const FilmPage = () => {
             countries: data.countries,
             genres: data.genres,
             fact: data.fact,
-            comments: data.comments
+            comments: reviews
         };
         const similarFilms_ = response.data.similarFilms.slice(0 ,30);
 
         setFilm(film_);
-        setSimilarFilms(similarFilms_)
-        // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
+        setSimilarFilms(similarFilms_);
         setIsPageLoading(false);
 
     };
+
 
     return (
         <div className="film">
@@ -203,7 +214,7 @@ const FilmPage = () => {
                 <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
-                <GradeBlock />
+                <GradeBlock calledFrom={'filmPage'}/>
                 <InternalPage film={film}/>
             </div>
             }

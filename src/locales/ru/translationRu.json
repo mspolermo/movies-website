@@ -364,6 +364,37 @@
 			"connect": "Подключить устройства"
  		} 
 	},
+	"internalPage": {
+		"toFilm": "К фильму",
+		"iPnavPanel": {
+			"creators": "Создатели",
+			"reviews": "Отзывы",
+			"facts": "Факты",
+			"trailers": "Трейлеры"
+		},
+		"allCreatorsBlock": {
+			"movies": " фильмов",
+			"show": "Показать ещё"
+		},
+		"commentsCreatingBlock": {
+			"writeReview": "Написать отзыв",
+			"reviewName": "Название отзыва",
+			"reviewText": "Текст отзыва",
+			"createReview": "Создать отзыв",
+			"commentText": "Текст комментария",
+			"send": "Отправить",
+			"no": "К сожалению отзывов еще нет",
+			"comment" : "Комментировать"
+		},
+		"factsBlock": {
+			"facts" : "Факты о фильме",
+			"noInfo": "К сожалению, нам ничего не известно"
+		},
+		"treilersBlock": {
+			"trailer": "Трейлеры",
+			"noInfo": "Трейлеров к фильму не найдено"
+		}
+	},
 	"card": {
 		"reit": "Рейтинг",
 		"ivi": "Иви"
