@@ -6,6 +6,7 @@ import axios from "axios";
 import Icons from "../../../Icons/Icons";
 import './genresBlock.scss'
 import {firstCharUp} from "../../MoviesPage/utils";
+import {useTranslation} from "react-i18next";
 
 const Genre = {
     id: 0,
@@ -16,10 +17,15 @@ const Genre = {
 const GenresBlock = () => {
     const [genres, setGenres] = useState<genreAdmin[]>([])
     const [genre, setGenre] = useState<genreAdmin>(Genre)
+    const {t, i18n} = useTranslation();
 
     useEffect(() => {
         fetchGenres()
     }, [])
+
+    useEffect(() => {
+        fetchGenres()
+    }, [genres])
 
     async function fetchGenres() {
         const response = await axios.get('http://localhost:5000/genres')
@@ -52,7 +58,7 @@ const GenresBlock = () => {
                          key={value.id}
                          onClick={() => setGenre(value)}
                     >
-                            {firstCharUp(value.nameRu)}
+                            {i18n.language === 'ru' ? firstCharUp(value.nameRu) : firstCharUp(value.nameEn)}
                         <div className="genre__editing">
                             <Icons name='edit' size='24'/>
                         </div>
@@ -68,7 +74,7 @@ const GenresBlock = () => {
                     >
                         <div className="GenresBlock__edit-name">
                             <div className="GenresBlock__edit-name_ru">
-                                Название на русском
+                                {t('adminPage.ru')}
                                 <input className='GenresBlock__edit-name_input'
                                        type="text"
                                        value={genre.nameRu}
@@ -77,7 +83,7 @@ const GenresBlock = () => {
                             </div>
 
                             <div className="GenresBlock__edit-name_en">
-                                Название на английском
+                                {t('adminPage.en')}
                                 <input className='GenresBlock__edit-name_input'
                                        type="text"
                                        value={genre.nameEn}
@@ -88,7 +94,7 @@ const GenresBlock = () => {
                         </div>
                         <Button type='default'
                                 color='default'
-                                title={['Внести изменения']}
+                                title={[t('adminPage.change')]}
                                 onClick={() => editGenres()}/>
                     </div>
                 </div>

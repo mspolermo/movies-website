@@ -26,11 +26,12 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
         <div
             className='filmcard'
             key={film.key}
-            onClick={() => onClick(film)}
         >
             <div className="filmcard__container">
                 <div className='filmcard__content'>
-                    <div className={icons ? 'filmcard__poster' : 'filmcard__poster-two'}>
+                    <div className={icons ? 'filmcard__poster' : 'filmcard__poster-two'}
+                         onClick={() => onClick(film)}
+                    >
                         <div className="filmcard__img">
                             <img
                                 src={film.poster ? film.poster : poster}
