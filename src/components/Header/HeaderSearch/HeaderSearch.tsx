@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import Search from "../../UI/Inputs/Search/Search";
+import MyInput from "../../UI/Inputs/MyInput/MyInput";
 import BigSearchResult from "../../Search/BigSearchResult/BigSearchResult";
 import MapperIcons from "../../../types/MapperIcons";
 import _ from 'lodash'
@@ -10,10 +10,10 @@ import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 interface Result {
-        key: number,
-        nameRu: string,
-        nameEn: string,
-        rowType: string
+    key: number,
+    nameRu: string,
+    nameEn: string,
+    rowType: string
 }
 
 interface HeaderSearchProps {
@@ -24,19 +24,22 @@ interface HeaderSearchProps {
 const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection}) => {
     const [searchResults, setSearchResult] = useState<Result[]>([])
     const [searchQuery, setSearchQuery] = useState('');
+    // const [active, setActive] = useState(true);
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
 
     function goToPage(value: Result) {
-        if(value.rowType === 'films'){
-            return (navigate(`/movies-website/film/${value.key}`))
+        if (value.rowType === 'films') {
+            (navigate(`/movies-website/film/${value.key}`))
+            // setActive(false)
         } else {
-            return (navigate(`/movies-website/person/${value.key}`))
+            (navigate(`/movies-website/person/${value.key}`))
+            // setActive(false)
         }
     }
 
     useEffect(() => {
-        if(searchQuery){
+        if (searchQuery) {
             fetchFilm()
         } else {
             setSearchResult([])
@@ -70,8 +73,8 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
             }
         })
 
-        let resultFilms_ = resultFilms.slice(0,4)
-        let resultPeople_ = resultPeople.slice(0,4)
+        let resultFilms_ = resultFilms.slice(0, 4)
+        let resultPeople_ = resultPeople.slice(0, 4)
 
         let arr = resultFilms_.concat(resultPeople_)
 
@@ -79,13 +82,12 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     }
 
     function renderResult(value: Result) {
-        console.log('renderResult', value)
         return (
-                <BigSearchResult iconName={_.get(MapperIcons, value.rowType)}
-                                 title={(i18n.language === 'en' && value.nameEn) ? value.nameEn : value.nameRu}
-                                 subtitle={(i18n.language === 'en' && value.nameEn) ? value.nameRu : value.nameEn}
-                                 key={value.key + value.rowType}
-                                 onClick={() => goToPage(value)}/>
+            <BigSearchResult iconName={_.get(MapperIcons, value.rowType)}
+                             title={(i18n.language === 'en' && value.nameEn) ? value.nameEn : value.nameRu}
+                             subtitle={(i18n.language === 'en' && value.nameEn) ? value.nameRu : value.nameEn}
+                             key={value.key + value.rowType}
+                             onClick={() => goToPage(value)}/>
         )
     }
 
@@ -96,17 +98,16 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
             </div>
             <div className="searchBlock__modal">
                 <h2 className="searchBlock__heading">Поиск</h2>
-                <Search result={searchResults}
-                        renderResult={renderResult}
-                        placeholder={'Фильмы, персоны, жанры'}
-                        cl={false}
-                        searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}
-                        search={true}
+                <MyInput result={searchResults}
+                         renderResult={renderResult}
+                         placeholder={'Фильмы, персоны, жанры'}
+                         cl={false}
+                         searchQuery={searchQuery}
+                         setSearchQuery={setSearchQuery}
+                         search={true}
                 />
             </div>
         </div>
-
     );
 };
 

@@ -250,7 +250,8 @@
 	},
 	"filters": {
 		"search": {
-			"placeholder-small": "Start typing"
+			"placeholder-small": "Start typing",
+			"result": "Clear result"
 		},
 		"filterButton": {
 			"genre": "Genres",
@@ -286,6 +287,7 @@
 	"moviesPage": {
 		"title": "Movies",
 		"filters-genre": "All genres",
+		"genre": "Genre",
 		"filters-countries": "All countries",
 		"filters-year": "All years",
 		"btn": "Show more",
@@ -390,5 +392,15 @@
 	"breadcrumbs": {
 		"films": "Films",
 		"home": "My Ivi"
+	},
+	"adminPage": {
+		"ru": "Title in Russian",
+		"en": "Title in English",
+		"change": "Make changes",
+		"placeholder": "Start typing...",
+		"saveChange": "Save changes",
+		"delete": "Delete",
+		"changes": "Changes applied",
+		"ok": "Ok"
 	}
 }

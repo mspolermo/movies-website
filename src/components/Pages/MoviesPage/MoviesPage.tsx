@@ -32,7 +32,7 @@ const MoviesPage = () => {
     const [oneFilters, setOneFilters] = useState<string[]>([]);
     const [limit, setLimit] = useState(35);
     const [page, setPage] = useState(1);
-    const [persons, setPersons] = useState<string[]>();
+    const [persons, setPersons] = useState<string[]>([]);
     const [visible, setVisible] = useState(false);
 
     const emptyFilters = JSON.stringify(selectedFilters) === JSON.stringify(activeFilters)
