@@ -51,10 +51,11 @@ const Film = {
         filmId: 0
     },
     comments: []
+
 };
 
 const FilmPage = () => {
-    //Todo - кнопки, доп страница
+    //Todo - 2 кнопки, подсчет комментов через редакс, подключить хлебные крошки, наследование типов
 
     const params = useParams();
     const {t, i18n} = useTranslation();
@@ -74,7 +75,7 @@ const FilmPage = () => {
 
     useEffect(() => {
         fetchFilm();
-        //document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }, [params]);
 
     useEffect(() => {
@@ -94,6 +95,13 @@ const FilmPage = () => {
 
         const commentsResponse = await axios.get(`http://localhost:5000/comments/${response.data.film.id}`);
 
+        let reviews = []
+        if (commentsResponse.data.length > 0) {
+           for(let i=0; i<commentsResponse.data.length; i++) {
+                reviews.push(commentsResponse.data[i][0])
+           }
+        }
+
         const film_ = {
             id: data.id,
             trailerName: data.trailerName, 
@@ -112,13 +120,12 @@ const FilmPage = () => {
             countries: data.countries,
             genres: data.genres,
             fact: data.fact,
-            comments: commentsResponse.data
+            comments: reviews
         };
         const similarFilms_ = response.data.similarFilms.slice(0 ,30);
 
         setFilm(film_);
-        setSimilarFilms(similarFilms_)
-        // setFilmName( LanguageHook ( data.filmNameRu, data.filmNameEn, i18n.language) );
+        setSimilarFilms(similarFilms_);
         setIsPageLoading(false);
 
     };
@@ -204,7 +211,7 @@ const FilmPage = () => {
 
                 <FilmsCompilation variant="similarFilms" similarFilms={similarFilms} title={filmName} />
                 <CreatorsBlock creators={film.persons}/>
-                {/* <CommentsBlock filmName={filmName} comments={film.comments}/> */}
+                <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
                 <GradeBlock calledFrom={'filmPage'}/>

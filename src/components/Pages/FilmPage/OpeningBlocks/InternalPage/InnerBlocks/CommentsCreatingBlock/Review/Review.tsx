@@ -1,13 +1,9 @@
 import React, { FC } from "react";
-import './Review.scss'
+import './Review.scss';
+import { ReviewProps } from "../../../../../../../../types/filmPageTypes";
+
 import Icons from "../../../../../../../Icons/Icons";
 import Button from "../../../../../../../UI/Buttons/Button/Button";
-import { IComment } from "../../../../../../../../types/filmPageTypes";
-
-interface ReviewProps {
-    review: IComment,
-    openCreateComment: (e:React.MouseEvent<HTMLDivElement>) => void;
-}
 
 const Review:FC <ReviewProps> = ({review, openCreateComment}) => {
     return (
@@ -33,15 +29,16 @@ const Review:FC <ReviewProps> = ({review, openCreateComment}) => {
                         <span className="review__likeCounter">{36}</span>
                         <Icons name="dislike" size="18" color="gray" className="review__svg"/>
                     </div>
-                    <Button title={['Комментировать']} color="transparent" onClick={openCreateComment}/>
+                    <Button title={['internalPage.commentsCreatingBlock.comment']} color="transparent" onClick={openCreateComment}/>
                     <div className="review__parentID">{review.id}</div>
+
                 </div>
                 
             </div>
 
         </div>
-    )
-}
+    );
+};
 
 export default Review;
 

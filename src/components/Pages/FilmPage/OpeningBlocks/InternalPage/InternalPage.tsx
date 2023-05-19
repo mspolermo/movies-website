@@ -1,29 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
-import './InternalPage.scss'
-import Icons from "../../../../Icons/Icons";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { FilmPageProps } from "../../../../../types/filmPageTypes";
+import { useDispatch } from "react-redux";
+import './InternalPage.scss';
+import { InternalPageProps } from "../../../../../types/filmPageTypes";
+
+import Icons from "../../../../Icons/Icons";
+import ShortInfoBlock from "./ShortInfoBlock/ShortInfoBlock";
+import IpNavPanel from "./IpNavPanel/IpNavPanel";
+import AllCreatorsBlock from "./InnerBlocks/AllCreatorsBlock/AllCreatorsBlock";
+import CommentsCreatingBlock from "./InnerBlocks/CommentsCreatingBlock/CommentsCreatingBlock";
+import FactsBlock from "./InnerBlocks/FactsBlock/FactsBlock";
+import TreilersBlock from "./InnerBlocks/TreilersBlock/TreilersBlock";
+
 import LanguageHook from "../../../../../hooks/LanguageHook";
 import typeChecker from "../../FilmPageUtils";
 import { useTypedSelector } from "../../../../../hooks/useTypedSelector";
-import { useDispatch } from "react-redux";
 import { internalPageFalse } from "../../../../../store/reducers/internalPageReducer";
-import ShortInfoBlock from "./ShortInfoBlock/ShortInfoBlock";
-import AllCreatorsBlock from "./InnerBlocks/AllCreatorsBlock/AllCreatorsBlock";
-import FactsBlock from "./InnerBlocks/FactsBlock/FactsBlock";
-import { allCreatorsBlockFalse, allCreatorsBlockTrue } from "../../../../../store/reducers/allCreatorsBlockReducer";
-import { AnyAction } from "redux";
-import { factsBlockFalse, factsBlockTrue } from "../../../../../store/reducers/factsBlockReducer";
-import TreilersBlock from "./InnerBlocks/TreilersBlock/TreilersBlock";
-import CommentsCreatingBlock from "./InnerBlocks/CommentsCreatingBlock/CommentsCreatingBlock";
-import { commentsCreatingBlockFalse, commentsCreatingBlockTrue } from "../../../../../store/reducers/commentsCreatingBlockReducer";
-import { treilersBlockFalse, treilersBlockTrue } from "../../../../../store/reducers/treilersBlockReducer";
-import IpNavPanel from "./IpNavPanel/IpNavPanel";
-
-interface InternalPageProps {
-    film: FilmPageProps
-}
 
 const InternalPage:FC<InternalPageProps> = ({film}) => {
     const {t, i18n} = useTranslation();

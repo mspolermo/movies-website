@@ -1,11 +1,7 @@
 import React, { FC } from "react";
-import './Comment.scss'
-import { IComment } from "../../../../../../../../types/filmPageTypes";
+import './Comment.scss';
+import { CommentProps } from "../../../../../../../../types/filmPageTypes";
 import Icons from "../../../../../../../Icons/Icons";
-
-interface CommentProps {
-    child: IComment
-}
 
 const Comment:FC<CommentProps> = ({child}) => {
     return (

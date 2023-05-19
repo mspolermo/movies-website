@@ -1,25 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
-import './CommentsCreatingBlock.scss'
-import { IComment, ISoretedComments } from "../../../../../../../types/filmPageTypes";
-import Icons from "../../../../../../Icons/Icons";
-import { useTypedSelector } from "../../../../../../../hooks/useTypedSelector";
-import Button from "../../../../../../UI/Buttons/Button/Button";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import './CommentsCreatingBlock.scss';
+import { CommentsCreatingBlockProps } from "../../../../../../../types/filmPageTypes";
+import { CommentsStructure } from "../../../../../../../types/filmPageTypes";
+
+import Button from "../../../../../../UI/Buttons/Button/Button";
 import Search from "../../../../../../UI/Inputs/Search/Search";
 import Comment from "./Comment/Comment";
 import Review from "./Review/Review";
 
-interface CommentsCreatingBlockProps {
-    filmId: number;
-}
-
-type CommentsStructure = [
-    [ parent: IComment,
-    childrens: IComment[] | []
-    ]
-];
-
 const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
+    const {t, i18n} = useTranslation();
 
     const[sortedComments, setSortedComments] = useState<CommentsStructure | []>([]);
     const [headReview, setHeadReview] = useState('');
@@ -105,7 +97,6 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
         setTextComment('')
 
     };
-    
 
     return (
         <div className="commentsCreatingBlock">
@@ -113,21 +104,43 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
             <div className="commentsCreatingBlock__creating">
 
                 <div className="commentsCreatingBlock__btn commentsCreatingBlock__btn_first">
-                    <Button title={['Написать отзыв']} color="transparent" type="ultraWide" onClick={openCreateReview}/>
+                    <Button 
+                        title={['internalPage.commentsCreatingBlock.writeReview']} 
+                        color="transparent" 
+                        type="ultraWide" 
+                        onClick={openCreateReview}
+                    />
                 </div>
 
                 <div className="commentsCreatingBlock__review-form commentsCreatingBlock__review-form_hidden">
                     
                     <div className="commentsCreatingBlock__input">
-                        <Search result={[]} renderResult={() => {return []}} placeholder='Название отзыва' searchQuery={headReview} setSearchQuery={setHeadReview} cl={false} search={true}/>
+                        <Search 
+                            result={[]} 
+                            renderResult={() => {return []}} 
+                            placeholder={t('internalPage.commentsCreatingBlock.reviewName')} 
+                            searchQuery={headReview} 
+                            setSearchQuery={setHeadReview} 
+                            cl={false} search={true}
+                        />
                     </div>
 
                     <div className="commentsCreatingBlock__input">
-                        <Search result={[]} renderResult={() => {return []}} placeholder='Текст отзыва' searchQuery={bodyReview} setSearchQuery={setBodyReview} cl={false} search={true}/>
+                        <Search 
+                            result={[]} 
+                            renderResult={() => {return []}} 
+                            placeholder={t('internalPage.commentsCreatingBlock.reviewText')} 
+                            searchQuery={bodyReview} 
+                            setSearchQuery={setBodyReview} 
+                            cl={false} search={true}
+                        />
                     </div>
 
                     <div className="commentsCreatingBlock__btn">
-                        <Button title={['Создать отзыв']} color="transparent" onClick={createReview}/>
+                        <Button 
+                            title={['internalPage.commentsCreatingBlock.createReview']} 
+                            color="transparent" 
+                            onClick={createReview}/>
                     </div>
                     
                 </div>
@@ -144,17 +157,27 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                         <div className="commentsCreatingBlock__comment-form commentsCreatingBlock__comment-form_hidden" >
                             
                             <div className="commentsCreatingBlock__input">
-                                <Search result={[]} renderResult={() => {return []}} placeholder='Текст комментария' searchQuery={textComment} setSearchQuery={setTextComment} cl={false} search={true}/>
+                                <Search 
+                                result={[]} 
+                                renderResult={() => {return []}} 
+                                placeholder={t('internalPage.commentsCreatingBlock.commentText')} 
+                                searchQuery={textComment} 
+                                setSearchQuery={setTextComment} 
+                                cl={false} search={true}
+                            />
                             </div>
 
                             <div className="commentsCreatingBlock__btn">
-                                <Button title={['Отправить']} color="transparent" onClick={createComment}/>
+                                <Button 
+                                    title={['internalPage.commentsCreatingBlock.send']} 
+                                    color="transparent" 
+                                    onClick={createComment}/>
                             </div>
 
                         </div>
 
                         { (tree[1].length > 0) && tree[1].map(child => 
-                            <Comment child={child} key={child.authorId}/>
+                            <Comment child={child} key={child.id}/>
                         )}
 
                     </div>
@@ -162,9 +185,12 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
 
             </div>}
 
-            {(sortedComments.length < 1) && <p className="commentsCreatingBlock__text commentsCreatingBlock__text_last">К сожалению отзывов еще нет</p>}
+            {(sortedComments.length < 1) && <p className="commentsCreatingBlock__text commentsCreatingBlock__text_last">
+                {t('internalPage.commentsCreatingBlock.no')}
+            </p>}
+
         </div>
-    )
-}
+    );
+};
 
 export default CommentsCreatingBlock;

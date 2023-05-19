@@ -1,29 +1,16 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import './AllCreatorsBlock.scss'
-import Card from "../../../../../../UI/Buttons/Card/Card";
-import LanguageHook from "../../../../../../../hooks/LanguageHook";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import './AllCreatorsBlock.scss';
+import { AllCreatorsBlockProps } from "../../../../../../../types/filmPageTypes";
+import { IPerson } from "../../../../../../../types/filmPageTypes";
+
+import Card from "../../../../../../UI/Buttons/Card/Card";
 import Button from "../../../../../../UI/Buttons/Button/Button";
-import { use } from "i18next";
+
+import LanguageHook from "../../../../../../../hooks/LanguageHook";
 import { useTypedSelector } from "../../../../../../../hooks/useTypedSelector";
 
-interface AllCreatorsBlockProps {
-    persons: IPerson [];
-}
-
-interface IPerson {
-    id: number,
-    photoUrl: string,
-    nameRu: string,
-    nameEn: string,
-    professions: [
-        {
-            id: number,
-            name: string,
-        }
-    ]
-}
 const person = {
     id: 0,
     photoUrl: '',
@@ -56,7 +43,7 @@ const AllCreatorsBlock:FC<AllCreatorsBlockProps> = ({persons}) => {
     }, [internalPageBlockStatus])
 
     useEffect( () => {
-
+        
         let profs = new Set();
         persons.map(person => profs.add(person.professions[0].name) );
         setProfessions(Array.from(profs));
@@ -74,6 +61,7 @@ const AllCreatorsBlock:FC<AllCreatorsBlockProps> = ({persons}) => {
             {professions.map( (prof:string) =>
 
             <div key={prof}>
+
                 <p className="allCreatorsBlock__profession">{prof}</p>
 
                 <div className="allCreatorsBlock__cards allCreatorsBlock__cards_short" >
@@ -123,7 +111,7 @@ const AllCreatorsBlock:FC<AllCreatorsBlockProps> = ({persons}) => {
             )}
 
         </div>
-    )
-}
+    );
+};
 
 export default AllCreatorsBlock;

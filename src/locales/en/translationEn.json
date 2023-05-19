@@ -374,6 +374,16 @@
 			"movies": " movies",
 			"show": "Show more"
 		},
+		"commentsCreatingBlock": {
+			"writeReview": "Write a review",
+			"reviewName": "Review title",
+			"reviewText": "Review text",
+			"createReview": "Create a review",
+			"commentText": "Comment text",
+			"send": "Send",
+			"no": "Unfortunately there are no reviews yet",
+			"comment" : "Comment"
+		},
 		"factsBlock": {
 			"facts" : "Movie facts",
 			"noInfo": "Unfortunately, we haven't got additional information."
