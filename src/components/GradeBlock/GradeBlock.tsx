@@ -1,14 +1,22 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import './GradeBlock.scss';
 
 import { useDispatch } from "react-redux";
-import { useTypedSelector } from "../../../../../hooks/useTypedSelector";
-import { gradeFalse } from "../../../../../store/reducers/gradeReducer";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { gradeFalse } from "../../store/reducers/gradeReducer";
 
-import Icons from "../../../../Icons/Icons";
+import Icons from "../Icons/Icons";
 
-const GradeBlock = () => {
+
+interface IGradeBlock {
+    calledFrom: string
+}
+const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
+        //calledFrom - место вызова блока, ниже стоит вписать действия
+        // какого редьюсера должны происходить на основании этого значения
+
+
     const {t, i18n} = useTranslation();
     const grades = Array.from({length: 10}, (_, index) => index + 1);
 
@@ -23,28 +31,46 @@ const GradeBlock = () => {
 
     //Redux
     const gradeBlock = document.querySelector('#grade-block');
-    const {value} = useTypedSelector( state => state.grade);
     const dispatch = useDispatch();
 
+    const {value} = useTypedSelector( state => state.grade);
+        //добавить использование другого редьюсера, через этот хук
+        // (у меня добавлен gradeReducer, который меняет value при открытии блока -true/false)
+
     const onDecrement = () => {
-        dispatch(gradeFalse());
+        
         completeBlock?.classList.add('gradeBlock__modal_hidden');
         questionBlock?.classList.remove('gradeBlock__modal_hidden');
+        switch(calledFrom) {
+            case "filmPage":
+                dispatch(gradeFalse());
+                break;
+            //добавить действия для другого редьюсера 
+        }
     }
 
     useEffect( () => {
-        dispatch(gradeFalse());
         window.onscroll = () => { window.scroll(); };
+        //dispatch(gradeFalse());
+        
     },[])
 
     useEffect(() => {
-        if (value) {
-            gradeBlock?.classList.remove('gradeBlock__hidden');
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
-            window.onscroll = () => { window.scroll(0, 0); };
-        } else {
-            gradeBlock?.classList.add('gradeBlock__hidden');
-            window.onscroll = () => { window.scroll(); };
+        switch(calledFrom) {
+            case "filmPage":
+
+                if (value) {
+                    gradeBlock?.classList.remove('gradeBlock__hidden');
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    window.onscroll = () => { window.scroll(0, 0); };
+                } else {
+                    gradeBlock?.classList.add('gradeBlock__hidden');
+                    window.onscroll = () => { window.scroll(); };
+                }
+
+                break;
+                //добавить действия для другого редьюсера 
+                //добавить статус другого редьюсера в зависимость
         }
     },[value])
 

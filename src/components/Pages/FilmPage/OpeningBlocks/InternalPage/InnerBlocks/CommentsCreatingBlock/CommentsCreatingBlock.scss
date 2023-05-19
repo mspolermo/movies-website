@@ -1,6 +1,14 @@
 @import '/src/styles/variables.scss';
 
 .commentsCreatingBlock {
+    &__creating {
+        margin-top: 20px;
+    }
+    &__form{
+        &_hidden {
+            display: none;
+        }
+    }
 
     &__text {
         font-size: 13px;

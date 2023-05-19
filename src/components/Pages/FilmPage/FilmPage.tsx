@@ -14,7 +14,7 @@ import DescriptionBlock from "./BodyBlocks/DescriptionBlock/DescriptionBlock";
 import AdditionalInfoBlock from "./BodyBlocks/AdditionalInfoBlock/AdditionalInfoBlock";
 import PlayerPanel from "./BodyBlocks/PlayerPanel/PlayerPanel";
 import WatchesBlock from "./SecondaryBlocks/WatchesBlock/WatchesBlock";
-import GradeBlock from "./OpeningBlocks/GradeBlock/GradeBlock";
+import GradeBlock from "../../GradeBlock/GradeBlock";
 import CreatorsBlock from "./SecondaryBlocks/CreatorsBlock/CreatorsBlock";
 import CommentsBlock from "./SecondaryBlocks/CommentsBlock/CommentsBlock";
 import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
@@ -92,6 +92,8 @@ const FilmPage = () => {
         const response = await axios.get(`http://localhost:5000/film/${params.id}`);
         let data = response.data.film;
 
+        const commentsResponse = await axios.get(`http://localhost:5000/comments/${response.data.film.id}`);
+
         const film_ = {
             id: data.id,
             trailerName: data.trailerName, 
@@ -110,7 +112,7 @@ const FilmPage = () => {
             countries: data.countries,
             genres: data.genres,
             fact: data.fact,
-            comments: data.comments
+            comments: commentsResponse.data
         };
         const similarFilms_ = response.data.similarFilms.slice(0 ,30);
 
@@ -202,10 +204,10 @@ const FilmPage = () => {
 
                 <FilmsCompilation variant="similarFilms" similarFilms={similarFilms} title={filmName} />
                 <CreatorsBlock creators={film.persons}/>
-                <CommentsBlock filmName={filmName} comments={film.comments}/>
+                {/* <CommentsBlock filmName={filmName} comments={film.comments}/> */}
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
-                <GradeBlock />
+                <GradeBlock calledFrom={'filmPage'}/>
                 <InternalPage film={film}/>
             </div>
             }

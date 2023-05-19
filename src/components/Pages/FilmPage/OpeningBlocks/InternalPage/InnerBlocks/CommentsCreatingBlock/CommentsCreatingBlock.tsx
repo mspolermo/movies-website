@@ -4,9 +4,11 @@ import { IComment, ISoretedComments } from "../../../../../../../types/filmPageT
 import Icons from "../../../../../../Icons/Icons";
 import { useTypedSelector } from "../../../../../../../hooks/useTypedSelector";
 import Button from "../../../../../../UI/Buttons/Button/Button";
+import axios from "axios";
+import Search from "../../../../../../UI/Inputs/Search/Search";
 
 interface CommentsCreatingBlockProps {
-comments: IComment [];
+    filmId: number;
 }
 
 type CommentsStructure = [
@@ -15,179 +17,62 @@ type CommentsStructure = [
     ]
 ];
 
-const initCommentsStructure: CommentsStructure = [
-    [
-        {
-            id: 0,
-            header: "",
-            value: "",
-            authorId: 0,
-            parentId: null,
-            createdAt: new Date(),
-            filmId: 0
-        },
-        [
-            {
-                id: 0,
-                header: "",
-                value: "",
-                authorId: 9999999,
-                parentId: 0,
-                createdAt: new Date(),
-                filmId: 0
-            },
-            {
-                id: 0,
-                header: "",
-                value: "",
-                authorId: 9999999,
-                parentId: 0,
-                createdAt: new Date(),
-                filmId: 0
-            }
-    ]
-    ]
-]
+const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
 
-const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({comments}) => {
-
-    
-    const {commentsCreatingBlockStatus} = useTypedSelector( state => state.commentsCreatingBlock);
-    
     const[sortedComments, setSortedComments] = useState<CommentsStructure | []>([]);
-
-    const treeRef = React.useRef() as React.RefObject<HTMLDivElement>;
-    
-    useEffect( () => {
-        if ((comments.length > 0 ) && (commentsCreatingBlockStatus)) {
-
-            let sorting: CommentsStructure = [
-                [
-                    {
-                        id: 0,
-                        header: "",
-                        value: "",
-                        authorId: 0,
-                        parentId: null,
-                        createdAt: new Date(),
-                        filmId: 0
-                    },
-                    [
-                        {
-                            id: 0,
-                            header: "",
-                            value: "",
-                            authorId: 9999999,
-                            parentId: 0,
-                            createdAt: new Date(),
-                            filmId: 0
-                        },
-                        {
-                            id: 0,
-                            header: "",
-                            value: "",
-                            authorId: 9999999,
-                            parentId: 0,
-                            createdAt: new Date(),
-                            filmId: 0
-                        }
-                ]
-                ]
-            ];
-
-            for (let i =0; i<comments.length; i++) {
-
-                let childrenComments = [];
-
-                if (comments[i].parentId === null) {
-
-                    for (let j = 0; j<comments.length; j++) {
-                        if (comments[j].parentId == comments[i].id ) {
-                            childrenComments.push(comments[j])
-                        }
-                    }
-
-                    sorting.push( [ comments[i], childrenComments ])
-                }
-
-            }
-            sorting.shift();
-            setSortedComments(sorting);
-        }
-    },[]);
-
+    const [headReview, setHeadReview] = useState('');
+    const [bodyReview, setBodyReview] = useState('');
 
     useEffect( () => {
+        fetchComments()
+    }, [])
 
+    async function fetchComments() {
+        const response = await axios.get(`http://localhost:5000/comments/${filmId}`);
+        setSortedComments(response.data.reverse())
+    };
 
-        if ((comments.length > 0 ) && (commentsCreatingBlockStatus)) {
+    async function createReview() {
 
-            let sorting: CommentsStructure = [
-                [
-                    {
-                        id: 0,
-                        header: "",
-                        value: "",
-                        authorId: 0,
-                        parentId: null,
-                        createdAt: new Date(),
-                        filmId: 0
-                    },
-                    [
-                        {
-                            id: 0,
-                            header: "",
-                            value: "",
-                            authorId: 9999999,
-                            parentId: 0,
-                            createdAt: new Date(),
-                            filmId: 0
-                        },
-                        {
-                            id: 0,
-                            header: "",
-                            value: "",
-                            authorId: 9999999,
-                            parentId: 0,
-                            createdAt: new Date(),
-                            filmId: 0
-                        }
-                ]
-                ]
-            ];
+        let bodyParameters = {
+            "header": headReview,
+            "value": bodyReview
+        };
 
-            for (let i =0; i<comments.length; i++) {
-
-                let childrenComments = [];
-
-                if (comments[i].parentId === null) {
-
-                    for (let j = 0; j<comments.length; j++) {
-                        if (comments[j].parentId == comments[i].id ) {
-                            childrenComments.push(comments[j])
-                        }
-                    }
-
-                    sorting.push( [ comments[i], childrenComments ])
-                }
-
-            }
-            sorting.shift();
-            setSortedComments(sorting);
+        const responseAuth = await axios.post(`http://localhost:5000/login`,
+        {
+            "email": "admin@admin.com",
+            "password": "1234567891011"
         }
-        
+        );
 
+        const sendRewiev = await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
+            headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
+        });
+        fetchComments();
+    };
 
-    }, [comments, commentsCreatingBlockStatus]);
-    console.log(sortedComments)
+    function openCreateReview (e:React.MouseEvent<HTMLDivElement>) {
+        e.currentTarget.parentElement?.children[1].classList.remove('commentsCreatingBlock__form_hidden');
+        e.currentTarget.remove();
+    }
 
     return (
         <div className="commentsCreatingBlock">
-            <div className="commentsCreatingBlock__creating"></div>
+            
+            <div className="commentsCreatingBlock__creating">
+                    <Button title={['Написать отзыв']} color="transparent" type="ultraWide" onClick={openCreateReview}/>
+                <div className="commentsCreatingBlock__form commentsCreatingBlock__form_hidden">
+                    <Search result={[]} renderResult={() => {return []}} placeholder='Введите название отзыва' searchQuery={headReview} setSearchQuery={setHeadReview} cl={false} search={true}/>
+                    <Search result={[]} renderResult={() => {return []}} placeholder='Напишите отзыв' searchQuery={bodyReview} setSearchQuery={setBodyReview} cl={false} search={true}/>
+                    <Button title={['Создать отзыв']} color="transparent" onClick={createReview}/>
+                </div>
+            </div>
 
-            {(sortedComments.length > 0) && <div className="commentsCreatingBlock__existsComments" ref={treeRef} >
+            {(sortedComments.length > 0) && <div className="commentsCreatingBlock__existsComments">
                 
             {sortedComments.map( (tree) =>
+
                     <div className="commentsCreatingBlock__tree" key={tree[0].id}>
 
                         <div className="commentsCreatingBlock__rewiev" >
@@ -205,7 +90,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({comments}) => {
                                     
                                     <div className="commentsCreatingBlock__rewiev-like">
                                         <Icons name="like" size="18" color="gray" />
-                                        <span className="commentsCreatingBlock__likeCounter">{ Math.round(tree[0].id + (Math.random()*14*Math.random()*43))}</span>
+                                        <span className="commentsCreatingBlock__likeCounter">{36}</span>
                                         <Icons name="dislike" size="18" color="gray" />
                                     </div>
                                     <Button title={['Комментировать']} color="transparent"/>
@@ -235,14 +120,9 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({comments}) => {
                     </div>
                 )}
 
-
-
             </div>}
 
-
-
-
-            {(comments.length < 1) && <p className="commentsCreatingBlock__text commentsCreatingBlock__text_last">К сожалению отзывов еще нет</p>}
+            {(sortedComments.length < 1) && <p className="commentsCreatingBlock__text commentsCreatingBlock__text_last">К сожалению отзывов еще нет</p>}
         </div>
     )
 }
