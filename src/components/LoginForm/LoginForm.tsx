@@ -4,7 +4,8 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { login, registration } from "../../store/reducers/authReducer";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Button from "../UI/Buttons/Button/Button";
-import Search from "../UI/Inputs/Search/Search";
+import MyInput from "../UI/Inputs/MyInput/MyInput"
+
 interface ILoginFormProps {
 };
 
@@ -28,7 +29,8 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 					{userEmail}
 				</h1>
 			}
-			<Search
+
+			<MyInput
 				search={false}
 				placeholder="Email"
 				cl={true}
@@ -36,7 +38,7 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 				searchQuery={email}
 				setSearchQuery={setEmail}
 				renderResult={Button} />
-			<Search
+			<MyInput
 				search={false}
 				placeholder="Пароль"
 				cl={false}
