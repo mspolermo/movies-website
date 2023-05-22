@@ -6,9 +6,9 @@ import { CommentsCreatingBlockProps } from "../../../../../../../types/filmPageT
 import { CommentsStructure } from "../../../../../../../types/filmPageTypes";
 
 import Button from "../../../../../../UI/Buttons/Button/Button";
-import Search from "../../../../../../UI/Inputs/Search/Search";
 import Comment from "./Comment/Comment";
 import Review from "./Review/Review";
+import MyInput from "../../../../../../UI/Inputs/MyInput/MyInput";
 
 const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     const {t, i18n} = useTranslation();
@@ -115,7 +115,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                 <div className="commentsCreatingBlock__review-form commentsCreatingBlock__review-form_hidden">
                     
                     <div className="commentsCreatingBlock__input">
-                        <Search 
+                        <MyInput
                             result={[]} 
                             renderResult={() => {return []}} 
                             placeholder={t('internalPage.commentsCreatingBlock.reviewName')} 
@@ -126,7 +126,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                     </div>
 
                     <div className="commentsCreatingBlock__input">
-                        <Search 
+                        <MyInput
                             result={[]} 
                             renderResult={() => {return []}} 
                             placeholder={t('internalPage.commentsCreatingBlock.reviewText')} 
@@ -157,7 +157,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                         <div className="commentsCreatingBlock__comment-form commentsCreatingBlock__comment-form_hidden" >
                             
                             <div className="commentsCreatingBlock__input">
-                                <Search 
+                                <MyInput
                                 result={[]} 
                                 renderResult={() => {return []}} 
                                 placeholder={t('internalPage.commentsCreatingBlock.commentText')} 

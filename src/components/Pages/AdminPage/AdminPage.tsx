@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import FilmBlock from "./FilmBlock/FilmBlock";
 import GenresBlock from "./GenresBlock/GenresBlock";
 import './AdminPage.scss'
+import {useTranslation} from "react-i18next";
 
 const AdminPage = () => {
     const [activeBlock, setActiveBlock] = useState('')
+    const {t, i18n} = useTranslation();
 
     return (
         <div className="AdminPage">
@@ -12,17 +14,17 @@ const AdminPage = () => {
                 <div className="AdminPage__content">
 
                     <div className="AdminPage__btn">
-                        <div className={ "AdminPage__block-film"}
+                        <div className={activeBlock === "films" ? "AdminPage__block-film_active" : "AdminPage__block-film"}
                              key='films'
                              onClick={() => setActiveBlock('films')}
                         >
-                            Фильмы
+                            {t('moviesPage.title')}
                         </div>
-                        <div className="AdminPage__block-genre"
+                        <div className={activeBlock === "genres" ? "AdminPage__block-genre_active" : "AdminPage__block-genre"}
                              key='genres'
                              onClick={() => setActiveBlock('genres')}
                         >
-                            Жанры
+                            {t('moviesPage.genre')}
                         </div>
                     </div>
                     {activeBlock === 'films' && <FilmBlock/>}

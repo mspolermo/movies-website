@@ -251,7 +251,8 @@
 	},
 	"filters": {
 		"search": {
-			"placeholder-small": "Начните вводить"
+			"placeholder-small": "Начните вводить",
+			"result": "Очистить результат"
 		},
 		"filterButton": {
 			"genre": "Жанры",
@@ -287,6 +288,7 @@
 	"moviesPage": {
 		"title": "Фильмы",
 		"filters-genre": "Все жанры",
+		"genre": "Жанры",
 		"filters-countries": "Все страны",
 		"filters-year": "Все годы",
 		"btn": "Показать ещё",
@@ -428,5 +430,15 @@
 	"breadcrumbs": {
 		"films": "Фильмы",
 		"home": "Мой Иви"
+	},
+	"adminPage": {
+		"ru": "Название на русском",
+		"en": "Название на английском",
+		"change": "Внести изменения",
+		"placeholder": "Начните вводить название фильма",
+		"saveChange": "Сохранить изменения",
+		"delete": "Удалить фильм",
+		"changes": "Изменения успешно внесены",
+		"ok": "Ок!"
 	}
 }
