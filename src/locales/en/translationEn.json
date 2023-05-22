@@ -250,7 +250,8 @@
 	},
 	"filters": {
 		"search": {
-			"placeholder-small": "Start typing"
+			"placeholder-small": "Start typing",
+			"result": "Clear result"
 		},
 		"filterButton": {
 			"genre": "Genres",
@@ -286,6 +287,7 @@
 	"moviesPage": {
 		"title": "Movies",
 		"filters-genre": "All genres",
+		"genre": "Genre",
 		"filters-countries": "All countries",
 		"filters-year": "All years",
 		"btn": "Show more",
@@ -362,6 +364,37 @@
 			"connect": "Connect devices"
  		}     
 	},
+	"internalPage": {
+		"toFilm": "To movie",
+		"iPnavPanel": {
+			"creators": "Creators",
+			"reviews": "Reviews",
+			"facts": "Facts",
+			"trailers": "Trailers"
+		},
+		"allCreatorsBlock": {
+			"movies": " movies",
+			"show": "Show more"
+		},
+		"commentsCreatingBlock": {
+			"writeReview": "Write a review",
+			"reviewName": "Review title",
+			"reviewText": "Review text",
+			"createReview": "Create a review",
+			"commentText": "Comment text",
+			"send": "Send",
+			"no": "Unfortunately there are no reviews yet",
+			"comment" : "Comment"
+		},
+		"factsBlock": {
+			"facts" : "Movie facts",
+			"noInfo": "Unfortunately, we haven't got additional information."
+		},
+		"treilersBlock": {
+			"trailer": "Trailers",
+			"noInfo": "No trailers found for this movie"
+		}
+	},
 	"card": {
 		"reit": "Ivi",
 		"ivi": "Rating"
@@ -390,5 +423,15 @@
 	"breadcrumbs": {
 		"films": "Films",
 		"home": "My Ivi"
+	},
+	"adminPage": {
+		"ru": "Title in Russian",
+		"en": "Title in English",
+		"change": "Make changes",
+		"placeholder": "Start typing...",
+		"saveChange": "Save changes",
+		"delete": "Delete",
+		"changes": "Changes applied",
+		"ok": "Ok"
 	}
 }

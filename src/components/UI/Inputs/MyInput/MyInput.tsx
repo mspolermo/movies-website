@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Icons from "../../../Icons/Icons";
-import './Search.scss'
+import './MyInput.scss'
+import {useTranslation} from "react-i18next";
 
 // В result можно передать пустой массив([])
 // В renderResult стрелочную функцию, возвращающую пустой массив
@@ -10,13 +11,14 @@ interface SearchProps<T> {
     renderResult: (item: T) => React.ReactNode,
     handleClear?: () => void,
     placeholder: string,
-    cl: boolean,
+    cl?: boolean,
     search: boolean,
+    extension?: boolean
     searchQuery: string,
     setSearchQuery: (searchQuery: string) => void
 }
 
-export default function Search<T> (
+export default function MyInput<T> (
     {
         result,
         renderResult,
@@ -25,10 +27,26 @@ export default function Search<T> (
         searchQuery,
         setSearchQuery,
         cl = false,
-        search = true
+        search = true,
+        extension = false
     }: SearchProps<T>
     ) {
     const [active, setActive ] = useState(false)
+    const { t, i18n } = useTranslation();
+
+    function placeholderForm() {
+        if(!extension){
+            if(search){
+                return (<div className={active ? "input__title_small" : 'input__title'}>
+                    {placeholder}
+                </div>)
+            } else {
+                return (<div className={active ? "input__title-mail_small" : 'input__title-mail'}>
+                    {placeholder}
+                </div>)
+            }
+        }
+    }
 
     return (
         <div className='Search'>
@@ -36,23 +54,27 @@ export default function Search<T> (
                 <div className="Search__input input">
 
                     <div className="input__block">
-                        {!search && <Icons className='input__icon' name='person' size='30'/>}
-                        {search ? (<div className={active ? "input__title_small" : 'input__title'}>
-                            {placeholder}
-                        </div>) :
-                            (<div className={active ? "input__title-mail_small" : 'input__title-mail'}>
-                                {placeholder}
-                            </div>)}
+                        {(!search && !extension) && <Icons className='input__icon' name='person' size='30'/>}
+                        {placeholderForm()}
 
-                        <input className={search ? 'input__input' :'input__input-mail'}
-                               type="text"
-                               placeholder=''
-                               value={searchQuery}
-                               onChange={e => setSearchQuery(e.target.value)}
-                               onClick={() => setActive(true)}
-                        />
+                        {extension ?
+                            <textarea className={'Search__textarea'}
+                                      placeholder={placeholder}
+                                      value={searchQuery}
+                                      onChange={e => setSearchQuery(e.target.value)}
+                                      onClick={() => setActive(true)}
+                            /> :
+
+                            <input className={search ? 'input__input' : 'input__input-mail'}
+                                   type="text"
+                                   placeholder=''
+                                   value={searchQuery}
+                                   onChange={e => setSearchQuery(e.target.value)}
+                                   onClick={() => setActive(true)}
+                            />
+                        }
                         {
-                            search &&
+                            (search && !extension) &&
                             <div className="input__icons"
                                            onClick={() => setSearchQuery('')}
                             >
@@ -71,7 +93,7 @@ export default function Search<T> (
                      onClick={handleClear}
                 >
                     <div className="btn-reset__text">
-                        Очистить результат
+                        {t('filters.search.result')}
                     </div>
                     <div className="btn-reset__cross">
                         <Icons className="btn-reset__icon-cross" name='cross' size='13'/>

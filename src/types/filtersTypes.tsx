@@ -51,7 +51,7 @@ export interface MovieProps {
 }
 
 export interface MovieSearchProps {
-    'key': number,
+    'key': number | string,
     'nameRu': string,
     'nameEn': string,
 }

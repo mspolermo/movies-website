@@ -250,7 +250,8 @@
 	},
 	"filters": {
 		"search": {
-			"placeholder-small": "Начните вводить"
+			"placeholder-small": "Начните вводить",
+			"result": "Очистить результат"
 		},
 		"filterButton": {
 			"genre": "Жанры",
@@ -286,6 +287,7 @@
 	"moviesPage": {
 		"title": "Фильмы",
 		"filters-genre": "Все жанры",
+		"genre": "Жанры",
 		"filters-countries": "Все страны",
 		"filters-year": "Все годы",
 		"btn": "Показать ещё",
@@ -362,6 +364,37 @@
 			"connect": "Подключить устройства"
  		} 
 	},
+	"internalPage": {
+		"toFilm": "К фильму",
+		"iPnavPanel": {
+			"creators": "Создатели",
+			"reviews": "Отзывы",
+			"facts": "Факты",
+			"trailers": "Трейлеры"
+		},
+		"allCreatorsBlock": {
+			"movies": " фильмов",
+			"show": "Показать ещё"
+		},
+		"commentsCreatingBlock": {
+			"writeReview": "Написать отзыв",
+			"reviewName": "Название отзыва",
+			"reviewText": "Текст отзыва",
+			"createReview": "Создать отзыв",
+			"commentText": "Текст комментария",
+			"send": "Отправить",
+			"no": "К сожалению отзывов еще нет",
+			"comment" : "Комментировать"
+		},
+		"factsBlock": {
+			"facts" : "Факты о фильме",
+			"noInfo": "К сожалению, нам ничего не известно"
+		},
+		"treilersBlock": {
+			"trailer": "Трейлеры",
+			"noInfo": "Трейлеров к фильму не найдено"
+		}
+	},
 	"card": {
 		"reit": "Рейтинг",
 		"ivi": "Иви"
@@ -390,5 +423,15 @@
 	"breadcrumbs": {
 		"films": "Фильмы",
 		"home": "Мой Иви"
+	},
+	"adminPage": {
+		"ru": "Название на русском",
+		"en": "Название на английском",
+		"change": "Внести изменения",
+		"placeholder": "Начните вводить название фильма",
+		"saveChange": "Сохранить изменения",
+		"delete": "Удалить фильм",
+		"changes": "Изменения успешно внесены",
+		"ok": "Ок!"
 	}
 }

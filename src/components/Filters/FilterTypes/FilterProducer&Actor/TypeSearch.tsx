@@ -1,6 +1,6 @@
 import React, {FC, PropsWithChildren, useEffect, useState} from 'react';
 import './TypeSearch.scss'
-import Search from "../../../UI/Inputs/Search/Search";
+import MyInput from "../../../UI/Inputs/MyInput/MyInput";
 import RowSearchResult from "../../../Search/RowSearchResult/RowSearchResult";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
@@ -66,13 +66,13 @@ const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter,
         <>
             <div className='TypeSearch'>
                 <div className="TypeSearch__content">
-                    <Search result={searchResults}
-                            renderResult={renderResult}
-                            placeholder={t('filters.search.placeholder-small')} cl={true}
-                            handleClear={() => handleChangeFilter('')}
-                            searchQuery={searchQuery}
-                            setSearchQuery={setSearchQuery}
-                            search={true}
+                    <MyInput result={searchResults}
+                             renderResult={renderResult}
+                             placeholder={t('filters.search.placeholder-small')} cl={true}
+                             handleClear={() => handleChangeFilter('')}
+                             searchQuery={searchQuery}
+                             setSearchQuery={setSearchQuery}
+                             search={true}
                     />
                 </div>
             </div>
