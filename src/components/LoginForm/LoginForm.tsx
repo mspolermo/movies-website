@@ -4,6 +4,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { login, registration } from "../../store/reducers/authReducer";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Button from "../UI/Buttons/Button/Button";
+import Search from "../UI/Inputs/Search/Search";
 interface ILoginFormProps {
 };
 
@@ -27,24 +28,22 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 					{userEmail}
 				</h1>
 			}
-
-
-			<div>
-				<input
-					type="text"
-					onChange={e => setEmail(e.target.value)}
-					value={email}
-					placeholder="email"
-				/>
-			</div>
-			<div>
-				<input
-					type="password"
-					onChange={e => setPassword(e.target.value)}
-					value={password}
-					placeholder="password"
-				/>
-			</div>
+			<Search
+				search={false}
+				placeholder="Email"
+				cl={true}
+				result={[]}
+				searchQuery={email}
+				setSearchQuery={setEmail}
+				renderResult={Button} />
+			<Search
+				search={false}
+				placeholder="Пароль"
+				cl={false}
+				result={[]}
+				searchQuery={password}
+				setSearchQuery={setPassword}
+				renderResult={Button} />
 			<Button
 				color="red"
 				onClick={() => dispatch(registration({ email, password }))}

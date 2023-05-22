@@ -8,7 +8,6 @@ import Footer from "../Footer/Footer";
 import { MainPage } from '../Pages/MainPage/MainPage';
 import AdminPage from "../Pages/AdminPage/AdminPage";
 import { AuthPage } from '../Pages/AuthPage/AuthPage';
-import { VerifyPage } from '../Pages/VerifyPage/VerifyPage';
 
 const Router = () => {
 	return (
@@ -30,7 +29,6 @@ const Router = () => {
 
 				<Route path={'/movies-website/admin/'} element={<AdminPage />} />
 				<Route path={'/movies-website/auth'} element={<AuthPage />} />
-				<Route path={'/movies-website/verify'} element={<VerifyPage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>

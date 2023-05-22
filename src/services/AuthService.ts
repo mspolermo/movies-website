@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import $api from "../http";
-import { LoginResponse, RegistrationResponse } from "../models/AuthResponse";
+import { LoginResponse, RegistrationResponse, checkTokenResponse } from "../models/AuthResponse";
 
 export default class AuthService {
 	static async login(email: string, password: string): Promise<AxiosResponse<LoginResponse>> {
@@ -13,6 +13,10 @@ export default class AuthService {
 
 	static async loginWithOauth(email: string,): Promise<AxiosResponse<RegistrationResponse>> {
 		return $api.post<RegistrationResponse>('/outRegistration', { email })
+	}
+
+	static async checkToken(): Promise<AxiosResponse<checkTokenResponse>> {
+		return $api.get<checkTokenResponse>('/checkToken')
 	}
 
 	static async logout(): Promise<void> {

@@ -18,3 +18,10 @@ export interface RegistrationResponse {
 		token: string
 	}
 }
+
+export interface checkTokenResponse {
+	email: string
+	exp: number
+	iat: number
+	id: number
+}

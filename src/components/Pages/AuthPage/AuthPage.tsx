@@ -1,21 +1,31 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { LoginForm } from "../../LoginForm/LoginForm";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registrationWithOauth } from "../../../store/reducers/authReducer";
 import { ThunkDispatch } from "redux-thunk";
+declare var VK: any;
 
 interface IAuthPageProps { };
 
 export const AuthPage: FC<IAuthPageProps> = (props) => {
 
-	const VkClientId = '51645497'
 	const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
-
-	// https://oauth.vk.com/authorize?client_id=1&display=page&redirect_uri=http://example.com/callback&scope=friends&response_type=token&v=5.131&state=123456
+	const vkAuth = () => {
+		VK.Auth.login(function (response: any) {
+			if (response.session) {
+				console.log(response)
+				// dispatch(registrationWithOauth(response.session))
+				if (response.settings) {
+					/* Выбранные настройки доступа пользователя, если они были запрошены */
+				}
+			} else {
+				/* Пользователь нажал кнопку Отмена в окне авторизации */
+			}
+		});
+	}
 	return (
 		<div className="container">
 			<LoginForm />
@@ -31,10 +41,9 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 				onError={() => {
 					console.log('Login Failed');
 				}}
-			/>;
-			<Link to={`https://oauth.vk.com/authorize?client_id=${VkClientId}&display=page&redirect_uri=http://localhost:3000/movies-website/verify/&scope=email&response_type=token&v=5.131&state=123456`}>
-				<button>vk</button>
-			</Link>
+			/>
+
+			<button onClick={vkAuth} style={{ padding: '20px' }}>vk</button>
 		</div>
 	);
 }

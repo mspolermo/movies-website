@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import AuthService from "../../services/AuthService"
 
 type authState = {
-	email: any
+	email: string | undefined
 	isAuth: boolean
 }
 
@@ -53,6 +53,19 @@ export const registrationWithOauth = createAsyncThunk(
 	}
 )
 
+export const checkToken = createAsyncThunk(
+	'auth/checkToken',
+	async function () {
+		try {
+			const response = await AuthService.checkToken()
+			console.log(response)
+			return response
+		} catch (error: any) {
+			console.log(error.response.data.message)
+		}
+	}
+)
+
 export const logout = createAsyncThunk(
 	'auth/logout',
 	async function () {
@@ -67,9 +80,7 @@ export const logout = createAsyncThunk(
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {
-
-	},
+	reducers: {},
 	extraReducers(builder) {
 		builder.addCase(registration.fulfilled, (state, action) => {
 			state.isAuth = true
@@ -83,7 +94,11 @@ export const authSlice = createSlice({
 			state.isAuth = true
 			state.email = action.payload?.data.User.email
 		})
-		builder.addCase(logout.fulfilled, (state, action) => {
+		builder.addCase(checkToken.fulfilled, (state, action) => {
+			state.isAuth = true
+			state.email = action.payload?.data.email
+		})
+		builder.addCase(logout.fulfilled, (state) => {
 			state.isAuth = false
 			state.email = ''
 		})
