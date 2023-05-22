@@ -25,6 +25,9 @@ import InternalPage from "./OpeningBlocks/InternalPage/InternalPage";
 import { useDispatch } from "react-redux";
 import { internalPageFalse } from "../../../store/reducers/internalPageReducer";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import BigPlayer from "./OpeningBlocks/BigPlayer/BigPlayer";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
+import SharePanel from "./OpeningBlocks/SharePanel/SharePanel";
 
 const Film = {
     id: 0,
@@ -65,7 +68,8 @@ const FilmPage = () => {
     const [film, setFilm] = useState<FilmPageProps>(Film);
     const [similarFilms, setSimilarFilms] = useState([{}]);
     const [filmName, setFilmName] = useState('');
-    const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM')
+    const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM');
+    const [genre, setGenre] = useState ('');
 
     useEffect(() => {
         fetchFilm();
@@ -81,6 +85,8 @@ const FilmPage = () => {
     useEffect(() => {
 
         setFilmName( LanguageHook( film.filmNameRu, film.filmNameEn, i18n.language) );
+
+        setGenre(LanguageHook( film.genres[0].nameRu, film.genres[0].nameEn, i18n.language)  )
 
         if ( (film.trailerName) && ( film.trailerUrl.includes('youtube') ) ) {
             setTrailer(film.trailerUrl);
@@ -126,10 +132,10 @@ const FilmPage = () => {
 
         setFilm(film_);
         setSimilarFilms(similarFilms_);
+        
         setIsPageLoading(false);
-
+        setGenre(data.genres[0].nameRu);
     };
-
 
     return (
         <div className="film">
@@ -137,7 +143,7 @@ const FilmPage = () => {
             ? <Loader />
             :
             <div className="container film__container">
-
+                <Breadcrumbs film={true} filters={genre}/>
                 <div className="film__body">
 
                     <div className="film__tablet">
@@ -214,6 +220,8 @@ const FilmPage = () => {
                 <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
+                <BigPlayer trailer={trailer} />
+                <SharePanel filmName={filmName} year={film.year} smallPictureUrl={film.smallPictureUrl} movieLength={film.movieLength}/>
                 <GradeBlock calledFrom={'filmPage'}/>
                 <InternalPage film={film}/>
             </div>

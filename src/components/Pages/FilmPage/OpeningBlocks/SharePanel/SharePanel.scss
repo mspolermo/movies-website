@@ -1,0 +1,119 @@
+@import '/src/styles/variables.scss';
+
+.sharePanel {
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    z-index: 4;
+
+    display: flex;
+    //overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background:rgba(0,0,0,.9);
+    &__hidden {
+        display: none;
+    }
+    &__panel {
+        padding: 16px 0;
+        min-width: 400px;
+        min-height: 499px;
+
+        background-color: $backgroundColor;
+        border-radius: 20px;
+    }
+   
+    &__head{
+        padding: 0 24px 16px;
+        display: flex;
+        position: relative;
+        border-bottom: 1px solid $splitLineColor;
+    }
+    &__left{
+        max-height: 66px;
+        margin-right: 14px;
+        
+    }
+    &__img {
+        border-radius: 4px;
+        max-height: 66px;
+    }
+    &__right {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    &__heding{
+        font-size: 17px;
+        line-height: 22px;
+        font-weight: 700;
+        font-style: normal;
+        color: #fff;
+    }
+    &__bottom{
+
+    }
+    &__text{
+        margin-top: 4px;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+        color: rgba(255,255,255,.72);
+    }
+    &__close {
+        padding: 3px 5px 3px 4px;
+        position: absolute;
+        top: -8px;
+        right: 10px;
+        border-radius: 50%;
+        background-color: $defaultIconColor;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+    }
+
+    &__body{
+        padding: 16px 24px 0;
+    }
+    &__part{
+        &_center {
+            margin: 12px 0;
+        }
+    }
+    &__btn{
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        &_solo {
+            border-radius: 8px;
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+        &_top {
+            border-radius: 8px 8px 0 0;
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+        &_center {
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+        &_bottom {
+            border-radius: 0 0 8px 8px;
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+    }
+    &__btnTitle{
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 500;
+        font-style: normal;
+        color: $headingColor;
+    
+    }
+
+}

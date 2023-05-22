@@ -35,7 +35,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     async function createReview (e:React.MouseEvent<HTMLDivElement>) {
 
         if ((headReview == '') || (bodyReview == '') ) {
-            alert('Все поля должны быть заполнены');
+            alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
         }
 
@@ -71,7 +71,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     async function createComment (e:React.MouseEvent<HTMLDivElement>) {
 
         if (textComment == '') {
-            alert('Все поля должны быть заполнены');
+            alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
         }
 

@@ -28,11 +28,18 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     const navigate = useNavigate();
 
     function goToPage(value: Result) {
+        searchSection.current.classList.add('searchBlock__hidden');
+
+        setSearchQuery('');
+        setSearchResult([]);
+
         if(value.rowType === 'films'){
             return (navigate(`/movies-website/film/${value.key}`))
         } else {
             return (navigate(`/movies-website/person/${value.key}`))
         }
+
+
     }
 
     useEffect(() => {
@@ -95,10 +102,10 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
                 <Icons className="" name="cross" size="30"/>
             </div>
             <div className="searchBlock__modal">
-                <h2 className="searchBlock__heading">Поиск</h2>
+                <h2 className="searchBlock__heading">{t('header.search')}</h2>
                 <Search result={searchResults}
                         renderResult={renderResult}
-                        placeholder={'Фильмы, персоны, жанры'}
+                        placeholder={t('header.searchPlaceholder')}
                         cl={false}
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
