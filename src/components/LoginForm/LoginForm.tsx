@@ -31,12 +31,6 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 
 	return (
 		<div className="authPage">
-			{
-				isAuth &&
-				<h1 style={{ color: 'white' }}>
-					{userEmail}
-				</h1>
-			}
 			<div className="authPage__title">
 				<h1>{isRegistration ? t('authPage.signUp') : t('authPage.signIn')}</h1>
 			</div>
