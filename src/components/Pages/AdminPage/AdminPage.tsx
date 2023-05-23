@@ -9,7 +9,7 @@ const AdminPage = () => {
     const {t, i18n} = useTranslation();
 
     return (
-        <div className="AdminPage">
+        <div className="AdminPage" data-testid='adminPage'>
             <div className="AdminPage__container container">
                 <div className="AdminPage__content">
 

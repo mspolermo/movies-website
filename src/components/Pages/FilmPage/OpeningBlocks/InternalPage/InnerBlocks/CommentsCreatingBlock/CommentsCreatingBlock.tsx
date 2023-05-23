@@ -35,7 +35,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     async function createReview (e:React.MouseEvent<HTMLDivElement>) {
 
         if ((headReview == '') || (bodyReview == '') ) {
-            alert('Все поля должны быть заполнены');
+            alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
         }
 
@@ -44,7 +44,8 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
 
         let bodyParameters = {
             "header": headReview,
-            "value": bodyReview
+            "value": bodyReview,
+            "nickName": "Admin"
         };
 
         const responseAuth = await axios.post(`http://localhost:5000/login`,
@@ -71,7 +72,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     async function createComment (e:React.MouseEvent<HTMLDivElement>) {
 
         if (textComment == '') {
-            alert('Все поля должны быть заполнены');
+            alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
         }
 
@@ -79,7 +80,8 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
 
         let bodyParameters = {
             "value": textComment,
-            "parentId": parentId
+            "parentId": parentId,
+            "nickName": "Admin"
         };
 
         const responseAuth = await axios.post(`http://localhost:5000/login`,
@@ -121,22 +123,22 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                             placeholder={t('internalPage.commentsCreatingBlock.reviewName')} 
                             searchQuery={headReview} 
                             setSearchQuery={setHeadReview} 
-                            cl={false} search={true}
+                            cl={false} search={false}
                         />
                     </div>
 
-                    <div className="commentsCreatingBlock__input">
+                    <div className="commentsCreatingBlock__input commentsCreatingBlock__input_big ">
                         <MyInput
                             result={[]} 
                             renderResult={() => {return []}} 
                             placeholder={t('internalPage.commentsCreatingBlock.reviewText')} 
                             searchQuery={bodyReview} 
                             setSearchQuery={setBodyReview} 
-                            cl={false} search={true}
+                            cl={false} search={true} extension={true}
                         />
                     </div>
 
-                    <div className="commentsCreatingBlock__btn">
+                    <div className="commentsCreatingBlock__btn commentsCreatingBlock__btn_createReview">
                         <Button 
                             title={['internalPage.commentsCreatingBlock.createReview']} 
                             color="transparent" 
@@ -157,13 +159,12 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                         <div className="commentsCreatingBlock__comment-form commentsCreatingBlock__comment-form_hidden" >
                             
                             <div className="commentsCreatingBlock__input">
-                                <MyInput
-                                result={[]} 
-                                renderResult={() => {return []}} 
-                                placeholder={t('internalPage.commentsCreatingBlock.commentText')} 
-                                searchQuery={textComment} 
-                                setSearchQuery={setTextComment} 
-                                cl={false} search={true}
+                                <MyInput result={[]} 
+                                        renderResult={() => {return []}} 
+                                        placeholder={t('internalPage.commentsCreatingBlock.commentText')} 
+                                        searchQuery={textComment} 
+                                        setSearchQuery={setTextComment} 
+                                        cl={false} search={true}
                             />
                             </div>
 

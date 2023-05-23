@@ -6,6 +6,7 @@
 		"series": "Series",
 		"mults": "Cartoons",
 		"search": "Search",
+		"searchPlaceholder": "Movies, persons, genres",
 		"menuFilms": {
 			"genres": "Genres",
 			"arthouse": "Arthouse",
@@ -362,6 +363,11 @@
 			"all": "on all devices",
 			"available": "The application is available for download on iOS, Android, SmartTV and set-top boxes",
 			"connect": "Connect devices"
+		},
+		"sharePanel": {
+			"copy": "Copy link",
+			"vk": "Vkontakte",
+			"ok": "Odnoklassniki"
 		}
 	},
 	"internalPage": {
@@ -384,7 +390,8 @@
 			"commentText": "Comment text",
 			"send": "Send",
 			"no": "Unfortunately there are no reviews yet",
-			"comment": "Comment"
+			"comment": "Comment",
+			"alert": "All fields must be filled"
 		},
 		"factsBlock": {
 			"facts": "Movie facts",

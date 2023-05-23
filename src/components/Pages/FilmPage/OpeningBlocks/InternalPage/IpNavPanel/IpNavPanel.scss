@@ -17,11 +17,7 @@
     }
     &__text{
         display: inline-block;
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-
-        color: $textColor;
+        @extend %standartText;
         @include hover-colorAnim ($activeColor, $textColor)
     }
     &__counter {
@@ -32,7 +28,7 @@
         color: #a5a1b2;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .iPnavPanel {
         &__text{
             font-size: 10px;

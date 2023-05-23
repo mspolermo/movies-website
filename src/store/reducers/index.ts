@@ -6,6 +6,8 @@ import factsBlockReducer from "./factsBlockReducer";
 import allCreatorsBlockReducer from "./allCreatorsBlockReducer";
 import treilersBlockReducer from "./treilersBlockReducer";
 import commentsCreatingBlockReducer from "./commentsCreatingBlockReducer";
+import bigPlayerReducer from "./bigPlayerReducer";
+import sharePanelReducer from "./sharePanelReducer";
 import authReducer from "./authReducer";
 
 
@@ -18,7 +20,9 @@ export const rootReducer = combineReducers({
 	factsBlock: factsBlockReducer,
 	allCreatorsBlock: allCreatorsBlockReducer,
 	treilersBlock: treilersBlockReducer,
-	commentsCreatingBlock: commentsCreatingBlockReducer
+	commentsCreatingBlock: commentsCreatingBlockReducer,
+	bigPlayer: bigPlayerReducer,
+	sharePanel: sharePanelReducer
 
 })
 

@@ -222,7 +222,7 @@ const MoviesPage = () => {
     }
 
     return (
-        <div className='MoviesPage'>
+        <div className='MoviesPage' data-testid='moviesPage'>
             <div className="MoviesPage__container container">
                 <div className="MoviesPage__content">
 

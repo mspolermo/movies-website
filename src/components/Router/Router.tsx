@@ -11,7 +11,7 @@ import { AuthPage } from '../Pages/AuthPage/AuthPage';
 
 const Router = () => {
 	return (
-		<BrowserRouter>
+		<div>
 			<Header />
 			<Routes>
 				<Route path={'/movies-website/person/:id'} element={<PersonPage />} />
@@ -31,7 +31,7 @@ const Router = () => {
 				<Route path={'/movies-website/auth'} element={<AuthPage />} />
 			</Routes>
 			<Footer />
-		</BrowserRouter>
+		</div>
 	);
 };
 

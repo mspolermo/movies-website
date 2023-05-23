@@ -13,9 +13,7 @@
     }
     &__text {
         margin-bottom: 4px;
-        font-size: 15px;
-        line-height: 22px;
-        color: $textColor;
+        @extend %standartText; 
         &_first {
             margin-bottom: 0px;
         }

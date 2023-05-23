@@ -107,7 +107,9 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
             </div>
 
             <div className="gradeBlock__modal gradeBlock__modal_hidden" id='complete-block'>
-                <Icons className="gradeBlock__svg gradeBlock__svg_complete" name="complete" size="68" color="green"/> 
+                <div className="gradeBlock__complete">
+                    <Icons className="gradeBlock__svg gradeBlock__svg_complete" name="complete" size="68" color="green"/> 
+                </div>
                 <h2 className="gradeBlock__heading">{t('filmPage.gradeBlock.get')}</h2>
                 <p className="gradeBlock__text">{t('filmPage.gradeBlock.thank')}</p>
             </div>

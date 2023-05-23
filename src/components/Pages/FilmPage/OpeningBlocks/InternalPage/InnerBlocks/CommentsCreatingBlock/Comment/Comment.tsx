@@ -8,8 +8,8 @@ const Comment:FC<CommentProps> = ({child}) => {
         <div className="comment" key={child.id} >
 
             <div className="comment__left">
-                <Icons name="person" size="30" color="gray" />
-                <div className="comment__text">Chel{child.id}</div>
+                <Icons name="person" size="30" color="gray" className="comment__person"/>
+                <div className="comment__text">{child.nickName}</div>
                 <div className="comment__text">{ (new Date (child.createdAt)).toLocaleDateString() }</div>  
             </div>
 

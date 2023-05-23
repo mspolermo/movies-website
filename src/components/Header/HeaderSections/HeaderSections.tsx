@@ -17,8 +17,8 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
 
             <div className="headerSections__block">
 
-                <div className="headerSections__img">
-                    <img 
+                <div className="headerSections__img" >
+                    <img data-testid='mainPageLink'
                         className="headerSections__logo_ivi"
                         src='https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg' 
                         alt="Логотип Иви" 
@@ -47,6 +47,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                                     title="Фильмы" 
                                     className="headerMenu__link"
                                     onClick={() => navigate (`/movies-website/films/`)}
+                                    data-testid='moviesPageLink'
                                 >
                                     <p 
                                         className="headerMenu__text"
@@ -56,12 +57,13 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                                 </a>
                             </li>
 
-                            <li className="headerMenu__listItem">
+                            <li className="headerMenu__listItem"  >
                                 <a href="https://www.ivi.ru/series" title="Сериалы" className="headerMenu__link">
                                     <p 
                                         className="headerMenu__text"
                                         onMouseOver={hoverListener}
                                         onMouseLeave={leaveListener}
+                                        data-testid='headerSeriesSection'
                                     >{t('header.series')}</p>
                                 </a>
                             </li>
@@ -114,6 +116,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                 <div 
                     className="headerSections__btn-block headerSections__btn-block_search"
                     onClick={toggleSearchSection}
+                    data-testid='headerSerch'
                 >
                     <Icons className="headerSections__svg headerSections__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
                     <p className="headerSections__text">{t('header.search')}</p>

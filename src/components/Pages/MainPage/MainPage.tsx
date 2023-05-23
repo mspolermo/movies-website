@@ -12,7 +12,7 @@ export const MainPage: FC = () => {
 	const { t, i18n } = useTranslation([]);
 
 	return (
-		<div className="home">
+		<div className="home" data-testid='mainPage'>
 			<PromoSliderBlock />
 			<div className="container">
 				<div className="home__teaser-list">

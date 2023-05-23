@@ -3,24 +3,14 @@
 .internalPage {
     padding-top: 40px;
 
-    position: absolute;
-    z-index: 4;
-    width: 100%;
-    min-height: 500%;
-
-    top: 0;
+    @extend %modalWindowPreset;
     bottom: auto;
-    left: 0;
-    right: 0;
-    
-    display: flex;
-    flex-direction: column;
 
-    background:rgba(0,0,0,.9);
     &__hidden {
         display: none;
     }
     &__previous{
+        white-space:nowrap;
         align-self: flex-start;
         display: flex;
         margin-left: 10px;
@@ -29,20 +19,17 @@
         &:hover {
             .internalPage__svg_big{
                 transform: scale(1.1);
-                
             }
             .internalPage__text_btn {
                 color: white;
             }
         }
     }
-
     &__main {
         margin: 0 auto;
         display: flex;
         justify-content: space-between; 
     }
-
     &__body {
         min-width: 600px;
         max-width: 600px;
@@ -65,8 +52,6 @@
 
 }
 
-
-
 @media (max-width: 1160px) {
     .internalPage{
         &__main {
@@ -75,8 +60,7 @@
         }
     }
 };
-
-@media (max-width: 880px) {
+@media (max-width: 1060px) {
     .internalPage{
         &__body {
             min-width: 100%;
@@ -84,6 +68,12 @@
         &__heading{
             text-align: center;
         }
+    }
+}
+@media (max-width: 880px) {
+    .internalPage{
+        flex-direction: column;
+        justify-content: flex-start;
     }
 }
 @media (max-width: 400px) {
