@@ -74,7 +74,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 		setFilms(movies)
 	}
 
-	function linkToFilm() {
+	function linkToGenre() {
 		if (variant === 'genreCompilation') {
 			navigate(`/movies-website/films/genre/${genre}`)
 		}
@@ -85,7 +85,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 			<div className="pageSection__container">
 				<div className="gallery">
 					<div
-						onClick={linkToFilm}
+						onClick={linkToGenre}
 						className="gallery__blockHeader"
 					>
 						{
@@ -113,6 +113,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 								return (
 									<div key={i.key} className="gallery__film">
 										<FilmCard
+											icons={variant === 'genreCompilation' && true}
 											film={i}
 											onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
 										/>

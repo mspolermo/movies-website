@@ -1,0 +1,63 @@
+@import '/src/styles/variables.scss';
+
+.authPage {
+	&__container {
+		padding: 50px 0px 500px 0px;
+		max-width: 400px;
+		margin: 0 auto;
+	}
+
+	&__title {
+		text-align: center;
+		margin-bottom: 20px;
+
+		& h1 {
+			font-weight: 600;
+			font-size: 30px;
+			color: #fff;
+		}
+	}
+
+	&__btn {
+		margin: 10px 0px 20px 0px;
+	}
+
+	&__error {
+		padding-top: 5px;
+		color: red;
+	}
+
+	&__googleBtn {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 10px;
+	}
+
+	&__vkBtn {
+		display: flex;
+		border-radius: 5px;
+		width: 240px;
+		height: 40px;
+		justify-content: center;
+		align-items: center;
+		margin: 0 auto;
+		background-color: #fff;
+		cursor: pointer;
+
+		& img {
+			margin-left: 10px;
+			max-width: 30px;
+		}
+	}
+
+	&__authType {
+		text-align: right;
+		margin: 10px 0px;
+
+		& span {
+			color: #fff;
+			cursor: pointer;
+			@include hover-colorAnim(#fff, #d8d7d9)
+		}
+	}
+}
