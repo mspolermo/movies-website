@@ -65,6 +65,7 @@ export interface IComment {
     authorId: number,
     parentId: number | null,
     createdAt: Date,
+    nickName: string,
     filmId: number,
 };
 

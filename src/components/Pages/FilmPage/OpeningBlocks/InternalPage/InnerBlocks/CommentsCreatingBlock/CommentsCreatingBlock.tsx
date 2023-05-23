@@ -44,7 +44,8 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
 
         let bodyParameters = {
             "header": headReview,
-            "value": bodyReview
+            "value": bodyReview,
+            "nickName": "Admin"
         };
 
         const responseAuth = await axios.post(`http://localhost:5000/login`,
@@ -79,7 +80,8 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
 
         let bodyParameters = {
             "value": textComment,
-            "parentId": parentId
+            "parentId": parentId,
+            "nickName": "Admin"
         };
 
         const responseAuth = await axios.post(`http://localhost:5000/login`,
@@ -157,13 +159,12 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                         <div className="commentsCreatingBlock__comment-form commentsCreatingBlock__comment-form_hidden" >
                             
                             <div className="commentsCreatingBlock__input">
-                                <MyInput
-                                result={[]} 
-                                renderResult={() => {return []}} 
-                                placeholder={t('internalPage.commentsCreatingBlock.commentText')} 
-                                searchQuery={textComment} 
-                                setSearchQuery={setTextComment} 
-                                cl={false} search={true}
+                                <MyInput result={[]} 
+                                        renderResult={() => {return []}} 
+                                        placeholder={t('internalPage.commentsCreatingBlock.commentText')} 
+                                        searchQuery={textComment} 
+                                        setSearchQuery={setTextComment} 
+                                        cl={false} search={true}
                             />
                             </div>
 

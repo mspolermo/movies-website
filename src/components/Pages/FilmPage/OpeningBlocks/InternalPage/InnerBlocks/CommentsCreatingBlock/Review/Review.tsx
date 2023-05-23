@@ -11,7 +11,7 @@ const Review:FC <ReviewProps> = ({review, openCreateComment}) => {
 
             <div className="review__left">
                 <Icons name="person" size="60" color="gray" />
-                <div className="review__text">Chel{review.id}</div>
+                <div className="review__text">{review.nickName}</div>
                 <div className="review__text">{ (new Date (review.createdAt)).toLocaleDateString() }</div>        
             </div>
 

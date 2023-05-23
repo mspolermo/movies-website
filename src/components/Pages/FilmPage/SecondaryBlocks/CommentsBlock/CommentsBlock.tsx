@@ -23,6 +23,7 @@ const CommentsBlock: FC<CommentsBlockProps> = ({filmName, comments}) => {
                 authorId: 0,
                 parentId: 0,
                 createdAt: new Date(),
+                nickName: "",
                 filmId: 0
             }
         ]
