@@ -147,6 +147,7 @@ const Header = () => {
 
                 <div className="header__dropDownBody header__dropDownBody_hidden"
                     id='drop-down-block'
+                    data-testid='headerDropDownMenu'
                     style={{'width': width}} 
                     onMouseOver={hoverListener}
                     onMouseLeave={leaveListener}

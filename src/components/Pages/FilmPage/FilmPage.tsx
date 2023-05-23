@@ -137,7 +137,7 @@ const FilmPage = () => {
     };
 
     return (
-        <div className="film">
+        <div className="film" data-testid='filmPage'>
             {isPageLoading 
             ? <Loader />
             :

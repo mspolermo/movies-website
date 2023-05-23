@@ -17,7 +17,7 @@ export const MainPage: FC<IMainPageProps> = (props) => {
 	const [isClauseSectionTruncated, setIsClauseSectionTruncated] = useState<boolean>(false)
 
 	return (
-		<div className="home">
+		<div className="home" data-testid='mainPage'>
 			<div className="home__promoSlider promoSlider">
 				<Carousel variant='main'>
 					<FilmBanner

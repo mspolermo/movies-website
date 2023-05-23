@@ -10,7 +10,7 @@ import AdminPage from "../Pages/AdminPage/AdminPage";
 
 const Router = () => {
 	return (
-		<BrowserRouter>
+		<div>
 			<Header />
 			<Routes>
 				<Route path={'/movies-website/person/:id'} element={<PersonPage />} />
@@ -29,7 +29,7 @@ const Router = () => {
 				<Route path={'/movies-website/admin/'} element={<AdminPage />} />
 			</Routes>
 			<Footer />
-		</BrowserRouter>
+		</div>
 	);
 };
 

@@ -99,7 +99,7 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     }
 
     return (
-        <div className="searchBlock searchBlock__hidden" ref={searchSection}>
+        <div className="searchBlock searchBlock__hidden" ref={searchSection} data-testid='searchPage'>
             <div className="searchBlock__close" onClick={toggleSearchSection}>
                 <Icons className="" name="cross" size="30"/>
             </div>

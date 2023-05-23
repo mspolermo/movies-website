@@ -57,7 +57,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
     }, [])
     
     return(
-        <div className="headerMenuFilms" id={id}>
+        <div className="headerMenuFilms" id={id} data-testid='headerMoviesBlock'>
 
             <div className="headerMenuFilms__column">
 
