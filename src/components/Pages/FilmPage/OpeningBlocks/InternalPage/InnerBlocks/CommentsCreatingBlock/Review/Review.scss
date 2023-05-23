@@ -29,14 +29,11 @@
         align-items: center;
         justify-content: center;
     }
-    &__date{ 
-    }
     &__right{
         flex: 1 1 85%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        //align-items: center;
     }
     &__top {
         display: flex;
@@ -62,11 +59,6 @@
         line-height: 22px;
         font-weight: 400;
         color: $textColor;
-
-        // -webkit-line-clamp: 3; /* Число отображаемых строк */
-        // display: -webkit-box; /* Включаем флексбоксы */
-        // -webkit-box-orient: vertical; /* Вертикальная ориентация */
-        // overflow: hidden; 
     }
     &__bottom {
         display: flex;
@@ -99,6 +91,15 @@
         &:hover {
             fill: white;
             stroke: white;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .review {
+        padding: 14px;
+        &__like {
+            display: none;
         }
     }
 }

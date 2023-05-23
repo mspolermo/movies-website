@@ -30,6 +30,7 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
 
     function goToPage(value: Result) {
         searchSection.current.classList.add('searchBlock__hidden');
+        window.onscroll = () => { window.scroll(); };
 
         setSearchQuery('');
         setSearchResult([]);
@@ -104,7 +105,7 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
             </div>
             <div className="searchBlock__modal">
                 <h2 className="searchBlock__heading">{t('header.search')}</h2>
-                <Search result={searchResults}
+                <MyInput result={searchResults}
                         renderResult={renderResult}
                         placeholder={t('header.searchPlaceholder')}
                         cl={false}

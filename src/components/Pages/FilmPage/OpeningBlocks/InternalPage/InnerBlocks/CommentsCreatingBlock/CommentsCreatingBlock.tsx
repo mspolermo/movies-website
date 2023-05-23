@@ -121,22 +121,22 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
                             placeholder={t('internalPage.commentsCreatingBlock.reviewName')} 
                             searchQuery={headReview} 
                             setSearchQuery={setHeadReview} 
-                            cl={false} search={true}
+                            cl={false} search={false}
                         />
                     </div>
 
-                    <div className="commentsCreatingBlock__input">
+                    <div className="commentsCreatingBlock__input commentsCreatingBlock__input_big ">
                         <MyInput
                             result={[]} 
                             renderResult={() => {return []}} 
                             placeholder={t('internalPage.commentsCreatingBlock.reviewText')} 
                             searchQuery={bodyReview} 
                             setSearchQuery={setBodyReview} 
-                            cl={false} search={true}
+                            cl={false} search={true} extension={true}
                         />
                     </div>
 
-                    <div className="commentsCreatingBlock__btn">
+                    <div className="commentsCreatingBlock__btn commentsCreatingBlock__btn_createReview">
                         <Button 
                             title={['internalPage.commentsCreatingBlock.createReview']} 
                             color="transparent" 

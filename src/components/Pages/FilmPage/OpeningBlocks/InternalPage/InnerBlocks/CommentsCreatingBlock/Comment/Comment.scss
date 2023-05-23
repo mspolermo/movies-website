@@ -10,6 +10,7 @@
 
     background-color: $backgroundElements;
     border-radius: 5px;
+    overflow: hidden;
 
     &__text {
         font-size: 13px;
@@ -63,6 +64,23 @@
         &:hover {
             fill: white;
             stroke: white;
+        }
+    }
+}
+@media (max-width: 500px) {
+    .comment{
+        padding: 14px;
+        flex-direction: column;
+        &__left {
+            margin-right: 14px;
+            margin-bottom: 10px;
+            align-self: flex-end;
+        }
+        &__person {
+            display: none;
+        }
+        &__like{
+            margin-top: 6px;
         }
     }
 }

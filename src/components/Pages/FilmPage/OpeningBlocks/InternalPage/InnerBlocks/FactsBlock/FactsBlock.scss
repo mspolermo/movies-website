@@ -10,7 +10,7 @@
     }
     &__text {
         max-width: 600px;
-        color: $textColor;
+        @extend %standartText;
         margin-bottom: 3000px;
     } 
 }

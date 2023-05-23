@@ -9,7 +9,7 @@
         color: $headingColor;
     }
     &__text {
-        color: $textColor;
+        @extend %standartText;
         margin-bottom: 3000px;
     } 
     &__video {

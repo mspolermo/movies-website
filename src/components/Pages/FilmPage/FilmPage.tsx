@@ -58,7 +58,6 @@ const Film = {
 };
 
 const FilmPage = () => {
-    //Todo - 2 кнопки, подсчет комментов через редакс, подключить хлебные крошки, наследование типов
 
     const params = useParams();
     const {t, i18n} = useTranslation();
@@ -86,7 +85,7 @@ const FilmPage = () => {
 
         setFilmName( LanguageHook( film.filmNameRu, film.filmNameEn, i18n.language) );
 
-        setGenre(LanguageHook( film.genres[0].nameRu, film.genres[0].nameEn, i18n.language)  )
+        setGenre(LanguageHook( film.genres[0]?.nameRu, film.genres[0]?.nameEn, i18n.language)  )
 
         if ( (film.trailerName) && ( film.trailerUrl.includes('youtube') ) ) {
             setTrailer(film.trailerUrl);
@@ -192,14 +191,14 @@ const FilmPage = () => {
                                 />
                             </div>
 
-                            <CardsBlock ratingKp={film.ratingKp} creators={film.persons}/>
+                            <CardsBlock ratingKp={film.ratingKp} persons={film.persons}/>
                             
                             <div className="film__slogan">
                                 <SloganBlock slogan={film?.slogan} />
                             </div>
 
                             <DescriptionBlock description={film?.description} filmName={filmName}/>
-                            <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
+                            <ReitingBlock ratingKp={film?.ratingKp} votesKp={film?.votesKp}/>
                             <AdditionalInfoBlock/>
 
                         </div>
@@ -216,7 +215,7 @@ const FilmPage = () => {
                 </div>
 
                 <FilmsCompilation variant="similarFilms" similarFilms={similarFilms} title={filmName} />
-                <CreatorsBlock creators={film.persons}/>
+                <CreatorsBlock persons={film.persons}/>
                 <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
