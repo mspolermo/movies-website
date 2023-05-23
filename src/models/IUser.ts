@@ -1,5 +1,4 @@
 export interface IUser {
-	email: string
-	isActivated: string
-	id: string
+	email: string | undefined
+	userId: number | null | undefined
 }

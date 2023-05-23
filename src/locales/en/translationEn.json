@@ -19,7 +19,7 @@
 			"dram": "Dramas",
 			"history": "Historical",
 			"catastrophes": "Catastrophes",
-			"comedy": "Comedy",
+			"comedy": "Comedies",
 			"criminals": "Criminal",
 			"melodrams": "Melodramas",
 			"mystical": "Mystical",
@@ -281,7 +281,7 @@
 			"popularity": "Popularity",
 			"rating": "Rating",
 			"novelty": "Novelty",
-            "alphabet": "Alphabet"
+			"alphabet": "Alphabet"
 		}
 	},
 	"moviesPage": {
@@ -362,7 +362,7 @@
 			"all": "on all devices",
 			"available": "The application is available for download on iOS, Android, SmartTV and set-top boxes",
 			"connect": "Connect devices"
- 		}     
+		}
 	},
 	"internalPage": {
 		"toFilm": "To movie",
@@ -384,10 +384,10 @@
 			"commentText": "Comment text",
 			"send": "Send",
 			"no": "Unfortunately there are no reviews yet",
-			"comment" : "Comment"
+			"comment": "Comment"
 		},
 		"factsBlock": {
-			"facts" : "Movie facts",
+			"facts": "Movie facts",
 			"noInfo": "Unfortunately, we haven't got additional information."
 		},
 		"treilersBlock": {
@@ -433,5 +433,16 @@
 		"delete": "Delete",
 		"changes": "Changes applied",
 		"ok": "Ok"
+	},
+	"authPage": {
+		"signUp": "Sign up",
+		"signIn": "Sign in",
+		"signUpBtn": "Sign up",
+		"signInBtn": "Sign in",
+		"switchToSignIn": "Already have an account?",
+		"switchToSignUp": "Not signed up yet?",
+		"password": "Password",
+		"createPassword": "Create a password",
+		"VKauth": "Sign up with VK"
 	}
 }

@@ -1,6 +1,15 @@
 
 export interface LoginResponse {
-	Email: string
+	email: string
+	userId: number
+	message?: {
+		message: string | undefined
+	}
+	role: [
+		{
+			value: string
+		}
+	]
 	token: {
 		token: string
 	}
@@ -8,7 +17,7 @@ export interface LoginResponse {
 
 export interface RegistrationResponse {
 	User: {
-		id: string
+		id: number
 		email: string
 		password: string
 		updatedAt: string
@@ -21,6 +30,7 @@ export interface RegistrationResponse {
 
 export interface checkTokenResponse {
 	email: string
+	message?: string
 	exp: number
 	iat: number
 	id: number

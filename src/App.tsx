@@ -8,8 +8,11 @@ import { checkToken } from './store/reducers/authReducer';
 
 const App = () => {
 	const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+
 	useEffect(() => {
-		dispatch(checkToken())
+		if (localStorage.getItem('token')) {
+			dispatch(checkToken())
+		}
 	}, [])
 
 	return (
