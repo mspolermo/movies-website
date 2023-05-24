@@ -4,7 +4,8 @@ import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from "react-router-dom";
-
+import { Provider } from "react-redux";
+import { store } from '../store';
 
 class ResizeObserver {
     observe() {}
@@ -14,22 +15,14 @@ class ResizeObserver {
 
 describe('Header test-suite', () => {
     window.ResizeObserver = ResizeObserver;
-    test('Footer exists test', () => {
 
-        render(
-            <MemoryRouter>
-                <App />     
-            </MemoryRouter>
-            
-        );
-    
-        expect(screen.getByTestId('header')).toBeInTheDocument();
-    });
     test('Link to main page check', () => {
 
         render(
             <MemoryRouter>
-                <App />     
+                <Provider store={store}> 
+                    <App />    
+                </Provider> 
             </MemoryRouter>
             
         );
@@ -42,7 +35,9 @@ describe('Header test-suite', () => {
 
         render(
             <MemoryRouter>
-                <App />     
+                <Provider store={store}> 
+                    <App />    
+                </Provider> 
             </MemoryRouter>
             
         );
@@ -55,10 +50,11 @@ describe('Header test-suite', () => {
     test('Open drop-down-menu check', () => {
 
         render(
-            <MemoryRouter>
-                <App />     
-            </MemoryRouter>
-            
+        <MemoryRouter>
+            <Provider store={store}> 
+                <App />    
+            </Provider> 
+        </MemoryRouter>
         );
 
         const seriesPageLink = screen.getByTestId('headerSeriesSection');
@@ -69,9 +65,10 @@ describe('Header test-suite', () => {
 
         render(
             <MemoryRouter>
-                <App />     
+                <Provider store={store}> 
+                    <App />    
+                </Provider> 
             </MemoryRouter>
-            
         );
 
         const search= screen.getByTestId('headerSerch');

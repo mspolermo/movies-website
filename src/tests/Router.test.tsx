@@ -4,6 +4,7 @@ import App from "../App";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from '../store';
+import { GoogleOAuthProvider} from '@react-oauth/google';
 
 
 class ResizeObserver {
@@ -18,8 +19,10 @@ describe('Router test-suite', () => {
     test('Route to main page check', () => {
 
         render(
-            <MemoryRouter initialEntries={['/movies-website/main']}>
-                <App /> 
+            <MemoryRouter initialEntries={['/movies-website/']}>
+                <Provider store={store}> 
+                    <App /> 
+                </Provider>
             </MemoryRouter> 
         );
 
@@ -29,7 +32,9 @@ describe('Router test-suite', () => {
 
         render(
             <MemoryRouter initialEntries={['/movies-website/films/']}>
-                <App />
+                <Provider store={store}> 
+                    <App />
+                </Provider>    
             </MemoryRouter>  
         );
 
@@ -70,5 +75,31 @@ describe('Router test-suite', () => {
         );
 
         expect(screen.getByTestId('adminPage')).toBeInTheDocument();
+    });
+    test('Route to Auth page check', () => {
+
+        render(
+            <MemoryRouter initialEntries={['/movies-website/auth/']}>
+                <Provider store={store}> 
+                    <GoogleOAuthProvider clientId="TEST CLIENT ID">
+                        <App />
+                    </GoogleOAuthProvider>    
+                </Provider>
+            </MemoryRouter>  
+        );
+
+        expect(screen.getByTestId('authPage')).toBeInTheDocument();
+    });
+    test('Route to wrong page-adress check', () => {
+
+        render(
+            <MemoryRouter initialEntries={['/movies-website/asd/']}>
+                <Provider store={store}> 
+                    <App />
+                </Provider>
+            </MemoryRouter>  
+        );
+
+        expect(screen.getByTestId('notFoundPage')).toBeInTheDocument();
     });
 });

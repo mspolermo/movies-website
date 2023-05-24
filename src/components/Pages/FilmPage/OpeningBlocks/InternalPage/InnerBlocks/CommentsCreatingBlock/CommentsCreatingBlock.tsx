@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import './CommentsCreatingBlock.scss';
 import { CommentsCreatingBlockProps } from "../../../../../../../types/filmPageTypes";
 import { CommentsStructure } from "../../../../../../../types/filmPageTypes";
@@ -9,9 +10,15 @@ import Button from "../../../../../../UI/Buttons/Button/Button";
 import Comment from "./Comment/Comment";
 import Review from "./Review/Review";
 import MyInput from "../../../../../../UI/Inputs/MyInput/MyInput";
+import { useTypedSelector } from "../../../../../../../hooks/useTypedSelector";
 
 const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     const {t, i18n} = useTranslation();
+    const navigate = useNavigate();
+
+    const login = useTypedSelector(state => state.auth.isAuth);
+    const mail = useTypedSelector(state => state.auth.user.email);
+    const [nickName, setNickName] = useState(mail?.split('@')[0].slice(0,10));
 
     const[sortedComments, setSortedComments] = useState<CommentsStructure | []>([]);
     const [headReview, setHeadReview] = useState('');
@@ -33,7 +40,10 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
         e.currentTarget.parentElement?.classList.add('commentsCreatingBlock__btn_hidden');
     };
     async function createReview (e:React.MouseEvent<HTMLDivElement>) {
-
+        if (!login) {
+            navigate (`/movies-website/auth/`);
+            return;
+        }
         if ((headReview == '') || (bodyReview == '') ) {
             alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
@@ -45,18 +55,22 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
         let bodyParameters = {
             "header": headReview,
             "value": bodyReview,
-            "nickName": "Admin"
+            nickName: nickName
         };
 
-        const responseAuth = await axios.post(`http://localhost:5000/login`,
-        {
-            "email": "admin@admin.com",
-            "password": "1234567891011"
-        }
-        );
+        // const responseAuth = await axios.post(`http://localhost:5000/login`,
+        // {
+        //     "email": "admin@admin.com",
+        //     "password": "1234567891011"
+        // }
+        // );
 
+        // await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
+        //     headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
+        // });
+        //$api.post(`http://localhost:5000/${filmId}`, { bodyParameters })
         await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
-            headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
 
         fetchComments();
@@ -70,29 +84,36 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
         e.currentTarget.parentElement?.parentElement?.parentElement?.parentElement?.children[1].classList.toggle('commentsCreatingBlock__comment-form_hidden');
     }
     async function createComment (e:React.MouseEvent<HTMLDivElement>) {
-
+        if (!login) {
+            navigate (`/movies-website/auth/`);
+            return;
+        };
         if (textComment == '') {
             alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
-        }
+        };
 
         e.currentTarget.parentElement?.parentElement?.classList.add('commentsCreatingBlock__comment-form_hidden')
 
         let bodyParameters = {
             "value": textComment,
             "parentId": parentId,
-            "nickName": "Admin"
+            nickName: nickName
         };
 
-        const responseAuth = await axios.post(`http://localhost:5000/login`,
-        {
-            "email": "admin@admin.com",
-            "password": "1234567891011"
-        }
-        );
+        // const responseAuth = await axios.post(`http://localhost:5000/login`,
+        // {
+        //     "email": "admin@admin.com",
+        //     "password": "1234567891011"
+        // }
+        // );
 
-        const sendRewiev = await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
-            headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
+        // const sendRewiev = await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
+        //     headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
+        // });
+
+        await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         fetchComments();
 

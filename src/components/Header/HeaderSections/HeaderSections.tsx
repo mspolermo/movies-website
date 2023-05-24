@@ -7,10 +7,12 @@ import './HeaderSections.scss';
 import Button from "../../UI/Buttons/Button/Button";
 import Icons from "../../Icons/Icons";
 import OpenUrl from "../../../hooks/OpenUrl";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
 const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, toggleSearchSection}) => {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const login = useTypedSelector(state => state.auth.isAuth);
 
     return (
         <div className="headerSections">
@@ -135,10 +137,21 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                     className="headerSections__btn-block headerSections__btn-block_login"
                     onMouseOver={hoverListener}
                     onMouseLeave={leaveListener}
-                    onClick={() => OpenUrl('https://www.ivi.ru/profile')}
+                    onClick={() => navigate (`/movies-website/auth/`)}
                 >
                     <div className="headerSections__svg-border">
-                        <Icons className="headerSections__svg headerSections__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
+                        { (!login) && <Icons className="headerSections__svg headerSections__svg_login" 
+                                            name='person' 
+                                            color='#fff' 
+                                            size='20' 
+                                            strokeWidth="3"/>
+                        }
+                        { (login) && <Icons className="headerSections__svg headerSections__svg_login" 
+                                            name='personFull' 
+                                            color='#fff' 
+                                            size='20' 
+                                            strokeWidth="3"/>
+                        } 
                     </div> 
                 </div>
                 

@@ -163,6 +163,9 @@
 			"help": "Help",
 			"subs": "Subscriptions",
 			"plug": "To plug",
+			"logout": "Log out",
+			"welcome": "Welocome",
+			"admin": "Administrator page",
 			"activeList": {
 				"easy": "Easy Ivi",
 				"ivi": "Ivi",
@@ -451,5 +454,9 @@
 		"password": "Password",
 		"createPassword": "Create a password",
 		"VKauth": "Sign up with VK"
+	},
+	"notFoundPage": {
+		"error": "Error",
+		"text": "The requested page doesn't exist"
 	}
 }

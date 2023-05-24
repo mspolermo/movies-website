@@ -4,6 +4,8 @@ import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from '../store';
 
 
 class ResizeObserver {
@@ -17,9 +19,10 @@ test('Footer exists test', () => {
 
     render(
         <MemoryRouter>
-            <App />     
+            <Provider store={store}> 
+                <App />    
+            </Provider> 
         </MemoryRouter>
-        
     );
 
     expect(screen.getByTestId('footer')).toBeInTheDocument();

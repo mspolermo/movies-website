@@ -43,7 +43,7 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 	}
 	return (
 		<div className="container">
-			<div className="authPage__container">
+			<div className="authPage__container" data-testid='authPage'>
 				<LoginForm />
 				<div className="authPage__googleBtn">
 					<GoogleLogin

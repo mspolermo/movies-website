@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import { MainPage } from '../Pages/MainPage/MainPage';
 import AdminPage from "../Pages/AdminPage/AdminPage";
 import { AuthPage } from '../Pages/AuthPage/AuthPage';
+import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 
 const Router = () => {
 	return (
@@ -25,7 +26,7 @@ const Router = () => {
 				<Route path={'/movies-website/film/:id'} element={<FilmPage />} />
 
 				<Route path={'/movies-website'} element={<MainPage />} />
-				<Route path={'*'} element={<MainPage />} />
+				<Route path={'*'} element={<NotFoundPage />} />
 
 				<Route path={'/movies-website/admin/'} element={<AdminPage />} />
 				<Route path={'/movies-website/auth'} element={<AuthPage />} />
