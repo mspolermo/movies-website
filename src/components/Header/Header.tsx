@@ -134,7 +134,7 @@ const Header = () => {
     };
     
     return (
-        <div className='header'>
+        <div className='header' data-testid='header'>
             <LanguageChanger />
 
             <div className="header__body">

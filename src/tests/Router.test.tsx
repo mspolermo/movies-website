@@ -38,7 +38,7 @@ describe('Router test-suite', () => {
     test('Route to Film page check', () => {
 
         render(
-            <MemoryRouter initialEntries={['/movies-website/film/0']}>
+            <MemoryRouter initialEntries={['/movies-website/film/1']}>
                 <Provider store={store}> 
                     <App />
                 </Provider>

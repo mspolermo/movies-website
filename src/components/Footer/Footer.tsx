@@ -32,7 +32,7 @@ const Footer = () => {
     };
 
     return (
-        <div className="footer">
+        <div className="footer" data-testid='footer'>
             <div className="container footer__container">
                 <div className="footer__content">
                     <div className="footer__column">

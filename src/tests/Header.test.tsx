@@ -14,7 +14,17 @@ class ResizeObserver {
 
 describe('Header test-suite', () => {
     window.ResizeObserver = ResizeObserver;
+    test('Footer exists test', () => {
 
+        render(
+            <MemoryRouter>
+                <App />     
+            </MemoryRouter>
+            
+        );
+    
+        expect(screen.getByTestId('header')).toBeInTheDocument();
+    });
     test('Link to main page check', () => {
 
         render(
