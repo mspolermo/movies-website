@@ -6,7 +6,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.23",
@@ -79,6 +78,7 @@
     "@storybook/react": "^7.0.5",
     "@storybook/react-webpack5": "^7.0.5",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/react": "^14.0.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "gh-pages": "^5.0.0",
     "prop-types": "^15.8.1",
