@@ -24,7 +24,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                         className="headerSections__logo_ivi"
                         src='https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg' 
                         alt="Логотип Иви" 
-                        onClick={() => navigate (`/movies-website/main/`)}/>
+                        onClick={() => navigate (`/movies-website/`)}/>
                 </div>
 
             
@@ -33,7 +33,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                         <ul className="headerMenu__list">
 
                             <li className="headerMenu__listItem">
-                                <a onClick={() => navigate (`/movies-website/main/`)} title="Мой Иви" className="headerMenu__link">
+                                <a onClick={() => navigate (`/movies-website/`)} title="Мой Иви" className="headerMenu__link">
                                     <p className="headerMenu__text">{t('header.myIvi')}</p>
                                 </a>
                             </li>

@@ -49,12 +49,6 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
         }
     }
 
-    useEffect( () => {
-        window.onscroll = () => { window.scroll(); };
-        //dispatch(gradeFalse());
-        
-    },[])
-
     useEffect(() => {
         switch(calledFrom) {
             case "filmPage":
@@ -62,10 +56,10 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
                 if (value) {
                     gradeBlock?.classList.remove('gradeBlock__hidden');
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
-                    window.onscroll = () => { window.scroll(0, 0); };
+                    document.body.style.overflow = 'hidden'
                 } else {
                     gradeBlock?.classList.add('gradeBlock__hidden');
-                    window.onscroll = () => { window.scroll(); };
+                    document.body.style.overflow = '';
                 }
 
                 break;

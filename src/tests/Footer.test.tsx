@@ -13,17 +13,50 @@ class ResizeObserver {
     unobserve() {}
     disconnect() {}
 }
-window.ResizeObserver = ResizeObserver;
+describe('Footer test-suite', () => {
+    window.ResizeObserver = ResizeObserver;
 
-test('Footer exists test', () => {
+    test('Footer exists test', () => {
 
-    render(
-        <MemoryRouter>
-            <Provider store={store}> 
-                <App />    
-            </Provider> 
-        </MemoryRouter>
-    );
+        render(
+            <MemoryRouter>
+                <Provider store={store}> 
+                    <App />    
+                </Provider> 
+            </MemoryRouter>
+        );
 
-    expect(screen.getByTestId('footer')).toBeInTheDocument();
+        expect(screen.getByTestId('footer')).toBeInTheDocument();
+    });
+    test('Link to main page check', () => {
+
+        render(
+            <MemoryRouter>
+                <Provider store={store}> 
+                    <App />    
+                </Provider> 
+            </MemoryRouter>
+            
+        );
+
+        const mainPageLink = screen.getByTestId('footer-mainPageLink');
+        fireEvent.click(mainPageLink);
+        expect(screen.getByTestId('mainPage')).toBeInTheDocument();
+    });
+    test('Link to movies page check',  () => {
+
+        render(
+            <MemoryRouter>
+                <Provider store={store}> 
+                    <App />    
+                </Provider> 
+            </MemoryRouter>
+            
+        );
+
+        const moviesPageLink = screen.getByTestId('footer-moviesPageLink');
+        
+        act(() => { userEvent.click(moviesPageLink) });
+        expect(screen.getByTestId('moviesPage')).toBeInTheDocument();
+    });
 });

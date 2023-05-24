@@ -127,9 +127,9 @@ const Header = () => {
         searchSection.current.classList.toggle('searchBlock__hidden');
 
         if ( e.currentTarget.className.includes('headerSections__btn-block_search')) {
-            window.onscroll = () => { window.scroll(0, 0); };
+            document.body.style.overflow = 'hidden';
         } else {
-            window.onscroll = () => { window.scroll(); };
+            document.body.style.overflow = '';
         };
     };
     
