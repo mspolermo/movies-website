@@ -25,6 +25,10 @@ import InternalPage from "./OpeningBlocks/InternalPage/InternalPage";
 import { useDispatch } from "react-redux";
 import { internalPageFalse } from "../../../store/reducers/internalPageReducer";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import BigPlayer from "./OpeningBlocks/BigPlayer/BigPlayer";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
+import SharePanel from "./OpeningBlocks/SharePanel/SharePanel";
+import { gradeFalse } from "../../../store/reducers/gradeReducer";
 
 const Film = {
     id: 0,
@@ -55,7 +59,6 @@ const Film = {
 };
 
 const FilmPage = () => {
-    //Todo - 2 кнопки, подсчет комментов через редакс, подключить хлебные крошки, наследование типов
 
     const params = useParams();
     const {t, i18n} = useTranslation();
@@ -65,22 +68,27 @@ const FilmPage = () => {
     const [film, setFilm] = useState<FilmPageProps>(Film);
     const [similarFilms, setSimilarFilms] = useState([{}]);
     const [filmName, setFilmName] = useState('');
-    const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM')
+    const [trailer, setTrailer] = useState ('https://www.youtube.com/watch?v=3krLW9Pl5HM');
+    const [genre, setGenre] = useState ('');
 
     useEffect(() => {
         fetchFilm();
         document.body.scrollTop = document.documentElement.scrollTop = 0;
+        window.onscroll = () => { window.scroll(); };
         dispatch(internalPageFalse());
+        dispatch(gradeFalse());
     }, []);
 
     useEffect(() => {
         fetchFilm();
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        window.onscroll = () => { window.scroll(); };
     }, [params]);
 
     useEffect(() => {
 
         setFilmName( LanguageHook( film.filmNameRu, film.filmNameEn, i18n.language) );
+
+        setGenre(LanguageHook( film.genres[0]?.nameRu, film.genres[0]?.nameEn, i18n.language)  )
 
         if ( (film.trailerName) && ( film.trailerUrl.includes('youtube') ) ) {
             setTrailer(film.trailerUrl);
@@ -126,18 +134,18 @@ const FilmPage = () => {
 
         setFilm(film_);
         setSimilarFilms(similarFilms_);
+        
         setIsPageLoading(false);
-
+        setGenre(data.genres[0].nameRu);
     };
 
-
     return (
-        <div className="film">
+        <div className="film" data-testid='filmPage'>
             {isPageLoading 
             ? <Loader />
             :
             <div className="container film__container">
-
+                <Breadcrumbs film={true} filters={genre}/>
                 <div className="film__body">
 
                     <div className="film__tablet">
@@ -186,14 +194,14 @@ const FilmPage = () => {
                                 />
                             </div>
 
-                            <CardsBlock ratingKp={film.ratingKp} creators={film.persons}/>
+                            <CardsBlock ratingKp={film.ratingKp} persons={film.persons}/>
                             
                             <div className="film__slogan">
                                 <SloganBlock slogan={film?.slogan} />
                             </div>
 
                             <DescriptionBlock description={film?.description} filmName={filmName}/>
-                            <ReitingBlock ratingKp={film?.ratingKp} votesKP={film?.votesKp}/>
+                            <ReitingBlock ratingKp={film?.ratingKp} votesKp={film?.votesKp}/>
                             <AdditionalInfoBlock/>
 
                         </div>
@@ -210,10 +218,12 @@ const FilmPage = () => {
                 </div>
 
                 <FilmsCompilation variant="similarFilms" similarFilms={similarFilms} title={filmName} />
-                <CreatorsBlock creators={film.persons}/>
+                <CreatorsBlock persons={film.persons}/>
                 <CommentsBlock filmName={filmName} comments={film.comments}/>
                 <WatchesBlock filmName={filmName} bigPictureUrl={film.bigPictureUrl} smallPictureUrl={film.smallPictureUrl} />
             
+                <BigPlayer trailer={trailer} />
+                <SharePanel filmName={filmName} year={film.year} smallPictureUrl={film.smallPictureUrl} movieLength={film.movieLength}/>
                 <GradeBlock calledFrom={'filmPage'}/>
                 <InternalPage film={film}/>
             </div>

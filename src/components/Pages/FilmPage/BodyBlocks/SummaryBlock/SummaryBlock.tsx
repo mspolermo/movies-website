@@ -75,7 +75,7 @@ const SummaryBlock:FC<SummaryBlockProps> = ({filmName, year, genres, movieLength
     
     return (
 
-        <div className="summaryBlock">
+        <div className="summaryBlock"  data-testid='summaryBlock'>
 
             <h2 className="summaryBlock__heading">{filmName} ({type} {year})</h2>
             

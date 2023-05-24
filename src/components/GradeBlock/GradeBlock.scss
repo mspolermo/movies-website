@@ -1,18 +1,10 @@
 @import '/src/styles/variables.scss';
 
 .gradeBlock {
-    position:absolute;
+    @extend %modalWindowPreset; 
     width:100vw;
     height:100vh;
-    top: 0;
-    left: 0;
-    z-index: 4;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
     
-    background:rgba(0,0,0,.9);
-
     &__hidden {
         display: none;
     }
@@ -38,12 +30,7 @@
     }
     &__text {
         margin-top: 12px;
-
-        color: #a5a1b2;
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 400;
-        font-style: normal;
+        @extend %standartText; 
     }
     &__optionSelector{
         margin-top: 24px;
@@ -152,6 +139,11 @@
         &__option-caption{
             font-size: 18px;
             line-height: 24px;
+        }
+        &__complete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

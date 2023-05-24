@@ -29,13 +29,20 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     const navigate = useNavigate();
 
     function goToPage(value: Result) {
-        if (value.rowType === 'films') {
-            (navigate(`/movies-website/film/${value.key}`))
-            // setActive(false)
+        searchSection.current.classList.add('searchBlock__hidden');
+        document.body.style.overflow = '';
+
+        setSearchQuery('');
+        setSearchResult([]);
+
+        if(value.rowType === 'films'){
+            return (navigate(`/movies-website/film/${value.key}`))
         } else {
             (navigate(`/movies-website/person/${value.key}`))
             // setActive(false)
         }
+
+
     }
 
     useEffect(() => {
@@ -92,19 +99,19 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
     }
 
     return (
-        <div className="searchBlock searchBlock__hidden" ref={searchSection}>
+        <div className="searchBlock searchBlock__hidden" ref={searchSection} data-testid='searchPage'>
             <div className="searchBlock__close" onClick={toggleSearchSection}>
                 <Icons className="" name="cross" size="30"/>
             </div>
             <div className="searchBlock__modal">
-                <h2 className="searchBlock__heading">Поиск</h2>
+                <h2 className="searchBlock__heading">{t('header.search')}</h2>
                 <MyInput result={searchResults}
-                         renderResult={renderResult}
-                         placeholder={'Фильмы, персоны, жанры'}
-                         cl={false}
-                         searchQuery={searchQuery}
-                         setSearchQuery={setSearchQuery}
-                         search={true}
+                        renderResult={renderResult}
+                        placeholder={t('header.searchPlaceholder')}
+                        cl={false}
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                        search={true}
                 />
             </div>
         </div>

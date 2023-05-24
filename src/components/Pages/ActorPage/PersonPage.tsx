@@ -74,7 +74,7 @@ const PersonPage = () => {
     }
 
     return (
-        <div className="actorPage">
+        <div className="actorPage" data-testid='personPage'>
             <div className="actorPage__container container">
                 <div className="actorPage__content">
 

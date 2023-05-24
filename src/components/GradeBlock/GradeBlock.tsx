@@ -49,12 +49,6 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
         }
     }
 
-    useEffect( () => {
-        window.onscroll = () => { window.scroll(); };
-        //dispatch(gradeFalse());
-        
-    },[])
-
     useEffect(() => {
         switch(calledFrom) {
             case "filmPage":
@@ -62,10 +56,10 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
                 if (value) {
                     gradeBlock?.classList.remove('gradeBlock__hidden');
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
-                    window.onscroll = () => { window.scroll(0, 0); };
+                    document.body.style.overflow = 'hidden'
                 } else {
                     gradeBlock?.classList.add('gradeBlock__hidden');
-                    window.onscroll = () => { window.scroll(); };
+                    document.body.style.overflow = '';
                 }
 
                 break;
@@ -107,7 +101,9 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
             </div>
 
             <div className="gradeBlock__modal gradeBlock__modal_hidden" id='complete-block'>
-                <Icons className="gradeBlock__svg gradeBlock__svg_complete" name="complete" size="68" color="green"/> 
+                <div className="gradeBlock__complete">
+                    <Icons className="gradeBlock__svg gradeBlock__svg_complete" name="complete" size="68" color="green"/> 
+                </div>
                 <h2 className="gradeBlock__heading">{t('filmPage.gradeBlock.get')}</h2>
                 <p className="gradeBlock__text">{t('filmPage.gradeBlock.thank')}</p>
             </div>

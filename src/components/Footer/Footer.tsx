@@ -32,7 +32,7 @@ const Footer = () => {
     };
 
     return (
-        <div className="footer">
+        <div className="footer" data-testid='footer'>
             <div className="container footer__container">
                 <div className="footer__content">
                     <div className="footer__column">
@@ -70,14 +70,19 @@ const Footer = () => {
                         <h3 className="footer__heading">{t('footer.sections')}</h3>
                         <ul className="footer__list">
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/" className="footer__link">{t('footer.myIvi')}</a>
+                                <a className="footer__link"
+                                    data-testid='footer-mainPageLink'
+                                    onClick={() => navigate (`/movies-website/`)}
+                                >
+                                    {t('footer.myIvi')}</a>
                             </li>
                             <li className="footer__item">
                                 <a href="https://www.ivi.ru/new" className="footer__link">{t('footer.new')}</a>
                             </li>
                             <li className="footer__item">
                                 <div className="footer__link"
-                                     onClick={() => navigate('/movies-website/films/')}
+                                    data-testid='footer-moviesPageLink'
+                                    onClick={() => navigate('/movies-website/films/')}
                                 >
                                     {t('footer.films')}
                                 </div>
@@ -86,7 +91,11 @@ const Footer = () => {
                                 <a href="https://www.ivi.ru/series" className="footer__link">{t('footer.series')}</a>
                             </li>
                             <li className="footer__item">
-                                <a href="https://www.ivi.ru/animation" className="footer__link">{t('footer.mults')}</a>
+                                <a className="footer__link"
+                                    onClick={() => navigate (`/movies-website/films/genre/мультфильм`)}
+                                >
+                                    {t('footer.mults')}
+                                </a>
                             </li>
                             <li className="footer__item">
                                 <a href="https://www.ivi.ru/tvplus" className="footer__link">TV+</a>

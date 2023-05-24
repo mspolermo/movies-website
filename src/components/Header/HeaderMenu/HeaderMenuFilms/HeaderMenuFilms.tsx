@@ -46,7 +46,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
         const filtres_ = {
             genresFirst: response.data.genres.slice (0 , response.data.genres.length / 2 ),
             genresSecond: response.data.genres.slice ( (response.data.genres.length / 2), response.data.genres.length ),
-            years: response.data.years.reverse().slice( 2 , 6 )
+            years: response.data.years.reverse().slice( 1 , 6 )
         };
 
         setAllFiltres(filtres_); 
@@ -57,7 +57,7 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
     }, [])
     
     return(
-        <div className="headerMenuFilms" id={id}>
+        <div className="headerMenuFilms" id={id} data-testid='headerMoviesBlock'>
 
             <div className="headerMenuFilms__column">
 
