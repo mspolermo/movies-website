@@ -99,7 +99,6 @@ const PersonPage = () => {
                         </div>
                     </div>
 
-
                 </div>
             </div>
         </div>

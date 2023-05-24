@@ -246,7 +246,9 @@ const MoviesPage = () => {
                         <Sorting options={sortOptions} sortValue={sortValue} setSortValue={setSortValue}/>
                     </div>
                     <div className="MoviesPage__filters">
-                        <Filters activeFilters={activeFilters} allFilters={allFilters} selectedFilters={selectedFilters}
+                        <Filters activeFilters={activeFilters}
+                                 allFilters={allFilters}
+                                 selectedFilters={selectedFilters}
                                  setSelectedFilters={setSelectedFilters}/>
                     </div>
                     <div className="MoviesPage__listMovies listMovies">
