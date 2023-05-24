@@ -1,58 +1,19 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import './MainPage.scss'
-import { Carousel } from "../../Carousel/Carousel";
 import Button from "../../UI/Buttons/Button/Button";
-import { TopWeekFilmCard } from "../../TopWeekCard/TopWeekFilmCard";
 import { useTranslation } from "react-i18next";
-import { FilmBanner } from "../../filmBanner/FilmBanner";
 import { FilmsCompilation } from "../../FilmsCompilation/FilmsCompilation";
+import { PromoSliderBlock } from "./PromoSliderBlock/PromoSliderBlock";
+import { TopWeekFilmsBlock } from "./TopWeekFilmsBlock/TopWeekFilmsBlock";
+import { ClauseBlock } from "./ClauseBlock/ClauseBlock";
 
-
-interface IMainPageProps { };
-
-export const MainPage: FC<IMainPageProps> = (props) => {
+export const MainPage: FC = () => {
 
 	const { t, i18n } = useTranslation([]);
 
-	const [isClauseSectionTruncated, setIsClauseSectionTruncated] = useState<boolean>(false)
-
 	return (
 		<div className="home" data-testid='mainPage'>
-			<div className="home__promoSlider promoSlider">
-				<Carousel variant='main'>
-					<FilmBanner
-						description="Столичные богачи учатся выживать в деревне. Продолжение хитового сериала с россыпью звёзд"
-						img="https://thumbs.dfs.ivi.ru/storage28/contents/7/3/311c6a4093803c950d1153b674e3d7.jpg/1216x524/?q=85"
-						imgSm="https://thumbs.dfs.ivi.ru/storage33/contents/8/5/f1efb4f8b074d5275e5414569ca667.jpg/1216x1358/?q=60"
-						logo="https://thumbs.dfs.ivi.ru/storage33/contents/c/6/ebb1f750328adf266b9d867e6ce2d2.png/x200/"
-						id="71"
-					/>
-
-					<FilmBanner
-						description="Бывший военный готовит план мести за убитого бандитами брата. Боевик с Владимиром Епифанцевым"
-						img="https://thumbs.dfs.ivi.ru/storage3/contents/5/e/57e62a9708f79edf703813a3f48eaa.jpg/1216x524/?q=60"
-						imgSm="https://thumbs.dfs.ivi.ru/storage31/contents/8/4/c0b052a572a98100a246e2a9c12261.jpg/1216x1358/?q=60"
-						logo="https://thumbs.dfs.ivi.ru/storage3/contents/b/4/53b2eb53a78e7761c394e17c52069f.png/x200/"
-						id="103"
-					/>
-
-					<FilmBanner
-						description="Экранизация подросткового бестселлера о страстной любви отличницы и бойца без правил"
-						img="https://thumbs.dfs.ivi.ru/storage2/contents/9/1/4985aa6b1bea7a90e4ecd766a3871c.jpg/1216x524/?q=60"
-						imgSm="https://thumbs.dfs.ivi.ru/storage2/contents/d/1/bdfc4cc20a287961b5d997fb703c74.jpg/1216x1358/?q=60"
-						logo="https://thumbs.dfs.ivi.ru/storage4/contents/f/1/3aa0a1cd2eee0614ac0bc92c48b135.png/x200/"
-						id="6"
-					/>
-
-					<FilmBanner
-						description="За кулисами эпохального процесса завязывается опасный заговор. Историческая драма Николая Лебедева"
-						img="https://thumbs.dfs.ivi.ru/storage5/contents/f/6/e9a5c19056bd6b9826c35733be0a5a.jpg/1216x524/?q=60"
-						imgSm="https://thumbs.dfs.ivi.ru/storage26/contents/a/4/96e659bef3541a13920d01054381ff.jpg/1216x1358/?q=60"
-						logo="https://thumbs.dfs.ivi.ru/storage6/contents/4/5/f96ec81818f51fef8f269df712d488.png/x200/"
-						id="26"
-					/>
-				</Carousel>
-			</div>
+			<PromoSliderBlock />
 			<div className="container">
 				<div className="home__teaser-list">
 					<div className="home__teaser-list_btn">
@@ -77,136 +38,12 @@ export const MainPage: FC<IMainPageProps> = (props) => {
 						/>
 					</div>
 				</div>
-				<section className="pageSection home__pageSection">
-					<div className="pageSection__container">
-						<div className="gallery">
-							<div className="gallery__blockHeader">
-								<img src="	https://solea-parent.dfs.ivi.ru/picture/bypass/top10.svg" alt="" /><span>{t('mainPage.topCompilation')}</span>
-							</div>
-							<Carousel variant="cards">
-								<TopWeekFilmCard
-									url='https://thumbs.dfs.ivi.ru/storage26/contents/9/8/b2c89d97f81efe2e16746be8d57cb5.jpg/304x620//?q=85'
-									titleUrl='https://thumbs.dfs.ivi.ru/storage15/contents/9/8/b62bd137fb90981fbd639a4f85cf8d.png/x200/?q=85'
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number1.svg'
-									id='28'
-								/>
-								<TopWeekFilmCard
-									url='https://thumbs.dfs.ivi.ru/storage28/contents/5/7/60a7c6ae7f39f90163a3e1b72a8173.jpg/304x620//?q=85'
-									titleUrl='https://thumbs.dfs.ivi.ru/storage33/contents/c/6/ebb1f750328adf266b9d867e6ce2d2.png/x200/?q=85'
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number2.svg'
-									id='71'
-								/>
-								<TopWeekFilmCard
-									url='https://thumbs.dfs.ivi.ru/storage39/contents/d/c/69170dd1e57bb66ba83bcd5d17fc26.jpg/304x620//?q=85'
-									titleUrl='https://thumbs.dfs.ivi.ru/storage6/contents/4/5/f96ec81818f51fef8f269df712d488.png/x200/?q=85'
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number3.svg'
-									id='26'
-								/>
-								<TopWeekFilmCard
-									url='	https://st.kp.yandex.net/images/film_iphone/iphone360_4700336.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number4.svg'
-									id='6'
-								/>
-								<TopWeekFilmCard
-									url='https://st.kp.yandex.net/images/film_iphone/iphone360_678233.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number5.svg'
-									id='103'
-								/>
-								<TopWeekFilmCard
-									url='https://st.kp.yandex.net/images/film_iphone/iphone360_1318972.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number6.svg'
-									id='56'
-								/>
-								<TopWeekFilmCard
-									url='https://st.kp.yandex.net/images/film_iphone/iphone360_370.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number7.svg'
-									id='122'
-								/>
-								<TopWeekFilmCard
-									url='https://st.kp.yandex.net/images/film_iphone/iphone360_462682.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number8.svg'
-									id='86'
-								/>
-								<TopWeekFilmCard
-									url='https://st.kp.yandex.net/images/film_iphone/iphone360_535341.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number9.svg'
-									id='114'
-								/>
-								<TopWeekFilmCard
-									url='https://st.kp.yandex.net/images/film_iphone/iphone360_301.jpg'
-									titleUrl=''
-									placeUrl='https://solea-parent.dfs.ivi.ru/picture/bypass/number10.svg'
-									id='250'
-								/>
-							</Carousel>
-						</div>
-					</div>
-				</section>
-				<section className="pageSection home__pageSection">
-					<div className="pageSection__container">
-						<div className="clause home__clause">
-							<div className="clause__header">
-								<h2 className="clause__title">
-									{t('mainPage.clauseBlock.title')}
-								</h2>
-							</div>
-							<div className={`clause__text ${!isClauseSectionTruncated && 'hidden-children'}`} >
-								<p>
-									{t('mainPage.clauseBlock.paragraph_1')}
-								</p>
-								<p>
-									{t('mainPage.clauseBlock.paragraph_2')}
-								</p>
-								<p>
-									{t('mainPage.clauseBlock.paragraph_3')}
-								</p>
-								<ol>
-									<li>
-										{t('mainPage.clauseBlock.listEl_1')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_2')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_3')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_4')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_5')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_6')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_7')}
-									</li>
-									<li>
-										{t('mainPage.clauseBlock.listEl_8')}
-									</li>
-								</ol>
-								<p>
-									{t('mainPage.clauseBlock.paragraph_4')}
-								</p>
-							</div>
-							<span
-								className="clause__toggle"
-								onClick={() => setIsClauseSectionTruncated(prev => !prev)}
-							>
-								{isClauseSectionTruncated ? t('mainPage.clauseBlock.toggleHide') : t('mainPage.clauseBlock.toggleShow')}
-							</span>
-						</div>
-					</div>
-				</section>
+				<TopWeekFilmsBlock />
+
+				<ClauseBlock />
+
 				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.militants')} genre="боевик" />
-				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.dram')} genre="драма" />
+				<FilmsCompilation variant="genreCompilation" title={t('header.menuFilms.comedy')} genre="комедия" />
 			</div>
 
 		</div>
