@@ -35,12 +35,10 @@ export interface RegistrationResponse {
 
 export interface checkTokenResponse {
 	message?: string
-	user: {
-		email: string
-		id: number
-		exp: number
-		iat: number
-	}
+	email: string
+	id: number
+	exp: number
+	iat: number
 	roles: [
 		{
 			value: string

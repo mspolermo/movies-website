@@ -31,23 +31,27 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 			<div className="authPage__title">
 				<h1>{isRegistration ? t('authPage.signUp') : t('authPage.signIn')}</h1>
 			</div>
+			<div className="authPage__input">
+				<MyInput
+					search={false}
+					placeholder="Email"
+					cl={false}
+					result={[]}
+					searchQuery={email}
+					setSearchQuery={setEmail}
+					renderResult={Button} />
+			</div>
+			<div className="authPage__input">
+				<MyInput
+					search={false}
+					placeholder={isRegistration ? t('authPage.createPassword') : t('authPage.password')}
+					cl={false}
+					result={[]}
+					searchQuery={password}
+					setSearchQuery={setPassword}
+					renderResult={Button} />
+			</div>
 
-			<MyInput
-				search={false}
-				placeholder="Email"
-				cl={false}
-				result={[]}
-				searchQuery={email}
-				setSearchQuery={setEmail}
-				renderResult={Button} />
-			<MyInput
-				search={false}
-				placeholder={isRegistration ? t('authPage.createPassword') : t('authPage.password')}
-				cl={false}
-				result={[]}
-				searchQuery={password}
-				setSearchQuery={setPassword}
-				renderResult={Button} />
 			<div className="authPage__error">
 				{error}
 			</div>
