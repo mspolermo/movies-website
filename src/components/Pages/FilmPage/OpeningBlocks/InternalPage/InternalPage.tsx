@@ -55,7 +55,13 @@ const InternalPage:FC<InternalPageProps> = ({film}) => {
     function closeInternalPage () {
         dispatch(internalPageFalse());
     };
+//Подсчет количества комментариев
 
+const [commentCounter, setCommentCounter] = useState(film.comments.length);
+
+function onCommentsCountChange (currentCommentsCount:number) {
+    setCommentCounter(currentCommentsCount)
+}
 
     return (
         <div  className="internalPage internalPage__hidden" id='internal-page'>
@@ -69,13 +75,13 @@ const InternalPage:FC<InternalPageProps> = ({film}) => {
 
                 <div className="internalPage__body">
                     <h3 className="internalPage__heading">{filmName} ({filmType} {film.year})</h3>
-                    <IpNavPanel comments={film.comments} trailer={film.trailerUrl}/>
+                    <IpNavPanel commentsCounter={commentCounter} trailer={film.trailerUrl}/>
 
 
                     {(allCreatorsBlockStatus) && <AllCreatorsBlock persons={film.persons}/>}
                     {(factsBlockStatus) && <FactsBlock fact={film.fact}/>}
                     {(treilersBlockStatus) && <TreilersBlock trailer={film.trailerUrl}/> }
-                    {(commentsCreatingBlockStatus) && <CommentsCreatingBlock filmId={film.id}/>}
+                    {(commentsCreatingBlockStatus) && <CommentsCreatingBlock filmId={film.id} onCommentsCountChange={onCommentsCountChange}/>}
                     
                 </div>
 

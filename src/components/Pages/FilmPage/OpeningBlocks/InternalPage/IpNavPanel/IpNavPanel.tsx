@@ -10,11 +10,10 @@ import { factsBlockFalse, factsBlockTrue } from "../../../../../../store/reducer
 import { treilersBlockFalse, treilersBlockTrue } from "../../../../../../store/reducers/treilersBlockReducer";
 import { useTypedSelector } from "../../../../../../hooks/useTypedSelector";
 
-const IpNavPanel:FC<IpNavPanelProps> = ({comments, trailer}) => {
+const IpNavPanel:FC<IpNavPanelProps> = ({commentsCounter, trailer}) => {
     const {t, i18n} = useTranslation();
     const dispatch = useDispatch();
 
-    const [commentCounter, setCommentCounter] = useState(0);
     const [trailerCounter, setTrailerCounter] = useState(0);
 
     const {internalPageBlockStatus} = useTypedSelector( state => state.internalPage);
@@ -69,10 +68,6 @@ const IpNavPanel:FC<IpNavPanelProps> = ({comments, trailer}) => {
             AllCommentsRef.current.classList.add('iPnavPanel__item_active');
         };
 
-        if (comments.length > 0) {
-            setCommentCounter(comments.length)
-        };
-
         if (trailer) {
             setTrailerCounter(1)
         };
@@ -89,7 +84,7 @@ const IpNavPanel:FC<IpNavPanelProps> = ({comments, trailer}) => {
 
                 <li className="iPnavPanel__item" onClick={openBlock} ref={AllCommentsRef}>
                     <p className="iPnavPanel__text" >{t('internalPage.iPnavPanel.reviews')}</p>
-                    <p className="iPnavPanel__counter">{commentCounter}</p>
+                    <p className="iPnavPanel__counter">{commentsCounter}</p>
                 </li>
 
                 <li className="iPnavPanel__item " onClick={openBlock} ref={FactsRef}>

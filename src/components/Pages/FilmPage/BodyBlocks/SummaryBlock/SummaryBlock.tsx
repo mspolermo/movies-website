@@ -111,7 +111,7 @@ const SummaryBlock:FC<SummaryBlockProps> = ({filmName, year, genres, movieLength
                             size='4' 
                             color="#b0afb1"
                         />
-                        {LanguageHook (genre.nameRu, genre.nameEn, i18n.language)} 
+                        {LanguageHook (genre.nameRu, genre.nameEn, i18n.language)}     
                     </span>)}
             </p>
 

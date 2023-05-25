@@ -75,6 +75,12 @@ const SharePanel:FC<SharePanelProps> = ({smallPictureUrl, filmName, year, movieL
                         <h5 className="sharePanel__heding">{filmName}</h5>
                         <div className="sharePanel__bottom">
                             <span className="sharePanel__text">{year} </span>
+                            <Icons 
+                                className="sharePanel__svg sharePanel__svg_circle-flooded"
+                                name="circle-flooded" 
+                                size='4' 
+                                color="#b0afb1"
+                            />
                             <span className="sharePanel__text">{length}</span>
                         </div>
                     </div>

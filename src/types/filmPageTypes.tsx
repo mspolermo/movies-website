@@ -74,7 +74,7 @@ export interface InternalPageProps {
     film: FilmPageProps
 };
 export interface IpNavPanelProps {
-    comments: IComment[];
+    commentsCounter: number;
     trailer: string | null;
 };
 export interface ShortInfoBlockProps {
@@ -86,6 +86,7 @@ export interface AllCreatorsBlockProps {
 };
 export interface CommentsCreatingBlockProps {
     filmId: number;
+    onCommentsCountChange: (currentCommentsCount: number) => void;
 };
 export type CommentsStructure = [
     [ parent: IComment,

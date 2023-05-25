@@ -12,9 +12,11 @@ import Review from "./Review/Review";
 import MyInput from "../../../../../../UI/Inputs/MyInput/MyInput";
 import { useTypedSelector } from "../../../../../../../hooks/useTypedSelector";
 
-const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
+const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId, onCommentsCountChange}) => {
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
+
+    //Создание отзывов и комментариев
 
     const login = useTypedSelector(state => state.auth.isAuth);
     const mail = useTypedSelector(state => state.auth.user.email);
@@ -33,17 +35,20 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     async function fetchComments() {
         const response = await axios.get(`http://localhost:5000/comments/${filmId}`);
         setSortedComments(response.data.reverse())
+        onCommentsCountChange(response.data.reverse().length)
     };
 
     function openCreateReview (e:React.MouseEvent<HTMLDivElement>) {
+        if (!login) {
+            navigate (`/movies-website/auth/`);
+            return;
+        };
+        
         e.currentTarget.parentElement?.parentElement?.children[1].classList.remove('commentsCreatingBlock__review-form_hidden');
         e.currentTarget.parentElement?.classList.add('commentsCreatingBlock__btn_hidden');
     };
     async function createReview (e:React.MouseEvent<HTMLDivElement>) {
-        if (!login) {
-            navigate (`/movies-website/auth/`);
-            return;
-        }
+        
         if ((headReview == '') || (bodyReview == '') ) {
             alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
@@ -69,14 +74,16 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
     };
 
     function openCreateComment (e:React.MouseEvent<HTMLDivElement>) {
+         if (!login) {
+            navigate (`/movies-website/auth/`);
+            return;
+        };
+
         setParentId(Number(e.currentTarget.parentElement?.lastChild?.textContent));
         e.currentTarget.parentElement?.parentElement?.parentElement?.parentElement?.children[1].classList.toggle('commentsCreatingBlock__comment-form_hidden');
     }
     async function createComment (e:React.MouseEvent<HTMLDivElement>) {
-        if (!login) {
-            navigate (`/movies-website/auth/`);
-            return;
-        };
+
         if (textComment == '') {
             alert(t('internalPage.commentsCreatingBlock.alert'));
             return;
@@ -99,7 +106,7 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
         setTextComment('')
 
     };
-
+    
     return (
         <div className="commentsCreatingBlock">
             
