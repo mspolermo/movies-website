@@ -29,10 +29,10 @@ const BigPlayer:FC <BigPlayerProps> = ({trailer}) => {
         if (bigPlayerStatus) {
             bigPlayer?.classList.remove('bigPlayer__hidden');
             document.body.scrollTop = document.documentElement.scrollTop = 0;
-            window.onscroll = () => { window.scroll(0, 0); };
+            document.body.style.overflow = 'hidden'
         } else {
             bigPlayer?.classList.add('bigPlayer__hidden');
-            window.onscroll = () => { window.scroll(); };
+            document.body.style.overflow = ''
         }
         
     },[bigPlayerStatus])

@@ -63,8 +63,13 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
     };
 
     useEffect( () => {
-        passiveBlock.current.classList.toggle('headerMenuLogin__hidden')
-        activeBlock.current.classList.toggle('headerMenuLogin__hidden')
+        if (blockStatus) {
+            passiveBlock.current.classList.add('headerMenuLogin__hidden')
+            activeBlock.current.classList.remove('headerMenuLogin__hidden')  
+        } else {
+            passiveBlock.current.classList.remove('headerMenuLogin__hidden')
+            activeBlock.current.classList.add('headerMenuLogin__hidden')  
+        }
     },[blockStatus])
 
 

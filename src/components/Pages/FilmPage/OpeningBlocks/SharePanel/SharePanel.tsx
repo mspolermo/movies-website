@@ -57,10 +57,10 @@ const SharePanel:FC<SharePanelProps> = ({smallPictureUrl, filmName, year, movieL
         if (sharePanelStatus) {
             sharePanel?.classList.remove('sharePanel__hidden');
             document.body.scrollTop = document.documentElement.scrollTop = 0;
-            window.onscroll = () => { window.scroll(0, 0); };
+            document.body.style.overflow = 'hidden';
         } else {
             sharePanel?.classList.add('sharePanel__hidden');
-            window.onscroll = () => { window.scroll(); };
+            document.body.style.overflow = '';
         }
         
     },[sharePanelStatus])

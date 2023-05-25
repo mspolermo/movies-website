@@ -58,17 +58,6 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
             nickName: nickName
         };
 
-        // const responseAuth = await axios.post(`http://localhost:5000/login`,
-        // {
-        //     "email": "admin@admin.com",
-        //     "password": "1234567891011"
-        // }
-        // );
-
-        // await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
-        //     headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
-        // });
-        //$api.post(`http://localhost:5000/${filmId}`, { bodyParameters })
         await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
@@ -96,21 +85,11 @@ const CommentsCreatingBlock:FC<CommentsCreatingBlockProps> = ({filmId}) => {
         e.currentTarget.parentElement?.parentElement?.classList.add('commentsCreatingBlock__comment-form_hidden')
 
         let bodyParameters = {
-            "value": textComment,
-            "parentId": parentId,
+            header: 'comment',
+            value: textComment,
+            parentId: parentId,
             nickName: nickName
         };
-
-        // const responseAuth = await axios.post(`http://localhost:5000/login`,
-        // {
-        //     "email": "admin@admin.com",
-        //     "password": "1234567891011"
-        // }
-        // );
-
-        // const sendRewiev = await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
-        //     headers: { Authorization: `Bearer ${responseAuth.data.token['token']}` }
-        // });
 
         await axios.post(`http://localhost:5000/${filmId}`, bodyParameters, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

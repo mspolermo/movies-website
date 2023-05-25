@@ -28,6 +28,7 @@ import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 import BigPlayer from "./OpeningBlocks/BigPlayer/BigPlayer";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import SharePanel from "./OpeningBlocks/SharePanel/SharePanel";
+import { gradeFalse } from "../../../store/reducers/gradeReducer";
 
 const Film = {
     id: 0,
@@ -73,12 +74,14 @@ const FilmPage = () => {
     useEffect(() => {
         fetchFilm();
         document.body.scrollTop = document.documentElement.scrollTop = 0;
+        window.onscroll = () => { window.scroll(); };
         dispatch(internalPageFalse());
+        dispatch(gradeFalse());
     }, []);
 
     useEffect(() => {
         fetchFilm();
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        window.onscroll = () => { window.scroll(); };
     }, [params]);
 
     useEffect(() => {
