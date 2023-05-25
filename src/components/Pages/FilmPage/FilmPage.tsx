@@ -139,6 +139,14 @@ const FilmPage = () => {
         setGenre(data.genres[0].nameRu);
     };
 
+    // Подзагрузка комментов при закрытии internalPage
+    const {internalPageBlockStatus} = useTypedSelector( state => state.internalPage)
+
+    useEffect(() => {
+        if (!internalPageBlockStatus) {
+            fetchFilm();    
+        }
+    }, [internalPageBlockStatus]);
     return (
         <div className="film" data-testid='filmPage'>
             {isPageLoading 

@@ -21,7 +21,7 @@
         border-radius: 20px;
     }
     &__head{
-        padding: 0 24px 16px;
+        padding: 10px 24px 16px;
         display: flex;
         position: relative;
         border-bottom: 1px solid $splitLineColor;
@@ -49,6 +49,8 @@
         color: $headingColor;
     }
     &__bottom{
+        display: flex;
+        align-items: center;
     }
     &__text{
         margin-top: 4px;
@@ -57,7 +59,7 @@
     &__close {
         padding: 3px 5px 3px 4px;
         position: absolute;
-        top: -8px;
+        top: -10px;
         right: 10px;
         border-radius: 50%;
         background-color: $defaultIconColor;
@@ -67,7 +69,7 @@
         }
     }
     &__body{
-        padding: 16px 24px 0;
+        padding: 16px 24px 10px;
     }
     &__part{
         &_center {
@@ -96,6 +98,13 @@
     }
     &__btnTitle{
         @extend %standartText;
+    }
+    &__svg{
+        &_circle-flooded{
+            transform: translateY(3px);
+            margin: 6px;
+        }
+        
     }
 }
 
