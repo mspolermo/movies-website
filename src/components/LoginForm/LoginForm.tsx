@@ -35,7 +35,7 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 			<MyInput
 				search={false}
 				placeholder="Email"
-				cl={true}
+				cl={false}
 				result={[]}
 				searchQuery={email}
 				setSearchQuery={setEmail}

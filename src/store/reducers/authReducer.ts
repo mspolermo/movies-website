@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import AuthService from "../../services/AuthService"
-import { IUser } from "../../models/IUser"
+import AuthService from "../../hooks/utils/services/AuthService"
+import { IUser } from "../../types/models/IUser"
 
 type authState = {
 	user: IUser
