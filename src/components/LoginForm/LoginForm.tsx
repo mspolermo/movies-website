@@ -24,9 +24,6 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 	const error = useTypedSelector(state => state.auth.error)
 	const isAuth = useTypedSelector(state => state.auth.isAuth)
 
-	// useEffect(() => {
-	// 	console.log(isAuth)
-	// }, [isAuth])
 
 
 	return (
