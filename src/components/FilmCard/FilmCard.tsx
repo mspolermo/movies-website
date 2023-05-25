@@ -33,7 +33,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
                          onClick={() => onClick(film)}
                     >
                         <div className="filmcard__img">
-                            <img
+                            <img data-testid='film-card-img'
                                 src={film.poster ? film.poster : poster}
                                 alt=""/>
                             <div className="filmcard__img_background"></div>
@@ -42,7 +42,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
                     <div className='filmcard__properties'>
                         <div className="filmcard__icons">
 
-                            <div
+                            <div data-testid='film-card-favorites'
                                 data-title={t('filmCard.data-title.watch')}
                                 className="filmcard__icons_style"
                                 onClick={() => setFavorites(prev => !prev)}>
@@ -54,7 +54,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
                             </div>
 
                             {icons &&
-                                <div>
+                                <div data-testid='icons'>
                                     <div className="filmcard__icons_style"
                                          data-title={t('filmCard.data-title.similar')}
                                     >
@@ -78,7 +78,8 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
                             </div>}
 
                         </div>
-                        <div className="filmcard__properties_info">
+                        <div data-testid='film-card-info'
+                             className="filmcard__properties_info">
                             <div className="filmcard__properties_rating">
                                 <div className="filmcard__properties_bigRating">{ratingArr[0] + ','}</div>
                                 <div className="filmcard__properties_smallRating">{ratingArr[1]}</div>
