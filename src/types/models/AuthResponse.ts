@@ -22,6 +22,11 @@ export interface RegistrationResponse {
 		password: string
 		updatedAt: string
 		createdAt: string
+		roles: [
+			{
+				value: string
+			}
+		]
 	},
 	token: {
 		token: string
@@ -29,9 +34,15 @@ export interface RegistrationResponse {
 }
 
 export interface checkTokenResponse {
-	email: string
 	message?: string
+	email: string
+	id: number
 	exp: number
 	iat: number
-	id: number
+	roles: [
+		{
+			value: string
+		}
+	]
+
 }

@@ -19,7 +19,7 @@
         }
     }
     &__link{
-        @include hover-colorAnim ($activeColor, $textColor)
+        @include hover-colorAnim ($activeColor, $textColor);
     }
     &__additional {
         margin: 0 auto;

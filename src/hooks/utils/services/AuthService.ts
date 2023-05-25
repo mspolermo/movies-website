@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import $api from "../http";
-import { LoginResponse, RegistrationResponse, checkTokenResponse } from "../models/AuthResponse";
+import { LoginResponse, RegistrationResponse, checkTokenResponse } from "../../../types/models/AuthResponse";
 
 export default class AuthService {
 	static async login(email: string, password: string): Promise<AxiosResponse<LoginResponse>> {

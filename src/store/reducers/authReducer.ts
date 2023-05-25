@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import AuthService from "../../services/AuthService"
-import { IUser } from "../../models/IUser"
+import AuthService from "../../hooks/utils/services/AuthService"
+import { IUser } from "../../types/models/IUser"
 
 type authState = {
 	user: IUser
@@ -28,8 +28,8 @@ export const registration = createAsyncThunk(
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message)
-			return rejectWithValue(error.response.data.message[0])
+			console.log(error.response.data[0])
+			return rejectWithValue(error.response.data[0])
 		}
 	}
 )
@@ -43,8 +43,8 @@ export const login = createAsyncThunk(
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message[0])
-			return rejectWithValue(error.response.data.message[0])
+			console.log(error.response.data[0])
+			return rejectWithValue(error.response.data[0])
 		}
 	}
 )
@@ -54,12 +54,12 @@ export const registrationWithOauth = createAsyncThunk(
 	async function (email: string, { rejectWithValue }) {
 		try {
 			const response = await AuthService.loginWithOauth(email)
+			console.log('oauth')
 			console.log(response)
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message)
-			return rejectWithValue(error.response.data.message[0])
+			return rejectWithValue(error.response.data[0])
 		}
 	}
 )
@@ -116,9 +116,14 @@ export const authSlice = createSlice({
 			state.error = ''
 			if (action.payload?.data.role[0].value === 'ADMIN') {
 				state.isAdmin = true
+			} else {
+				state.isAdmin = false
 			}
+			console.log('login')
 		})
 		builder.addCase(login.rejected, (state, action) => {
+			console.log(action.payload)
+			console.log('login error')
 			state.error = action.payload
 		})
 		builder.addCase(registrationWithOauth.fulfilled, (state, action) => {
@@ -126,16 +131,22 @@ export const authSlice = createSlice({
 			state.user.email = action.payload?.data.User.email
 			state.user.userId = action.payload.data.User.id
 			state.error = ''
+			if (action.payload?.data.User.roles[0].value === 'ADMIN') {
+				state.isAdmin = true
+			} else {
+				state.isAdmin = false
+			}
+			console.log('oauth')
+			console.log(state.isAdmin)
 		})
 		builder.addCase(checkToken.fulfilled, (state, action) => {
-			// if (action.payload?.data.role[0].value === 'ADMIN') {
-			// 	state.isAdmin = true
-			// }
+			if (action.payload?.data.roles[0].value === 'ADMIN') {
+				state.isAdmin = true
+			}
 			if (action.payload?.status === 200) {
 				state.isAuth = true
 				state.user.userId = action.payload.data.id
 				state.user.email = action.payload?.data.email
-				console.log('200')
 			}
 		})
 		builder.addCase(checkToken.rejected, (state, action) => {
