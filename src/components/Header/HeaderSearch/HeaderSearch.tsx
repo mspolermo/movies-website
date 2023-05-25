@@ -30,7 +30,7 @@ const HeaderSearch: FC<HeaderSearchProps> = ({toggleSearchSection, searchSection
 
     function goToPage(value: Result) {
         searchSection.current.classList.add('searchBlock__hidden');
-        window.onscroll = () => { window.scroll(); };
+        document.body.style.overflow = '';
 
         setSearchQuery('');
         setSearchResult([]);
