@@ -42,7 +42,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
         setSelectedFilters({...selectedFilters, countries: arrCountries})
     }
 
-    function selectedYears(year: number) {
+    function selectedYears(year: number | null) {
         if (selectedFilters.years !== year) {
             setSelectedFilters({...selectedFilters, years: year})
         }

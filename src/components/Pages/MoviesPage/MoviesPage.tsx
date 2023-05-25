@@ -20,6 +20,7 @@ import Icons from "../../Icons/Icons";
 import ButtonReset from "../../Filters/ButtonReset/ButtonReset";
 import {firstCharUp, languageFilters} from "./utils";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import {number} from "prop-types";
 
 const MoviesPage = () => {
     const {t, i18n} = useTranslation();
@@ -49,7 +50,6 @@ const MoviesPage = () => {
         singleFilters()
         clearPage()
         fetchMovies()
-        Persons()
     }, [selectedFilters])
 
     useEffect(() => {
@@ -108,14 +108,16 @@ const MoviesPage = () => {
         fetchMovies()
     }
 
-    function Persons() {
-        let persons_ = []
-        persons_.push(selectedFilters.producer)
-        persons_.push(selectedFilters.actor)
-        setPersons(persons_)
-    }
-
     async function fetchMovies() {
+
+        let persons_ = []
+        if(selectedFilters.producer) {
+            persons_.push(selectedFilters.producer)
+        }
+        if(selectedFilters.actor) {
+            persons_.push(selectedFilters.actor)
+        }
+
         const response = await axios.get('http://localhost:5000/films/', {
             params: {
                 perPage: limit,
@@ -123,7 +125,7 @@ const MoviesPage = () => {
                 genres: selectedFilters.genres,
                 countries: selectedFilters.countries,
                 year: selectedFilters.years,
-                // persons: persons,
+                persons: persons_,
                 minRatingKp: selectedFilters.rating,
                 minVotesKp: selectedFilters.grade,
                 sortBy: sortValue,
@@ -162,8 +164,9 @@ const MoviesPage = () => {
             genres: response.data.genres,
             // @ts-ignore
             countries: response.data.countries.map((item) => {return{nameRu: item.countryName, nameEn: item.countryNameEn}}),
-            years: response.data.years
+            years: response.data.years.reverse()
         }
+        console.log(filters)
 
         setAllFilters(filters)
 
@@ -246,7 +249,9 @@ const MoviesPage = () => {
                         <Sorting options={sortOptions} sortValue={sortValue} setSortValue={setSortValue}/>
                     </div>
                     <div className="MoviesPage__filters">
-                        <Filters activeFilters={activeFilters} allFilters={allFilters} selectedFilters={selectedFilters}
+                        <Filters activeFilters={activeFilters}
+                                 allFilters={allFilters}
+                                 selectedFilters={selectedFilters}
                                  setSelectedFilters={setSelectedFilters}/>
                     </div>
                     <div className="MoviesPage__listMovies listMovies">
