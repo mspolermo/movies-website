@@ -36,7 +36,7 @@ const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter,
     }
 
     function renderResult(value: Result){
-        return (<RowSearchResult title={(i18n.language === 'en' && value.nameEn) ? value.nameEn: value.nameRu}
+        return (<RowSearchResult title={(i18n.language === 'en' && value.nameEn) ? value.nameEn : value.nameRu}
                                  key={value.key}
                                  onClick={() => select(value.nameRu)}/>
         )
@@ -68,7 +68,8 @@ const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter,
                 <div className="TypeSearch__content">
                     <MyInput result={searchResults}
                              renderResult={renderResult}
-                             placeholder={t('filters.search.placeholder-small')} cl={true}
+                             placeholder={t('filters.search.placeholder-small')}
+                             cl={true}
                              handleClear={() => handleChangeFilter('')}
                              searchQuery={searchQuery}
                              setSearchQuery={setSearchQuery}

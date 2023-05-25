@@ -42,7 +42,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
         setSelectedFilters({...selectedFilters, countries: arrCountries})
     }
 
-    function selectedYears(year: number) {
+    function selectedYears(year: number | null) {
         if (selectedFilters.years !== year) {
             setSelectedFilters({...selectedFilters, years: year})
         }
@@ -81,14 +81,12 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                          onClick={() => setActiveBlock([])}
                     ></div> : ''}
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.genre')}
+                    <FilterButton filterName={t('filters.filterButton.genre')}
                                   selectedFiltersBy={languageFilters(selectedFilters.genres, allFilters.genres, i18n.language).join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='genre'
                                   setActiveBlock={setActiveBlock}>
                         <FilterTwoBlocks
-                            data-testid='filter-result'
                             popularValues={allFilters.popularGenres}
                             allValues={allFilters.genres}
                             selectValues={selectedFilters.genres}
@@ -96,14 +94,12 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                         />
                     </FilterButton>
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.countries')}
+                    <FilterButton filterName={t('filters.filterButton.countries')}
                                   selectedFiltersBy={languageFilters(selectedFilters.countries, allFilters.countries, i18n.language).join(', ')}
                                   activeBlock={activeBlock}
                                   blockName='country'
                                   setActiveBlock={setActiveBlock}>
                         <FilterTwoBlocks
-                            data-testid='filter-result'
                             popularValues={allFilters.popularCountries}
                             allValues={allFilters.countries}
                             selectValues={selectedFilters.countries}
@@ -111,62 +107,52 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                         />
                     </FilterButton>
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.years')}
+                    <FilterButton filterName={t('filters.filterButton.years')}
                                   selectedFiltersBy={selectedFilters.years ? selectedFilters.years : ''}
                                   activeBlock={activeBlock}
                                   blockName='years'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeYear data-testid='filter-result'
-                                  allValues={allFilters.years}
+                        <TypeYear allValues={allFilters.years}
                                   selectValues={selectedFilters.years}
                                   handleChangeFilter={selectedYears}
                                   />
                     </FilterButton>
 
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.rating')}
+                    <FilterButton filterName={t('filters.filterButton.rating')}
                                   selectedFiltersBy={selectedFilters.rating === 0 ? '' : selectedFilters.rating}
                                   activeBlock={activeBlock}
                                   blockName='rating'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeRangeSlider data-testid='filter-result'
-                                         handleChangeFilter={selectedRating}
+                        <TypeRangeSlider handleChangeFilter={selectedRating}
                                          blockName='rating'/>
                         </FilterButton>
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.grade')}
+                    <FilterButton filterName={t('filters.filterButton.grade')}
                                   selectedFiltersBy={selectedFilters.grade === 0 ? '' : selectedFilters.grade}
                                   activeBlock={activeBlock}
                                   blockName='grade'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeRangeSlider data-testid='filter-result'
-                                         handleChangeFilter={selectedGrade}
+                        <TypeRangeSlider handleChangeFilter={selectedGrade}
                                          blockName='grade'/>
                     </FilterButton>
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.producer')}
+                    <FilterButton filterName={t('filters.filterButton.producer')}
                                   selectedFiltersBy={selectedFilters.producer}
                                   activeBlock={activeBlock}
                                   blockName='producer'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeSearch data-testid='filter-result'
-                                    handleChangeFilter={selectedProducer}
+                        <TypeSearch handleChangeFilter={selectedProducer}
                                     professionId={2}
                         />
                     </FilterButton>
 
-                    <FilterButton data-testid='filter-button'
-                                  filterName={t('filters.filterButton.actor')}
+                    <FilterButton filterName={t('filters.filterButton.actor')}
                                   selectedFiltersBy={selectedFilters.actor}
                                   activeBlock={activeBlock}
                                   blockName='actor'
                                   setActiveBlock={setActiveBlock}>
-                        <TypeSearch data-testid='filter-result'
-                                    handleChangeFilter={selectedActor}
+                        <TypeSearch handleChangeFilter={selectedActor}
                                     professionId={1}
                         />
                     </FilterButton>
