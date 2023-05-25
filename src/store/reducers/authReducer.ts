@@ -116,7 +116,10 @@ export const authSlice = createSlice({
 			state.error = ''
 			if (action.payload?.data.role[0].value === 'ADMIN') {
 				state.isAdmin = true
+			} else {
+				state.isAdmin = false
 			}
+			console.log('login')
 		})
 		builder.addCase(login.rejected, (state, action) => {
 			state.error = action.payload
@@ -126,16 +129,22 @@ export const authSlice = createSlice({
 			state.user.email = action.payload?.data.User.email
 			state.user.userId = action.payload.data.User.id
 			state.error = ''
+			if (action.payload?.data.User.roles[0].value === 'ADMIN') {
+				state.isAdmin = true
+			} else {
+				state.isAdmin = false
+			}
+			console.log('oauth')
+			console.log(state.isAdmin)
 		})
 		builder.addCase(checkToken.fulfilled, (state, action) => {
-			// if (action.payload?.data.role[0].value === 'ADMIN') {
-			// 	state.isAdmin = true
-			// }
+			if (action.payload?.data.roles[0].value === 'ADMIN') {
+				state.isAdmin = true
+			}
 			if (action.payload?.status === 200) {
 				state.isAuth = true
-				state.user.userId = action.payload.data.id
-				state.user.email = action.payload?.data.email
-				console.log('200')
+				state.user.userId = action.payload.data.user.id
+				state.user.email = action.payload?.data.user.email
 			}
 		})
 		builder.addCase(checkToken.rejected, (state, action) => {
