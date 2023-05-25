@@ -28,8 +28,8 @@ export const registration = createAsyncThunk(
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message)
-			return rejectWithValue(error.response.data.message[0])
+			console.log(error.response.data[0])
+			return rejectWithValue(error.response.data[0])
 		}
 	}
 )
@@ -43,8 +43,8 @@ export const login = createAsyncThunk(
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message[0])
-			return rejectWithValue(error.response.data.message[0])
+			console.log(error.response.data[0])
+			return rejectWithValue(error.response.data[0])
 		}
 	}
 )
@@ -54,12 +54,12 @@ export const registrationWithOauth = createAsyncThunk(
 	async function (email: string, { rejectWithValue }) {
 		try {
 			const response = await AuthService.loginWithOauth(email)
+			console.log('oauth')
 			console.log(response)
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message)
-			return rejectWithValue(error.response.data.message[0])
+			return rejectWithValue(error.response.data[0])
 		}
 	}
 )
@@ -122,6 +122,8 @@ export const authSlice = createSlice({
 			console.log('login')
 		})
 		builder.addCase(login.rejected, (state, action) => {
+			console.log(action.payload)
+			console.log('login error')
 			state.error = action.payload
 		})
 		builder.addCase(registrationWithOauth.fulfilled, (state, action) => {
@@ -143,8 +145,8 @@ export const authSlice = createSlice({
 			}
 			if (action.payload?.status === 200) {
 				state.isAuth = true
-				state.user.userId = action.payload.data.user.id
-				state.user.email = action.payload?.data.user.email
+				state.user.userId = action.payload.data.id
+				state.user.email = action.payload?.data.email
 			}
 		})
 		builder.addCase(checkToken.rejected, (state, action) => {
