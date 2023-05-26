@@ -47,7 +47,8 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
                         <Icons name='chevron-down' size='16'/>
                     </div>
                 </div>
-                <div className="filterButton__menu">
+                <div data-testid='filter-result'
+                     className="filterButton__menu">
                     {isActive && children}
                 </div>
             </div>

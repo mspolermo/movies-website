@@ -3,7 +3,7 @@ import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
 import FilterTwoBlocks from "./FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 import ButtonReset from "./ButtonReset/ButtonReset";
-import {activeFiltersProps, Item, startFiltersProps} from "../../types/filtersTypes";
+import {activeFiltersProps, startFiltersProps} from "../../types/filtersTypes";
 import TypeYear from "./FilterTypes/FilterYears/TypeYear";
 import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
 import TypeRangeSlider from "./FilterTypes/FilterRating&Grade/TypeRangeSlider";
