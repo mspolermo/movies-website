@@ -58,7 +58,10 @@ const FilmBlock = () => {
 
     function deleteFilm() {
         if (film !== Name) {
-            const response = axios.delete(`http://localhost:5000/film/${film.key}`)
+            const response = axios.delete(`http://localhost:5000/film/${film.key}`,
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
             setFilm(Name)
             setActive(true)
         }
@@ -69,6 +72,9 @@ const FilmBlock = () => {
             const response = axios.patch(`http://localhost:5000/film/${film.key}`, {
                 filmNameRu: film?.nameRu,
                 filmNameEn: film?.nameEn
+            },
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             setFilm(Name)
             setActive(true)
