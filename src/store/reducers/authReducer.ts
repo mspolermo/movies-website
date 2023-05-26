@@ -109,7 +109,7 @@ export const authSlice = createSlice({
 			state.user.email = action.payload?.data.User.email
 			state.user.userId = action.payload.data.User.id
 			state.error = ''
-			if (action.payload?.data.User.roles[0].value === 'ADMIN') {
+			if (action.payload?.data.User.roles && action.payload?.data.User.roles[0].value === 'ADMIN') {
 				state.isAdmin = true
 			} else {
 				state.isAdmin = false
