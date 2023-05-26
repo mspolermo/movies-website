@@ -24,12 +24,10 @@ export const registration = createAsyncThunk(
 	async function (userData: any, { rejectWithValue }) {
 		try {
 			const response = await AuthService.registration(userData.email, userData.password)
-			console.log(response)
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data[0])
-			return rejectWithValue(error.response.data[0])
+			return rejectWithValue(error.response.data.message ? error.response.data.message : error.response.data[0])
 		}
 	}
 )
@@ -39,12 +37,10 @@ export const login = createAsyncThunk(
 	async function (userData: any, { rejectWithValue }) {
 		try {
 			const response = await AuthService.login(userData.email, userData.password)
-			console.log(response)
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data[0])
-			return rejectWithValue(error.response.data[0])
+			return rejectWithValue(error.response.data.message ? error.response.data.message : error.response.data[0])
 		}
 	}
 )
@@ -54,8 +50,6 @@ export const registrationWithOauth = createAsyncThunk(
 	async function (email: string, { rejectWithValue }) {
 		try {
 			const response = await AuthService.loginWithOauth(email)
-			console.log('oauth')
-			console.log(response)
 			localStorage.setItem('token', response.data.token.token)
 			return response
 		} catch (error: any) {
@@ -69,25 +63,12 @@ export const checkToken = createAsyncThunk(
 	async function (_, { rejectWithValue }) {
 		try {
 			const response = await AuthService.checkToken()
-			console.log(response)
 			return response
 		} catch (error: any) {
-			console.log(error.response.data.message)
 			return rejectWithValue(error.response.data.message)
 		}
 	}
 )
-
-// export const logout = createAsyncThunk(
-// 	'auth/logout',
-// 	async function () {
-// 		try {
-// 			localStorage.removeItem('token')
-// 		} catch (error: any) {
-// 			console.log(error.response.data.message)
-// 		}
-// 	}
-// )
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -119,11 +100,8 @@ export const authSlice = createSlice({
 			} else {
 				state.isAdmin = false
 			}
-			console.log('login')
 		})
 		builder.addCase(login.rejected, (state, action) => {
-			console.log(action.payload)
-			console.log('login error')
 			state.error = action.payload
 		})
 		builder.addCase(registrationWithOauth.fulfilled, (state, action) => {
@@ -136,8 +114,6 @@ export const authSlice = createSlice({
 			} else {
 				state.isAdmin = false
 			}
-			console.log('oauth')
-			console.log(state.isAdmin)
 		})
 		builder.addCase(checkToken.fulfilled, (state, action) => {
 			if (action.payload?.data.roles[0].value === 'ADMIN') {
