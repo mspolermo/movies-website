@@ -225,19 +225,19 @@ const Footer = () => {
             </div>
             <div className="footer__bottom-bar">
                 <ul className="footer__mobile-list">
-                    <li className="footer__mobile-item" >
+                    <li className="footer__mobile-item" onClick={() => navigate (`/movies-website/`)}>
                         <Icons name="home" size='20' color="#a5a1b2"/>
                         <h5 className="footer__mobile-heading">{t('footer.myIvi')}</h5>
                     </li>
-                    <li className="footer__mobile-item">
+                    <li className="footer__mobile-item" onClick={() => navigate('/movies-website/films/')}>
                         <Icons name="devices" size='20' color="#a5a1b2" />
                         <h5 className="footer__mobile-heading">{t('footer.catalog')}</h5>
                     </li>
-                    <li className="footer__mobile-item">
+                    <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/')}>
                         <Icons name="search" size="20" color="#a5a1b2"/>
                         <h5 className="footer__mobile-heading">{t('footer.search')}</h5>
                     </li>
-                    <li className="footer__mobile-item">
+                    <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/series')}>
                         <Icons name="tv" size='20' color="#a5a1b2" />
                         <h5 className="footer__mobile-heading">TV+</h5>
                     </li>

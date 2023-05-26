@@ -8,14 +8,7 @@ import { gradeFalse } from "../../store/reducers/gradeReducer";
 
 import Icons from "../Icons/Icons";
 
-
-interface IGradeBlock {
-    calledFrom: string
-}
-const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
-        //calledFrom - место вызова блока, ниже стоит вписать действия
-        // какого редьюсера должны происходить на основании этого значения
-
+const GradeBlock = () => {
 
     const {t, i18n} = useTranslation();
     const grades = Array.from({length: 10}, (_, index) => index + 1);
@@ -32,39 +25,23 @@ const GradeBlock:FC<IGradeBlock> = ({calledFrom}) => {
     //Redux
     const gradeBlock = document.querySelector('#grade-block');
     const dispatch = useDispatch();
-
     const {value} = useTypedSelector( state => state.grade);
-        //добавить использование другого редьюсера, через этот хук
-        // (у меня добавлен gradeReducer, который меняет value при открытии блока -true/false)
 
     const onDecrement = () => {
         
         completeBlock?.classList.add('gradeBlock__modal_hidden');
         questionBlock?.classList.remove('gradeBlock__modal_hidden');
-        switch(calledFrom) {
-            case "filmPage":
-                dispatch(gradeFalse());
-                break;
-            //добавить действия для другого редьюсера 
-        }
+        dispatch(gradeFalse());
     }
 
     useEffect(() => {
-        switch(calledFrom) {
-            case "filmPage":
-
-                if (value) {
-                    gradeBlock?.classList.remove('gradeBlock__hidden');
-                    document.body.scrollTop = document.documentElement.scrollTop = 0;
-                    document.body.style.overflow = 'hidden'
-                } else {
-                    gradeBlock?.classList.add('gradeBlock__hidden');
-                    document.body.style.overflow = '';
-                }
-
-                break;
-                //добавить действия для другого редьюсера 
-                //добавить статус другого редьюсера в зависимость
+        if (value) {
+            gradeBlock?.classList.remove('gradeBlock__hidden');
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            document.body.style.overflow = 'hidden'
+        } else {
+            gradeBlock?.classList.add('gradeBlock__hidden');
+            document.body.style.overflow = '';
         }
     },[value])
 

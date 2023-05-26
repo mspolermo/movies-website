@@ -53,7 +53,7 @@
         color: $textColor;
 
         overflow: hidden;
-        white-space: nowrap;
+        //white-space: nowrap;
         text-overflow: ellipsis; 
     }
     &__body{
@@ -95,13 +95,27 @@
             stroke: white;
         }
     }
+    &__btn {
+        &_big{
+            display: block;
+        }
+        &_small {
+            cursor: pointer;
+            display: none;
+        }
+    }
 }
 
 @media (max-width: 600px) {
     .review {
         padding: 14px;
-        &__like {
-            display: none;
+        &__btn {
+            &_big{
+                display: none;
+            }
+            &_small {
+                display: block;
+            }
         }
     }
 }

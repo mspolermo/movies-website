@@ -21,6 +21,7 @@ import ButtonReset from "../../Filters/ButtonReset/ButtonReset";
 import {firstCharUp, languageFilters} from "./utils";
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
 import {number} from "prop-types";
+import GradeBlock from '../../GradeBlock/GradeBlock';
 
 const MoviesPage = () => {
     const {t, i18n} = useTranslation();
@@ -353,6 +354,8 @@ const MoviesPage = () => {
                 </div>
 
             </div>
+
+            <GradeBlock />
         </div>
     );
 };

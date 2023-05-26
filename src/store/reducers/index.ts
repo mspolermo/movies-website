@@ -10,12 +10,10 @@ import bigPlayerReducer from "./bigPlayerReducer";
 import sharePanelReducer from "./sharePanelReducer";
 import authReducer from "./authReducer";
 
-
 export const rootReducer = combineReducers({
 	grade: gradeReducer,
 	bookmark: bookmarkReducer,
 	auth: authReducer,
-
 	internalPage: internalPageReducer,
 	factsBlock: factsBlockReducer,
 	allCreatorsBlock: allCreatorsBlockReducer,

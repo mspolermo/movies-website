@@ -81,6 +81,7 @@ const FilmPage = () => {
 
     useEffect(() => {
         fetchFilm();
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
         window.onscroll = () => { window.scroll(); };
     }, [params]);
 
@@ -232,7 +233,7 @@ const FilmPage = () => {
             
                 <BigPlayer trailer={trailer} />
                 <SharePanel filmName={filmName} year={film.year} smallPictureUrl={film.smallPictureUrl} movieLength={film.movieLength}/>
-                <GradeBlock calledFrom={'filmPage'}/>
+                <GradeBlock />
                 <InternalPage film={film}/>
             </div>
             }

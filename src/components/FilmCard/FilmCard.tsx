@@ -8,6 +8,8 @@ import Icons from "../Icons/Icons";
 import {useTranslation} from "react-i18next";
 import {FilmProps} from "../../types/filtersTypes";
 import CreateEnd from "../UI/CreateEnding/CreateEnd";
+import { useDispatch } from 'react-redux';
+import { gradeTrue } from '../../store/reducers/gradeReducer';
 
 
 interface FilmCardProps {
@@ -21,6 +23,11 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
     const [favorites, setFavorites] = useState(true);
     const [notlike, setNotlike] = useState(true);
     let ratingArr = film.rating.toFixed(1).toString().split('.')
+
+    const dispatch = useDispatch();
+    const onIncrement = () => {
+        dispatch(gradeTrue())
+    }
 
     return (
         <div
@@ -63,6 +70,7 @@ const FilmCard: FC<PropsWithChildren<FilmCardProps>> = ({film, onClick, icons = 
 
                                     <div className="filmcard__icons_style"
                                          data-title={t('filmCard.data-title.already')}
+                                         onClick={onIncrement}
                                     >
                                         <Icons className='filmcard__icons_svg' name='grade-star' size='25.8'/>
                                     </div>

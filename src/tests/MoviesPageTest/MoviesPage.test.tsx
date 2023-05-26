@@ -7,6 +7,8 @@ import _ from "lodash";
 import axios from "axios";
 import {BrowserRouter, MemoryRouter} from "react-router-dom";
 import FilmCard from "../../components/FilmCard/FilmCard";
+import { Provider } from "react-redux";
+import { store } from '../../store';
 
 class ResizeObserver {
     observe() {}
@@ -44,7 +46,6 @@ describe('MoviesPage tests', () => {
                          allFilters={arrAllFiltersTest}
                          selectedFilters={_.cloneDeep(activeFilters)}
                          setSelectedFilters={setSelectedFilters}/>
-
             </BrowserRouter>
         );
         const filtersResult = screen.getAllByTestId('filter-result');
@@ -91,9 +92,11 @@ describe('FilmCard tests', () => {
 
         render(
             <BrowserRouter>
-                <FilmCard icons={true}
-                          film={response}
-                          onClick={() => setSelectedFilters()}/>
+                <Provider store={store}> 
+                    <FilmCard icons={true}
+                            film={response}
+                            onClick={() => setSelectedFilters()}/>
+                </Provider>  
             </BrowserRouter>
         );
 
@@ -105,9 +108,11 @@ describe('FilmCard tests', () => {
 
         render(
             <BrowserRouter>
-                <FilmCard icons={true}
-                          film={response}
-                          onClick={() => setSelectedFilters()}/>
+                <Provider store={store}> 
+                    <FilmCard icons={true}
+                            film={response}
+                            onClick={() => setSelectedFilters()}/>
+                </Provider>  
             </BrowserRouter>
         );
 
@@ -119,9 +124,11 @@ describe('FilmCard tests', () => {
 
         render(
             <BrowserRouter>
-                <FilmCard icons={true}
-                          film={response}
-                          onClick={() => setSelectedFilters()}/>
+                <Provider store={store}> 
+                    <FilmCard icons={true}
+                            film={response}
+                            onClick={() => setSelectedFilters()}/>
+                </Provider> 
             </BrowserRouter>
         );
 
