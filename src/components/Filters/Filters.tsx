@@ -144,6 +144,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                   setActiveBlock={setActiveBlock}>
                         <TypeSearch handleChangeFilter={selectedProducer}
                                     professionId={2}
+                                    setActiveBlock={setActiveBlock}
                         />
                     </FilterButton>
 
@@ -154,6 +155,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                   setActiveBlock={setActiveBlock}>
                         <TypeSearch handleChangeFilter={selectedActor}
                                     professionId={1}
+                                    setActiveBlock={setActiveBlock}
                         />
                     </FilterButton>
 
