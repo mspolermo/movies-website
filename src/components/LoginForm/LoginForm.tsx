@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { login, registration } from "../../store/reducers/authReducer";
@@ -20,11 +20,7 @@ export const LoginForm: FC<ILoginFormProps> = () => {
 
 	const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
-	const userEmail = useTypedSelector(state => state.auth.user.email)
 	const error = useTypedSelector(state => state.auth.error)
-	const isAuth = useTypedSelector(state => state.auth.isAuth)
-
-
 
 	return (
 		<div className="authPage">
