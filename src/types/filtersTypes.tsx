@@ -1,5 +1,3 @@
-import {number} from "prop-types";
-
 export interface activeFiltersProps {
     'genres': string[],
     'popularGenres': string[],
