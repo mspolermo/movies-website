@@ -7,7 +7,8 @@ import axios from "axios";
 
 interface TypeSearchProps {
     handleChangeFilter: (item:string) => void,
-    professionId: number
+    professionId: number,
+    setActiveBlock: ([]) => void
 }
 
 interface Result {
@@ -16,7 +17,7 @@ interface Result {
     key: number,
 }
 
-const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter, professionId}) => {
+const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter, professionId, setActiveBlock}) => {
     const { t, i18n } = useTranslation();
 
     const [searchResults, setSearchResult] = useState<Result[]>([])
@@ -33,6 +34,7 @@ const TypeSearch: FC<PropsWithChildren<TypeSearchProps>> = ({handleChangeFilter,
     function select(value: string) {
         handleChangeFilter(value)
         setSearchResult([])
+        setActiveBlock([])
     }
 
     function renderResult(value: Result){
