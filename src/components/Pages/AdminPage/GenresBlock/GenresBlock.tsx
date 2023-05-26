@@ -46,6 +46,9 @@ const GenresBlock = () => {
         const response = axios.patch(`http://localhost:5000/genre/${genre?.id}`, {
                 nameRu: genre.nameRu,
                 nameEn: genre.nameEn
+        },
+        {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         setGenre(Genre)
     }

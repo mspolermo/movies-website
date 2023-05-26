@@ -29,8 +29,8 @@ const Review:FC <ReviewProps> = ({review, openCreateComment}) => {
                         <span className="review__likeCounter">{36}</span>
                         <Icons name="dislike" size="18" color="gray" className="review__svg"/>
                     </div>
-                    <div className="review__btn review__btn_big">
-                        <Button title={['internalPage.commentsCreatingBlock.comment']} color="transparent" onClick={openCreateComment}/>
+                    <div className="review__btn review__btn_big" onClick={openCreateComment}>
+                        <Button title={['internalPage.commentsCreatingBlock.comment']} color="transparent" />
                     </div>
                     <div className="review__btn review__btn_small" onClick={openCreateComment}>
                         <Icons name="comment" size="24" color="gray" />

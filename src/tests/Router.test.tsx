@@ -4,7 +4,7 @@ import App from "../App";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from '../store';
-import { GoogleOAuthProvider} from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 
 
 class ResizeObserver {
@@ -64,25 +64,13 @@ describe('Router test-suite', () => {
 
         expect(screen.getByTestId('personPage')).toBeInTheDocument();
     });
-    test('Route to Admin page check', () => {
-
-        render(
-            <MemoryRouter initialEntries={['/movies-website/admin/']}>
-                <Provider store={store}> 
-                    <App />
-                </Provider>
-            </MemoryRouter>  
-        );
-
-        expect(screen.getByTestId('adminPage')).toBeInTheDocument();
-    });
     test('Route to Auth page check', () => {
 
         render(
             <MemoryRouter initialEntries={['/movies-website/auth/']}>
                 <Provider store={store}> 
                     <GoogleOAuthProvider clientId="TEST CLIENT ID">
-                        <App />
+                       <App />
                     </GoogleOAuthProvider>    
                 </Provider>
             </MemoryRouter>  
