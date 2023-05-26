@@ -28,10 +28,7 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 	const vkAuth = () => {
 		VK.Auth.login(function (response: any) {
 			if (response.session) {
-				console.log(response)
-
 				let user = response.session.user
-				console.log(user.first_name + user.last_name + user.id + '@vk.com')
 				dispatch(registrationWithOauth(user.first_name + user.last_name + user.id + '@vk.com'))
 				if (response.settings) {
 					/* Выбранные настройки доступа пользователя, если они были запрошены */
@@ -50,7 +47,6 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 						onSuccess={credentialResponse => {
 							if (credentialResponse.credential) {
 								const decoded = jwt_decode<any>(credentialResponse.credential);
-								console.log(decoded.email)
 								dispatch(registrationWithOauth(decoded.email))
 							}
 						}}
