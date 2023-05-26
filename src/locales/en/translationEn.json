@@ -454,7 +454,8 @@
 		"switchToSignUp": "Not signed up yet?",
 		"password": "Password",
 		"createPassword": "Create a password",
-		"VKauth": "Sign up with VK"
+		"VKauth": "Sign up with VK",
+		"locale": "en"
 	},
 	"notFoundPage": {
 		"error": "Error",
