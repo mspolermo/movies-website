@@ -36,10 +36,10 @@ const Footer = () => {
         const searchSection = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
         function toggleSearchSection (e: React.MouseEvent<HTMLDivElement>) {
-    
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             searchSection.current.classList.toggle('searchBlock__hidden');
     
-            if ( e.currentTarget.className.includes('headerSections__btn-block_search')) {
+            if ( e.currentTarget.className.includes('footer__search')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
@@ -250,7 +250,7 @@ const Footer = () => {
                         </li>
                         
                         <li className="footer__mobile-item" >
-                            <div onClick={toggleSearchSection}>
+                            <div className="footer__search" onClick={toggleSearchSection}>
                                 <Icons name="search" size="20" color="#a5a1b2"/>
                                 <h5 className="footer__mobile-heading">{t('footer.search')}</h5>
                             </div>

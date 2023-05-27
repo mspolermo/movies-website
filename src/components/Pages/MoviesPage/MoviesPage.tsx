@@ -169,7 +169,7 @@ const MoviesPage = () => {
             countries: response.data.countries.map((item) => {return{nameRu: item.countryName, nameEn: item.countryNameEn}}),
             years: response.data.years.reverse()
         }
-        console.log(filters)
+        //console.log(filters)
 
         setAllFilters(filters)
 

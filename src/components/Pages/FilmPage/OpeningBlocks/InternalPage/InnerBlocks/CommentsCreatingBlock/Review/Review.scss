@@ -109,6 +109,7 @@
 @media (max-width: 600px) {
     .review {
         padding: 14px;
+        min-width: 280px;
         &__btn {
             &_big{
                 display: none;

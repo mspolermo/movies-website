@@ -173,10 +173,14 @@
         }
         &__mobile {
             display: block;
+            
+        }
+        &__mobile-container{
+            padding-bottom: 80px;
         }
         &__copyrights{
             &_mobile {
-                padding-bottom: 80px;
+                
                 word-wrap: normal;
                 max-width: 600px;
             }
@@ -240,7 +244,7 @@
 }
 @media (max-width: 650px) {
     .footer {
-        &__mobile-container {
+        &__copyrights {
             display: none;
         }
     }
