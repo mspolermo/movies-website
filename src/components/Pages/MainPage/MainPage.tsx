@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import './MainPage.scss'
 import Button from "../../UI/Buttons/Button/Button";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,11 @@ import OpenUrl from "../../../hooks/OpenUrl";
 export const MainPage: FC = () => {
 
 	const { t, i18n } = useTranslation([]);
+
+	useEffect(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        window.onscroll = () => { window.scroll(); };
+    }, []);
 
 	return (
 		<div className="home" data-testid='mainPage'>

@@ -26,3 +26,11 @@
         color: $headingColor;
     }
 }
+
+@media (max-width: 1060px) {
+    .searchBlock {
+        .BigSearch {
+            transform: translateX(-30px);
+        }
+    }
+}
