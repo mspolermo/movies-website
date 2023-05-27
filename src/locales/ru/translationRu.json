@@ -454,7 +454,8 @@
 		"switchToSignUp": "Еще не зарегистрированы?",
 		"password": "Пароль",
 		"createPassword": "Придумайте пароль",
-		"VKauth": "Войти через Вконтакте"
+		"VKauth": "Войти через Вконтакте",
+		"locale": "ru"
 	},
 	"notFoundPage": {
 		"error": "Ошибка",

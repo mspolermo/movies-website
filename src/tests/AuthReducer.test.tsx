@@ -1,10 +1,32 @@
-import { login } from "../store/reducers/authReducer"
+import { login, registration } from "../store/reducers/authReducer"
 
 describe('auth async thunks', () => {
-
-	it('should return user data', async () => {
+	let randEmail = `testuser${Math.random().toString().substring(2)}@gmail.com`
+	it('should sign up user', async () => {
 		const response = {
-			email: 'abc@gmail.com',
+			email: randEmail,
+			userId: 3,
+		}
+		const dispatch = jest.fn()
+		const thunk = registration({ email: response.email, password: '1234' })
+		//@ts-ignore
+		await thunk(dispatch, () => ({}))
+
+		const { calls } = dispatch.mock
+		expect(calls).toHaveLength(2)
+
+		const [start, end] = calls
+
+		expect(start[0].type).toBe('auth/registration/pending')
+		expect(end[0].type).toBe('auth/registration/fulfilled')
+		expect(end[0].payload.status).toBe(201)
+		expect(end[0].payload.data.User.email).toBe(response.email)
+	})
+
+
+	it('should sign in user', async () => {
+		const response = {
+			email: randEmail,
 			userId: 3,
 			role: [{
 				id: 2,
@@ -12,7 +34,7 @@ describe('auth async thunks', () => {
 			}],
 		}
 		const dispatch = jest.fn()
-		const thunk = login({ email: 'abc@gmail.com', password: '1234' })
+		const thunk = login({ email: randEmail, password: '1234' })
 		//@ts-ignore
 		await thunk(dispatch, () => ({}))
 
