@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/movies-website/static/css/main.c57d2feb.css",
-    "main.js": "/movies-website/static/js/main.ce927db3.js",
+    "main.css": "/movies-website/static/css/main.2aedd2ef.css",
+    "main.js": "/movies-website/static/js/main.c05e7b9a.js",
+    "static/media/tv-without-poster.png": "/movies-website/static/media/tv-without-poster.6eaa0bdcae45928aa0e8.png",
     "static/media/film2.png": "/movies-website/static/media/film2.5db82486d317b0fe58f2.png",
     "static/media/IvyStyleSans-LightItalic.eot": "/movies-website/static/media/IvyStyleSans-LightItalic.fed5019bdac3f3fb6af9.eot",
     "static/media/IvyStyleSans-LightItalic.ttf": "/movies-website/static/media/IvyStyleSans-LightItalic.a0de5daa72b8ff9205ed.ttf",
@@ -24,6 +25,7 @@
     "static/media/IvyStyleSans-Bold.eot": "/movies-website/static/media/IvyStyleSans-Bold.43ac8873b0fccef7e4d2.eot",
     "static/media/IvyStyleSans-Bold.ttf": "/movies-website/static/media/IvyStyleSans-Bold.8d33b2053ef410cf7c18.ttf",
     "static/media/KHL2.jpg": "/movies-website/static/media/KHL2.d80eb5014a55ec67d938.jpg",
+    "static/media/icons.svg": "/movies-website/static/media/icons.4ca7a1247fc6665ce4bb25c60d381ec0.svg",
     "static/media/film.png": "/movies-website/static/media/film.8ec366cc4259674e7acd.png",
     "static/media/MatchTv.jpg": "/movies-website/static/media/MatchTv.004bd5543fa6464b8ecd.jpg",
     "static/media/MatchStrana.jpg": "/movies-website/static/media/MatchStrana.806bc0404c009c9f91e6.jpg",
@@ -31,7 +33,6 @@
     "static/media/IvyStyleSans-LightItalic.woff": "/movies-website/static/media/IvyStyleSans-LightItalic.8594c70b1e332a28710f.woff",
     "static/media/IvyStyleSans-Italic.woff": "/movies-website/static/media/IvyStyleSans-Italic.273ca5b4ae3cd68c8c3c.woff",
     "static/media/IvyStyleSans-SemiBoldItalic.woff": "/movies-website/static/media/IvyStyleSans-SemiBoldItalic.3cd2735932ac1b393494.woff",
-    "static/media/icons.svg": "/movies-website/static/media/icons.5fb72bf974bfc23cb81f156a1d1dce7b.svg",
     "static/media/MatchIgra.jpg": "/movies-website/static/media/MatchIgra.a6de6fca748b2494f0c4.jpg",
     "static/media/IvyStyleSans-ThinItalic.woff": "/movies-website/static/media/IvyStyleSans-ThinItalic.cf1d259426d112bf90f1.woff",
     "static/media/IvyStyleSans-Light.woff": "/movies-website/static/media/IvyStyleSans-Light.d5aeefcf214ac43aee90.woff",
@@ -74,15 +75,20 @@
     "static/media/MatchArena.jpg": "/movies-website/static/media/MatchArena.8c23b3e7ad5044c4ffe4.jpg",
     "static/media/MatchFoorball.jpg": "/movies-website/static/media/MatchFoorball.4476b231c6a752c93292.jpg",
     "static/media/SPAS.jpg": "/movies-website/static/media/SPAS.245206e92e1cc436f9bb.jpg",
+    "static/media/similar.svg": "/movies-website/static/media/similar.7a5ff7982d0c635a580cc64ed7389c6c.svg",
     "static/media/TV3.jpg": "/movies-website/static/media/TV3.9a0f9c06df67139e9b8b.jpg",
     "static/media/1.jpg": "/movies-website/static/media/1.c689051d5e4c85cec89b.jpg",
+    "static/media/ipad-without-poster.png": "/movies-website/static/media/ipad-without-poster.01d4ad44a08bce181411.png",
+    "static/media/poster.png": "/movies-website/static/media/poster.e22857696d8cc99482f7.png",
+    "static/media/notlike-true2.svg": "/movies-website/static/media/notlike-true2.48268e56de4147dd10aeb6aa8a7fb2c8.svg",
+    "static/media/notlike.svg": "/movies-website/static/media/notlike.0b6e7ab8a739f5a8aea2b050e5f421dc.svg",
     "index.html": "/movies-website/index.html",
     "static/media/getFetch.cjs": "/movies-website/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.c57d2feb.css.map": "/movies-website/static/css/main.c57d2feb.css.map",
-    "main.ce927db3.js.map": "/movies-website/static/js/main.ce927db3.js.map"
+    "main.2aedd2ef.css.map": "/movies-website/static/css/main.2aedd2ef.css.map",
+    "main.c05e7b9a.js.map": "/movies-website/static/js/main.c05e7b9a.js.map"
   },
   "entrypoints": [
-    "static/css/main.c57d2feb.css",
-    "static/js/main.ce927db3.js"
+    "static/css/main.2aedd2ef.css",
+    "static/js/main.c05e7b9a.js"
   ]
 }
