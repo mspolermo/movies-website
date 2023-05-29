@@ -54,6 +54,8 @@ const MoviesPage = () => {
     }, [selectedFilters])
 
     useEffect(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0
+        window.onscroll = () => { window.scroll(); }
         fetchFilters()
     }, [])
 
@@ -355,7 +357,7 @@ const MoviesPage = () => {
 
             </div>
 
-            <GradeBlock />
+            <GradeBlock/>
         </div>
     );
 };

@@ -85,7 +85,7 @@ describe('Header test-suite', () => {
         const search= screen.getByTestId('headerSerch');
 
         act(() => { userEvent.click(search) });
-        expect(screen.getByTestId('searchPage')).toBeVisible();
-        expect(screen.getByTestId('searchPage')).not.toHaveClass('searchBlock__hidden')
+        expect(screen.getAllByTestId('searchPage')[0]).toBeVisible();
+        expect(screen.getAllByTestId('searchPage')[0]).not.toHaveClass('searchBlock__hidden')
     });
 });

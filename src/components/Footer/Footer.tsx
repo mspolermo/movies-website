@@ -6,6 +6,7 @@ import OpenUrl from "../../hooks/OpenUrl";
 
 import { useTranslation } from 'react-i18next';
 import {useNavigate} from "react-router-dom";
+import HeaderSearch from "../Header/HeaderSearch/HeaderSearch";
 
 const Footer = () => {
     const { t, i18n } = useTranslation();
@@ -30,6 +31,20 @@ const Footer = () => {
                 break;
         };
     };
+
+        //Открытие блока поиска
+        const searchSection = React.useRef() as React.MutableRefObject<HTMLDivElement>;
+
+        function toggleSearchSection (e: React.MouseEvent<HTMLDivElement>) {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            searchSection.current.classList.toggle('searchBlock__hidden');
+    
+            if ( e.currentTarget.className.includes('footer__search')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            };
+        };
 
     return (
         <div className="footer" data-testid='footer'>
@@ -217,41 +232,49 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-        <div className="footer__mobile">
-            <div className="container footer__mobile-container">
-                    <div className="footer__copyrights footer__copyrights_mobile">
-                        <p className="footer__mobile-text">HBO ® and related service marks are the property of Home Box Office, Inc</p>
-                    </div>
-            </div>
-            <div className="footer__bottom-bar">
-                <ul className="footer__mobile-list">
-                    <li className="footer__mobile-item" onClick={() => navigate (`/movies-website/`)}>
-                        <Icons name="home" size='20' color="#a5a1b2"/>
-                        <h5 className="footer__mobile-heading">{t('footer.myIvi')}</h5>
-                    </li>
-                    <li className="footer__mobile-item" onClick={() => navigate('/movies-website/films/')}>
-                        <Icons name="devices" size='20' color="#a5a1b2" />
-                        <h5 className="footer__mobile-heading">{t('footer.catalog')}</h5>
-                    </li>
-                    <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/')}>
-                        <Icons name="search" size="20" color="#a5a1b2"/>
-                        <h5 className="footer__mobile-heading">{t('footer.search')}</h5>
-                    </li>
-                    <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/series')}>
-                        <Icons name="tv" size='20' color="#a5a1b2" />
-                        <h5 className="footer__mobile-heading">TV+</h5>
-                    </li>
-                    <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/')}>
-                        <div className="footer__svg-block">
-                            <Icons name="circle-flooded" size='5' color="#a5a1b2" />
-                            <Icons name="circle-flooded" size='5' color="#a5a1b2" className="footer__svg footer__svg_circle-center"/>   
-                            <Icons name="circle-flooded" size='5' color="#a5a1b2" />       
+            <div className="footer__mobile">
+                <div className="container footer__mobile-container">
+                        <div className="footer__copyrights footer__copyrights_mobile">
+                            <p className="footer__mobile-text">HBO ® and related service marks are the property of Home Box Office, Inc</p>
                         </div>
-                        <h5 className="footer__mobile-heading">{t('footer.more')}</h5>
-                    </li>
-                </ul>
+                </div>
+                <div className="footer__bottom-bar">
+                    <ul className="footer__mobile-list">
+                        <li className="footer__mobile-item" onClick={() => navigate (`/movies-website/`)}>
+                            <Icons name="home" size='20' color="#a5a1b2"/>
+                            <h5 className="footer__mobile-heading">{t('footer.myIvi')}</h5>
+                        </li>
+                        <li className="footer__mobile-item" onClick={() => navigate('/movies-website/films/')}>
+                            <Icons name="devices" size='20' color="#a5a1b2" />
+                            <h5 className="footer__mobile-heading">{t('footer.catalog')}</h5>
+                        </li>
+                        
+                        <li className="footer__mobile-item" >
+                            <div className="footer__search" onClick={toggleSearchSection}>
+                                <Icons name="search" size="20" color="#a5a1b2"/>
+                                <h5 className="footer__mobile-heading">{t('footer.search')}</h5>
+                            </div>
+                        </li>
+
+                        <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/series')}>
+                            <Icons name="tv" size='20' color="#a5a1b2" />
+                            <h5 className="footer__mobile-heading">TV+</h5>
+                        </li>
+                        <li className="footer__mobile-item" onClick={() => OpenUrl('https://www.ivi.ru/')}>
+                            <div className="footer__svg-block">
+                                <Icons name="circle-flooded" size='5' color="#a5a1b2" />
+                                <Icons name="circle-flooded" size='5' color="#a5a1b2" className="footer__svg footer__svg_circle-center"/>   
+                                <Icons name="circle-flooded" size='5' color="#a5a1b2" />       
+                            </div>
+                            <h5 className="footer__mobile-heading">{t('footer.more')}</h5>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+            <HeaderSearch 
+                searchSection={searchSection} 
+                toggleSearchSection={toggleSearchSection}
+                /> 
         </div>
     );
 };

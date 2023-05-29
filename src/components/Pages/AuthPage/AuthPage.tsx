@@ -18,6 +18,7 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 	const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 	const isAuth = useTypedSelector(state => state.auth.isAuth)
 	const navigate = useNavigate()
+	let locale = t('authPage.locale')
 
 	useEffect(() => {
 		if (isAuth) {
@@ -44,6 +45,8 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 				<LoginForm />
 				<div className="authPage__googleBtn">
 					<GoogleLogin
+						locale={locale}
+						width="240"
 						onSuccess={credentialResponse => {
 							if (credentialResponse.credential) {
 								const decoded = jwt_decode<any>(credentialResponse.credential);
@@ -56,10 +59,10 @@ export const AuthPage: FC<IAuthPageProps> = (props) => {
 					/>
 				</div>
 				<div onClick={vkAuth} className="authPage__vkBtn">
-					<div>{t('authPage.VKauth')}</div>
 					<div>
 						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png" alt="" />
 					</div>
+					<div>{t('authPage.VKauth')}</div>
 				</div>
 			</div>
 
