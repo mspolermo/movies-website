@@ -46,17 +46,19 @@ const Header = () => {
     
     const[chosenVariant, setChosenVariant] = useState('');
     let block = null;
+
     const dropdownBlock = document.querySelector('#drop-down-block');
     const headerTop = document.querySelector('#header-top');
 
     useEffect( () => {
 
         document.querySelector(`${variantID}`)?.classList.add(`${dropDownVariant}__hidden`);
-
+        console.log(document.querySelector(`${variantID}`))
         //workaroud для отображения пунктов выпадающего списка
 
         if ( (chosenVariant == 'Фильмы') || (chosenVariant == 'Movies') ) {
-            block = document.querySelector('#drop-down-films')
+            block = document.querySelector('#drop-down-films');
+            
             block?.classList.remove('headerMenuFilms__hidden')
             setVariatnID('#drop-down-films')
             setDropDownVariant('headerMenuFilms')

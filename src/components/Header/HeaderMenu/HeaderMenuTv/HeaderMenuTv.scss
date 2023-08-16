@@ -3,10 +3,10 @@
 .headerMenuTv {
     padding: 10px 28px 20px;
     height: 370px;
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     &__hidden {
-        display: none;
+        display: none !important;
     }
     &__block {
         min-width: 180px;

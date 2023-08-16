@@ -20,6 +20,7 @@
     }
     &__dropDownBody {
         margin: 0 auto;
+        //overflow: hidden;
 
         z-index: 3;
         display: block;
@@ -35,12 +36,13 @@
         transition-duration: 1000ms;
         opacity: 1;
         &_hidden {
-            display: none;
+            display: none !important;
             z-index: -2;
         }
 
     }
 }
+
 
 .dropDownBody{
     &__container{

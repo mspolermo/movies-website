@@ -3,10 +3,10 @@
 .headerMenuFilms {
     padding: 10px 28px 20px;
     height: 370px;
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     &__hidden {
-        display: none;
+        display: none !important;
         z-index: 0;
     }
     &__block {
