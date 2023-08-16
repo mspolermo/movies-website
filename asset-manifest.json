@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movies-website/static/css/main.2aedd2ef.css",
-    "main.js": "/movies-website/static/js/main.c05e7b9a.js",
+    "main.css": "/movies-website/static/css/main.20bf2038.css",
+    "main.js": "/movies-website/static/js/main.76a52173.js",
     "static/media/tv-without-poster.png": "/movies-website/static/media/tv-without-poster.6eaa0bdcae45928aa0e8.png",
     "static/media/film2.png": "/movies-website/static/media/film2.5db82486d317b0fe58f2.png",
     "static/media/IvyStyleSans-LightItalic.eot": "/movies-website/static/media/IvyStyleSans-LightItalic.fed5019bdac3f3fb6af9.eot",
@@ -84,11 +84,11 @@
     "static/media/notlike.svg": "/movies-website/static/media/notlike.0b6e7ab8a739f5a8aea2b050e5f421dc.svg",
     "index.html": "/movies-website/index.html",
     "static/media/getFetch.cjs": "/movies-website/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.2aedd2ef.css.map": "/movies-website/static/css/main.2aedd2ef.css.map",
-    "main.c05e7b9a.js.map": "/movies-website/static/js/main.c05e7b9a.js.map"
+    "main.20bf2038.css.map": "/movies-website/static/css/main.20bf2038.css.map",
+    "main.76a52173.js.map": "/movies-website/static/js/main.76a52173.js.map"
   },
   "entrypoints": [
-    "static/css/main.2aedd2ef.css",
-    "static/js/main.c05e7b9a.js"
+    "static/css/main.20bf2038.css",
+    "static/js/main.76a52173.js"
   ]
 }
